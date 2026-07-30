@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MagSolutionsAI — The AI Dependency Firewall</title>
-<meta name="description" content="A GitHub App that blocks AI-hallucinated dependencies, hardcoded secrets and AI-specific security flaws on every pull request.">
+<meta name="description" content="A GitHub App that blocks AI-hallucinated dependencies, hardcoded secrets and AI-specific security flaws on every pull request. Verified against the real registries.">
+<meta property="og:title" content="MagSolutionsAI — The AI Dependency Firewall">
+<meta property="og:description" content="Your AI assistant just invented a package. Someone may already own it.">
+<meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="apple-touch-icon" href="logo-200.png">
 <link rel="stylesheet" href="style.css">
@@ -12,183 +15,282 @@
 <body>
 
 <header class="nav">
-  <div class="nav-in">
-    <a class="brand" href="./">
-      <span class="brand-icon"><img src="logo-200.png" alt=""></span>
-      MagSolutionsAI
-    </a>
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-200.png" alt=""><span>MagSolutionsAI</span></a>
     <nav class="nav-links">
-      <a href="#how">How it works</a>
+      <a href="#incident">The incident</a>
+      <a href="#checks">What it checks</a>
       <a href="#privacy">Privacy</a>
-      <a href="privacy.html">Policy</a>
-      <a href="terms.html">Terms</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install</a>
     </nav>
   </div>
 </header>
 
 <main>
 
-  <div class="hero wrap">
-    <img class="hero-logo" src="logo-512.png" alt="MagSolutions AI Systems">
-    <span class="eyebrow">GitHub App</span>
-    <h1>Your AI assistant just invented a package.<br>Someone may already own it.</h1>
-    <p class="lede">
-      AI coding assistants hallucinate package names that don't exist. Attackers watch for the
-      names that get hallucinated <em>consistently</em>, register them, and wait for someone to
-      run <code>pip install</code>.
-    </p>
-    <p class="lede">
-      MagSolutionsAI checks every pull request against the real PyPI and npm registries and
-      blocks the merge before a phantom dependency ever reaches a lockfile.
-    </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/apps/magaudit-agent">Install the app</a>
-      <a class="btn btn-ghost" href="#how">See how it works</a>
+<!-- ══ Portada ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <div>
+      <div class="eyebrow"><span class="lbl">GitHub App · Free for public repos</span></div>
+      <h1>Your AI assistant just invented a package.<br><em>Someone may already own it.</em></h1>
+      <p class="sub">
+        AI coding assistants hallucinate package names that don't exist. Attackers watch for the
+        names that get hallucinated <b>consistently</b>, register them, and wait for someone to
+        run <code>pip install</code>.
+      </p>
+      <p class="sub">
+        MagSolutionsAI checks every dependency in every pull request against the real PyPI and npm
+        registries — and tells you the name you actually meant.
+      </p>
+      <div class="cta">
+        <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install the app →</a>
+        <a class="btn btn-2" href="#checks">See what it checks</a>
+        <span class="note">No SDK. No CI config. One install per org.</span>
+      </div>
     </div>
+
+    <!-- La pieza que demuestra en vez de afirmar -->
+    <figure class="exhibit rv">
+      <span class="exhibit-tag">Exhibit A · real output</span>
+      <div class="card">
+        <div class="card-head">
+          <span class="file">requirements.txt</span>
+          <span class="badge">CRITICAL</span>
+        </div>
+
+        <div class="diff">
+          <div class="ln add"><span class="no">1</span><span class="op">+</span><span class="txt">requests==2.31.0</span></div>
+          <div class="ln add"><span class="no">2</span><span class="op">+</span><span class="txt">flask==3.0.0</span></div>
+          <div class="ln bad"><span class="no">3</span><span class="op">+</span><span class="txt">reqeusts</span></div>
+        </div>
+        <div class="annot">
+          <span class="arrow">↳</span>
+          <span class="body">does not exist on PyPI — did you mean <b>requests</b>? <em>transposed letters</em></span>
+        </div>
+
+        <div class="diff" style="padding-top:0">
+          <div class="ln bad"><span class="no">4</span><span class="op">+</span><span class="txt">huggingface-cli</span></div>
+        </div>
+        <div class="annot">
+          <span class="arrow">↳</span>
+          <span class="body">does not exist on PyPI — did you mean <b>huggingface_hub</b>? <em>documented case, 2024</em></span>
+        </div>
+
+        <div class="proof">
+          <span class="dim">$</span> curl -sI https://pypi.org/pypi/huggingface-cli/json<br>
+          <span class="no">HTTP/2 404</span>&nbsp;&nbsp;<span class="dim">← not a heuristic. A fact.</span><br>
+          <span class="dim">$</span> curl -sI https://pypi.org/pypi/requests/json<br>
+          <span class="yes">HTTP/2 200</span>&nbsp;&nbsp;<span class="dim">first published 2011</span><span class="cursor"></span>
+        </div>
+      </div>
+    </figure>
+
   </div>
+</section>
 
-  <section id="why">
-    <div class="wrap">
-      <h2>This already happened</h2>
-      <p class="sub">It is called <strong>slopsquatting</strong>, and it is not theoretical.</p>
+<!-- ══ 01 · El incidente ═════════════════════════════════════ -->
+<section class="band alt" id="incident">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">01</span><h2>This already happened</h2><span class="rule"></span>
+    </div>
 
-      <div class="story">
+    <div class="incident">
+      <div class="rv">
         <p>
           In 2024 a security researcher noticed that AI models kept recommending
-          <code>pip install huggingface-cli</code>. The real package installs differently — that
-          name never existed.
+          <code>pip install huggingface-cli</code>. The real library installs under a different
+          name. That package <b>had never existed</b>.
         </p>
         <p>
-          He registered it as an empty placeholder to see what would happen. It received
-          <strong>more than 30,000 downloads in three months</strong>. Alibaba had pasted the
+          He registered it as an empty placeholder, just to see what would happen.
+        </p>
+        <blockquote class="pull">
+          It received more than 30,000 downloads in three months. Alibaba had pasted the
           hallucinated command straight into the README of a public repository.
-        </p>
+        </blockquote>
         <p>
-          The package was harmless. It did not have to be.
+          The package was harmless. <b>It did not have to be.</b> Anything installed from a
+          registry can run code on the machine that installs it — including your build server.
+        </p>
+        <p class="src">
+          The attack is called <b>slopsquatting</b>. Unlike typosquatting, it does not bet on
+          human typos — it bets on the names machines invent.
         </p>
       </div>
 
-      <p class="sub" style="margin-top:1.5rem">
-        Academic measurement backs it up: a study of 2.23 million AI-generated code samples across
-        16 models found <strong>19.7%</strong> contained at least one hallucinated package. Rates
-        have since fallen to roughly 5%, but <strong>43% of hallucinated names repeat every single
-        time</strong> the same prompt is run — which is exactly what makes them worth registering.
-      </p>
-    </div>
-  </section>
-
-  <section id="how">
-    <div class="wrap">
-      <h2>What it checks on every pull request</h2>
-      <p class="sub">
-        Findings arrive as a comment on the PR, each with the exact file, line, why it matters and
-        how to fix it.
-      </p>
-
-      <div class="checks">
-        <div class="check">
-          <span class="check-tag t-crit">CRITICAL</span>
-          <h3>Phantom dependencies</h3>
-          <p>Packages added in the diff that don't exist in PyPI or npm. Either a hallucination, or
-             an open window for an attacker to claim that name.</p>
+      <div class="figs rv">
+        <div class="fig">
+          <div class="n hot">19.7%</div>
+          <div class="d">of 2.23 million AI-generated code samples contained at least one
+            hallucinated package — 16 models, Python and JavaScript.</div>
         </div>
-        <div class="check">
-          <span class="check-tag t-warn">HIGH</span>
-          <h3>Freshly claimed packages</h3>
-          <p>They <em>do</em> exist — published days ago, almost no adoption. A slopsquat that has
-             already been claimed passes every existence check. This is the one nobody catches.</p>
+        <div class="fig">
+          <div class="n">43%</div>
+          <div class="d">of those invented names appear <b>every single time</b> the same prompt
+            is run. That reproducibility is what makes them worth registering.</div>
         </div>
-        <div class="check">
-          <span class="check-tag t-warn">HIGH</span>
-          <h3>Hardcoded secrets</h3>
-          <p>Eight credential formats, with entropy analysis and false-positive suppression. Emails
-             and type annotations don't trigger it.</p>
+        <div class="fig">
+          <div class="n">5%</div>
+          <div class="d">still hallucinate in 2026 measurements. Lower than 2025 — not zero,
+            and the names are still enumerable.</div>
         </div>
-        <div class="check">
-          <span class="check-tag t-warn">HIGH</span>
-          <h3>AI-specific flaws</h3>
-          <p>LLM output rendered as raw HTML, server secrets shipped in <code>NEXT_PUBLIC_</code>
-             variables, prompt injection sinks.</p>
-        </div>
-        <div class="check">
-          <span class="check-tag t-crit">CRITICAL</span>
-          <h3>Code injection</h3>
-          <p><code>eval</code>/<code>exec</code>, <code>shell=True</code>, SQL built by
-             concatenation, insecure deserialization, TLS verification turned off.</p>
-        </div>
-        <div class="check">
-          <span class="check-tag t-ok">ZERO SETUP</span>
-          <h3>Nothing to install</h3>
-          <p>No SDK, no CI configuration, no per-developer setup. Install the App once and every
-             pull request in the organisation is gated.</p>
-        </div>
-      </div>
-
-      <div class="term mono">
-<span class="c-dim">$ requirements.txt</span>
-  requests==2.31.0             <span class="c-ok">→ ESTABLISHED · ok</span>
-  reqeusts-http-utils-helper   <span class="c-crit">→ PHANTOM · CRITICAL</span>
-  huggingface-cli              <span class="c-crit">→ PHANTOM · CRITICAL</span>
+        <p class="src">Sources: USENIX Security 2025; 2026 re-evaluation against live PyPI and npm.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="privacy">
-    <div class="wrap">
-      <h2>We never store your source code</h2>
-      <p class="sub">
-        This is not a marketing line — it is how the service is built, and you can hold us to it.
-      </p>
+<!-- ══ 02 · Qué comprueba ════════════════════════════════════ -->
+<section class="band" id="checks">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">02</span><h2>What it checks, on every pull request</h2><span class="rule"></span>
+    </div>
+    <p class="sub" style="color:var(--ink-2);margin-bottom:1.8rem;max-width:60ch">
+      Findings arrive as a comment on the PR — each with the exact file, the line, why it matters
+      and how to fix it. Nothing to install for developers.
+    </p>
 
-      <ul class="points">
-        <li><strong>Diffs are analysed in memory and discarded.</strong> Nothing about your code is
-            written to disk.</li>
-        <li><strong>We store metadata only:</strong> installation ID, repository name, pull request
-            number, risk level, number of findings.</li>
-        <li><strong>Detected secrets are never retained.</strong> We report where a credential is —
-            we do not keep it.</li>
-        <li><strong>Only package names leave our server.</strong> PyPI and npm are asked whether a
-            name exists. No code is ever sent to a third party.</li>
-        <li><strong>We do not download or execute the packages we check.</strong> Unlike sandbox-based
-            scanners, we only need the name.</li>
-        <li><strong>Your data is not used to train models,</strong> sold, or shared with data
-            brokers.</li>
-      </ul>
+    <div class="checks">
+      <div class="check rv">
+        <span class="sev sev-c">CRIT</span>
+        <h3>Phantom dependencies</h3>
+        <span class="desc">Packages that don't exist in PyPI or npm. Either a hallucination, or a
+          name still unclaimed — and an open window for an attacker.</span>
+      </div>
+      <div class="check rv">
+        <span class="sev sev-h">HIGH</span>
+        <h3>Freshly claimed packages</h3>
+        <span class="desc">They <em>do</em> exist — published days ago, almost no downloads. A
+          slopsquat that has already been claimed passes every existence check. <b>This is the one
+          nobody catches.</b></span>
+      </div>
+      <div class="check rv">
+        <span class="sev sev-h">HIGH</span>
+        <h3>Hardcoded credentials</h3>
+        <span class="desc">Eight formats, with Shannon entropy and false-positive suppression.
+          Emails and type annotations don't trigger it.</span>
+      </div>
+      <div class="check rv">
+        <span class="sev sev-h">HIGH</span>
+        <h3>AI-specific flaws</h3>
+        <span class="desc">LLM output rendered as raw HTML (OWASP LLM05), server secrets shipped
+          in <code>NEXT_PUBLIC_</code> variables, prompt injection sinks.</span>
+      </div>
+      <div class="check rv">
+        <span class="sev sev-c">CRIT</span>
+        <h3>Code and command injection</h3>
+        <span class="desc"><code>eval</code>/<code>exec</code>, <code>shell=True</code>, SQL built
+          by concatenation, insecure deserialization, TLS verification turned off.</span>
+      </div>
+      <div class="check rv">
+        <span class="sev sev-h">FIX</span>
+        <h3>The name you actually meant</h3>
+        <span class="desc">When a package doesn't exist, candidate corrections are checked against
+          the registry. Only verified names are suggested — never a guess.</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="callout">
+<!-- ══ 03 · Privacidad ═══════════════════════════════════════ -->
+<section class="band alt" id="privacy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">03</span><h2>What leaves your repository</h2><span class="rule"></span>
+    </div>
+
+    <div class="priv">
+      <div class="rv">
+        <p class="claim">We never store<br><span class="u">your source code.</span></p>
         <p>
-          Full detail in the <a href="privacy.html">privacy policy</a>. Servers are hosted in
-          Finland (EU).
+          Diffs are analysed in memory and discarded the moment the audit finishes. Nothing about
+          your code is written to disk — not the diff, not the findings, not the value of any
+          credential we detect.
+        </p>
+        <p style="margin-top:1rem">
+          The only thing that leaves our server is <b>a package name</b>, asked of PyPI or npm.
+          We do not download or execute the packages we check — unlike sandbox-based scanners, we
+          only need the name.
+        </p>
+        <p style="margin-top:1.4rem">
+          <a href="privacy.html">Read the full privacy policy →</a><br>
+          <span class="lbl" style="display:inline-block;margin-top:.5rem">Servers in Finland · EU</span>
         </p>
       </div>
-    </div>
-  </section>
 
-  <section id="limits">
-    <div class="wrap">
-      <h2>What it is not</h2>
-      <p class="sub">
-        This is an automated static analysis tool and an aid to review — not a guarantee of
-        security. It analyses only the lines added in a pull request. <strong>The absence of
-        findings does not mean your code is secure.</strong> Every finding includes its exact
-        location precisely so a person can verify it. It does not replace a security audit,
-        a penetration test, or professional review.
-      </p>
+      <div class="ledger rv">
+        <div class="row head"><span class="mark"></span><span><b>What we store</b></span></div>
+        <div class="row yes"><span class="mark">✓</span><span>Installation ID and organisation name</span></div>
+        <div class="row yes"><span class="mark">✓</span><span>Repository name and pull request number</span></div>
+        <div class="row yes"><span class="mark">✓</span><span>Risk level and number of findings</span></div>
+        <div class="row head"><span class="mark"></span><span><b>What we never store</b></span></div>
+        <div class="row no"><span class="mark">✕</span><span>Your source code or the diff</span></div>
+        <div class="row no"><span class="mark">✕</span><span>The content of findings</span></div>
+        <div class="row no"><span class="mark">✕</span><span>The value of any detected credential</span></div>
+        <div class="row no"><span class="mark">✕</span><span>Anything used to train a model</span></div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- ══ Cierre ════════════════════════════════════════════════ -->
+<section class="close">
+  <div class="wrap">
+    <h2 class="rv">Install once. Every PR in the org is gated.</h2>
+    <p class="rv">Free for public repositories. No SDK, no CI configuration, no per-developer setup.</p>
+    <div class="cta rv" style="margin-bottom:2.6rem">
+      <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub →</a>
+      <a class="btn btn-2" href="terms.html">Terms of service</a>
+    </div>
+
+    <div class="limits">
+      <b>What this is not.</b> An automated static analysis tool and an aid to review — not a
+      guarantee of security. It analyses only the lines added in a pull request, not your existing
+      codebase, your infrastructure or your runtime. Registry checks reflect a point in time: a
+      package that does not exist today may be registered by an attacker minutes later.
+      <b>The absence of findings does not mean your code is secure.</b> Every finding carries its
+      exact location precisely so a person can verify it.
+    </div>
+  </div>
+</section>
 
 </main>
 
 <footer>
-  <div class="wrap foot-in">
+  <div class="wrap foot">
     <span>© 2026 MagSolutionsAI</span>
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>
     <a href="mailto:magsolutionsai@gmail.com">Contact</a>
-    <span class="spacer"></span>
+    <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
   </div>
 </footer>
+
+<script>
+// Revelado al entrar en pantalla. Si el navegador no lo soporta, todo queda visible.
+(function () {
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(function (e) { e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en, i) {
+      if (en.isIntersecting) {
+        setTimeout(function () { en.target.classList.add('in'); }, i * 70);
+        io.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
 
 </body>
 </html>
