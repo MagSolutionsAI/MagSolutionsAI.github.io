@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — MagSolutionsAI</title>
+<meta name="description" content="How MagSolutionsAI handles your data. In short: we never store your source code.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="apple-touch-icon" href="logo-200.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="./">
+      <span class="brand-icon"><img src="logo-200.png" alt=""></span>
+      MagSolutionsAI
+    </a>
+    <nav class="nav-links">
+      <a href="./">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<main class="legal wrap">
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: 30 July 2026</p>
+
+  <div class="callout">
+    <p><strong>The short version:</strong> we do not store your source code. Pull request diffs are
+    analysed in memory and discarded as soon as the audit finishes. We keep only the metadata
+    needed to run and bill the service.</p>
+  </div>
+
+  <h2>1. Who we are</h2>
+  <p>MagSolutionsAI ("we", "us") provides a GitHub App that audits pull requests for security
+  issues.</p>
+  <p><strong>Contact:</strong> <a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a></p>
+
+  <h2>2. What we process</h2>
+
+  <h3>2.1 Processed in memory, never stored</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Data</th><th>Purpose</th><th>Retention</th></tr>
+    <tr><td>Pull request diff (added lines)</td><td>Detect secrets, vulnerabilities and dependency issues</td><td>Discarded once the audit completes</td></tr>
+    <tr><td>Audit report</td><td>Serve the downloadable report</td><td>Held in memory only; lost when the service restarts</td></tr>
+  </table>
+  </div>
+
+  <h3>2.2 Stored</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Data</th><th>Purpose</th><th>Retention</th></tr>
+    <tr><td>GitHub installation ID</td><td>Identify your installation</td><td>Until you uninstall</td></tr>
+    <tr><td>Organisation login</td><td>Identify the account</td><td>Until you uninstall</td></tr>
+    <tr><td>Repository name, pull request number</td><td>Usage log and support</td><td>Until you uninstall</td></tr>
+    <tr><td>Risk level, number of findings</td><td>Usage metering and billing</td><td>Until you uninstall</td></tr>
+    <tr><td>Plan, usage counters, dates</td><td>Billing</td><td>Until you uninstall</td></tr>
+  </table>
+  </div>
+
+  <p><strong>We never store:</strong> the diff, your source code, the content of findings, or the
+  value of any secret detected. When we detect a credential we report its location — we do not
+  retain the credential itself.</p>
+
+  <h2>3. Third parties</h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Recipient</th><th>What we send</th><th>Why</th></tr>
+    <tr><td>PyPI (pypi.org)</td><td>Package <strong>names</strong> only</td><td>Verify a dependency exists and when it was first published</td></tr>
+    <tr><td>npm (registry.npmjs.org)</td><td>Package <strong>names</strong> only</td><td>Same</td></tr>
+    <tr><td>GitHub</td><td>The audit comment we post on your pull request</td><td>Deliver the result</td></tr>
+  </table>
+  </div>
+
+  <p><strong>No source code is ever sent to any third party.</strong> We do not download, execute
+  or sandbox the packages we check — we only ask the registry whether a name exists.</p>
+
+  <p>We do not use your data to train machine learning models. We do not sell or share your data
+  with advertisers or data brokers.</p>
+
+  <h2>4. Where data is processed</h2>
+  <p>The service runs on a dedicated server hosted by Hetzner Online GmbH in Finland (European
+  Union). Data is not transferred outside the EU except for the registry lookups and GitHub API
+  calls described in section 3.</p>
+
+  <h2>5. Security</h2>
+  <ul>
+    <li>Every webhook event is verified with HMAC-SHA256 before processing; unsigned or tampered requests are rejected.</li>
+    <li>Credentials are held in environment variables and files kept out of version control.</li>
+    <li>Server access is restricted to key-based SSH.</li>
+  </ul>
+
+  <h2>6. Data breaches</h2>
+  <p>If a personal data breach occurs, we will notify the competent supervisory authority within
+  <strong>72 hours</strong> of becoming aware of it, as required by Article 33 GDPR. Where the
+  breach is likely to result in a high risk to your rights and freedoms, we will notify affected
+  organisations without undue delay.</p>
+
+  <h2>7. Your rights</h2>
+  <p>If you are in the EU/EEA or the UK, you have the right to access, rectify, erase, restrict and
+  port your personal data, and to object to its processing. To exercise any of these rights,
+  contact <a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a>.</p>
+
+  <p><strong>Deleting your data:</strong> uninstalling the GitHub App removes our access to your
+  repositories. To request deletion of the stored metadata, contact us and we will delete it
+  within 30 days.</p>
+
+  <p>You also have the right to lodge a complaint with your local supervisory authority. In Spain
+  this is the Agencia Española de Protección de Datos (AEPD).</p>
+
+  <h2>8. Changes</h2>
+  <p>We will update the date at the top of this page when this policy changes. Material changes
+  will be announced and, where required, notified to installed organisations.</p>
+
+  <h2>9. Contact</h2>
+  <p><a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a></p>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="spacer"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

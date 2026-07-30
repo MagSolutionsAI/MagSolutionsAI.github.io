@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service — MagSolutionsAI</title>
+<meta name="description" content="Terms of service for the MagSolutionsAI GitHub App.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="apple-touch-icon" href="logo-200.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="./">
+      <span class="brand-icon"><img src="logo-200.png" alt=""></span>
+      MagSolutionsAI
+    </a>
+    <nav class="nav-links">
+      <a href="./">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<main class="legal wrap">
+
+  <h1>Terms of Service</h1>
+  <p class="updated">Last updated: 30 July 2026</p>
+
+  <h2>1. The service</h2>
+  <p>MagSolutionsAI is a GitHub App that automatically analyses pull requests and reports potential
+  security issues: hardcoded credentials, code vulnerabilities, and dependencies that do not exist
+  or were published very recently.</p>
+  <p>By installing the App you agree to these terms.</p>
+
+  <h2>2. What the service is — and what it is not</h2>
+
+  <div class="callout">
+    <p><strong>This is an automated static analysis tool. It is an aid to review, not a guarantee
+    of security.</strong></p>
+  </div>
+
+  <p>You explicitly acknowledge that:</p>
+  <ul>
+    <li><strong>The absence of findings does not mean your code is secure.</strong> The tool detects
+        specific, documented patterns. An attacker using techniques outside that scope may find
+        paths it does not cover.</li>
+    <li><strong>The tool analyses only the lines added in a pull request.</strong> It does not audit
+        your existing codebase, your infrastructure, your dependencies in depth, or your runtime.</li>
+    <li><strong>Findings require human verification.</strong> Every finding includes its exact
+        location precisely so that a person can confirm it.</li>
+    <li><strong>Registry checks reflect a moment in time.</strong> A package that exists today may
+        be removed tomorrow, and one that does not exist today may be registered by an attacker
+        minutes later.</li>
+  </ul>
+
+  <p>The tool does not replace a security audit, a penetration test, or professional review.
+  Decisions about merging code remain entirely yours.</p>
+
+  <h2>3. Acceptable use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Use the service against repositories you are not authorised to audit.</li>
+    <li>Attempt to disrupt, overload or reverse engineer the service.</li>
+    <li>Resell or redistribute the service without a written agreement.</li>
+  </ul>
+  <p>We may suspend an installation that materially breaches this section.</p>
+
+  <h2>4. Availability</h2>
+  <p>We aim to keep the service available but do not commit to any specific uptime unless agreed
+  separately in writing. The service depends on third parties (GitHub, PyPI, npm) and their
+  outages may affect it. When a dependency registry cannot be reached, the tool reports the
+  dependency as <em>unverifiable</em> rather than as safe.</p>
+
+  <h2>5. Warranties</h2>
+  <p>The service is provided "as is" and "as available". To the maximum extent permitted by
+  applicable law, we disclaim implied warranties of merchantability, fitness for a particular
+  purpose and non-infringement. Nothing in these terms limits any warranty or right that cannot
+  be excluded under the law applicable to you.</p>
+
+  <h2>6. Limitation of liability</h2>
+  <p>To the maximum extent permitted by applicable law, we are not liable for indirect, incidental,
+  special or consequential damages, nor for loss of profits, data or business opportunity, arising
+  from the use of or inability to use the service — including any security incident the tool did
+  not detect.</p>
+  <p>Where liability cannot be excluded, it is limited to the amount you paid for the service in
+  the twelve months preceding the claim. Nothing in these terms excludes liability for wilful
+  misconduct or gross negligence, or any other liability that cannot lawfully be excluded.</p>
+
+  <h2>7. Fees</h2>
+  <p>Free plans are provided at no cost and may change or end with reasonable notice. Paid plans
+  are billed as stated in the GitHub Marketplace listing at the time of purchase. Purchases,
+  upgrades, downgrades and cancellations are handled through GitHub Marketplace and are subject to
+  GitHub's own terms.</p>
+
+  <h2>8. Data</h2>
+  <p>Our handling of data is described in the <a href="privacy.html">Privacy Policy</a>. In summary:
+  we do not store your source code.</p>
+
+  <h2>9. Termination</h2>
+  <p>You may uninstall the App at any time; that ends these terms for you. We may terminate an
+  installation for material breach of section 3, or discontinue the service with reasonable
+  notice.</p>
+
+  <h2>10. Governing law</h2>
+  <p>These terms are governed by the laws of Spain, without regard to conflict of law rules. If you
+  are a consumer, you keep the protection of the mandatory provisions of the law of your country
+  of residence.</p>
+
+  <h2>11. Contact</h2>
+  <p><a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a></p>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="spacer"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
