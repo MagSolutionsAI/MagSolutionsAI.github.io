@@ -3,257 +3,220 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MagSolutionsAI — The AI Dependency Firewall</title>
-<meta name="description" content="A GitHub App that blocks AI-hallucinated dependencies, hardcoded secrets and AI-specific security flaws on every pull request. Verified against the real registries.">
+<title>MagSolutionsAI — Ship AI-written code without shipping someone else's malware</title>
+<meta name="description" content="Your AI assistant invents package names. Attackers register them. We check every dependency in every pull request against the live PyPI and npm registries — and tell you the name you actually meant.">
 <meta property="og:title" content="MagSolutionsAI — The AI Dependency Firewall">
 <meta property="og:description" content="Your AI assistant just invented a package. Someone may already own it.">
-<meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="apple-touch-icon" href="logo-200.png">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="./"><img src="logo-200.png" alt=""><span>MagSolutionsAI</span></a>
+    <a class="brand" href="./"><img src="logo-200.png" alt=""><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
-      <a href="#incident">The incident</a>
-      <a href="#checks">What it checks</a>
-      <a href="#privacy">Privacy</a>
-      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install</a>
+      <a href="#scan">Live scan</a>
+      <a href="#compare">Why it's different</a>
+      <a href="#checks">What it catches</a>
+      <a href="#trust">Trust</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
     </nav>
   </div>
 </header>
 
 <main>
 
-<!-- ══ Portada ═══════════════════════════════════════════════ -->
-<section class="hero">
+<!-- ═══ 1 · HERO ═══════════════════════════════════════════ -->
+<section class="hero" id="scan">
   <div class="wrap hero-grid">
 
     <div>
-      <div class="eyebrow"><span class="lbl">GitHub App · Free for public repos</span></div>
-      <h1>Your AI assistant just invented a package.<br><em>Someone may already own it.</em></h1>
-      <p class="sub">
-        AI coding assistants hallucinate package names that don't exist. Attackers watch for the
-        names that get hallucinated <b>consistently</b>, register them, and wait for someone to
-        run <code>pip install</code>.
+      <div class="pill"><span class="dot"></span> Free for public repos · no SDK · no CI config</div>
+
+      <h1>Ship AI-written code without shipping <span class="hl">someone else's malware</span>.</h1>
+
+      <p class="lede">
+        Your assistant confidently suggests a package. It doesn't exist. Someone registered that
+        exact name last week and waited. <b>Your build server runs their install script.</b>
+        You find out from the incident report.
       </p>
-      <p class="sub">
-        MagSolutionsAI checks every dependency in every pull request against the real PyPI and npm
-        registries — and tells you the name you actually meant.
-      </p>
+
       <div class="cta">
-        <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install the app →</a>
-        <a class="btn btn-2" href="#checks">See what it checks</a>
-        <span class="note">No SDK. No CI config. One install per org.</span>
+        <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub →</a>
+        <button class="btn btn-2" type="button" id="demoBtn">Try it on a broken file ↓</button>
+        <span class="note">Gated in ~2s per PR</span>
       </div>
     </div>
 
-    <!-- La pieza que demuestra en vez de afirmar -->
-    <figure class="exhibit rv">
-      <span class="exhibit-tag">Exhibit A · real output</span>
-      <div class="card">
-        <div class="card-head">
-          <span class="file">requirements.txt</span>
-          <span class="badge">CRITICAL</span>
-        </div>
-
-        <div class="diff">
-          <div class="ln add"><span class="no">1</span><span class="op">+</span><span class="txt">requests==2.31.0</span></div>
-          <div class="ln add"><span class="no">2</span><span class="op">+</span><span class="txt">flask==3.0.0</span></div>
-          <div class="ln bad"><span class="no">3</span><span class="op">+</span><span class="txt">reqeusts</span></div>
-        </div>
-        <div class="annot">
-          <span class="arrow">↳</span>
-          <span class="body">does not exist on PyPI — did you mean <b>requests</b>? <em>transposed letters</em></span>
-        </div>
-
-        <div class="diff" style="padding-top:0">
-          <div class="ln bad"><span class="no">4</span><span class="op">+</span><span class="txt">huggingface-cli</span></div>
-        </div>
-        <div class="annot">
-          <span class="arrow">↳</span>
-          <span class="body">does not exist on PyPI — did you mean <b>huggingface_hub</b>? <em>documented case, 2024</em></span>
-        </div>
-
-        <div class="proof">
-          <span class="dim">$</span> curl -sI https://pypi.org/pypi/huggingface-cli/json<br>
-          <span class="no">HTTP/2 404</span>&nbsp;&nbsp;<span class="dim">← not a heuristic. A fact.</span><br>
-          <span class="dim">$</span> curl -sI https://pypi.org/pypi/requests/json<br>
-          <span class="yes">HTTP/2 200</span>&nbsp;&nbsp;<span class="dim">first published 2011</span><span class="cursor"></span>
-        </div>
+    <!-- Componente interactivo: escanea de verdad contra PyPI, en el navegador -->
+    <div class="scan rv">
+      <div class="scan-hd">
+        <span class="tt">requirements.txt</span>
+        <span class="live"><span class="dot"></span> live · queries pypi.org</span>
       </div>
-    </figure>
+
+      <label for="deps" class="lbl" style="position:absolute;left:-9999px">Paste your dependencies</label>
+      <textarea id="deps" spellcheck="false" placeholder="Paste your requirements.txt here — or hit the button below to load a broken one.
+Nothing is uploaded: your browser queries PyPI directly."></textarea>
+
+      <div class="scan-ft">
+        <span class="hint" id="hint">Max 25 packages · no signup · nothing stored</span>
+        <span class="sp"></span>
+        <button class="btn-scan" type="button" id="runBtn">Scan now</button>
+      </div>
+
+      <div class="results" id="results" role="status" aria-live="polite"></div>
+      <div id="summary"></div>
+    </div>
 
   </div>
 </section>
 
-<!-- ══ 01 · El incidente ═════════════════════════════════════ -->
-<section class="band alt" id="incident">
+<!-- ═══ 2 · LA VIEJA FORMA vs LA NUESTRA ══════════════════ -->
+<section class="band" id="compare">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-no">01</span><h2>This already happened</h2><span class="rule"></span>
+    <div class="sec-hd">
+      <span class="lbl">02 — Why the tools you already pay for miss this</span>
+      <h2>Every scanner assumes the package exists.</h2>
+      <p>Snyk, Dependabot and npm audit look up known vulnerabilities in real packages. A name
+        invented five minutes ago has no CVE, no advisory and no history. It is invisible to all
+        of them — by design.</p>
     </div>
 
-    <div class="incident">
-      <div class="rv">
-        <p>
-          In 2024 a security researcher noticed that AI models kept recommending
-          <code>pip install huggingface-cli</code>. The real library installs under a different
-          name. That package <b>had never existed</b>.
-        </p>
-        <p>
-          He registered it as an empty placeholder, just to see what would happen.
-        </p>
-        <blockquote class="pull">
-          It received more than 30,000 downloads in three months. Alibaba had pasted the
-          hallucinated command straight into the README of a public repository.
-        </blockquote>
-        <p>
-          The package was harmless. <b>It did not have to be.</b> Anything installed from a
-          registry can run code on the machine that installs it — including your build server.
-        </p>
-        <p class="src">
-          The attack is called <b>slopsquatting</b>. Unlike typosquatting, it does not bet on
-          human typos — it bets on the names machines invent.
-        </p>
+    <div class="vs">
+      <div class="col old rv">
+        <div class="col-hd">Conventional dependency scanning</div>
+        <ul>
+          <li><span class="mk">✕</span><span><b>Needs a CVE to fire.</b> A package registered yesterday has none. Silence reads as safety.</span></li>
+          <li><span class="mk">✕</span><span><b>Analyses behaviour, not existence.</b> Sandboxing a package requires downloading it — there is nothing to download when the name is pure hallucination.</span></li>
+          <li><span class="mk">✕</span><span><b>40–60% false positives</b> is the industry norm for SAST. Teams learn to scroll past the bot.</span></li>
+          <li><span class="mk">✕</span><span><b>Flags the problem, stops there.</b> "Unknown package" without telling you what you meant to type.</span></li>
+        </ul>
       </div>
 
-      <div class="figs rv">
-        <div class="fig">
-          <div class="n hot">19.7%</div>
-          <div class="d">of 2.23 million AI-generated code samples contained at least one
-            hallucinated package — 16 models, Python and JavaScript.</div>
-        </div>
-        <div class="fig">
-          <div class="n">43%</div>
-          <div class="d">of those invented names appear <b>every single time</b> the same prompt
-            is run. That reproducibility is what makes them worth registering.</div>
-        </div>
-        <div class="fig">
-          <div class="n">5%</div>
-          <div class="d">still hallucinate in 2026 measurements. Lower than 2025 — not zero,
-            and the names are still enumerable.</div>
-        </div>
-        <p class="src">Sources: USENIX Security 2025; 2026 re-evaluation against live PyPI and npm.</p>
+      <div class="col now rv">
+        <div class="col-hd">MagSolutionsAI</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Asks the registry directly.</b> HTTP 404 is not a heuristic — it is a fact, with a timestamp you can reproduce with curl.</span></li>
+          <li><span class="mk">✓</span><span><b>Catches the claimed ones too.</b> Existence isn't enough: a package published 6 days ago with 40 downloads gets flagged as well.</span></li>
+          <li><span class="mk">✓</span><span><b>An oracle, not an opinion.</b> The core check can't produce a false positive — either the registry returns the package or it doesn't.</span></li>
+          <li><span class="mk">✓</span><span><b>Gives you the right name.</b> Candidate corrections are verified against the registry before being suggested. Never a guess.</span></li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 02 · Qué comprueba ════════════════════════════════════ -->
+<!-- ═══ 3 · QUÉ DETECTA ═══════════════════════════════════ -->
 <section class="band" id="checks">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-no">02</span><h2>What it checks, on every pull request</h2><span class="rule"></span>
+    <div class="sec-hd">
+      <span class="lbl">03 — On every pull request, before merge</span>
+      <h2>Four gates. One install. Zero developer setup.</h2>
+      <p>Findings land as a comment on the PR with the exact file, the line, why it matters and how
+        to fix it. Nobody on your team installs anything.</p>
     </div>
-    <p class="sub" style="color:var(--ink-2);margin-bottom:1.8rem;max-width:60ch">
-      Findings arrive as a comment on the PR — each with the exact file, the line, why it matters
-      and how to fix it. Nothing to install for developers.
-    </p>
 
-    <div class="checks">
-      <div class="check rv">
-        <span class="sev sev-c">CRIT</span>
-        <h3>Phantom dependencies</h3>
-        <span class="desc">Packages that don't exist in PyPI or npm. Either a hallucination, or a
-          name still unclaimed — and an open window for an attacker.</span>
-      </div>
-      <div class="check rv">
-        <span class="sev sev-h">HIGH</span>
-        <h3>Freshly claimed packages</h3>
-        <span class="desc">They <em>do</em> exist — published days ago, almost no downloads. A
-          slopsquat that has already been claimed passes every existence check. <b>This is the one
-          nobody catches.</b></span>
-      </div>
-      <div class="check rv">
-        <span class="sev sev-h">HIGH</span>
-        <h3>Hardcoded credentials</h3>
-        <span class="desc">Eight formats, with Shannon entropy and false-positive suppression.
-          Emails and type annotations don't trigger it.</span>
-      </div>
-      <div class="check rv">
-        <span class="sev sev-h">HIGH</span>
-        <h3>AI-specific flaws</h3>
-        <span class="desc">LLM output rendered as raw HTML (OWASP LLM05), server secrets shipped
-          in <code>NEXT_PUBLIC_</code> variables, prompt injection sinks.</span>
-      </div>
-      <div class="check rv">
-        <span class="sev sev-c">CRIT</span>
-        <h3>Code and command injection</h3>
-        <span class="desc"><code>eval</code>/<code>exec</code>, <code>shell=True</code>, SQL built
-          by concatenation, insecure deserialization, TLS verification turned off.</span>
-      </div>
-      <div class="check rv">
-        <span class="sev sev-h">FIX</span>
-        <h3>The name you actually meant</h3>
-        <span class="desc">When a package doesn't exist, candidate corrections are checked against
-          the registry. Only verified names are suggested — never a guess.</span>
-      </div>
+    <div class="grid4">
+      <article class="cap rv">
+        <div class="metric dgr">404</div>
+        <h3>Phantom Dependency Gate</h3>
+        <p>Every added dependency is resolved against live PyPI and npm. Missing means either an AI
+          hallucination or an <b>unclaimed name an attacker can still register</b>. Blocked as
+          critical.</p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric warn">&lt;90d</div>
+        <h3>Fresh-Claim Detection</h3>
+        <p>The dangerous case: it <em>does</em> exist. Published days ago, near-zero adoption — the
+          exact profile of a slopsquat already claimed. Existence checks miss this. <b>We don't.</b></p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric">8</div>
+        <h3>Credential Interception</h3>
+        <p>Eight key formats with Shannon entropy scoring and false-positive suppression. Emails,
+          <code>os.getenv()</code> calls and type annotations do not trigger it.</p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric">LLM01<span style="color:var(--fg-3);font-size:1rem">/05</span></div>
+        <h3>AI-Native Flaw Scanning</h3>
+        <p>The bugs that only appear in AI-written code: model output piped into
+          <code>dangerouslySetInnerHTML</code>, service-role keys shipped in
+          <code>NEXT_PUBLIC_</code> vars, prompt-injection sinks.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ══ 03 · Privacidad ═══════════════════════════════════════ -->
-<section class="band alt" id="privacy">
+<!-- ═══ 4 · CONFIANZA ═════════════════════════════════════ -->
+<section class="band" id="trust">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-no">03</span><h2>What leaves your repository</h2><span class="rule"></span>
+    <div class="sec-hd">
+      <span class="lbl">04 — Verify us the way we verify you</span>
+      <h2>Every claim on this page is checkable.</h2>
+      <p>We are a security vendor asking for access to your repositories. You should not take our
+        word for anything — so we made sure you don't have to.</p>
     </div>
 
-    <div class="priv">
-      <div class="rv">
-        <p class="claim">We never store<br><span class="u">your source code.</span></p>
-        <p>
-          Diffs are analysed in memory and discarded the moment the audit finishes. Nothing about
-          your code is written to disk — not the diff, not the findings, not the value of any
-          credential we detect.
-        </p>
-        <p style="margin-top:1rem">
-          The only thing that leaves our server is <b>a package name</b>, asked of PyPI or npm.
-          We do not download or execute the packages we check — unlike sandbox-based scanners, we
-          only need the name.
-        </p>
-        <p style="margin-top:1.4rem">
-          <a href="privacy.html">Read the full privacy policy →</a><br>
-          <span class="lbl" style="display:inline-block;margin-top:.5rem">Servers in Finland · EU</span>
-        </p>
+    <div class="trust">
+      <div class="tcard rv">
+        <span class="lbl">Reproducible</span>
+        <p>Every dependency finding ships the exact registry query, HTTP status and timestamp.
+          <b>Run the curl yourself</b> — the finding either reproduces or it doesn't.</p>
       </div>
+      <div class="tcard rv">
+        <span class="lbl">Zero code retention</span>
+        <p>Diffs are analysed in memory and discarded. We store installation ID, repo name, PR
+          number and risk level. <b>Never your source, never a detected secret.</b></p>
+      </div>
+      <div class="tcard rv">
+        <span class="lbl">No third parties</span>
+        <p>Only a package <b>name</b> leaves our server, to PyPI or npm. No analytics, no trackers,
+          no font CDN — this page loads zero external resources.</p>
+      </div>
+      <div class="tcard rv">
+        <span class="lbl">EU infrastructure</span>
+        <p>Hosted in Finland. Webhooks verified with HMAC-SHA256 over TLS 1.3. GDPR Art. 33 breach
+          notification in <b>72 hours</b>. <a href="privacy.html">Full policy →</a></p>
+      </div>
+    </div>
 
-      <div class="ledger rv">
-        <div class="row head"><span class="mark"></span><span><b>What we store</b></span></div>
-        <div class="row yes"><span class="mark">✓</span><span>Installation ID and organisation name</span></div>
-        <div class="row yes"><span class="mark">✓</span><span>Repository name and pull request number</span></div>
-        <div class="row yes"><span class="mark">✓</span><span>Risk level and number of findings</span></div>
-        <div class="row head"><span class="mark"></span><span><b>What we never store</b></span></div>
-        <div class="row no"><span class="mark">✕</span><span>Your source code or the diff</span></div>
-        <div class="row no"><span class="mark">✕</span><span>The content of findings</span></div>
-        <div class="row no"><span class="mark">✕</span><span>The value of any detected credential</span></div>
-        <div class="row no"><span class="mark">✕</span><span>Anything used to train a model</span></div>
-      </div>
+    <div class="honest rv">
+      <span class="lbl">What we are not going to pretend</span>
+      <p>
+        <b>We have no customer logos to show you, because we have no customers yet.</b> This
+        product went live in July 2026. Everything above is a property of the code, not a
+        testimonial — and all of it is verifiable in the report the App generates on your own
+        pull requests. When we have references, they will appear here with names. Until then,
+        the free tier and the scanner at the top of this page are the entire pitch.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ══ Cierre ════════════════════════════════════════════════ -->
+<!-- ═══ 5 · CIERRE ════════════════════════════════════════ -->
 <section class="close">
   <div class="wrap">
-    <h2 class="rv">Install once. Every PR in the org is gated.</h2>
-    <p class="rv">Free for public repositories. No SDK, no CI configuration, no per-developer setup.</p>
-    <div class="cta rv" style="margin-bottom:2.6rem">
+    <h2 class="rv">One install. Every pull request in the org.</h2>
+    <p class="rv">Free for public repositories, forever. No SDK, no CI pipeline changes, no
+      per-developer setup. Uninstalling takes one click and removes all access.</p>
+    <div class="cta rv">
       <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub →</a>
-      <a class="btn btn-2" href="terms.html">Terms of service</a>
+      <a class="btn btn-2" href="#scan">Scan a file first</a>
     </div>
 
-    <div class="limits">
+    <div class="limits rv">
       <b>What this is not.</b> An automated static analysis tool and an aid to review — not a
-      guarantee of security. It analyses only the lines added in a pull request, not your existing
-      codebase, your infrastructure or your runtime. Registry checks reflect a point in time: a
+      guarantee of security. It analyses only the lines added in a pull request: not your existing
+      codebase, your infrastructure or your runtime. Registry checks reflect a point in time — a
       package that does not exist today may be registered by an attacker minutes later.
       <b>The absence of findings does not mean your code is secure.</b> Every finding carries its
-      exact location precisely so a person can verify it.
+      exact location precisely so a human can verify it.
     </div>
   </div>
 </section>
@@ -272,23 +235,230 @@
 </footer>
 
 <script>
-// Revelado al entrar en pantalla. Si el navegador no lo soporta, todo queda visible.
 (function () {
+  'use strict';
+
+  var MAX = 25;
+  var SAMPLE = [
+    'requests==2.31.0',
+    'flask==3.0.0',
+    'reqeusts',
+    'huggingface-cli',
+    'pandas==2.2.0'
+  ].join('\n');
+
+  var deps    = document.getElementById('deps');
+  var runBtn  = document.getElementById('runBtn');
+  var demoBtn = document.getElementById('demoBtn');
+  var out     = document.getElementById('results');
+  var sumEl   = document.getElementById('summary');
+  var hint    = document.getElementById('hint');
+
+  // Correcciones conocidas y documentadas. Se VERIFICAN igual que el resto.
+  var KNOWN = {
+    'huggingface-cli': ['huggingface_hub', 'documented case, 2024'],
+    'huggingface_cli': ['huggingface_hub', 'documented case, 2024'],
+    'sklearn':         ['scikit-learn',    'real package name'],
+    'beautifulsoup':   ['beautifulsoup4',  'real package name'],
+    'opencv':          ['opencv-python',   'real package name']
+  };
+  var SUFFIX = ['-cli','-client','-sdk','-api','-helper','-utils','-async','-py','-python'];
+
+  function parse(text) {
+    var seen = {}, list = [];
+    text.split('\n').forEach(function (raw) {
+      var l = raw.trim();
+      if (!l || l.charAt(0) === '#' || l.slice(0, 2) === '-r' || l.slice(0, 2) === '--') return;
+      var m = l.match(/^([A-Za-z0-9][A-Za-z0-9._-]{0,99})/);
+      if (!m) return;
+      var n = m[1];
+      if (seen[n.toLowerCase()]) return;
+      seen[n.toLowerCase()] = 1;
+      list.push(n);
+    });
+    return list.slice(0, MAX);
+  }
+
+  function transpose(n) {
+    var out = [];
+    for (var i = 0; i < n.length - 1; i++) {
+      out.push(n.slice(0, i) + n.charAt(i + 1) + n.charAt(i) + n.slice(i + 2));
+    }
+    return out;
+  }
+
+  function candidates(name) {
+    var c = [], seen = {}, lower = name.toLowerCase();
+    function add(v, how) {
+      var k = v.toLowerCase();
+      if (!v || k === lower || seen[k] || v.length < 2) return;
+      seen[k] = 1; c.push([v, how]);
+    }
+    if (KNOWN[lower]) add(KNOWN[lower][0], KNOWN[lower][1]);
+    add(name.replace(/-/g, '_'), 'hyphens to underscores');
+    add(name.replace(/_/g, '-'), 'underscores to hyphens');
+    var base = name;
+    for (var i = 0; i < SUFFIX.length; i++) {
+      if (base.toLowerCase().slice(-SUFFIX[i].length) === SUFFIX[i]) {
+        base = base.slice(0, -SUFFIX[i].length);
+        add(base, "without the '" + SUFFIX[i].slice(1) + "' suffix");
+        break;
+      }
+    }
+    transpose(name).forEach(function (t) { add(t, 'transposed letters'); });
+    if (base !== name) transpose(base).forEach(function (t) { add(t, 'suffix + transposition'); });
+    return c.slice(0, 6);
+  }
+
+  function lookup(name) {
+    return fetch('https://pypi.org/pypi/' + encodeURIComponent(name) + '/json',
+                 { method: 'GET', cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 404) return { exists: false, status: 404 };
+        if (!r.ok) return { exists: null, status: r.status };
+        return r.json().then(function (j) {
+          var dates = [], rel = j.releases || {};
+          Object.keys(rel).forEach(function (v) {
+            var f = rel[v];
+            if (f && f[0] && f[0].upload_time_iso_8601) dates.push(f[0].upload_time_iso_8601);
+          });
+          dates.sort();
+          var age = null;
+          if (dates.length) {
+            age = Math.floor((Date.now() - new Date(dates[0]).getTime()) / 86400000);
+          }
+          return { exists: true, status: 200, age: age };
+        });
+      })
+      .catch(function () { return { exists: null, status: 0 }; });
+  }
+
+  function row(cls, mark, name, meta, fix) {
+    var d = document.createElement('div');
+    d.className = 'res ' + cls;
+    var f = fix ? '<span class="fix">↳ did you mean <b>' + fix + '</b>?</span>' : '';
+    d.innerHTML = '<span class="mk">' + mark + '</span><span class="nm">' + name +
+                  '</span><span class="meta">' + meta + '</span>' + f;
+    return d;
+  }
+
+  function esc(s) { return String(s).replace(/[<>&"]/g, function (c) {
+    return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]; }); }
+
+  function suggest(name) {
+    var cands = candidates(name), i = 0;
+    function next() {
+      if (i >= cands.length) return Promise.resolve(null);
+      var c = cands[i++];
+      return lookup(c[0]).then(function (f) {
+        if (f.exists && (f.age === null || f.age >= 180)) return { name: c[0], how: c[1] };
+        return next();
+      });
+    }
+    return next();
+  }
+
+  function run() {
+    var names = parse(deps.value);
+    out.innerHTML = ''; sumEl.innerHTML = '';
+    if (!names.length) {
+      hint.textContent = 'Nothing to scan — paste a requirements.txt.';
+      return;
+    }
+    runBtn.disabled = true; runBtn.textContent = 'Scanning…';
+    hint.textContent = names.length + ' package(s) · querying pypi.org';
+
+    var phantoms = 0, fresh = 0, errs = 0, done = 0;
+
+    var chain = names.reduce(function (p, name) {
+      return p.then(function () {
+        var pend = row('pend', '◌', esc(name), 'checking…');
+        out.appendChild(pend);
+        out.scrollTop = out.scrollHeight;
+
+        return lookup(name).then(function (f) {
+          done++;
+          if (f.exists === null) {
+            errs++;
+            pend.replaceWith(row('warn', '?', esc(name), 'unverifiable'));
+            return;
+          }
+          if (f.exists === false) {
+            phantoms++;
+            return suggest(name).then(function (s) {
+              pend.replaceWith(row('bad', '✕', esc(name), 'does not exist · 404',
+                                   s ? esc(s.name) : null));
+            });
+          }
+          if (f.age !== null && f.age < 90) {
+            fresh++;
+            pend.replaceWith(row('warn', '!', esc(name), 'published ' + f.age + 'd ago'));
+            return;
+          }
+          var meta = f.age === null ? 'verified' : Math.floor(f.age / 365) + 'y on PyPI';
+          pend.replaceWith(row('ok', '✓', esc(name), meta));
+        });
+      });
+    }, Promise.resolve());
+
+    chain.then(function () {
+      runBtn.disabled = false; runBtn.textContent = 'Scan again';
+      hint.textContent = done + ' checked · nothing left your browser except package names';
+      var s = document.createElement('div');
+      if (phantoms) {
+        s.className = 'summary hit';
+        s.textContent = '✕ ' + phantoms + ' package(s) do not exist on PyPI. ' +
+          (fresh ? fresh + ' recently published. ' : '') +
+          'In a pull request, this merge would be blocked.';
+      } else if (fresh) {
+        s.className = 'summary err';
+        s.textContent = '! ' + fresh + ' recently published package(s) — verify the author before trusting them.';
+      } else if (errs === done) {
+        s.className = 'summary err';
+        s.textContent = '? Could not reach PyPI from this browser. A network failure is never reported as "safe".';
+      } else {
+        s.className = 'summary clean';
+        s.textContent = '✓ All ' + done + ' package(s) verified against the live PyPI registry.';
+      }
+      sumEl.appendChild(s);
+    });
+  }
+
+  runBtn.addEventListener('click', run);
+  demoBtn.addEventListener('click', function () {
+    deps.value = SAMPLE;
+    document.getElementById('scan').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(run, 420);
+  });
+  deps.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run();
+  });
+
+  // Micro-interacción: el halo de las tarjetas sigue al cursor
+  document.querySelectorAll('.cap').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // Revelado al entrar en pantalla
   var els = document.querySelectorAll('.rv');
   if (!('IntersectionObserver' in window) ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     els.forEach(function (e) { e.classList.add('in'); });
-    return;
+  } else {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x, i) {
+        if (x.isIntersecting) {
+          setTimeout(function () { x.target.classList.add('in'); }, i * 70);
+          io.unobserve(x.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: .08 });
+    els.forEach(function (e) { io.observe(e); });
   }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en, i) {
-      if (en.isIntersecting) {
-        setTimeout(function () { en.target.classList.add('in'); }, i * 70);
-        io.unobserve(en.target);
-      }
-    });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-  els.forEach(function (e) { io.observe(e); });
 })();
 </script>
 
