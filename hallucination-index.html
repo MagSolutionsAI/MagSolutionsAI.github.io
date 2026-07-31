@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hallucination Index — package names AI invents | MagSolutionsAI</title>
+<meta name="description" content="A live record of package names that AI coding assistants invent but which do not exist — and which of them attackers have since registered. Updated from real pull requests.">
+<meta property="og:title" content="The Hallucination Index">
+<meta property="og:description" content="Package names AI assistants invent, and which ones attackers claimed.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="stylesheet" href="style.css?v=3">
+<style>
+.idx-hero { padding: clamp(2.6rem,6vw,4.6rem) 0 2rem; }
+.idx-hero h1 { font-size: clamp(2rem,4.6vw,3.2rem); font-weight:780; letter-spacing:-.045em; margin-bottom:1rem; }
+.idx-hero p { color: var(--fg-2); max-width: 60ch; font-size: 1.02rem; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin:2.2rem 0; }
+.stat { border:1px solid var(--line); border-radius:var(--r); padding:1.1rem 1.2rem; background:var(--surf); backdrop-filter:blur(10px); }
+.stat .n { font-family:var(--mono); font-size:2rem; font-weight:700; letter-spacing:-.04em; color:var(--neon); line-height:1; }
+.stat .n.dgr { color:var(--danger); }
+.stat .l { font-size:.76rem; color:var(--fg-3); margin-top:.45rem; }
+.tag { font-family:var(--mono); font-size:.64rem; font-weight:800; letter-spacing:.08em; padding:.15rem .45rem; border-radius:4px; }
+.tag.danger { background:var(--danger-bg); color:var(--danger); }
+.tag.ok { background:rgba(0,229,160,.1); color:var(--neon); }
+td.num, th.num { font-variant-numeric:tabular-nums; }
+td code { color:var(--fg); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./#scan">Live scan</a>
+      <a href="hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="idx-hero">
+    <div class="pill"><span class="dot"></span> Updated 31 Jul 2026 · from real pull requests</div>
+    <h1>The Hallucination Index</h1>
+    <p>Package names that AI coding assistants invent, which do not exist in any registry —
+      and which of them somebody has registered since. We are not aware of anyone else keeping
+      this record.</p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="n">0</div>
+      <div class="l">unique invented names recorded</div></div>
+    <div class="stat"><div class="n">0</div>
+      <div class="l">total sightings in pull requests</div></div>
+    <div class="stat"><div class="n dgr">0</div>
+      <div class="l">later registered by someone</div></div>
+    <div class="stat"><div class="n" style="font-size:1.15rem;padding-top:.4rem">—</div>
+      <div class="l">tracking since</div></div>
+  </div>
+
+  <div class="honest"><span class="lbl">Why this table is empty</span><p>We started recording on <b>31 Jul 2026</b>. The index only fills as the App runs on real pull requests — we do not seed it with examples from papers or from other people's research. An index of security data that inflates its own numbers is worth less than no index at all. Check back as installations grow.</p></div>
+
+  <section class="band" style="border-top:0;padding-top:2rem">
+    <div class="sec-hd">
+      <span class="lbl">Most frequently invented</span>
+      <h2>What the machines keep making up</h2>
+    </div>
+    <div class="tw">
+      <table>
+        <tr><th class="num">#</th><th>Package name</th><th class="num">Times seen</th><th>Registry status</th></tr>
+        <tr><td colspan="4" style="text-align:center;padding:2rem;color:var(--fg-3)">No entries yet — see the note below.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="sec-hd">
+      <span class="lbl">Method</span>
+      <h2>Where these numbers come from</h2>
+    </div>
+    <div class="limits">
+      Every entry comes from a dependency added in a <b>real pull request</b> and resolved
+      against the live PyPI or npm registry at that moment. A name is recorded only when the
+      registry returned <b>404</b>. Nothing is seeded from research papers or third-party
+      datasets.<br><br>
+      <b>We record package names only.</b> No source code, no repository contents, no
+      identifying information about the organisation that saw it — organisations are counted
+      through a truncated hash, so we can say <em>how many</em> saw a name but never
+      <em>which</em>.<br><br>
+      <b>This index is a lagging indicator, not a blocklist.</b> A name absent from this table
+      is not safe — it only means we have not seen it. Use the App for the live check.
+    </div>
+  </section>
+
+  <section class="close" style="padding-top:1rem">
+    <h2>Check your own dependencies</h2>
+    <p>The scanner on the home page queries the live registry from your browser. Nothing is
+      uploaded, nothing is stored, no signup.</p>
+    <div class="cta">
+      <a class="btn btn-1" href="./#scan">Scan a file →</a>
+      <a class="btn btn-2" href="https://github.com/apps/magaudit-agent">Install the App</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
