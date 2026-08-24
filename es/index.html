@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagSolutionsAI — Escribe con IA sin instalar el malware de otro</title>
+<meta name="description" content="Tu asistente de IA inventa nombres de paquetes. Los atacantes los registran. Comprobamos cada dependencia de cada pull request contra PyPI y npm en vivo — y te decimos qué nombre querías escribir.">
+<meta name="keywords" content="slopsquatting, paquetes alucinados, dependencias falsas, comprobar paquete pypi, escaner dependencias, seguridad cadena de suministro, GitHub App seguridad">
+<meta property="og:title" content="MagSolutionsAI — El cortafuegos de dependencias con IA">
+<meta property="og:description" content="Tu asistente inventó un paquete. Puede que alguien ya lo haya registrado.">
+<meta property="og:url" content="https://magsolutionsai.com/es/">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/es/">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="apple-touch-icon" href="../logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MagAudit Agent",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Web (GitHub App)",
+  "url": "https://magsolutionsai.com/es/",
+  "installUrl": "https://github.com/apps/magaudit-agent",
+  "inLanguage": "es",
+  "description": "GitHub App que bloquea dependencias inventadas por la IA (slopsquatting), credenciales en el código y fallos de seguridad propios del código escrito con IA, en cada pull request.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": "https://magsolutionsai.com/logo-512.png",
+    "email": "magsolutionsai@gmail.com"
+  }
+}
+</script>
+<link rel="stylesheet" href="../style.css?v=4">
+</head>
+<body>
+
+<div class="langbar" id="langbar">
+  <div class="in">
+    <span>This page is in Spanish.</span>
+    <a href="../">Read it in English &rarr;</a>
+    <button type="button" id="langclose" aria-label="Cerrar">✕</button>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="#scan">Escáner</a>
+      <a href="#compare">Por qué es distinto</a>
+      <a href="#checks">Qué detecta</a>
+      <a href="hallucination-index.html">Índice</a>
+      <span class="lang">
+        <a href="../">EN</a>
+        <a href="./" aria-current="true">ES</a>
+      </span>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Instalar gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══ 1 · PORTADA ════════════════════════════════════════ -->
+<section class="hero" id="scan">
+  <div class="wrap hero-grid">
+
+    <div>
+      <div class="pill"><span class="dot"></span> Gratis para repos públicos · sin SDK · sin tocar el CI</div>
+
+      <h1>Tu asistente inventó un paquete. <span class="hl">Puede que ya tenga dueño.</span></h1>
+
+      <p class="lede">
+        La IA te sugiere una dependencia con total seguridad. No existe. Alguien registró ese
+        nombre exacto la semana pasada y se quedó esperando. <b>Tu servidor de build ejecuta su
+        script de instalación.</b> Te enteras por el informe del incidente.
+      </p>
+
+      <div class="cta">
+        <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Instalar en GitHub →</a>
+        <button class="btn btn-2" type="button" id="demoBtn">Probar con un fichero roto ↓</button>
+        <span class="note">~2s por pull request</span>
+      </div>
+    </div>
+
+    <div class="scan rv">
+      <div class="scan-hd">
+        <span class="tt">requirements.txt</span>
+        <span class="live"><span class="dot"></span> en vivo · consulta pypi.org</span>
+      </div>
+
+      <label for="deps" class="lbl" style="position:absolute;left:-9999px">Pega tus dependencias</label>
+      <textarea id="deps" spellcheck="false" placeholder="Pega aquí tu requirements.txt — o pulsa el botón de abajo para cargar uno roto.
+No se sube nada: tu navegador consulta PyPI directamente."></textarea>
+
+      <div class="scan-ft">
+        <span class="hint" id="hint">Máximo 25 paquetes · sin registro · no se guarda nada</span>
+        <span class="sp"></span>
+        <button class="btn-scan" type="button" id="runBtn">Escanear</button>
+      </div>
+
+      <div class="results" id="results" role="status" aria-live="polite"></div>
+      <div id="summary"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ 2 · POR QUÉ SE LES ESCAPA ═════════════════════════ -->
+<section class="band" id="compare">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">02 — Por qué no lo ve lo que ya pagas</span>
+      <h2>Todos los escáneres dan por hecho que el paquete existe.</h2>
+      <p>Snyk, Dependabot y <code>npm audit</code> buscan vulnerabilidades conocidas en paquetes
+        reales. Un nombre inventado hace cinco minutos no tiene CVE, ni aviso, ni historial. Es
+        invisible para todos ellos — por diseño.</p>
+    </div>
+
+    <div class="vs">
+      <div class="col old rv">
+        <div class="col-hd">Escaneo de dependencias convencional</div>
+        <ul>
+          <li><span class="mk">✕</span><span><b>Necesita un CVE para saltar.</b> Un paquete registrado ayer no tiene ninguno. El silencio se lee como seguridad.</span></li>
+          <li><span class="mk">✕</span><span><b>Analiza comportamiento, no existencia.</b> Meter un paquete en un sandbox exige descargarlo — y no hay nada que descargar cuando el nombre es pura alucinación.</span></li>
+          <li><span class="mk">✕</span><span><b>40-60% de falsos positivos</b> es la norma del sector en SAST. El equipo aprende a pasar de largo del bot.</span></li>
+          <li><span class="mk">✕</span><span><b>Señala el problema y ahí se queda.</b> «Paquete desconocido», sin decirte qué querías escribir.</span></li>
+        </ul>
+      </div>
+
+      <div class="col now rv">
+        <div class="col-hd">MagSolutionsAI</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Pregunta al registro directamente.</b> Un HTTP 404 no es una heurística: es un hecho, con hora, que puedes reproducir con <code>curl</code>.</span></li>
+          <li><span class="mk">✓</span><span><b>También pilla los ya reclamados.</b> Existir no basta: un paquete publicado hace 6 días con 40 descargas también salta.</span></li>
+          <li><span class="mk">✓</span><span><b>Un oráculo, no una opinión.</b> La comprobación central no puede dar un falso positivo — o el registro devuelve el paquete o no lo devuelve.</span></li>
+          <li><span class="mk">✓</span><span><b>Te da el nombre correcto.</b> Cada corrección se verifica contra el registro antes de proponerla. Nunca una conjetura.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3 · QUÉ DETECTA ═══════════════════════════════════ -->
+<section class="band" id="checks">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">03 — En cada pull request, antes del merge</span>
+      <h2>Cuatro puertas. Una instalación. Cero configuración.</h2>
+      <p>Los hallazgos llegan como comentario en el PR, con el fichero exacto, la línea, por qué
+        importa y cómo se arregla. Nadie de tu equipo instala nada.</p>
+    </div>
+
+    <div class="grid4">
+      <article class="cap rv">
+        <div class="metric dgr">404</div>
+        <h3>Dependencias fantasma</h3>
+        <p>Cada dependencia añadida se resuelve contra PyPI y npm en vivo. Si no aparece, o es una
+          alucinación de la IA o es <b>un nombre libre que un atacante todavía puede registrar</b>.
+          Se bloquea como crítico.</p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric warn">&lt;90d</div>
+        <h3>Recién reclamados</h3>
+        <p>El caso peligroso: <em>sí</em> existe. Publicado hace días, casi sin descargas — el perfil
+          exacto de un slopsquat ya reclamado. Comprobar que existe no lo pilla. <b>Nosotros sí.</b></p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric">8</div>
+        <h3>Credenciales en el código</h3>
+        <p>Ocho formatos de clave, con entropía de Shannon y supresión de falsos positivos. Los
+          emails, las llamadas a <code>os.getenv()</code> y las anotaciones de tipo no lo disparan.</p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric">LLM01<span style="color:var(--fg-3);font-size:1rem">/05</span></div>
+        <h3>Fallos propios de la IA</h3>
+        <p>Los bugs que solo salen en código escrito con IA: salida del modelo metida en
+          <code>dangerouslySetInnerHTML</code>, claves de servidor publicadas en variables
+          <code>NEXT_PUBLIC_</code>, sumideros de inyección de prompt.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4 · CONFIANZA ═════════════════════════════════════ -->
+<section class="band" id="trust">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">04 — Verifícanos como te verificamos</span>
+      <h2>Todo lo que dice esta página se puede comprobar.</h2>
+      <p>Somos un proveedor de seguridad pidiéndote acceso a tus repositorios. No deberías
+        creernos nada — por eso hemos hecho que no haga falta.</p>
+    </div>
+
+    <div class="trust">
+      <div class="tcard rv">
+        <span class="lbl">Reproducible</span>
+        <p>Cada hallazgo de dependencia lleva la consulta exacta al registro, el código HTTP y la
+          hora. <b>Lanza tú el curl</b> — o el hallazgo se reproduce, o no.</p>
+      </div>
+      <div class="tcard rv">
+        <span class="lbl">Cero retención de código</span>
+        <p>El diff se analiza en memoria y se descarta. Guardamos ID de instalación, nombre del
+          repo, número de PR y nivel de riesgo. <b>Nunca tu código ni el valor de un secreto.</b></p>
+      </div>
+      <div class="tcard rv">
+        <span class="lbl">Sin terceros</span>
+        <p>De nuestro servidor solo sale un <b>nombre</b> de paquete, hacia PyPI o npm. Sin
+          analítica, sin rastreadores, sin CDN de fuentes — esta página no carga ni un recurso
+          externo.</p>
+      </div>
+      <div class="tcard rv">
+        <span class="lbl">Infraestructura en la UE</span>
+        <p>Alojado en Finlandia. Webhooks verificados con HMAC-SHA256 sobre TLS 1.3. Notificación
+          de brechas en <b>72 horas</b> según el RGPD. <a href="../privacy.html">Política completa →</a></p>
+      </div>
+    </div>
+
+    <div class="honest rv">
+      <span class="lbl">Lo que no vamos a fingir</span>
+      <p>
+        <b>No tenemos logos de clientes que enseñarte, porque todavía no tenemos clientes.</b>
+        Este producto salió en julio de 2026. Todo lo de arriba es una propiedad del código, no un
+        testimonio — y todo se puede verificar en el informe que la App genera sobre tus propios
+        pull requests. Cuando haya referencias, aparecerán aquí con nombre y apellidos. Hasta
+        entonces, el plan gratuito y el escáner del principio de la página son el argumento entero.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5 · ÍNDICE PÚBLICO ════════════════════════════════ -->
+<section class="band" style="text-align:center">
+  <div class="wrap">
+    <span class="lbl" style="display:block;margin-bottom:.8rem">Datos públicos</span>
+    <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);font-weight:760;margin-bottom:.9rem">
+      Publicamos lo que las máquinas inventan.</h2>
+    <p style="color:var(--fg-2);max-width:56ch;margin:0 auto 1.6rem">
+      Un registro vivo de nombres de paquete que no existen — y cuáles ha registrado alguien
+      después de que los viéramos. Gratis, sin registro. No conocemos a nadie más que lo lleve.</p>
+    <a class="btn btn-2" href="hallucination-index.html">Abrir el Índice de Alucinaciones →</a>
+  </div>
+</section>
+
+<!-- ═══ CIERRE ════════════════════════════════════════════ -->
+<section class="close">
+  <div class="wrap">
+    <h2 class="rv">Una instalación. Todos los pull requests de la organización.</h2>
+    <p class="rv">Gratis para repositorios públicos, siempre. Sin SDK, sin cambios en el pipeline
+      de CI, sin instalar nada en cada máquina. Desinstalar es un clic y retira todos los accesos.</p>
+    <div class="cta rv">
+      <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Instalar en GitHub →</a>
+      <a class="btn btn-2" href="#scan">Probar el escáner primero</a>
+    </div>
+
+    <div class="limits rv">
+      <b>Lo que esto no es.</b> Una herramienta de análisis estático automatizado y una ayuda a la
+      revisión — no una garantía de seguridad. Analiza únicamente las líneas añadidas en un pull
+      request: ni tu código existente, ni tu infraestructura, ni el comportamiento en ejecución.
+      Las comprobaciones contra el registro reflejan un momento concreto — un paquete que hoy no
+      existe puede registrarlo un atacante minutos después.
+      <b>La ausencia de hallazgos no significa que tu código sea seguro.</b> Cada hallazgo lleva su
+      ubicación exacta precisamente para que una persona pueda verificarlo.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 MagSolutionsAI</span>
+    <a href="../privacy.html">Privacidad</a>
+    <a href="../terms.html">Términos</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contacto</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var MAX = 25;
+  var SAMPLE = [
+    'requests==2.31.0',
+    'flask==3.0.0',
+    'reqeusts',
+    'huggingface-cli',
+    'pandas==2.2.0'
+  ].join('\n');
+
+  var deps    = document.getElementById('deps');
+  var runBtn  = document.getElementById('runBtn');
+  var demoBtn = document.getElementById('demoBtn');
+  var out     = document.getElementById('results');
+  var sumEl   = document.getElementById('summary');
+  var hint    = document.getElementById('hint');
+
+  // Correcciones conocidas y documentadas. Se VERIFICAN igual que el resto.
+  var KNOWN = {
+    'huggingface-cli': ['huggingface_hub', 'caso documentado, 2024'],
+    'huggingface_cli': ['huggingface_hub', 'caso documentado, 2024'],
+    'sklearn':         ['scikit-learn',    'nombre real del paquete'],
+    'beautifulsoup':   ['beautifulsoup4',  'nombre real del paquete'],
+    'opencv':          ['opencv-python',   'nombre real del paquete']
+  };
+  var SUFFIX = ['-cli','-client','-sdk','-api','-helper','-utils','-async','-py','-python'];
+
+  function parse(text) {
+    var seen = {}, list = [];
+    text.split('\n').forEach(function (raw) {
+      var l = raw.trim();
+      if (!l || l.charAt(0) === '#' || l.slice(0, 2) === '-r' || l.slice(0, 2) === '--') return;
+      var m = l.match(/^([A-Za-z0-9][A-Za-z0-9._-]{0,99})/);
+      if (!m) return;
+      var n = m[1];
+      if (seen[n.toLowerCase()]) return;
+      seen[n.toLowerCase()] = 1;
+      list.push(n);
+    });
+    return list.slice(0, MAX);
+  }
+
+  function transpose(n) {
+    var out = [];
+    for (var i = 0; i < n.length - 1; i++) {
+      out.push(n.slice(0, i) + n.charAt(i + 1) + n.charAt(i) + n.slice(i + 2));
+    }
+    return out;
+  }
+
+  function candidates(name) {
+    var c = [], seen = {}, lower = name.toLowerCase();
+    function add(v, how) {
+      var k = v.toLowerCase();
+      if (!v || k === lower || seen[k] || v.length < 2) return;
+      seen[k] = 1; c.push([v, how]);
+    }
+    if (KNOWN[lower]) add(KNOWN[lower][0], KNOWN[lower][1]);
+    add(name.replace(/-/g, '_'), 'guiones por guiones bajos');
+    add(name.replace(/_/g, '-'), 'guiones bajos por guiones');
+    var base = name;
+    for (var i = 0; i < SUFFIX.length; i++) {
+      if (base.toLowerCase().slice(-SUFFIX[i].length) === SUFFIX[i]) {
+        base = base.slice(0, -SUFFIX[i].length);
+        add(base, "sin el sufijo '" + SUFFIX[i].slice(1) + "'");
+        break;
+      }
+    }
+    transpose(name).forEach(function (t) { add(t, 'letras intercambiadas'); });
+    if (base !== name) transpose(base).forEach(function (t) { add(t, 'sufijo + letras intercambiadas'); });
+    return c.slice(0, 6);
+  }
+
+  function lookup(name) {
+    return fetch('https://pypi.org/pypi/' + encodeURIComponent(name) + '/json',
+                 { method: 'GET', cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 404) return { exists: false, status: 404 };
+        if (!r.ok) return { exists: null, status: r.status };
+        return r.json().then(function (j) {
+          var dates = [], rel = j.releases || {};
+          Object.keys(rel).forEach(function (v) {
+            var f = rel[v];
+            if (f && f[0] && f[0].upload_time_iso_8601) dates.push(f[0].upload_time_iso_8601);
+          });
+          dates.sort();
+          var age = null;
+          if (dates.length) {
+            age = Math.floor((Date.now() - new Date(dates[0]).getTime()) / 86400000);
+          }
+          return { exists: true, status: 200, age: age };
+        });
+      })
+      .catch(function () { return { exists: null, status: 0 }; });
+  }
+
+  function row(cls, mark, name, meta, fix) {
+    var d = document.createElement('div');
+    d.className = 'res ' + cls;
+    var f = fix ? '<span class="fix">↳ did you mean <b>' + fix + '</b>?</span>' : '';
+    d.innerHTML = '<span class="mk">' + mark + '</span><span class="nm">' + name +
+                  '</span><span class="meta">' + meta + '</span>' + f;
+    return d;
+  }
+
+  function esc(s) { return String(s).replace(/[<>&"]/g, function (c) {
+    return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]; }); }
+
+  function suggest(name) {
+    var cands = candidates(name), i = 0;
+    function next() {
+      if (i >= cands.length) return Promise.resolve(null);
+      var c = cands[i++];
+      return lookup(c[0]).then(function (f) {
+        if (f.exists && (f.age === null || f.age >= 180)) return { name: c[0], how: c[1] };
+        return next();
+      });
+    }
+    return next();
+  }
+
+  function run() {
+    var names = parse(deps.value);
+    out.innerHTML = ''; sumEl.innerHTML = '';
+    if (!names.length) {
+      hint.textContent = 'Nada que escanear — pega un requirements.txt.';
+      return;
+    }
+    runBtn.disabled = true; runBtn.textContent = 'Escaneando…';
+    hint.textContent = names.length + ' paquete(s) · consultando pypi.org';
+
+    var phantoms = 0, fresh = 0, errs = 0, done = 0;
+
+    var chain = names.reduce(function (p, name) {
+      return p.then(function () {
+        var pend = row('pend', '◌', esc(name), 'comprobando…');
+        out.appendChild(pend);
+        out.scrollTop = out.scrollHeight;
+
+        return lookup(name).then(function (f) {
+          done++;
+          if (f.exists === null) {
+            errs++;
+            pend.replaceWith(row('warn', '?', esc(name), 'no verificable'));
+            return;
+          }
+          if (f.exists === false) {
+            phantoms++;
+            return suggest(name).then(function (s) {
+              pend.replaceWith(row('bad', '✕', esc(name), 'no existe · 404',
+                                   s ? esc(s.name) : null));
+            });
+          }
+          if (f.age !== null && f.age < 90) {
+            fresh++;
+            pend.replaceWith(row('warn', '!', esc(name), 'publicado hace ' + f.age + 'd'));
+            return;
+          }
+          var meta = f.age === null ? 'verificado' : Math.floor(f.age / 365) + 'a en PyPI';
+          pend.replaceWith(row('ok', '✓', esc(name), meta));
+        });
+      });
+    }, Promise.resolve());
+
+    chain.then(function () {
+      runBtn.disabled = false; runBtn.textContent = 'Escanear de nuevo';
+      hint.textContent = done + ' comprobados · de tu navegador solo salieron nombres de paquete';
+      var s = document.createElement('div');
+      if (phantoms) {
+        s.className = 'summary hit';
+        s.textContent = '✕ ' + phantoms + ' paquete(s) no existen en PyPI. ' +
+          (fresh ? fresh + ' recién publicados. ' : '') +
+          'En un pull request, este merge quedaría bloqueado.';
+      } else if (fresh) {
+        s.className = 'summary err';
+        s.textContent = '! ' + fresh + ' paquete(s) recién publicados — verifica al autor antes de fiarte.';
+      } else if (errs === done) {
+        s.className = 'summary err';
+        s.textContent = '? No se pudo contactar con PyPI desde este navegador. Un fallo de red nunca se reporta como «seguro».';
+      } else {
+        s.className = 'summary clean';
+        s.textContent = '✓ Los ' + done + ' paquete(s) verificados contra el registro real de PyPI.';
+      }
+      sumEl.appendChild(s);
+    });
+  }
+
+  runBtn.addEventListener('click', run);
+  demoBtn.addEventListener('click', function () {
+    deps.value = SAMPLE;
+    document.getElementById('scan').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(run, 420);
+  });
+  deps.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run();
+  });
+
+  // Micro-interacción: el halo de las tarjetas sigue al cursor
+  document.querySelectorAll('.cap').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // Revelado al entrar en pantalla
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(function (e) { e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x, i) {
+        if (x.isIntersecting) {
+          setTimeout(function () { x.target.classList.add('in'); }, i * 70);
+          io.unobserve(x.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: .08 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+})();
+
+// Aviso de idioma. Nunca redirige: una redireccion automatica confunde al
+// rastreador de Google y le quita el control al visitante que ya sabe lo que
+// quiere. Solo sugiere, una vez, y se recuerda si lo cierra.
+(function () {
+  var bar = document.getElementById('langbar');
+  if (!bar) return;
+  var HERE = document.documentElement.lang;             // 'es' o 'en'
+  var pref = null;
+  try { pref = localStorage.getItem('msai_lang_dismissed'); } catch (e) {}
+  var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  if (!pref && nav !== HERE) bar.classList.add('on');
+  var btn = document.getElementById('langclose');
+  if (btn) btn.addEventListener('click', function () {
+    bar.classList.remove('on');
+    try { localStorage.setItem('msai_lang_dismissed', '1'); } catch (e) {}
+  });
+})();
+</script>
+
+</body>
+</html>
+
+
+</body>
+</html>

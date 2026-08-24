@@ -82,6 +82,33 @@ code,.mono { font-family: var(--mono); }
 .brand img { width: 28px; height: 28px; border-radius: 50%; display: block; flex: 0 0 28px; }
 .brand b { font-size: .94rem; }
 .nav-links { margin-left: auto; display: flex; align-items: center; gap: 1.5rem; }
+
+/* ── Selector de idioma ───────────────────────────────────
+   Enlaces reales a URLs distintas, no JavaScript que cambia
+   textos: asi Google indexa las dos versiones por separado y
+   hreflang puede hacer su trabajo. */
+.lang { display: inline-flex; border: 1px solid var(--line-lit); border-radius: 7px;
+  overflow: hidden; background: var(--surf); backdrop-filter: blur(8px); }
+.lang a { padding: .28rem .58rem; font-family: var(--mono); font-size: .7rem;
+  font-weight: 700; letter-spacing: .06em; color: var(--fg-3); border-right: 1px solid var(--line-lit); }
+.lang a:last-child { border-right: 0; }
+.lang a:hover { color: var(--fg); text-decoration: none; background: rgba(255,255,255,.04); }
+.lang a[aria-current="true"] { background: var(--neon); color: #04150F; }
+.lang a[aria-current="true"]:hover { background: var(--neon); color: #04150F; }
+
+/* Aviso discreto de idioma: aparece solo si el navegador esta en otro
+   idioma. No redirige nunca — una redireccion automatica confunde al
+   rastreador de Google y secuestra al visitante que sabe lo que quiere. */
+.langbar { display: none; background: var(--surf); border-bottom: 1px solid var(--line);
+  padding: .55rem 0; font-size: .84rem; }
+.langbar.on { display: block; }
+.langbar .in { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+  max-width: var(--w); margin: 0 auto; padding: 0 clamp(1.15rem,4vw,2.4rem); color: var(--fg-2); }
+.langbar a { font-weight: 650; }
+.langbar button { margin-left: auto; background: none; border: 0; color: var(--fg-3);
+  cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 0 .2rem; font-family: inherit; }
+.langbar button:hover { color: var(--fg); }
+@media (max-width: 620px) { .lang { order: 3; } }
 .nav-links a { font-size: .85rem; color: var(--fg-2); }
 .nav-links a:hover { color: var(--fg); text-decoration: none; }
 .nav-cta { background: var(--neon); color: #04150F !important; padding: .45rem .95rem;

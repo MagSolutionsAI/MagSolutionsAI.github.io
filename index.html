@@ -10,6 +10,9 @@
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="apple-touch-icon" href="logo-200.png">
 <link rel="canonical" href="https://magsolutionsai.com/">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/">
 <meta name="robots" content="index, follow">
 <meta property="og:url" content="https://magsolutionsai.com/">
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
@@ -52,9 +55,17 @@
   }
 }
 </script>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
+
+<div class="langbar" id="langbar">
+  <div class="in">
+    <span>Esta pagina esta en ingles.</span>
+    <a href="es/">Verla en espanol &rarr;</a>
+    <button type="button" id="langclose" aria-label="Close">&#10005;</button>
+  </div>
+</div>
 
 <header class="nav">
   <div class="wrap nav-in">
@@ -65,6 +76,10 @@
       <a href="#checks">What it catches</a>
       <a href="#trust">Trust</a>
       <a href="hallucination-index.html">Index</a>
+      <span class="lang">
+        <a href="./" aria-current="true">EN</a>
+        <a href="es/">ES</a>
+      </span>
       <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
     </nav>
   </div>
@@ -515,6 +530,24 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
     }, { rootMargin: '0px 0px -10% 0px', threshold: .08 });
     els.forEach(function (e) { io.observe(e); });
   }
+})();
+
+// Aviso de idioma. Nunca redirige: una redireccion automatica confunde al
+// rastreador de Google y le quita el control al visitante que ya sabe lo que
+// quiere. Solo sugiere, una vez, y se recuerda si lo cierra.
+(function () {
+  var bar = document.getElementById('langbar');
+  if (!bar) return;
+  var HERE = document.documentElement.lang;
+  var pref = null;
+  try { pref = localStorage.getItem('msai_lang_dismissed'); } catch (e) {}
+  var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  if (!pref && nav !== HERE) bar.classList.add('on');
+  var btn = document.getElementById('langclose');
+  if (btn) btn.addEventListener('click', function () {
+    bar.classList.remove('on');
+    try { localStorage.setItem('msai_lang_dismissed', '1'); } catch (e) {}
+  });
 })();
 </script>
 

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Índice de Alucinaciones — paquetes que la IA inventa | MagSolutionsAI</title>
+<meta name="description" content="Registro vivo de nombres de paquete que los asistentes de IA inventan pero que no existen — y cuáles ha registrado alguien después. Se actualiza con pull requests reales.">
+<meta name="keywords" content="slopsquatting, paquetes alucinados, dependencia fantasma, comprobar paquete pypi, seguridad cadena de suministro, typosquatting, PyPI, npm">
+<meta property="og:title" content="El Índice de Alucinaciones">
+<meta property="og:description" content="Registro vivo de nombres de paquete que los asistentes de IA inventan pero que no existen — y cuáles ha registrado alguien después. Se actualiza con pull requests reales.">
+<meta property="og:url" content="https://magsolutionsai.com/es/hallucination-index.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/es/hallucination-index.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/hallucination-index.html">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "El Índice de Alucinaciones",
+  "description": "Registro vivo de nombres de paquete que los asistentes de IA inventan pero que no existen — y cuáles ha registrado alguien después. Se actualiza con pull requests reales.",
+  "url": "https://magsolutionsai.com/es/hallucination-index.html",
+  "inLanguage": "es",
+  "keywords": ["slopsquatting", "package hallucination", "supply chain security", "PyPI", "npm"],
+  "license": "https://magsolutionsai.com/terms.html",
+  "isAccessibleForFree": true,
+  "creator": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "es",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es el slopsquatting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El slopsquatting es un ataque a la cadena de suministro en el que alguien registra un nombre de paquete que los asistentes de IA inventan pero que no existe. A diferencia del typosquatting, que apuesta por los errores de tecleo humanos, el slopsquatting apuesta por los nombres que alucinan las máquinas. Como el 43% de los nombres alucinados se repiten ante el mismo prompt, el atacante puede predecir cuáles merece la pena registrar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo de frecuentes son los paquetes alucinados?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un estudio sobre 2,23 millones de muestras de código generado con IA encontró que el 19,7% contenía al menos un paquete alucinado. Las mediciones de 2026 sitúan la tasa en torno al 5%. En 2024 un investigador registró huggingface-cli, un nombre que los modelos recomendaban pero que nunca existió, y recibió más de 30.000 descargas en tres meses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué no lo detectan los escáneres de dependencias normales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los escáneres convencionales buscan vulnerabilidades conocidas en paquetes reales. Un nombre registrado hace cinco minutos no tiene CVE, ni aviso, ni historial, así que es invisible para ellos por diseño. Detectarlo exige preguntar al registro si el nombre existe siquiera."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo compruebo si un paquete existe de verdad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consulta el registro directamente. En Python: curl -sI https://pypi.org/pypi/PAQUETE/json devuelve HTTP 404 si el paquete no existe. En npm: https://registry.npmjs.org/PAQUETE. Pero que exista no basta: mira también cuántos días tiene y cuántas descargas, porque un slopsquat ya reclamado sí existe."
+      }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../style.css?v=4">
+<style>
+.idx-hero { padding: clamp(2.6rem,6vw,4.6rem) 0 2rem; }
+.idx-hero h1 { font-size: clamp(2rem,4.6vw,3.2rem); font-weight:780; letter-spacing:-.045em; margin-bottom:1rem; }
+.idx-hero p { color: var(--fg-2); max-width: 60ch; font-size: 1.02rem; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin:2.2rem 0; }
+.stat { border:1px solid var(--line); border-radius:var(--r); padding:1.1rem 1.2rem; background:var(--surf); backdrop-filter:blur(10px); }
+.stat .n { font-family:var(--mono); font-size:2rem; font-weight:700; letter-spacing:-.04em; color:var(--neon); line-height:1; }
+.stat .n.dgr { color:var(--danger); }
+.stat .l { font-size:.76rem; color:var(--fg-3); margin-top:.45rem; }
+.tag { font-family:var(--mono); font-size:.64rem; font-weight:800; letter-spacing:.08em; padding:.15rem .45rem; border-radius:4px; }
+.tag.danger { background:var(--danger-bg); color:var(--danger); }
+.tag.ok { background:rgba(0,229,160,.1); color:var(--neon); }
+td.num, th.num { font-variant-numeric:tabular-nums; }
+td code { color:var(--fg); }
+</style>
+</head>
+<body>
+
+<div class="langbar" id="langbar">
+  <div class="in">
+    <span>Esta página está en español.</span>
+    <a href="../hallucination-index.html">Read it in English →</a>
+    <button type="button" id="langclose" aria-label="close">&#10005;</button>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../"><img src="../logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="../#scan">Escáner</a>
+      <a href="hallucination-index.html">Índice</a>
+      <span class="lang">
+        <a href="../hallucination-index.html">EN</a>
+        <a href="./hallucination-index.html" aria-current="true">ES</a>
+      </span>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Instalar gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="idx-hero">
+    <div class="pill"><span class="dot"></span> Actualizado 24 Aug 2026 · desde pull requests reales</div>
+    <h1>El Índice de Alucinaciones</h1>
+    <p>Nombres de paquete que los asistentes de IA inventan, que no existen en ningún registro — y cuáles ha registrado alguien después. No conocemos a nadie más que lleve este registro.</p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="n">0</div><div class="l">nombres inventados distintos</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">avistamientos en pull requests</div></div>
+    <div class="stat"><div class="n dgr">0</div><div class="l">registrados después por alguien</div></div>
+    <div class="stat"><div class="n" style="font-size:1.15rem;padding-top:.4rem">—</div>
+      <div class="l">registrando desde</div></div>
+  </div>
+
+  <div class="honest"><span class="lbl">Por qué esta tabla está vacía</span><p>Empezamos a registrar el <b>24 Aug 2026</b>. El índice solo se llena según la App corre sobre pull requests reales — no lo sembramos con ejemplos de papers ni de investigaciones ajenas. Un índice de datos de seguridad que infla sus propias cifras vale menos que no tener índice. Vuelve según crezcan las instalaciones.</p></div>
+
+  <section class="band" style="border-top:0;padding-top:2rem">
+    <div class="sec-hd">
+      <span class="lbl">Los más inventados</span>
+      <h2>Lo que las máquinas se siguen inventando</h2>
+    </div>
+    <div class="tw"><table>
+      <tr><th class="num">#</th><th>Nombre del paquete</th><th class="num">Veces visto</th><th>Estado en el registro</th></tr>
+      <tr><td colspan="4" style="text-align:center;padding:2rem;color:var(--fg-3)">Todavía sin entradas — mira la nota de abajo.</td></tr>
+    </table></div>
+  </section>
+
+  <section class="band">
+    <div class="sec-hd">
+      <span class="lbl">Método</span>
+      <h2>De dónde salen estas cifras</h2>
+    </div>
+    <div class="limits">Cada entrada viene de una dependencia añadida en un <b>pull request real</b> y resuelta contra el registro de PyPI o npm en vivo en ese momento. Un nombre solo se anota cuando el registro devolvió <b>404</b>. No se siembra nada con papers ni con conjuntos de datos ajenos.<br><br><b>Solo se guardan nombres de paquete.</b> Ni código fuente, ni contenido del repositorio, ni nada que identifique a la organización que lo vio — las organizaciones se cuentan con un hash truncado, así que podemos decir <em>cuántas</em> vieron un nombre pero nunca <em>cuáles</em>.<br><br><b>Este índice es un indicador retrasado, no una lista negra.</b> Que un nombre no salga en esta tabla no lo hace seguro — solo significa que no lo hemos visto. Para la comprobación en vivo, usa la App.</div>
+  </section>
+
+  <section class="band"><div class="sec-hd"><span class="lbl">Preguntas frecuentes</span><h2>Sobre el slopsquatting</h2></div><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">¿Qué es el slopsquatting?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">El slopsquatting es un ataque a la cadena de suministro en el que alguien registra un nombre de paquete que los asistentes de IA inventan pero que no existe. A diferencia del typosquatting, que apuesta por los errores de tecleo humanos, el slopsquatting apuesta por los nombres que alucinan las máquinas. Como el 43% de los nombres alucinados se repiten ante el mismo prompt, el atacante puede predecir cuáles merece la pena registrar.</p></div></details><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">¿Cómo de frecuentes son los paquetes alucinados?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">Un estudio sobre 2,23 millones de muestras de código generado con IA encontró que el 19,7% contenía al menos un paquete alucinado. Las mediciones de 2026 sitúan la tasa en torno al 5%. En 2024 un investigador registró huggingface-cli, un nombre que los modelos recomendaban pero que nunca existió, y recibió más de 30.000 descargas en tres meses.</p></div></details><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">¿Por qué no lo detectan los escáneres de dependencias normales?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">Los escáneres convencionales buscan vulnerabilidades conocidas en paquetes reales. Un nombre registrado hace cinco minutos no tiene CVE, ni aviso, ni historial, así que es invisible para ellos por diseño. Detectarlo exige preguntar al registro si el nombre existe siquiera.</p></div></details><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">¿Cómo compruebo si un paquete existe de verdad?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">Consulta el registro directamente. En Python: curl -sI https://pypi.org/pypi/PAQUETE/json devuelve HTTP 404 si el paquete no existe. En npm: https://registry.npmjs.org/PAQUETE. Pero que exista no basta: mira también cuántos días tiene y cuántas descargas, porque un slopsquat ya reclamado sí existe.</p></div></details></section>
+
+  <section class="close" style="padding-top:1rem">
+    <h2>Comprueba tus propias dependencias</h2>
+    <p>El escáner de la portada consulta el registro en vivo desde tu navegador. No se sube nada, no se guarda nada, sin registro.</p>
+    <div class="cta">
+      <a class="btn btn-1" href="../#scan">Escanear un fichero →</a>
+      <a class="btn btn-2" href="https://github.com/apps/magaudit-agent">Instalar la App</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="../privacy.html">Privacidad</a>
+    <a href="../terms.html">Términos</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contacto</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var bar = document.getElementById('langbar');
+  if (!bar) return;
+  var HERE = document.documentElement.lang, pref = null;
+  try { pref = localStorage.getItem('msai_lang_dismissed'); } catch (e) {}
+  if (!pref && (navigator.language || 'en').slice(0,2).toLowerCase() !== HERE) bar.classList.add('on');
+  var b = document.getElementById('langclose');
+  if (b) b.addEventListener('click', function () {
+    bar.classList.remove('on');
+    try { localStorage.setItem('msai_lang_dismissed', '1'); } catch (e) {}
+  });
+})();
+</script>
+
+</body>
+</html>

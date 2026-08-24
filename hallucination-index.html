@@ -5,23 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Hallucination Index — package names AI invents | MagSolutionsAI</title>
 <meta name="description" content="A live record of package names that AI coding assistants invent but which do not exist — and which of them attackers have since registered. Updated from real pull requests.">
+<meta name="keywords" content="slopsquatting, AI hallucinated packages, phantom dependency, package hallucination, supply chain security, typosquatting, PyPI, npm">
 <meta property="og:title" content="The Hallucination Index">
-<meta property="og:description" content="Package names AI assistants invent, and which ones attackers claimed.">
+<meta property="og:description" content="A live record of package names that AI coding assistants invent but which do not exist — and which of them attackers have since registered. Updated from real pull requests.">
 <meta property="og:url" content="https://magsolutionsai.com/hallucination-index.html">
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow">
-<meta name="keywords" content="slopsquatting, AI hallucinated packages, phantom dependency, package hallucination, supply chain security, typosquatting, PyPI, npm">
 <link rel="canonical" href="https://magsolutionsai.com/hallucination-index.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/hallucination-index.html">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Dataset",
   "name": "The Hallucination Index",
-  "description": "A live record of package names that AI coding assistants invent but which do not exist in PyPI or npm, and which of them have since been registered by somebody. Compiled from real pull requests.",
+  "description": "A live record of package names that AI coding assistants invent but which do not exist — and which of them attackers have since registered. Updated from real pull requests.",
   "url": "https://magsolutionsai.com/hallucination-index.html",
-  "keywords": ["slopsquatting", "package hallucination", "supply chain security", "PyPI", "npm", "AI-generated code"],
+  "inLanguage": "en",
+  "keywords": ["slopsquatting", "package hallucination", "supply chain security", "PyPI", "npm"],
   "license": "https://magsolutionsai.com/terms.html",
   "isAccessibleForFree": true,
   "creator": {
@@ -35,6 +39,7 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "inLanguage": "en",
   "mainEntity": [
     {
       "@type": "Question",
@@ -59,11 +64,19 @@
         "@type": "Answer",
         "text": "Conventional scanners look up known vulnerabilities in real packages. A package name registered five minutes ago has no CVE, no advisory and no history, so it is invisible to them by design. Detecting it requires asking the registry whether the name exists at all."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I check whether a package really exists?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Query the registry directly. For Python: curl -sI https://pypi.org/pypi/PACKAGE/json returns HTTP 404 if the package does not exist. For npm: https://registry.npmjs.org/PACKAGE. Existence alone is not enough, though: also check how old the package is and how many downloads it has, because a claimed slopsquat does exist."
+      }
     }
   ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 <style>
 .idx-hero { padding: clamp(2.6rem,6vw,4.6rem) 0 2rem; }
 .idx-hero h1 { font-size: clamp(2rem,4.6vw,3.2rem); font-weight:780; letter-spacing:-.045em; margin-bottom:1rem; }
@@ -82,12 +95,24 @@ td code { color:var(--fg); }
 </head>
 <body>
 
+<div class="langbar" id="langbar">
+  <div class="in">
+    <span>This page is in English.</span>
+    <a href="es/hallucination-index.html">Verla en español →</a>
+    <button type="button" id="langclose" aria-label="close">&#10005;</button>
+  </div>
+</div>
+
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="./"><img src="logo-200.png" alt=""><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
       <a href="./#scan">Live scan</a>
       <a href="hallucination-index.html">Index</a>
+      <span class="lang">
+        <a href="./hallucination-index.html" aria-current="true">EN</a>
+        <a href="es/hallucination-index.html">ES</a>
+      </span>
       <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
     </nav>
   </div>
@@ -98,18 +123,13 @@ td code { color:var(--fg); }
   <section class="idx-hero">
     <div class="pill"><span class="dot"></span> Updated 24 Aug 2026 · from real pull requests</div>
     <h1>The Hallucination Index</h1>
-    <p>Package names that AI coding assistants invent, which do not exist in any registry —
-      and which of them somebody has registered since. We are not aware of anyone else keeping
-      this record.</p>
+    <p>Package names that AI coding assistants invent, which do not exist in any registry — and which of them somebody has registered since. We are not aware of anyone else keeping this record.</p>
   </section>
 
   <div class="stats">
-    <div class="stat"><div class="n">0</div>
-      <div class="l">unique invented names recorded</div></div>
-    <div class="stat"><div class="n">0</div>
-      <div class="l">total sightings in pull requests</div></div>
-    <div class="stat"><div class="n dgr">0</div>
-      <div class="l">later registered by someone</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">unique invented names recorded</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">total sightings in pull requests</div></div>
+    <div class="stat"><div class="n dgr">0</div><div class="l">later registered by someone</div></div>
     <div class="stat"><div class="n" style="font-size:1.15rem;padding-top:.4rem">—</div>
       <div class="l">tracking since</div></div>
   </div>
@@ -121,12 +141,10 @@ td code { color:var(--fg); }
       <span class="lbl">Most frequently invented</span>
       <h2>What the machines keep making up</h2>
     </div>
-    <div class="tw">
-      <table>
-        <tr><th class="num">#</th><th>Package name</th><th class="num">Times seen</th><th>Registry status</th></tr>
-        <tr><td colspan="4" style="text-align:center;padding:2rem;color:var(--fg-3)">No entries yet — see the note below.</td></tr>
-      </table>
-    </div>
+    <div class="tw"><table>
+      <tr><th class="num">#</th><th>Package name</th><th class="num">Times seen</th><th>Registry status</th></tr>
+      <tr><td colspan="4" style="text-align:center;padding:2rem;color:var(--fg-3)">No entries yet — see the note below.</td></tr>
+    </table></div>
   </section>
 
   <section class="band">
@@ -134,24 +152,14 @@ td code { color:var(--fg); }
       <span class="lbl">Method</span>
       <h2>Where these numbers come from</h2>
     </div>
-    <div class="limits">
-      Every entry comes from a dependency added in a <b>real pull request</b> and resolved
-      against the live PyPI or npm registry at that moment. A name is recorded only when the
-      registry returned <b>404</b>. Nothing is seeded from research papers or third-party
-      datasets.<br><br>
-      <b>We record package names only.</b> No source code, no repository contents, no
-      identifying information about the organisation that saw it — organisations are counted
-      through a truncated hash, so we can say <em>how many</em> saw a name but never
-      <em>which</em>.<br><br>
-      <b>This index is a lagging indicator, not a blocklist.</b> A name absent from this table
-      is not safe — it only means we have not seen it. Use the App for the live check.
-    </div>
+    <div class="limits">Every entry comes from a dependency added in a <b>real pull request</b> and resolved against the live PyPI or npm registry at that moment. A name is recorded only when the registry returned <b>404</b>. Nothing is seeded from research papers or third-party datasets.<br><br><b>We record package names only.</b> No source code, no repository contents, no identifying information about the organisation that saw it — organisations are counted through a truncated hash, so we can say <em>how many</em> saw a name but never <em>which</em>.<br><br><b>This index is a lagging indicator, not a blocklist.</b> A name absent from this table is not safe — it only means we have not seen it. Use the App for the live check.</div>
   </section>
+
+  <section class="band"><div class="sec-hd"><span class="lbl">Frequently asked</span><h2>About slopsquatting</h2></div><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">What is slopsquatting?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">Slopsquatting is a supply chain attack where an attacker registers a package name that AI coding assistants invent but which does not exist. Unlike typosquatting, which bets on human typing mistakes, slopsquatting bets on the names machines hallucinate. Because 43% of hallucinated names repeat for the same prompt, attackers can predict which names are worth registering.</p></div></details><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">How common are hallucinated package names?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">A study across 2.23 million AI-generated code samples found that 19.7% contained at least one hallucinated package. Measurements in 2026 place the rate around 5%. In 2024 a researcher registered huggingface-cli, a name models kept recommending but which never existed, and it received more than 30,000 downloads in three months.</p></div></details><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">Why don't conventional dependency scanners catch this?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">Conventional scanners look up known vulnerabilities in real packages. A package name registered five minutes ago has no CVE, no advisory and no history, so it is invisible to them by design. Detecting it requires asking the registry whether the name exists at all.</p></div></details><details class="f"><summary><span class="caret">&#9656;</span><span class="ft">How can I check whether a package really exists?</span></summary><div class="dbody"><p style="color:var(--fg-2);font-size:.9rem">Query the registry directly. For Python: curl -sI https://pypi.org/pypi/PACKAGE/json returns HTTP 404 if the package does not exist. For npm: https://registry.npmjs.org/PACKAGE. Existence alone is not enough, though: also check how old the package is and how many downloads it has, because a claimed slopsquat does exist.</p></div></details></section>
 
   <section class="close" style="padding-top:1rem">
     <h2>Check your own dependencies</h2>
-    <p>The scanner on the home page queries the live registry from your browser. Nothing is
-      uploaded, nothing is stored, no signup.</p>
+    <p>The scanner on the home page queries the live registry from your browser. Nothing is uploaded, nothing is stored, no signup.</p>
     <div class="cta">
       <a class="btn btn-1" href="./#scan">Scan a file →</a>
       <a class="btn btn-2" href="https://github.com/apps/magaudit-agent">Install the App</a>
@@ -162,7 +170,7 @@ td code { color:var(--fg); }
 
 <footer>
   <div class="wrap foot">
-    <span>© 2026 MagSolutionsAI</span>
+    <span>&copy; 2026 MagSolutionsAI</span>
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>
     <a href="mailto:magsolutionsai@gmail.com">Contact</a>
@@ -170,6 +178,21 @@ td code { color:var(--fg); }
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  var bar = document.getElementById('langbar');
+  if (!bar) return;
+  var HERE = document.documentElement.lang, pref = null;
+  try { pref = localStorage.getItem('msai_lang_dismissed'); } catch (e) {}
+  if (!pref && (navigator.language || 'en').slice(0,2).toLowerCase() !== HERE) bar.classList.add('on');
+  var b = document.getElementById('langclose');
+  if (b) b.addEventListener('click', function () {
+    bar.classList.remove('on');
+    try { localStorage.setItem('msai_lang_dismissed', '1'); } catch (e) {}
+  });
+})();
+</script>
 
 </body>
 </html>
