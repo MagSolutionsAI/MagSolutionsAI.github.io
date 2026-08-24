@@ -7,7 +7,62 @@
 <meta name="description" content="A live record of package names that AI coding assistants invent but which do not exist — and which of them attackers have since registered. Updated from real pull requests.">
 <meta property="og:title" content="The Hallucination Index">
 <meta property="og:description" content="Package names AI assistants invent, and which ones attackers claimed.">
+<meta property="og:url" content="https://magsolutionsai.com/hallucination-index.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="slopsquatting, AI hallucinated packages, phantom dependency, package hallucination, supply chain security, typosquatting, PyPI, npm">
+<link rel="canonical" href="https://magsolutionsai.com/hallucination-index.html">
 <link rel="icon" type="image/png" href="favicon-64.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "The Hallucination Index",
+  "description": "A live record of package names that AI coding assistants invent but which do not exist in PyPI or npm, and which of them have since been registered by somebody. Compiled from real pull requests.",
+  "url": "https://magsolutionsai.com/hallucination-index.html",
+  "keywords": ["slopsquatting", "package hallucination", "supply chain security", "PyPI", "npm", "AI-generated code"],
+  "license": "https://magsolutionsai.com/terms.html",
+  "isAccessibleForFree": true,
+  "creator": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is slopsquatting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Slopsquatting is a supply chain attack where an attacker registers a package name that AI coding assistants invent but which does not exist. Unlike typosquatting, which bets on human typing mistakes, slopsquatting bets on the names machines hallucinate. Because 43% of hallucinated names repeat for the same prompt, attackers can predict which names are worth registering."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How common are hallucinated package names?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A study across 2.23 million AI-generated code samples found that 19.7% contained at least one hallucinated package. Measurements in 2026 place the rate around 5%. In 2024 a researcher registered huggingface-cli, a name models kept recommending but which never existed, and it received more than 30,000 downloads in three months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why don't conventional dependency scanners catch this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Conventional scanners look up known vulnerabilities in real packages. A package name registered five minutes ago has no CVE, no advisory and no history, so it is invisible to them by design. Detecting it requires asking the registry whether the name exists at all."
+      }
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="style.css?v=3">
 <style>
 .idx-hero { padding: clamp(2.6rem,6vw,4.6rem) 0 2rem; }
