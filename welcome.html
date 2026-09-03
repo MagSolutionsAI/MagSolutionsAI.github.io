@@ -186,6 +186,18 @@
   var unlinked = document.getElementById('unlinked');
   if (linked) linked.hidden = false;
   if (unlinked) unlinked.hidden = true;
+
+  // Avisar al servidor de que esta instalacion existe, para que la
+  // organizacion quede registrada aunque el evento `installation` de
+  // GitHub no llegue. El servidor verifica el id contra GitHub antes de
+  // escribir nada, asi que esto no puede inventarse organizaciones.
+  // Silencioso a proposito: si falla, la pagina sigue siendo util y el
+  // pago se activaria igual al auditar el primer PR.
+  try {
+    fetch('https://api.magsolutionsai.com/install/link?installation_id=' +
+          encodeURIComponent(id), { mode: 'cors', credentials: 'omit' })
+      .catch(function () {});
+  } catch (e) {}
 })();
 </script>
 
