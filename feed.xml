@@ -6,7 +6,7 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Sep 2026 21:17:10 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 21:45:01 +0000</lastBuildDate>
     <item>
       <title>The malicious package that never showed up in anyone&#x27;s requirements.txt</title>
       <link>https://magsolutionsai.com/blog/transitive-dependency-malware.html</link>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're in — MagSolutionsAI</title>
+<meta name="description" content="MagSolutionsAI is installed. Open a pull request and the first audit runs automatically.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="apple-touch-icon" href="logo-200.png">
+<link rel="canonical" href="https://magsolutionsai.com/welcome.html">
+<link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Home</a>
+      <a href="blog/">Blog</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="hallucination-index.html">Index</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" style="max-width:74ch">
+
+  <section class="hero" style="padding-bottom:1.4rem">
+    <div class="pill"><span class="dot"></span> Installed &middot; nothing else to configure</div>
+    <h1 style="font-size:clamp(2rem,4.4vw,2.9rem)">You're set. <span class="hl">Open a pull request.</span></h1>
+    <p class="lede">
+      The next PR opened on any repository you granted access to gets audited automatically &mdash;
+      dependencies checked against the live PyPI and npm registries, secrets and AI-specific flaws
+      flagged inline. Findings arrive as a comment on the PR, usually in a couple of seconds.
+      <b>No SDK, no CI config, nothing to install locally.</b>
+    </p>
+  </section>
+
+  <!-- Qué esperar: reduce la incertidumbre del primer minuto, que es donde
+       se pierde al usuario que acaba de instalar y no ve nada. -->
+  <section class="band" style="border-top:0;padding-top:0">
+    <div class="sec-hd">
+      <span class="lbl">What happens next</span>
+      <h2 style="font-size:1.4rem">Three things, in this order.</h2>
+    </div>
+    <div class="rows-wc">
+      <div class="wc-step">
+        <span class="wc-n">1</span>
+        <div>
+          <b>Someone opens a PR.</b> Yours or a teammate's &mdash; it does not matter who, and
+          nobody needs an account with us.
+        </div>
+      </div>
+      <div class="wc-step">
+        <span class="wc-n">2</span>
+        <div>
+          <b>A comment appears on that PR.</b> Every added dependency resolved against the registry,
+          every finding with its exact file and line, and the query you can reproduce with
+          <code>curl</code> yourself.
+        </div>
+      </div>
+      <div class="wc-step">
+        <span class="wc-n">3</span>
+        <div>
+          <b>A clean PR gets a clean comment.</b> Silence would be indistinguishable from the app
+          being broken, so it always reports &mdash; including what it did <em>not</em> analyse.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ruta de pago con atribucion: los enlaces se completan con el
+       installation_id que GitHub devuelve tras instalar, para que el pago
+       se active solo sin que nadie escriba un correo. -->
+  <section class="band" id="upgrade">
+    <div class="sec-hd">
+      <span class="lbl">Private repositories</span>
+      <h2 style="font-size:1.4rem">Public repos are free forever. Private ones need a plan.</h2>
+      <p>Same detection engine on every tier &mdash; nothing is locked behind a higher plan. You
+        only pay for how many private repositories it protects.</p>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <span class="plan-name">Team 5</span>
+        <div class="price"><span class="amt">&euro;29</span><span class="per">/month</span></div>
+        <p class="plan-sub">Up to 5 private repositories.</p>
+        <a class="btn btn-2 plan-cta" data-plan="team5"
+           href="https://buy.stripe.com/00w5kxdWY6BqecP7BUcfK00">Subscribe &rarr;</a>
+      </div>
+      <div class="plan featured">
+        <span class="badge">Most popular</span>
+        <span class="plan-name">Team 15</span>
+        <div class="price"><span class="amt">&euro;69</span><span class="per">/month</span></div>
+        <p class="plan-sub">Up to 15 private repositories.</p>
+        <a class="btn btn-1 plan-cta" data-plan="team15"
+           href="https://buy.stripe.com/8x2aER8CE3pe2u7f4mcfK01">Subscribe &rarr;</a>
+      </div>
+      <div class="plan">
+        <span class="plan-name">Business 40</span>
+        <div class="price"><span class="amt">&euro;149</span><span class="per">/month</span></div>
+        <p class="plan-sub">Up to 40 private repositories.</p>
+        <a class="btn btn-2 plan-cta" data-plan="business40"
+           href="https://buy.stripe.com/28EbIVbOQ8Jy6Kn9K2cfK02">Subscribe &rarr;</a>
+      </div>
+    </div>
+
+    <p class="plan-note" id="linked" hidden>
+      Your installation is linked &mdash; a subscription started from this page activates on your
+      organisation automatically, with nothing to email us.
+    </p>
+    <p class="plan-note" id="unlinked">
+      Reached this page directly? Subscribing still works. If your plan does not switch over within
+      a few minutes, email <a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a>
+      with your GitHub organisation name and we will link it by hand.
+    </p>
+  </section>
+
+  <section class="band">
+    <div class="sec-hd">
+      <span class="lbl">While you wait for that first PR</span>
+      <h2 style="font-size:1.4rem">Two things worth five minutes.</h2>
+    </div>
+    <div class="ent">
+      <p><b>Scan a dependency file right now</b> &mdash; paste a <code>requirements.txt</code> into
+        the scanner on the homepage. It queries PyPI live, from your browser, and shows you the same
+        verdict the App gives on a PR.</p>
+      <a class="btn btn-2" href="./#scan">Open the scanner &rarr;</a>
+    </div>
+    <div class="ent" style="margin-top:.9rem">
+      <p><b>Read what the App actually looks for</b> &mdash; the four gates, why CVE-based scanners
+        miss invented packages, and what we deliberately do not claim.</p>
+      <a class="btn btn-2" href="blog/what-is-slopsquatting.html">Read the write-up &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+<script>
+// GitHub devuelve ?installation_id=... tras instalar la App. Ese id es la
+// clave con la que el webhook de Stripe identifica a la organizacion, asi
+// que se cuelga de cada enlace de pago como client_reference_id. Sin esto
+// el pago llega sin remitente y hay que activarlo a mano.
+//
+// Se guarda ademas en localStorage: mucha gente instala hoy y paga la
+// semana que viene, llegando a esta pagina ya sin el parametro.
+(function () {
+  'use strict';
+  var KEY = 'msai_installation_id';
+  var id = null;
+
+  try {
+    var p = new URLSearchParams(window.location.search).get('installation_id');
+    if (p && /^\d{1,20}$/.test(p)) {          // solo digitos: no se propaga nada mas
+      id = p;
+      try { localStorage.setItem(KEY, id); } catch (e) {}
+    } else {
+      try { id = localStorage.getItem(KEY); } catch (e) {}
+      if (id && !/^\d{1,20}$/.test(id)) id = null;
+    }
+  } catch (e) { id = null; }
+
+  if (!id) return;
+
+  var links = document.querySelectorAll('a.plan-cta[href^="https://buy.stripe.com/"]');
+  for (var i = 0; i < links.length; i++) {
+    var a = links[i];
+    a.href = a.href + (a.href.indexOf('?') === -1 ? '?' : '&') +
+             'client_reference_id=' + encodeURIComponent(id);
+  }
+
+  var linked = document.getElementById('linked');
+  var unlinked = document.getElementById('unlinked');
+  if (linked) linked.hidden = false;
+  if (unlinked) unlinked.hidden = true;
+})();
+</script>
+
+</body>
+</html>

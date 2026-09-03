@@ -331,6 +331,18 @@ td { background: rgba(16,25,40,.45); color: var(--fg-2); }
 .faq .dbody { padding: 0 1.2rem 1.15rem; color: var(--fg-2); font-size: .88rem; line-height: 1.65; max-width: 74ch; }
 .faq .dbody a { color: var(--neon); }
 
+/* ── Bienvenida post-instalacion ──────────────────────────── */
+.rows-wc { display: flex; flex-direction: column; gap: .1rem; }
+.wc-step { display: grid; grid-template-columns: 1.9rem 1fr; gap: .9rem; align-items: start;
+  padding: .95rem 0; border-bottom: 1px solid var(--line); color: var(--fg-2); font-size: .93rem; }
+.wc-step:first-child { border-top: 1px solid var(--line); }
+.wc-step b { color: var(--fg); font-weight: 640; }
+.wc-step code { color: var(--neon); background: rgba(0,229,160,.09); padding: .04rem .3rem;
+  border-radius: 4px; font-size: .85em; }
+.wc-n { font-family: var(--mono); font-size: .78rem; font-weight: 700; color: var(--neon);
+  border: 1px solid var(--line-lit); border-radius: 50%; width: 1.9rem; height: 1.9rem;
+  display: flex; align-items: center; justify-content: center; }
+
 /* ── Blog ─────────────────────────────────────────────────── */
 .crumbs { font-family: var(--mono); font-size: .72rem; color: var(--fg-3); padding: 1.8rem 0 0; letter-spacing: .04em; }
 .crumbs a { color: var(--fg-3); }
