@@ -6,7 +6,15 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Sep 2026 21:12:37 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 21:17:10 +0000</lastBuildDate>
+    <item>
+      <title>The malicious package that never showed up in anyone&#x27;s requirements.txt</title>
+      <link>https://magsolutionsai.com/blog/transitive-dependency-malware.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/transitive-dependency-malware.html</guid>
+      <pubDate>Thu, 03 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Two PyPI packages published this week show why checking your direct dependencies is not enough. The credential-stealing code was one dependency away, in a package nobody typed into a requirements file on purpose.</description>
+      <category>supply chain</category><category>PyPI</category><category>case study</category><category>transitive dependencies</category>
+    </item>
     <item>
       <title>What is slopsquatting, and why your scanner cannot see it</title>
       <link>https://magsolutionsai.com/blog/what-is-slopsquatting.html</link>
