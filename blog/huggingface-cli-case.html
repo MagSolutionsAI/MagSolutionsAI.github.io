@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The package that never existed and got 30,000 downloads | MagSolutionsAI</title>
+<meta name="description" content="In 2024 a researcher registered huggingface-cli, a name AI models kept recommending but which was never real. Three months later it had over 30,000 downloads — including from a major tech company&#x27;s public documentation.">
+<meta property="og:title" content="The package that never existed and got 30,000 downloads | MagSolutionsAI">
+<meta property="og:description" content="In 2024 a researcher registered huggingface-cli, a name AI models kept recommending but which was never real. Three months later it had over 30,000 downloads — including from a major tech company&#x27;s public documentation.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magsolutionsai.com/blog/huggingface-cli-case.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The package that never existed and got 30,000 downloads | MagSolutionsAI">
+<meta name="twitter:description" content="In 2024 a researcher registered huggingface-cli, a name AI models kept recommending but which was never real. Three months later it had over 30,000 downloads — including from a major tech company&#x27;s public documentation.">
+<meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/blog/huggingface-cli-case.html">
+<link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The package that never existed and got 30,000 downloads",
+  "description": "In 2024 a researcher registered huggingface-cli, a name AI models kept recommending but which was never real. Three months later it had over 30,000 downloads — including from a major tech company's public documentation.",
+  "datePublished": "2026-09-02",
+  "dateModified": "2026-09-02",
+  "url": "https://magsolutionsai.com/blog/huggingface-cli-case.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://magsolutionsai.com/blog/huggingface-cli-case.html"
+  },
+  "image": "https://magsolutionsai.com/logo-512.png",
+  "inLanguage": "en",
+  "keywords": [
+    "slopsquatting",
+    "case study",
+    "supply chain"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://magsolutionsai.com/logo-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://magsolutionsai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://magsolutionsai.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The package that never existed and got 30,000 downloads",
+      "item": "https://magsolutionsai.com/blog/huggingface-cli-case.html"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/style.css?v=6">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap post">
+  <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
+  <article>
+    <header class="post-hd">
+      <div class="post-meta">
+        <time datetime="2026-09-02">02 September 2026</time>
+        <span class="sep">&middot;</span>
+        <span>3 min read</span>
+      </div>
+      <h1>The package that never existed and got 30,000 downloads</h1>
+      <p class="post-lede">In 2024 a researcher registered huggingface-cli, a name AI models kept recommending but which was never real. Three months later it had over 30,000 downloads — including from a major tech company&#x27;s public documentation.</p>
+      <div class="ptags"><span class="ptag">slopsquatting</span><span class="ptag">case study</span><span class="ptag">supply chain</span></div>
+    </header>
+    <div class="post-body">
+<p>The clearest demonstration that slopsquatting works was not an attack. It was a researcher proving a point, and the result was worse than most people expected.</p>
+<h2>What happened</h2>
+<p>Bar Lanyado, a researcher at Lasso Security, noticed that AI coding assistants kept recommending a Python package called <code>huggingface-cli</code>. The recommendation was plausible: Hugging Face is a real and widely used platform, and plenty of tools ship a companion CLI package with exactly that naming pattern.</p>
+<p>The package did not exist. The real one is <code>huggingface_hub</code>.</p>
+<p>So he registered <code>huggingface-cli</code> on PyPI as an empty placeholder — no functionality, no payload, nothing but a claim on the name — and waited to see whether anyone would install something that, until that moment, only existed inside a language model&#x27;s output.</p>
+<p><b>In roughly three months it was downloaded more than 30,000 times.</b></p>
+<h2>The part that should worry you</h2>
+<p>Downloads alone could be explained away as scanners, mirrors and CI noise. The finding that cannot be explained away is where the name turned up: in <b>public documentation and README files belonging to large technology companies</b>, including one belonging to Alibaba.</p>
+<p>That is the mechanism working end to end. Somebody asked a model how to do something. The model invented a package. The developer copied the command into a README. The README was published. Now the invented name has a citation — and the next developer who finds that README has every reason to trust it, because it is on a real company&#x27;s repository, not in a chat window.</p>
+<p>The hallucination stopped being a model output and became documentation. At that point it propagates without the model&#x27;s help at all.</p>
+<h2>Why an empty package is the dangerous version</h2>
+<p>Lanyado&#x27;s package did nothing. That is what made it a demonstration rather than an incident.</p>
+<p>A real attacker registering that same name has a <code>setup.py</code> that runs on install. Not on import — <b>on install</b>. The victim does not have to call a single function or even successfully run their program. <code>pip install -r requirements.txt</code> in a CI pipeline is enough, and CI pipelines typically run with credentials that a laptop does not have: registry tokens, cloud roles, deployment keys.</p>
+<p>The uncomfortable arithmetic: the attacker does not need the victim to be careless. They need one dependency file, in one repository, to contain a name that a machine invented and a human did not verify.</p>
+<h2>Why nothing caught it</h2>
+<p>Consider what the standard tooling would have seen at each stage.</p>
+<div class="tw"><table><thead><tr><th>Stage</th><th>What a scanner sees</th><th>Result</th></tr></thead><tbody><tr><td>Before registration</td><td>Name not in any vulnerability DB</td><td>Nothing to report</td></tr><tr><td>After registration, empty</td><td>New package, no CVE, no advisory</td><td>Nothing to report</td></tr><tr><td>After registration, malicious</td><td>Still no CVE until someone discovers and files one</td><td>Nothing to report</td></tr></tbody></table></div>
+<p>At no point does a CVE-based scanner have anything to say, and the window between &quot;attacker registers the name&quot; and &quot;someone files an advisory&quot; is exactly the window in which the attack works. By the time there is a CVE, the compromise already happened somewhere.</p>
+<p>The only check that fires <em>before</em> the package is registered is the one that asks whether the name exists at all. That check would have flagged <code>huggingface-cli</code> on day zero — not because it was known to be bad, but because it was not known to be anything.</p>
+<h2>What to take from this</h2>
+<p>Three things this case establishes that were previously arguments rather than evidence:</p>
+<ol><li><b>AI-invented package names reach production repositories.</b> Not hypothetically — they were found in the public documentation of companies with serious engineering organisations.</li><li><b>The names persist and spread beyond the model.</b> Once a hallucinated command is copied into a README, an issue comment or a Stack Overflow answer, it has a life of its own.</li><li><b>Registering the name is trivially cheap.</b> The barrier to becoming the owner of a name that thousands of developers will type is a free account and a few minutes.</li></ol>
+<p>The corresponding defence is equally unglamorous: verify that every dependency you are about to add is a package that actually existed before your assistant mentioned it, and treat anything recently published with near-zero adoption as unproven rather than fine.</p>
+    </div>
+  </article>
+  
+<section class="post-cta">
+  <h2>Check this on your own pull requests</h2>
+  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
+     against the live PyPI and npm registries, and blocks the ones that do not exist.
+     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <div class="cta">
+    <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a>
+    <a class="btn btn-2" href="/pricing.html">See pricing</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

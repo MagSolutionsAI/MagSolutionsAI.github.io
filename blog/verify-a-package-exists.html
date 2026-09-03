@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to check whether a package actually exists before you install it | MagSolutionsAI</title>
+<meta name="description" content="A practical guide to verifying Python and npm dependencies against the live registries — the exact commands, what the responses mean, and the check most people forget after the first one passes.">
+<meta property="og:title" content="How to check whether a package actually exists before you install it | MagSolutionsAI">
+<meta property="og:description" content="A practical guide to verifying Python and npm dependencies against the live registries — the exact commands, what the responses mean, and the check most people forget after the first one passes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magsolutionsai.com/blog/verify-a-package-exists.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to check whether a package actually exists before you install it | MagSolutionsAI">
+<meta name="twitter:description" content="A practical guide to verifying Python and npm dependencies against the live registries — the exact commands, what the responses mean, and the check most people forget after the first one passes.">
+<meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/blog/verify-a-package-exists.html">
+<link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to check whether a package actually exists before you install it",
+  "description": "A practical guide to verifying Python and npm dependencies against the live registries — the exact commands, what the responses mean, and the check most people forget after the first one passes.",
+  "datePublished": "2026-09-01",
+  "dateModified": "2026-09-01",
+  "url": "https://magsolutionsai.com/blog/verify-a-package-exists.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://magsolutionsai.com/blog/verify-a-package-exists.html"
+  },
+  "image": "https://magsolutionsai.com/logo-512.png",
+  "inLanguage": "en",
+  "keywords": [
+    "how-to",
+    "PyPI",
+    "npm",
+    "supply chain"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://magsolutionsai.com/logo-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://magsolutionsai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://magsolutionsai.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to check whether a package actually exists before you install it",
+      "item": "https://magsolutionsai.com/blog/verify-a-package-exists.html"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/style.css?v=6">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap post">
+  <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
+  <article>
+    <header class="post-hd">
+      <div class="post-meta">
+        <time datetime="2026-09-01">01 September 2026</time>
+        <span class="sep">&middot;</span>
+        <span>3 min read</span>
+      </div>
+      <h1>How to check whether a package actually exists before you install it</h1>
+      <p class="post-lede">A practical guide to verifying Python and npm dependencies against the live registries — the exact commands, what the responses mean, and the check most people forget after the first one passes.</p>
+      <div class="ptags"><span class="ptag">how-to</span><span class="ptag">PyPI</span><span class="ptag">npm</span><span class="ptag">supply chain</span></div>
+    </header>
+    <div class="post-body">
+<p>Your assistant suggested a dependency. Before it reaches a build server, you want to know two things: does this package exist, and has it existed long enough to be trustworthy? Both are answerable in a few seconds, with no tooling beyond <code>curl</code>.</p>
+<h2>Python: does the name resolve on PyPI</h2>
+<pre><code>curl -sI https://pypi.org/pypi/requests/json</code></pre>
+<p>Read the status code:</p>
+<div class="tw"><table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody><tr><td><code>200</code></td><td>The package exists on PyPI</td></tr><tr><td><code>404</code></td><td><b>The package does not exist.</b> Nothing is going to fix this at install time</td></tr><tr><td><code>5xx</code> or timeout</td><td>PyPI is unreachable. Unverified — this is not the same as safe</td></tr></tbody></table></div>
+<p>That third row matters more than it looks. When a registry check fails for network reasons, the honest answer is &quot;unknown&quot;, not &quot;fine&quot;. Any tooling that silently downgrades an unreachable registry to a pass is telling you something it does not know.</p>
+<h2>npm: the same question</h2>
+<pre><code>curl -sI https://registry.npmjs.org/express</code></pre>
+<p>Same reading of the status code. Note that scoped packages need URL encoding — <code>@scope/name</code> becomes <code>@scope%2Fname</code>.</p>
+<h2>The check people skip: how old is it</h2>
+<p>If the package resolves, you are not finished. A <em>claimed</em> slopsquat resolves perfectly — that is the point of claiming it. What separates a real dependency from a freshly registered trap is history, and history is in the full JSON response rather than the headers:</p>
+<pre><code>curl -s https://pypi.org/pypi/PACKAGE/json | python -m json.tool | head -40</code></pre>
+<p>Two fields are worth your attention:</p>
+<ul><li><b>The earliest <code>upload_time_iso_8601</code> across releases.</b> This is roughly when the name started existing. Days or weeks is a very different risk profile from years.</li><li><b>The release count and version history.</b> A package with one version, published recently, that nothing else depends on, is a package with no track record — whatever its contents.</li></ul>
+<p>For npm the equivalent lives in the <code>time</code> object of the registry response, with <code>created</code> giving you the first publication.</p>
+<p>There is no universal threshold, but a reasonable default: anything published in the <b>last 90 days with negligible adoption</b> is unproven and gets a human look before it enters a build. That is not an accusation, it is a queue.</p>
+<h2>Local and internal packages: the false positive to expect</h2>
+<p>If you script this check, one thing will bite you immediately: not every line in a requirements file is a name that should resolve against a public registry.</p>
+<pre><code>-e .
+./libs/internal-utils
+git+https://github.com/yourorg/internal-lib.git
+some-package @ file:///opt/wheels/some_package.whl</code></pre>
+<p>None of these are looked up on PyPI by <code>pip</code>. They are local paths, VCS references and direct URLs. A naive checker queries the registry for <code>internal-utils</code>, gets a 404, and reports a phantom dependency inside your own monorepo. In npm the equivalent protocols are <code>workspace:</code>, <code>file:</code>, <code>link:</code> and <code>portal:</code>.</p>
+<p>We learned this one in the field rather than in theory: a scan across public pull requests produced exactly two &quot;phantom&quot; findings, and both turned out to be internal packages from the same repository being installed by path. Any check that does not exclude these will cry wolf on its first day in a real monorepo, and a scanner that cries wolf gets ignored — which is worse than not having one.</p>
+<h2>Doing this on every pull request</h2>
+<p>The manual version is fine for a dependency you are personally adding. It does not survive contact with a team, because the failure mode is not &quot;the check is hard&quot;, it is &quot;nobody remembers to run it at 6pm on a Friday&quot;.</p>
+<p>That is the entire argument for automating it at the pull request boundary rather than in a developer&#x27;s terminal: the check has to happen where merging happens, not where good intentions happen.</p>
+    </div>
+  </article>
+  
+<section class="post-cta">
+  <h2>Check this on your own pull requests</h2>
+  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
+     against the live PyPI and npm registries, and blocks the ones that do not exist.
+     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <div class="cta">
+    <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a>
+    <a class="btn btn-2" href="/pricing.html">See pricing</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What is slopsquatting, and why your scanner cannot see it | MagSolutionsAI</title>
+<meta name="description" content="Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design.">
+<meta property="og:title" content="What is slopsquatting, and why your scanner cannot see it | MagSolutionsAI">
+<meta property="og:description" content="Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magsolutionsai.com/blog/what-is-slopsquatting.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What is slopsquatting, and why your scanner cannot see it | MagSolutionsAI">
+<meta name="twitter:description" content="Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design.">
+<meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/blog/what-is-slopsquatting.html">
+<link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What is slopsquatting, and why your scanner cannot see it",
+  "description": "Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design.",
+  "datePublished": "2026-09-03",
+  "dateModified": "2026-09-03",
+  "url": "https://magsolutionsai.com/blog/what-is-slopsquatting.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://magsolutionsai.com/blog/what-is-slopsquatting.html"
+  },
+  "image": "https://magsolutionsai.com/logo-512.png",
+  "inLanguage": "en",
+  "keywords": [
+    "slopsquatting",
+    "supply chain",
+    "AI security"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://magsolutionsai.com/logo-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://magsolutionsai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://magsolutionsai.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "What is slopsquatting, and why your scanner cannot see it",
+      "item": "https://magsolutionsai.com/blog/what-is-slopsquatting.html"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/style.css?v=6">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap post">
+  <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
+  <article>
+    <header class="post-hd">
+      <div class="post-meta">
+        <time datetime="2026-09-03">03 September 2026</time>
+        <span class="sep">&middot;</span>
+        <span>4 min read</span>
+      </div>
+      <h1>What is slopsquatting, and why your scanner cannot see it</h1>
+      <p class="post-lede">Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design.</p>
+      <div class="ptags"><span class="ptag">slopsquatting</span><span class="ptag">supply chain</span><span class="ptag">AI security</span></div>
+    </header>
+    <div class="post-body">
+<p>A developer asks an AI assistant for code that uploads a file to an S3 bucket. The assistant returns twelve confident lines, including an import of a helper library. The library sounds plausible. It has the naming conventions of a real package. It does not exist.</p>
+<p>Six months ago, that was a broken build and an annoyed developer. Today it can be a compromised build server, because somebody registered that exact name and put an install script inside it.</p>
+<p>That attack has a name now: <b>slopsquatting</b>.</p>
+<h2>The difference from typosquatting</h2>
+<p>Typosquatting bets on human error. An attacker registers <code>reqeusts</code> and waits for someone to fat-finger <code>requests</code>. It works, but it scales badly: the attacker is guessing at the space of plausible typos, and most typos are never made.</p>
+<p>Slopsquatting bets on machine error instead, and machine error turns out to be a much better thing to bet on for one specific reason:</p>
+<blockquote class="callout"><p>Hallucinated package names repeat. Research measuring this found that a substantial share of invented names come back consistently when the same prompt is issued again — roughly 43% in the study that named the phenomenon. That reproducibility is the whole attack.</p></blockquote>
+<p>A typo is random. A hallucination is a <em>prediction</em> the model keeps making. An attacker does not have to guess which invented name is worth registering — they can ask the model repeatedly, write down what it invents, and register the names that keep coming back. The model then sends them a stream of victims, for free, indefinitely.</p>
+<h2>How common is this</h2>
+<p>The study that put numbers on it examined 2.23 million AI-generated code samples and found <b>19.7% contained at least one package that does not exist</b>. Later measurements in 2026 place the rate closer to 5% as models improved.</p>
+<p>Five percent sounds manageable until you multiply it by how much code is now written this way. If your team merges 200 AI-assisted pull requests a month and 5% of them carry a phantom import, that is ten opportunities a month for someone else&#x27;s code to enter your build. You need to be right every time. The attacker needs you to be wrong once.</p>
+<h2>Why the tools you already pay for miss it</h2>
+<p>This is the part that surprises people, and it is not a bug in those tools. It is what they are for.</p>
+<p>Snyk, Dependabot, <code>npm audit</code> and every other conventional dependency scanner answer one question: <em>does this package have a known vulnerability?</em> To answer it, they look the package up in a vulnerability database — CVEs, advisories, disclosure history.</p>
+<p>A package name registered five minutes ago has:</p>
+<ul><li>no CVE</li><li>no advisory</li><li>no disclosure history</li><li>no download history to look suspicious against</li></ul>
+<p>So the scanner queries its database, finds nothing, and reports nothing. <b>Silence gets read as safety.</b> The tool did its job correctly and told you nothing useful, because you asked it the wrong question.</p>
+<p>The right question is not &quot;is this package known to be malicious?&quot; It is &quot;<b>does this package exist at all, and if it does, has it existed for longer than this attack has?</b>&quot;</p>
+<h2>Existence is not enough either</h2>
+<p>Here is the trap in the obvious fix. If you just check whether a package exists, you catch the easy case — the pure hallucination that nobody has claimed yet — and you miss the dangerous one.</p>
+<p>A <em>claimed</em> slopsquat exists. It resolves. It installs. <code>pip</code> is perfectly happy. The registry returns HTTP 200 and a version number.</p>
+<p>What distinguishes it is not existence but <b>history</b>: it was published recently, it has almost no adoption, and nothing depends on it. A package that has been on PyPI for six years with millions of downloads is a different kind of object from one uploaded last Tuesday with forty downloads, even though both return 200.</p>
+<p>Any check worth running has to look at both.</p>
+<h2>The reproducible version of this check</h2>
+<p>You do not need a vendor to verify existence. For Python:</p>
+<pre><code>curl -sI https://pypi.org/pypi/PACKAGE_NAME/json</code></pre>
+<p>HTTP 404 means the package does not exist. For npm:</p>
+<pre><code>curl -sI https://registry.npmjs.org/PACKAGE_NAME</code></pre>
+<p>That single fact — 404 or 200 — is not a heuristic, a model output or a confidence score. It is an oracle. It cannot produce a false positive, because either the registry has the name or it does not.</p>
+<p>Then check the age and adoption of anything that does resolve. The full JSON response from PyPI includes upload timestamps per release; anything published within the last 90 days with negligible downloads deserves a human look before it reaches a build server.</p>
+<h2>What this means in practice</h2>
+<p>The uncomfortable summary: the security tooling most teams rely on was designed for a world where the packages in your manifest were chosen by a person who had heard of them. That assumption quietly stopped being true, and nothing in the tool chain announced the change.</p>
+<p>The check itself is cheap — one HTTP request per dependency. The hard part is doing it on every pull request, before merge, without asking developers to remember.</p>
+    </div>
+  </article>
+  
+<section class="post-cta">
+  <h2>Check this on your own pull requests</h2>
+  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
+     against the live PyPI and npm registries, and blocks the ones that do not exist.
+     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <div class="cta">
+    <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a>
+    <a class="btn btn-2" href="/pricing.html">See pricing</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

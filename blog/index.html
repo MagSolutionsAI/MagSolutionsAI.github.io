@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — AI supply chain security | MagSolutionsAI</title>
+<meta name="description" content="Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.">
+<meta property="og:title" content="Blog — AI supply chain security | MagSolutionsAI">
+<meta property="og:description" content="Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://magsolutionsai.com/blog/">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — AI supply chain security | MagSolutionsAI">
+<meta name="twitter:description" content="Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.">
+<meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/blog/">
+<link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "MagSolutionsAI Blog",
+  "description": "Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies and the security of code written by machines.",
+  "url": "https://magsolutionsai.com/blog/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "What is slopsquatting, and why your scanner cannot see it",
+      "url": "https://magsolutionsai.com/blog/what-is-slopsquatting.html",
+      "datePublished": "2026-09-03",
+      "description": "Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design."
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The package that never existed and got 30,000 downloads",
+      "url": "https://magsolutionsai.com/blog/huggingface-cli-case.html",
+      "datePublished": "2026-09-02",
+      "description": "In 2024 a researcher registered huggingface-cli, a name AI models kept recommending but which was never real. Three months later it had over 30,000 downloads — including from a major tech company's public documentation."
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How to check whether a package actually exists before you install it",
+      "url": "https://magsolutionsai.com/blog/verify-a-package-exists.html",
+      "datePublished": "2026-09-01",
+      "description": "A practical guide to verifying Python and npm dependencies against the live registries — the exact commands, what the responses mean, and the check most people forget after the first one passes."
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/style.css?v=6">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="idx-hero">
+    <span class="lbl">Blog</span>
+    <h1>What breaks when machines write the imports</h1>
+    <p>Analysis of the supply chain risk in AI-generated code &mdash; hallucinated packages,
+       claimed slopsquats, and how to verify a dependency before it reaches your build server.
+       Evidence and reproducible checks, not vendor opinion.</p>
+  </section>
+
+  <section class="posts">
+      <a class="pcard" href="/blog/what-is-slopsquatting.html">
+        <div class="post-meta">
+          <time datetime="2026-09-03">03 Sep 2026</time>
+          <span class="sep">&middot;</span><span>4 min</span>
+        </div>
+        <h2>What is slopsquatting, and why your scanner cannot see it</h2>
+        <p>Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design.</p>
+        <div class="ptags"><span class="ptag">slopsquatting</span><span class="ptag">supply chain</span><span class="ptag">AI security</span></div>
+      </a>
+      <a class="pcard" href="/blog/huggingface-cli-case.html">
+        <div class="post-meta">
+          <time datetime="2026-09-02">02 Sep 2026</time>
+          <span class="sep">&middot;</span><span>3 min</span>
+        </div>
+        <h2>The package that never existed and got 30,000 downloads</h2>
+        <p>In 2024 a researcher registered huggingface-cli, a name AI models kept recommending but which was never real. Three months later it had over 30,000 downloads — including from a major tech company&#x27;s public documentation.</p>
+        <div class="ptags"><span class="ptag">slopsquatting</span><span class="ptag">case study</span><span class="ptag">supply chain</span></div>
+      </a>
+      <a class="pcard" href="/blog/verify-a-package-exists.html">
+        <div class="post-meta">
+          <time datetime="2026-09-01">01 Sep 2026</time>
+          <span class="sep">&middot;</span><span>3 min</span>
+        </div>
+        <h2>How to check whether a package actually exists before you install it</h2>
+        <p>A practical guide to verifying Python and npm dependencies against the live registries — the exact commands, what the responses mean, and the check most people forget after the first one passes.</p>
+        <div class="ptags"><span class="ptag">how-to</span><span class="ptag">PyPI</span><span class="ptag">npm</span><span class="ptag">supply chain</span></div>
+      </a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
