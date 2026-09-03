@@ -197,6 +197,7 @@ def _head(title, desc, canonical, extra_ld="", is_article=False):
 <meta name="twitter:image" content="{BASE}/logo-512.png">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{canonical}">
+<link rel="alternate" type="application/rss+xml" title="MagSolutionsAI Blog" href="{BASE}/feed.xml">
 <link rel="icon" type="image/png" href="/favicon-64.png">
 <link rel="apple-touch-icon" href="/logo-200.png">
 {extra_ld}
@@ -378,6 +379,41 @@ def render_index(posts: list) -> str:
     )
 
 
+# ── RSS ────────────────────────────────────────────────────────────────────
+
+def render_feed(posts: list) -> str:
+    """Feed RSS. El publico objetivo (desarrolladores, gente de seguridad)
+    sigue usando lectores de RSS, y es el unico canal de distribucion que no
+    depende del algoritmo de nadie: quien se suscribe, recibe."""
+    items = []
+    for p in posts[:20]:
+        d = datetime.strptime(p["date"], "%Y-%m-%d")
+        url = f"{BASE}/blog/{p['slug']}.html"
+        items.append(f"""
+    <item>
+      <title>{html.escape(p['title'])}</title>
+      <link>{url}</link>
+      <guid isPermaLink="true">{url}</guid>
+      <pubDate>{d.strftime('%a, %d %b %Y')} 09:00:00 +0000</pubDate>
+      <description>{html.escape(p['description'])}</description>
+      {''.join(f'<category>{html.escape(t)}</category>' for t in p['tags'])}
+    </item>""")
+
+    built = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MagSolutionsAI Blog</title>
+    <link>{BASE}/blog/</link>
+    <atom:link href="{BASE}/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
+    <language>en</language>
+    <lastBuildDate>{built}</lastBuildDate>{''.join(items)}
+  </channel>
+</rss>
+"""
+
+
 # ── Sitemap ────────────────────────────────────────────────────────────────
 
 def update_sitemap(posts: list):
@@ -472,6 +508,9 @@ def main():
 
     (BLOG_DIR / "index.html").write_text(render_index(posts), encoding="utf-8")
     print(f"  escrito blog/index.html ({len(posts)} articulo(s))")
+
+    (ROOT / "feed.xml").write_text(render_feed(posts), encoding="utf-8")
+    print("  escrito feed.xml")
 
     update_sitemap(posts)
     print("  sitemap.xml actualizado (solo el bloque del blog)")
