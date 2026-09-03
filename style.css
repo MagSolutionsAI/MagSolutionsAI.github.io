@@ -331,6 +331,56 @@ td { background: rgba(16,25,40,.45); color: var(--fg-2); }
 .faq .dbody { padding: 0 1.2rem 1.15rem; color: var(--fg-2); font-size: .88rem; line-height: 1.65; max-width: 74ch; }
 .faq .dbody a { color: var(--neon); }
 
+/* ── Blog ─────────────────────────────────────────────────── */
+.crumbs { font-family: var(--mono); font-size: .72rem; color: var(--fg-3); padding: 1.8rem 0 0; letter-spacing: .04em; }
+.crumbs a { color: var(--fg-3); }
+.crumbs a:hover { color: var(--neon); }
+
+.post { max-width: 74ch; padding-bottom: 3rem; }
+.post-hd { padding: 1.6rem 0 2rem; border-bottom: 1px solid var(--line); margin-bottom: 2.2rem; }
+.post-meta { display: flex; align-items: center; gap: .55rem; font-family: var(--mono);
+  font-size: .72rem; color: var(--fg-3); letter-spacing: .05em; margin-bottom: 1rem; }
+.post-meta .sep { opacity: .5; }
+.post-hd h1 { font-size: clamp(1.9rem,4.2vw,2.8rem); font-weight: 780; letter-spacing: -.04em; margin-bottom: 1rem; }
+.post-lede { color: var(--fg-2); font-size: 1.05rem; line-height: 1.65; }
+
+.ptags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: 1.2rem; }
+.ptag { font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--fg-3); border: 1px solid var(--line); border-radius: 100px; padding: .2rem .6rem; }
+
+.post-body { font-size: 1rem; line-height: 1.75; color: var(--fg-2); }
+.post-body h2 { font-size: 1.45rem; font-weight: 740; color: var(--fg); margin: 2.6rem 0 .9rem; letter-spacing: -.03em; }
+.post-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--fg); margin: 1.9rem 0 .7rem; }
+.post-body p { margin-bottom: 1.15rem; }
+.post-body b { color: var(--fg); font-weight: 650; }
+.post-body ul, .post-body ol { margin: 0 0 1.3rem 1.3rem; }
+.post-body li { margin-bottom: .55rem; }
+.post-body li::marker { color: var(--neon-dim); }
+.post-body code { color: var(--neon); background: rgba(0,229,160,.09); padding: .08rem .35rem;
+  border-radius: 4px; font-size: .87em; }
+.post-body pre { background: var(--surf-sol); border: 1px solid var(--line); border-radius: var(--r);
+  padding: .95rem 1.1rem; overflow-x: auto; margin: 0 0 1.4rem; }
+.post-body pre code { background: none; color: var(--fg); padding: 0; font-size: .84rem; line-height: 1.7; }
+.post-body blockquote.callout p { color: var(--fg); font-size: 1rem; }
+.post-body table { margin: 0; }
+
+/* Cierre de articulo: sin via de conversion, el contenido no paga sus horas. */
+.post-cta { margin-top: 3rem; border: 1px solid var(--line-lit); border-radius: var(--r);
+  padding: 1.8rem; background: var(--surf); backdrop-filter: blur(10px); }
+.post-cta h2 { font-size: 1.3rem; font-weight: 740; margin-bottom: .7rem; }
+.post-cta p { color: var(--fg-2); font-size: .92rem; max-width: 62ch; }
+.post-cta .cta { margin-top: 1.3rem; }
+
+/* Listado */
+.posts { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1rem; padding-bottom: 3.5rem; }
+.pcard { display: block; border: 1px solid var(--line); border-radius: var(--r); padding: 1.4rem;
+  background: var(--surf); backdrop-filter: blur(10px); color: inherit;
+  transition: border-color .22s ease, transform .22s ease; }
+.pcard:hover { border-color: var(--line-lit); transform: translateY(-3px); text-decoration: none; }
+.pcard h2 { font-size: 1.15rem; font-weight: 720; color: var(--fg); margin-bottom: .6rem; letter-spacing: -.025em; }
+.pcard:hover h2 { color: var(--neon); }
+.pcard p { font-size: .88rem; color: var(--fg-2); }
+
 /* ── Revelado ─────────────────────────────────────────────── */
 .rv { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
 .rv.in { opacity: 1; transform: none; }

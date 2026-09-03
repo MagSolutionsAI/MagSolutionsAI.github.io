@@ -56,4 +56,30 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- blog:start -->
+  <url>
+    <loc>https://magsolutionsai.com/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/what-is-slopsquatting.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/huggingface-cli-case.html</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/verify-a-package-exists.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- blog:end -->
+
 </urlset>

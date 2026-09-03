@@ -1,0 +1,16 @@
+# Finales de linea normalizados a LF en el repositorio.
+#
+# POR QUE: el sitio se edita desde Windows (CRLF) y se publica desde GitHub
+# Pages (Linux). Sin esto, cualquier herramienta que reescriba un fichero
+# entero -- sed, un formateador, el generador del blog -- convierte los
+# finales de linea y git muestra el fichero COMPLETO como modificado,
+# enterrando el cambio real de dos lineas entre mil de ruido.
+#
+# Paso ya dos veces en esta misma sesion. Se normaliza una vez, aqui.
+
+* text=auto eol=lf
+
+# Binarios: no tocar nunca.
+*.png binary
+*.jpg binary
+*.ico binary
