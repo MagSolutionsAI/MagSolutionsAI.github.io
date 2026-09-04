@@ -79,7 +79,7 @@
       <span class="lbl">Private repositories</span>
       <h2 style="font-size:1.4rem">Public repos are free forever. Private ones need a plan.</h2>
       <p>Same detection engine on every tier &mdash; nothing is locked behind a higher plan. You
-        only pay for how many private repositories it protects.</p>
+        only pay for how many private repositories it covers.</p>
     </div>
 
     <div class="plans">
@@ -108,13 +108,14 @@
     </div>
 
     <p class="plan-note" id="linked" hidden>
-      Your installation is linked &mdash; a subscription started from this page activates on your
-      organisation automatically, with nothing to email us.
+      Your installation is linked. A subscription started from this page is attributed to your
+      organisation; we confirm the activation by email within one business day, and by hand if
+      anything did not match. Nothing to send us.
     </p>
     <p class="plan-note" id="unlinked">
-      Reached this page directly? Subscribing still works. If your plan does not switch over within
-      a few minutes, email <a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a>
-      with your GitHub organisation name and we will link it by hand.
+      Reached this page directly? Subscribing still works. Email
+      <a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a> with your GitHub
+      organisation name and we will activate the plan within one business day.
     </p>
   </section>
 
@@ -189,15 +190,33 @@
 
   // Avisar al servidor de que esta instalacion existe, para que la
   // organizacion quede registrada aunque el evento `installation` de
-  // GitHub no llegue. El servidor verifica el id contra GitHub antes de
-  // escribir nada, asi que esto no puede inventarse organizaciones.
+  // GitHub no llegue. Dos pasos: nonce de un solo uso (10 min) y POST con
+  // el nonce. El servidor verifica el id contra GitHub antes de escribir
+  // nada. Cuerpo form-urlencoded: "simple request", sin preflight.
   // Silencioso a proposito: si falla, la pagina sigue siendo util y el
   // pago se activaria igual al auditar el primer PR.
+  var API = 'https://api.magsolutionsai.com';
+  function post(path, data) {
+    return fetch(API + path, { method: 'POST', mode: 'cors', credentials: 'omit',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString() });
+  }
   try {
-    fetch('https://api.magsolutionsai.com/install/link?installation_id=' +
-          encodeURIComponent(id), { mode: 'cors', credentials: 'omit' })
+    post('/install/nonce', { installation_id: id })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (j && j.nonce) return post('/install/link', { installation_id: id, nonce: j.nonce }); })
       .catch(function () {});
   } catch (e) {}
+})();
+
+// Balizas del embudo: solo nombre de evento, sin cuerpo ni identificador.
+(function () {
+  function beacon(name) {
+    try { navigator.sendBeacon('https://api.magsolutionsai.com/events/' + name); } catch (e) {}
+  }
+  document.querySelectorAll('a.plan-cta[href^="https://buy.stripe.com/"]').forEach(function (a) {
+    a.addEventListener('click', function () { beacon('checkout_started'); });
+  });
 })();
 </script>
 

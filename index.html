@@ -120,7 +120,7 @@
     <div class="scan rv">
       <div class="scan-hd">
         <span class="tt">requirements.txt</span>
-        <span class="live"><span class="dot"></span> live · queries pypi.org</span>
+        <span class="live"><span class="dot"></span> demo · real queries to pypi.org</span>
       </div>
 
       <label for="deps" class="lbl" style="position:absolute;left:-9999px">Paste your dependencies</label>
@@ -242,8 +242,9 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       </div>
       <div class="tcard rv">
         <span class="lbl">No third parties</span>
-        <p>Only a package <b>name</b> leaves our server, to PyPI or npm. No analytics, no trackers,
-          no font CDN — this page loads zero external resources.</p>
+        <p>Only a package <b>name</b> leaves our server, to PyPI or npm. No third-party analytics,
+          no trackers, no font CDN. This page counts views and button clicks on our own server
+          — an event name and a timestamp, <b>no cookie, IP or identifier</b>.</p>
       </div>
       <div class="tcard rv">
         <span class="lbl">EU infrastructure</span>
@@ -537,6 +538,18 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
     }, { rootMargin: '0px 0px -10% 0px', threshold: .08 });
     els.forEach(function (e) { io.observe(e); });
   }
+})();
+
+// Balizas del embudo hacia nuestro propio servidor: nombre de evento y nada
+// mas. Sin cookie, sin cuerpo, sin identificador. La seccion "Trust" lo dice.
+(function () {
+  function beacon(name) {
+    try { navigator.sendBeacon('https://api.magsolutionsai.com/events/' + name); } catch (e) {}
+  }
+  beacon('landing_view');
+  document.querySelectorAll('a[href^="https://github.com/apps/magaudit-agent"]').forEach(function (a) {
+    a.addEventListener('click', function () { beacon('install_started'); });
+  });
 })();
 
 // Aviso de idioma. Nunca redirige: una redireccion automatica confunde al

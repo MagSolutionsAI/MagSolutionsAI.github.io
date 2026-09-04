@@ -48,7 +48,7 @@
   <table>
     <tr><th>Data</th><th>Purpose</th><th>Retention</th></tr>
     <tr><td>Pull request diff (added lines)</td><td>Detect secrets, vulnerabilities and dependency issues</td><td>Discarded once the audit completes</td></tr>
-    <tr><td>Audit report</td><td>Serve the downloadable report</td><td>Held in memory only; lost when the service restarts</td></tr>
+    <tr><td>Audit report (findings with file, line and the affected code fragment; detected secrets are redacted)</td><td>Serve the report linked from the PR comment</td><td><strong>Ephemeral:</strong> held in memory for up to 7 days, and lost when the service restarts. It is not an archive: save a copy if you need one</td></tr>
   </table>
   </div>
 
@@ -64,9 +64,17 @@
   </table>
   </div>
 
-  <p><strong>We never store:</strong> the diff, your source code, the content of findings, or the
-  value of any secret detected. When we detect a credential we report its location — we do not
-  retain the credential itself.</p>
+  <p><strong>We never write to disk:</strong> the diff, your source code, or the value of any secret
+  detected. When we detect a credential we report its location — we do not retain the credential
+  itself. The only place a code fragment survives the audit is inside the ephemeral report above,
+  in memory, so that the person reading the PR comment can see the flagged line.</p>
+
+  <h3>2.3 Website usage counts</h3>
+  <p>Our website sends a handful of counts to our own server — a page was viewed, the install
+  button was clicked, a checkout was started. Each is a single event name and a timestamp:
+  <strong>no cookies, no IP address, no user agent, no identifier of any kind</strong>, and nothing
+  goes to any third party. There is no way to tell two visitors apart, and no way to opt out
+  because there is nothing personal to opt out of.</p>
 
   <h2>3. Third parties</h2>
   <div class="tw">

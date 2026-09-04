@@ -61,7 +61,7 @@
     <p class="lede" style="max-width:64ch">
       Every plan — including Free — runs the same detector: phantom-dependency checks, fresh-claim
       detection, credential scanning, AI-native flaw scanning. Nothing is locked behind a higher
-      tier. You only pay for how many <b>private</b> repositories it protects.
+      tier. You only pay for how many <b>private</b> repositories it covers.
     </p>
   </div>
 </section>
@@ -128,10 +128,26 @@
     </div>
 
     <p class="plan-note">
-      Already subscribed? After checkout, email <a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a>
-      with your GitHub organisation name — we'll confirm your plan is active within one business day.
-      Automatic activation for self-serve signups is on the roadmap but not built yet.
+      After checkout we confirm your plan by email within one business day. If you subscribed
+      from the page GitHub sends you to after installing, the payment is already attributed to
+      your organisation; otherwise email
+      <a href="mailto:magsolutionsai@gmail.com">magsolutionsai@gmail.com</a> with your GitHub
+      organisation name.
     </p>
+
+<script>
+(function () {
+  function beacon(name) {
+    try { navigator.sendBeacon('https://api.magsolutionsai.com/events/' + name); } catch (e) {}
+  }
+  document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach(function (a) {
+    a.addEventListener('click', function () { beacon('checkout_started'); });
+  });
+  document.querySelectorAll('a[href^="https://github.com/apps/magaudit-agent"]').forEach(function (a) {
+    a.addEventListener('click', function () { beacon('install_started'); });
+  });
+})();
+</script>
 
     <div class="ent rv">
       <p><b>More than 40 private repositories, or need a custom contract?</b> We'll size a plan around your actual usage.</p>

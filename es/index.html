@@ -524,6 +524,18 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
   }
 })();
 
+// Balizas del embudo hacia nuestro propio servidor: nombre de evento y nada
+// mas. Sin cookie, sin cuerpo, sin identificador.
+(function () {
+  function beacon(name) {
+    try { navigator.sendBeacon('https://api.magsolutionsai.com/events/' + name); } catch (e) {}
+  }
+  beacon('landing_view');
+  document.querySelectorAll('a[href^="https://github.com/apps/magaudit-agent"]').forEach(function (a) {
+    a.addEventListener('click', function () { beacon('install_started'); });
+  });
+})();
+
 // Aviso de idioma. Nunca redirige: una redireccion automatica confunde al
 // rastreador de Google y le quita el control al visitante que ya sabe lo que
 // quiere. Solo sugiere, una vez, y se recuerda si lo cierra.
