@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MagSolutionsAI — Ship AI-written code without shipping someone else's malware</title>
-<meta name="description" content="Your AI assistant invents package names. Attackers register them. We check every dependency in every pull request against the live PyPI and npm registries — and tell you the name you actually meant.">
-<meta property="og:title" content="MagSolutionsAI — The AI Dependency Firewall">
-<meta property="og:description" content="Your AI assistant just invented a package. Someone may already own it.">
+<title>MagSolutionsAI — Security review for AI-written pull requests</title>
+<meta name="description" content="Every pull request audited for hardcoded credentials, SQL injection, insecure deserialization, unsafe LLM output and dependencies that do not exist in any registry. A comment on the PR with the file, the line and the fix.">
+<meta property="og:title" content="MagSolutionsAI — Security review for AI-written pull requests">
+<meta property="og:description" content="Credentials, injection and packages that do not exist. Checked on every pull request, before you merge.">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="apple-touch-icon" href="logo-200.png">
 <link rel="canonical" href="https://magsolutionsai.com/">
@@ -19,8 +19,8 @@
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
 <meta property="og:site_name" content="MagSolutionsAI">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MagSolutionsAI — The AI Dependency Firewall">
-<meta name="twitter:description" content="Your AI assistant just invented a package. Someone may already own it.">
+<meta name="twitter:title" content="MagSolutionsAI — Security review for AI-written pull requests">
+<meta name="twitter:description" content="Credentials, injection and packages that do not exist. Checked on every pull request, before you merge.">
 <meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
   "url": "https://magsolutionsai.com/",
   "installUrl": "https://github.com/apps/magaudit-agent",
   "image": "https://magsolutionsai.com/logo-512.png",
-  "description": "A GitHub App that blocks AI-hallucinated dependencies (slopsquatting), hardcoded secrets and AI-specific security flaws on every pull request, verified against the live PyPI and npm registries.",
+  "description": "A GitHub App that reviews every pull request for hardcoded credentials, SQL injection, insecure deserialization, unsafe handling of model output, and dependencies that do not exist in PyPI or npm.",
   "featureList": [
     "Detects dependencies that do not exist in PyPI or npm",
     "Detects recently published, low-adoption packages (claimed slopsquats)",
@@ -92,12 +92,19 @@
     <div>
       <div class="pill"><span class="dot"></span> Free for public repos · no SDK · no CI config</div>
 
-      <h1>Ship AI-written code without shipping <span class="hl">someone else's malware</span>.</h1>
+      <h1>Your AI writes the code. <span class="hl">Something should read it</span> before you merge.</h1>
 
       <p class="lede">
-        Your assistant confidently suggests a package. It doesn't exist. Someone registered that
-        exact name last week and waited. <b>Your build server runs their install script.</b>
-        You find out from the incident report.
+        Hardcoded credentials, SQL built by string interpolation, insecure deserialization, model
+        output rendered as raw HTML, and dependencies that <b>do not exist in any registry</b>.
+        Findings land as a comment on the pull request, with the file, the line and the fix.
+      </p>
+      <p class="lede" style="margin-top:.9rem;font-size:.92rem">
+        We audit public pull requests every week to keep ourselves honest. In roughly 1,600
+        dependencies added by real developers we found <b>no invented packages</b> — the attack
+        everyone writes about is rarer than the headlines suggest, and we would rather tell you
+        that than sell you a scare. What we do find, on about one pull request in fifteen, is
+        credentials and injection. <a href="hallucination-index.html">See the numbers</a>.
       </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem;color:var(--fg-3)">
         Built for small and mid-size SaaS teams and agencies shipping React/Next.js and Python
@@ -162,7 +169,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
         <ul>
           <li><span class="mk">✓</span><span><b>Asks the registry directly.</b> HTTP 404 is not a heuristic — it is a fact, with a timestamp you can reproduce with curl.</span></li>
           <li><span class="mk">✓</span><span><b>Catches the claimed ones too.</b> Existence isn't enough: a package published 6 days ago with 40 downloads gets flagged as well.</span></li>
-          <li><span class="mk">✓</span><span><b>An oracle, not an opinion.</b> The core check can't produce a false positive — either the registry returns the package or it doesn't.</span></li>
+          <li><span class="mk">✓</span><span><b>A fact, not an opinion.</b> A 404 from the registry is not a heuristic. The judgement is in <em>what</em> we ask about, and that is where we measure ourselves: we audit public pull requests every week and publish what we get wrong.</span></li>
           <li><span class="mk">✓</span><span><b>Gives you the right name.</b> Candidate corrections are verified against the registry before being suggested. Never a guess.</span></li>
         </ul>
       </div>

@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MagSolutionsAI — Despliega código con IA sin desplegar el malware de otro</title>
-<meta name="description" content="Tu asistente de IA inventa nombres de paquetes. Los atacantes los registran. Comprobamos cada dependencia de cada pull request contra PyPI y npm en vivo — y te decimos qué nombre querías escribir.">
+<title>MagSolutionsAI — Revisión de seguridad para pull requests escritos con IA</title>
+<meta name="description" content="Cada pull request auditado en busca de credenciales en el código, inyección SQL, deserialización insegura, salida de LLM sin filtrar y dependencias que no existen en ningún registro. Un comentario en el PR con el fichero, la línea y la corrección.">
 <meta name="keywords" content="slopsquatting, paquetes alucinados, dependencias falsas, comprobar paquete pypi, escaner dependencias, seguridad cadena de suministro, GitHub App seguridad">
-<meta property="og:title" content="MagSolutionsAI — El cortafuegos de dependencias con IA">
-<meta property="og:description" content="Tu asistente inventó un paquete. Puede que alguien ya lo haya registrado.">
+<meta property="og:title" content="MagSolutionsAI — Revisión de seguridad para pull requests escritos con IA">
+<meta property="og:description" content="Credenciales, inyección y paquetes que no existen. Comprobado en cada pull request, antes del merge.">
 <meta property="og:url" content="https://magsolutionsai.com/es/">
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
 <meta property="og:locale" content="es_ES">
@@ -31,7 +31,7 @@
   "installUrl": "https://github.com/apps/magaudit-agent",
   "image": "https://magsolutionsai.com/logo-512.png",
   "inLanguage": "es",
-  "description": "GitHub App que bloquea dependencias inventadas por la IA (slopsquatting), credenciales en el código y fallos de seguridad propios del código escrito con IA, en cada pull request.",
+  "description": "GitHub App que revisa cada pull request en busca de credenciales en el código, inyección SQL, deserialización insegura, salida de modelo sin filtrar y dependencias que no existen en PyPI ni en npm.",
   "publisher": {
     "@type": "Organization",
     "name": "MagSolutionsAI",
@@ -80,12 +80,21 @@
     <div>
       <div class="pill"><span class="dot"></span> Gratis para repos públicos · sin SDK · sin tocar el CI</div>
 
-      <h1>Despliega código escrito con IA sin desplegar <span class="hl">el malware de otro</span>.</h1>
+      <h1>La IA escribe el código. <span class="hl">Alguien debería leerlo</span> antes del merge.</h1>
 
       <p class="lede">
-        La IA te sugiere una dependencia con total seguridad. No existe. Alguien registró ese
-        nombre exacto la semana pasada y se quedó esperando. <b>Tu servidor de build ejecuta su
-        script de instalación.</b> Te enteras por el informe del incidente.
+        Credenciales en el código, SQL construido concatenando cadenas, deserialización insegura,
+        salida del modelo pintada como HTML sin filtrar, y dependencias que <b>no existen en
+        ningún registro</b>. Los hallazgos llegan como comentario en el pull request, con el
+        fichero, la línea y la corrección.
+      </p>
+      <p class="lede" style="margin-top:.9rem;font-size:.92rem">
+        Auditamos pull requests públicos cada semana para no engañarnos. En unas 1.600
+        dependencias añadidas por desarrolladores reales no encontramos <b>ningún paquete
+        inventado</b>: el ataque del que todo el mundo escribe es más raro de lo que sugieren los
+        titulares, y preferimos decírtelo a venderte un susto. Lo que sí aparece, en torno a un
+        pull request de cada quince, son credenciales e inyección.
+        <a href="hallucination-index.html">Ver las cifras</a>.
       </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem;color:var(--fg-3)">
         Para equipos SaaS pequeños y medianos y agencias que entregan React/Next.js y Python con
@@ -149,7 +158,7 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
         <ul>
           <li><span class="mk">✓</span><span><b>Pregunta al registro directamente.</b> Un HTTP 404 no es una heurística: es un hecho, con hora, que puedes reproducir con <code>curl</code>.</span></li>
           <li><span class="mk">✓</span><span><b>También pilla los ya reclamados.</b> Existir no basta: un paquete publicado hace 6 días con 40 descargas también salta.</span></li>
-          <li><span class="mk">✓</span><span><b>Un oráculo, no una opinión.</b> La comprobación central no puede dar un falso positivo — o el registro devuelve el paquete o no lo devuelve.</span></li>
+          <li><span class="mk">✓</span><span><b>Un hecho, no una opinión.</b> Un 404 del registro no es una heurística. El criterio está en <em>qué</em> preguntamos, y ahí es donde nos medimos: auditamos pull requests públicos cada semana y publicamos en qué nos equivocamos.</span></li>
           <li><span class="mk">✓</span><span><b>Te da el nombre correcto.</b> Cada corrección se verifica contra el registro antes de proponerla. Nunca una conjetura.</span></li>
         </ul>
       </div>
