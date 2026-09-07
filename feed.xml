@@ -6,7 +6,15 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Sep 2026 21:45:01 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 07:19:12 +0000</lastBuildDate>
+    <item>
+      <title>Thirteen npm packages, 48 seconds, one fake wallet SDK</title>
+      <link>https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</guid>
+      <pubDate>Mon, 07 Sep 2026 09:00:00 +0000</pubDate>
+      <description>On 7 September 2026, GitHub&#x27;s Advisory Database flagged 13 npm packages named after Coinbase&#x27;s wallet infrastructure as malware. Registry timestamps show all 13 were published within 48 seconds of each other.</description>
+      <category>supply chain</category><category>npm</category><category>case study</category><category>malware</category>
+    </item>
     <item>
       <title>The malicious package that never showed up in anyone&#x27;s requirements.txt</title>
       <link>https://magsolutionsai.com/blog/transitive-dependency-malware.html</link>
