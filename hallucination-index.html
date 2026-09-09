@@ -121,7 +121,7 @@ td code { color:var(--fg); }
 <main class="wrap">
 
   <section class="idx-hero">
-    <div class="pill"><span class="dot"></span> Updated 04 Sep 2026 · from real pull requests</div>
+    <div class="pill"><span class="dot"></span> Updated 09 Sep 2026 · from real pull requests</div>
     <h1>The Hallucination Index</h1>
     <p>Package names that AI coding assistants invent, which do not exist in any registry — and which of them somebody has registered since. Published datasets record what models invent when prompted on benchmark tasks; this index records what actually reaches real pull requests.</p>
   </section>
@@ -135,6 +135,27 @@ td code { color:var(--fg); }
   </div>
 
   <div class="honest"><span class="lbl">Why this table is empty</span><p>We started recording on <b>24 Aug 2026</b>. The index only fills as the App runs on real pull requests — we do not seed it with examples from papers or from other people's research. An index of security data that inflates its own numbers is worth less than no index at all. Check back as installations grow.</p></div>
+
+  <!-- El denominador. Sin el, un cero parece que no hemos mirado; con el, es el
+       resultado. Se sirve en vivo desde /measurement para que se actualice solo
+       cada lunes con el barrido, en vez de quedarse fosilizado en el HTML. -->
+  <div class="honest" style="margin-top:1rem">
+    <span class="lbl">How hard we looked</span>
+    <p id="effort">Loading the measurement…</p>
+  </div>
+  <script>
+  (function () {
+    var p = document.getElementById('effort');
+    if (!p || !window.fetch) return;
+    fetch('https://api.magsolutionsai.com/measurement', { mode: 'cors', credentials: 'omit' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.dependencies_resolved) return;
+        p.textContent = 'We have resolved ' + d.dependencies_resolved.toLocaleString('en') + ' dependencies added in ' + d.prs_analysed.toLocaleString('en') + ' public pull requests since ' + d.since + ', across ' + d.runs + ' automated sweeps, and confirmed ' + d.confirmed_hallucinated + ' hallucinated packages. Raw 404 candidates are reviewed by hand before entering the index; every one so far turned out to be our own false positive.';
+      })
+      .catch(function () {});
+  })();
+  </script>
 
   <section class="band" style="border-top:0;padding-top:2rem">
     <div class="sec-hd">

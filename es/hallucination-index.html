@@ -121,7 +121,7 @@ td code { color:var(--fg); }
 <main class="wrap">
 
   <section class="idx-hero">
-    <div class="pill"><span class="dot"></span> Actualizado 04 Sep 2026 · desde pull requests reales</div>
+    <div class="pill"><span class="dot"></span> Actualizado 09 Sep 2026 · desde pull requests reales</div>
     <h1>El Índice de Alucinaciones</h1>
     <p>Nombres de paquete que los asistentes de IA inventan, que no existen en ningún registro — y cuáles ha registrado alguien después. Los conjuntos de datos publicados recogen lo que los modelos inventan al resolver tareas de prueba; este índice recoge lo que llega de verdad a pull requests reales.</p>
   </section>
@@ -135,6 +135,27 @@ td code { color:var(--fg); }
   </div>
 
   <div class="honest"><span class="lbl">Por qué esta tabla está vacía</span><p>Empezamos a registrar el <b>24 Aug 2026</b>. El índice solo se llena según la App corre sobre pull requests reales — no lo sembramos con ejemplos de papers ni de investigaciones ajenas. Un índice de datos de seguridad que infla sus propias cifras vale menos que no tener índice. Vuelve según crezcan las instalaciones.</p></div>
+
+  <!-- El denominador. Sin el, un cero parece que no hemos mirado; con el, es el
+       resultado. Se sirve en vivo desde /measurement para que se actualice solo
+       cada lunes con el barrido, en vez de quedarse fosilizado en el HTML. -->
+  <div class="honest" style="margin-top:1rem">
+    <span class="lbl">Cuánto hemos mirado</span>
+    <p id="effort">Cargando la medición…</p>
+  </div>
+  <script>
+  (function () {
+    var p = document.getElementById('effort');
+    if (!p || !window.fetch) return;
+    fetch('https://api.magsolutionsai.com/measurement', { mode: 'cors', credentials: 'omit' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.dependencies_resolved) return;
+        p.textContent = 'Hemos resuelto ' + d.dependencies_resolved.toLocaleString('es') + ' dependencias añadidas en ' + d.prs_analysed.toLocaleString('es') + ' pull requests públicos desde el ' + d.since + ', en ' + d.runs + ' barridos automáticos, y confirmado ' + d.confirmed_hallucinated + ' paquetes alucinados. Cada candidato que devuelve 404 se revisa a mano antes de entrar en el índice; todos los habidos hasta hoy resultaron ser falsos positivos nuestros.';
+      })
+      .catch(function () {});
+  })();
+  </script>
 
   <section class="band" style="border-top:0;padding-top:2rem">
     <div class="sec-hd">
