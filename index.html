@@ -222,6 +222,24 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       </div>
     </div>
 
+    <!-- Socket.dev es mejor que nosotros en cadena de suministro y ocultarlo
+         seria mentir por omision. Un comprador tecnico lo encuentra en cinco
+         minutos, y descubrir que se lo callamos cuesta mas que la comparacion. -->
+    <div class="ent" style="margin-top:1rem">
+      <p><b>Socket.dev</b> does the dependency half better than we do, and you should know that
+        from us rather than from a search. They analyse package <em>behaviour</em> — install
+        scripts, network and filesystem access, obfuscated code — which we do not. They are free
+        for open source and free up to 1,000 scans a month. If dependency risk is your whole
+        problem, install Socket.</p>
+      <p>Where we differ is scope and billing. Socket looks at your dependencies; we look at the
+        dependency <em>and</em> the code in the same comment — hardcoded credentials, SQL built by
+        interpolation, insecure deserialization, model output rendered as raw HTML. And their paid
+        tier is $25 per seat per month, while ours is a flat price for the whole organisation.
+        Ten people: $250 a month there, &euro;69 here.</p>
+      <p class="plan-note">We would rather tell you who is better at one half than have you find
+        out later and wonder what else we left out.</p>
+    </div>
+
     <div class="ent" style="margin-top:1rem">
       <p><b>&ldquo;Why not just ask Copilot or Claude to review the pull request?&rdquo;</b>
         Do that too, it helps. But an assistant reviewing a diff is guessing about
@@ -425,7 +443,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
         We publish what the machines invent.</h2>
       <p style="color:var(--fg-2);max-width:56ch;margin:0 auto 1.6rem">
         A live record of package names that don't exist — and which ones somebody registered
-        after we first saw them. Free, no signup. We're not aware of anyone else keeping it.</p>
+        after we first saw them. Free, no signup. Published datasets measure what a model invents on benchmark tasks; this one measures what reaches real pull requests.</p>
       <a class="btn btn-2" href="hallucination-index.html">Open the Hallucination Index →</a>
     </div>
   </section>
