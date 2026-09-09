@@ -202,9 +202,10 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
           <li><span class="mk">✕</span><span><b>Billed per committer.</b> Secret Protection is
             $19 and Code Security $30 per active committer per month on private repositories.
             A team of ten pays around $490 a month.</span></li>
-          <li><span class="mk">✕</span><span><b>Still assumes the package exists.</b> It looks
-            for known vulnerabilities in real packages. A name invented five minutes ago has
-            no CVE and no history.</span></li>
+          <li><span class="mk">✕</span><span><b>Waits for an advisory.</b> It looks up known
+            vulnerabilities. Measured on the 100 most recent npm malware advisories, 30% arrived
+            more than a day after the package was published and one took 95 days. Until then it
+            reports the package as fine.</span></li>
         </ul>
       </div>
       <div class="col new rv">
@@ -213,8 +214,9 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
           <li><span class="mk">✓</span><span><b>Flat price per organisation.</b> From &euro;29 a
             month for the whole team, however many people commit. No per-seat maths, no
             surprise bill when you hire.</span></li>
-          <li><span class="mk">✓</span><span><b>Checks existence, not just known flaws.</b>
-            Every added dependency is resolved against the live registry at that moment.</span></li>
+          <li><span class="mk">✓</span><span><b>Checks age and adoption, not just known flaws.</b>
+            95% of that malware was under 30 days old when the advisory landed — and a package
+            days old with no downloads is visible from the registry immediately.</span></li>
           <li><span class="mk">✕</span><span><b>A narrow tool, on purpose.</b> We cover the
             handful of things AI-written code actually gets wrong. We are not trying to be a
             full application security platform, and we will say so.</span></li>
