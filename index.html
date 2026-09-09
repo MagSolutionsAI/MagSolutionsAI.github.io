@@ -523,17 +523,24 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
   function esc(s) { return String(s).replace(/[<>&"]/g, function (c) {
     return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]; }); }
 
+  // La sugerencia la da el servidor, no el navegador.
+  //
+  // Esta funcion tenia su propia copia de la regla, y era la version ANTIGUA:
+  // aceptaba un candidato solo por tener mas de 180 dias. Con eso, ante
+  // `urlparse` habria propuesto `urlprase` — subido en 2017, una sola version,
+  // un nombre okupado. El servidor ya se corrigio el 2026-09-09; la demo
+  // publica seguia recomendando instalar el squat.
+  //
+  // Dos copias de una regla de seguridad divergen siempre. Ahora hay una.
   function suggest(name) {
-    var cands = candidates(name), i = 0;
-    function next() {
-      if (i >= cands.length) return Promise.resolve(null);
-      var c = cands[i++];
-      return lookup(c[0]).then(function (f) {
-        if (f.exists && (f.age === null || f.age >= 180)) return { name: c[0], how: c[1] };
-        return next();
-      });
-    }
-    return next();
+    return fetch('https://api.magsolutionsai.com/suggest?name=' + encodeURIComponent(name),
+                 { mode: 'cors', credentials: 'omit' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.suggestion) return null;
+        return { name: d.suggestion.name, how: d.suggestion.why };
+      })
+      .catch(function () { return null; });   // sin respuesta, no se sugiere nada
   }
 
   function run() {
