@@ -74,6 +74,23 @@
   <!-- Ruta de pago con atribucion: los enlaces se completan con el
        installation_id que GitHub devuelve tras instalar, para que el pago
        se active solo sin que nadie escriba un correo. -->
+  <!-- Resultado del escaneo inicial. Es lo primero que ve alguien que acaba
+       de instalar, y hasta ahora no veia nada hasta que abriera un PR. -->
+  <section class="band" id="firstscan" style="border-top:0;padding-top:0" hidden>
+    <div class="sec-hd">
+      <span class="lbl">Your first report</span>
+      <h2 style="font-size:1.4rem" id="scan-title">Looking at what is already in your repositories&hellip;</h2>
+      <p id="scan-sub">We check the code you already have, not just the next pull request.
+        The most common problem in AI-written apps is written once, when the project is
+        created, so a tool that only reads pull requests never sees it.</p>
+    </div>
+    <div class="ent">
+      <div id="scan-body" style="line-height:1.9">
+        <span style="color:var(--fg-3)">Running&hellip; this usually takes under a minute.</span>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="upgrade">
     <div class="sec-hd">
       <span class="lbl">Private repositories</span>
@@ -217,6 +234,81 @@
   document.querySelectorAll('a.plan-cta[href^="https://buy.stripe.com/"]').forEach(function (a) {
     a.addEventListener('click', function () { beacon('checkout_started'); });
   });
+})();
+
+// Escaneo inicial: lo unico que convierte instalar en una respuesta en vez de
+// una espera. Se consulta con reintentos porque corre en un hilo del servidor.
+(function () {
+  'use strict';
+  var id = null;
+  try {
+    var p = new URLSearchParams(window.location.search).get('installation_id');
+    if (p && /^\d{1,20}$/.test(p)) id = p;
+    else { try { id = localStorage.getItem('msai_installation_id'); } catch (e) {} }
+    if (id && !/^\d{1,20}$/.test(id)) id = null;
+  } catch (e) { id = null; }
+  if (!id || !window.fetch) return;
+
+  var sec = document.getElementById('firstscan');
+  var cuerpo = document.getElementById('scan-body');
+  var titulo = document.getElementById('scan-title');
+  if (!sec || !cuerpo) return;
+  sec.hidden = false;
+
+  function texto(el, t) { el.textContent = ''; el.appendChild(document.createTextNode(t)); }
+
+  function pinta(d) {
+    if (!d || d.estado === 'sin_datos') {
+      titulo.textContent = 'No report yet';
+      texto(cuerpo, 'We could not read your repositories. Open a pull request and the audit runs there.');
+      return true;
+    }
+    if (d.estado === 'en_curso') return false;
+
+    var n = d.hallazgos || 0;
+    if (!n) {
+      titulo.textContent = 'Nothing found in what you already have';
+      texto(cuerpo, 'We read ' + (d.ficheros || 0) + ' files across ' + (d.repos || 0) +
+            ' repositories and found nothing worth reporting. From here on, every pull request gets the same check.');
+      return true;
+    }
+    titulo.textContent = n + ' finding' + (n === 1 ? '' : 's') + ' in code you already had';
+    cuerpo.textContent = '';
+    var ul = document.createElement('ul');
+    ul.style.margin = '0'; ul.style.paddingLeft = '1.1rem';
+    (d.ejemplos || []).forEach(function (e) {
+      var li = document.createElement('li');
+      var c = document.createElement('code');
+      c.textContent = e.fichero + ':' + e.linea;
+      li.appendChild(c);
+      li.appendChild(document.createTextNode('  ' + e.titulo + '  (' + e.repo + ')'));
+      ul.appendChild(li);
+    });
+    cuerpo.appendChild(ul);
+    var p = document.createElement('p');
+    p.className = 'plan-note';
+    p.style.marginTop = '.8rem';
+    p.textContent = 'Read ' + (d.ficheros || 0) + ' files across ' + (d.repos || 0) +
+      ' repositories. We keep the location, never the code.';
+    cuerpo.appendChild(p);
+    return true;
+  }
+
+  var intentos = 0;
+  (function mira() {
+    fetch('https://api.magsolutionsai.com/install/scan?installation_id=' + encodeURIComponent(id),
+          { mode: 'cors', credentials: 'omit' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (pinta(d)) return;
+        if (++intentos < 20) setTimeout(mira, 4000);
+        else texto(cuerpo, 'Still running. Reload this page in a minute.');
+      })
+      .catch(function () {
+        if (++intentos < 5) setTimeout(mira, 4000);
+        else texto(cuerpo, 'We could not reach the report. Open a pull request and the audit runs there.');
+      });
+  })();
 })();
 </script>
 
