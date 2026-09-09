@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>We measured how late a malware advisory arrives. Sometimes 95 days. | MagSolutionsAI</title>
+<meta name="description" content="Across the 100 most recent npm malware advisories, 30% arrived more than a day after the package was published. 95% of those packages were under 30 days old when the advisory landed.">
+<meta property="og:title" content="We measured how late a malware advisory arrives. Sometimes 95 days. | MagSolutionsAI">
+<meta property="og:description" content="Across the 100 most recent npm malware advisories, 30% arrived more than a day after the package was published. 95% of those packages were under 30 days old when the advisory landed.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magsolutionsai.com/blog/advisory-window.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="We measured how late a malware advisory arrives. Sometimes 95 days. | MagSolutionsAI">
+<meta name="twitter:description" content="Across the 100 most recent npm malware advisories, 30% arrived more than a day after the package was published. 95% of those packages were under 30 days old when the advisory landed.">
+<meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/blog/advisory-window.html">
+<link rel="alternate" type="application/rss+xml" title="MagSolutionsAI Blog" href="https://magsolutionsai.com/feed.xml">
+<link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "We measured how late a malware advisory arrives. Sometimes 95 days.",
+  "description": "Across the 100 most recent npm malware advisories, 30% arrived more than a day after the package was published. 95% of those packages were under 30 days old when the advisory landed.",
+  "datePublished": "2026-09-09",
+  "dateModified": "2026-09-09",
+  "url": "https://magsolutionsai.com/blog/advisory-window.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://magsolutionsai.com/blog/advisory-window.html"
+  },
+  "image": "https://magsolutionsai.com/logo-512.png",
+  "inLanguage": "en",
+  "keywords": [
+    "security",
+    "supply chain",
+    "npm",
+    "measurement"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://magsolutionsai.com/logo-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://magsolutionsai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://magsolutionsai.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "We measured how late a malware advisory arrives. Sometimes 95 days.",
+      "item": "https://magsolutionsai.com/blog/advisory-window.html"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/style.css?v=6">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap post">
+  <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
+  <article>
+    <header class="post-hd">
+      <div class="post-meta">
+        <time datetime="2026-09-09">09 September 2026</time>
+        <span class="sep">&middot;</span>
+        <span>3 min read</span>
+      </div>
+      <h1>We measured how late a malware advisory arrives. Sometimes 95 days.</h1>
+      <p class="post-lede">Across the 100 most recent npm malware advisories, 30% arrived more than a day after the package was published. 95% of those packages were under 30 days old when the advisory landed.</p>
+      <div class="ptags"><span class="ptag">security</span><span class="ptag">supply chain</span><span class="ptag">npm</span><span class="ptag">measurement</span></div>
+    </header>
+    <div class="post-body">
+<p>Every dependency scanner that works from known vulnerabilities has the same blind spot, and it is not a bug: <b>it cannot warn you about something nobody has reported yet.</b> Between the moment an attacker publishes a malicious package and the moment an advisory exists, every one of those tools reports the package as fine, because from their point of view it genuinely is.</p>
+<p>The interesting question is how long that window lasts. We could not find anyone publishing the number, so we measured it.</p>
+<h2>Method</h2>
+<p>We took the 100 most recent malware advisories for npm from the <a href="https://github.com/advisories">GitHub Advisory Database</a>, pulled the affected package name from each, and asked the npm registry when that package was first published. The window is the difference between those two dates.</p>
+<p>Both APIs are public. The whole measurement is two HTTP calls per advisory, and you can reproduce it without our help:</p>
+<pre><code class="lang-bash"># When did the advisory land?
+gh api &quot;advisories?type=malware&amp;ecosystem=npm&amp;per_page=100&amp;sort=published&amp;direction=desc&quot;
+
+# When was the package first published?
+curl -s https://registry.npmjs.org/PACKAGE | jq -r &#x27;.time.created&#x27;</code></pre>
+<h2>What we found</h2>
+<div class="tw"><table><thead><tr><th>Measure</th><th>Value</th></tr></thead><tbody><tr><td>Median window</td><td><b>0 days</b></td></tr><tr><td>Window longer than one day</td><td><b>30% of advisories</b></td></tr><tr><td>Longest window observed</td><td><b>95 days</b> (<code>unifi-credential-server</code>)</td></tr><tr><td>Packages under 30 days old when the advisory landed</td><td><b>95%</b></td></tr></tbody></table></div>
+<p>Four of the 100 packages had already been removed from the registry, so the window could not be computed for those.</p>
+<h3>The median is the good news</h3>
+<p>Most npm malware is flagged the same day it appears. GitHub&#x27;s malware feed is faster than we expected, and that deserves saying plainly — it is the part of this that works.</p>
+<h3>The tail is the problem</h3>
+<p>Thirty of the hundred sat on the registry for more than a full day. The worst, <code>unifi-credential-server</code>, was available for <b>95 days</b>. During that time, every CVE-based scanner in the world would have told you it was clean, and every one of them would have been right by its own definition.</p>
+<h3>The line that matters most</h3>
+<p><b>95% of these packages were less than 30 days old when the advisory arrived.</b></p>
+<p>Read that together with the row above it. The signal that identifies these packages is not a vulnerability record, which does not exist yet. It is that the package is days old and almost nobody is using it — and both of those facts are visible from the registry the instant the dependency appears in a pull request.</p>
+<h2>What this does not mean</h2>
+<p>It does not mean advisory-based scanning is useless. Dependabot, Snyk and GitHub&#x27;s own tooling catch enormous amounts of real risk, including the 70% of these cases where the advisory was effectively immediate.</p>
+<p>It also does not mean age alone is a good signal. Most new packages are just new. In our own weekly sweeps of public pull requests, a rule combining recent publication with near-zero adoption fires on roughly <b>one in every 290</b> dependencies that real developers add. Useful precisely because it is rare.</p>
+<p>And it does not mean we are the only ones looking at this. <a href="https://socket.dev">Socket</a> built a whole company on behavioural analysis of packages, and they do more of it than we do.</p>
+<h2>Why we published the number that hurts</h2>
+<p>We also measure things that work against us. Across 1,778 dependencies added in real public pull requests we found <b>zero</b> AI-hallucinated packages — the attack much of this industry writes about, including us, is rarer than the headlines suggest. A package that does not exist makes <code>pip install</code> fail and your CI go red, for free, without anybody selling you anything.</p>
+<p>We would rather be the vendor whose numbers you can check than the one whose claims you have to take on faith. Both figures here are reproducible against public APIs, and if you get a different answer we would like to know.</p>
+    </div>
+  </article>
+  
+<section class="post-cta">
+  <h2>Check this on your own pull requests</h2>
+  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
+     against the live PyPI and npm registries, and blocks the ones that do not exist.
+     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <div class="cta">
+    <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a>
+    <a class="btn btn-2" href="/pricing.html">See pricing</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

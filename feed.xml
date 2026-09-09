@@ -6,7 +6,15 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 07 Sep 2026 07:19:12 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Sep 2026 20:44:03 +0000</lastBuildDate>
+    <item>
+      <title>We measured how late a malware advisory arrives. Sometimes 95 days.</title>
+      <link>https://magsolutionsai.com/blog/advisory-window.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/advisory-window.html</guid>
+      <pubDate>Wed, 09 Sep 2026 09:00:00 +0000</pubDate>
+      <description>Across the 100 most recent npm malware advisories, 30% arrived more than a day after the package was published. 95% of those packages were under 30 days old when the advisory landed.</description>
+      <category>security</category><category>supply chain</category><category>npm</category><category>measurement</category>
+    </item>
     <item>
       <title>Thirteen npm packages, 48 seconds, one fake wallet SDK</title>
       <link>https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</link>

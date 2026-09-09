@@ -63,6 +63,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://magsolutionsai.com/blog/advisory-window.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
