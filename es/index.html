@@ -87,16 +87,26 @@
       <h1>La IA escribe el código. <span class="hl">Alguien debería leerlo</span> antes del merge.</h1>
 
       <p class="lede">
-        Credenciales en el código, SQL construido concatenando cadenas, deserialización insegura,
-        salida del modelo pintada como HTML sin filtrar, y dependencias que <b>no existen en
-        ningún registro</b>. Los hallazgos llegan como comentario en el pull request, con el
-        fichero, la línea y la corrección.
+        <b>El primer informe llega antes de tu siguiente pull request.</b> Al instalar leemos el
+        código que ya está en el repositorio, porque el fallo que más encontramos no se añade
+        nunca en un PR. A partir de ahí: credenciales en el código, SQL construido concatenando
+        cadenas, deserialización insegura, salida del modelo pintada como HTML sin filtrar, y
+        dependencias que <b>no existen en ningún registro</b>. Los hallazgos llegan como
+        comentario en el pull request, con el fichero, la línea y la corrección.
       </p>
       <div class="cta">
         <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Instalar en GitHub →</a>
         <button class="btn btn-2" type="button" id="demoBtn">Probar con un fichero roto ↓</button>
-        <span class="note">Alrededor de un segundo por PR</span>
+        <span class="note">Primer informe en cerca de un minuto</span>
       </div>
+      <p class="lede" style="margin-top:.9rem;font-size:.92rem">
+        Esta es la medición que nos hizo construirlo así. Buscamos un fallo concreto —una clave de
+        servicio con prefijo <code>NEXT_PUBLIC_</code> o <code>VITE_</code>, que el framework
+        entrega al navegador de cada visitante— en 63 pull requests reales de proyectos Next.js y
+        Vite. Apareció <b>cero</b> veces. En el código ya existente de 8 repositorios reales
+        apareció en <b>siete</b>. Se escribe una sola vez, el día que se crea el proyecto, y una
+        herramienta que solo lee diffs no lo va a ver nunca.
+      </p>
     <p class="lede" style="margin-top:.9rem;font-size:.92rem">
         Auditamos pull requests públicos cada semana para no engañarnos. En más de 1.400
         dependencias añadidas por desarrolladores reales no encontramos <b>ningún paquete
@@ -253,10 +263,17 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
 <section class="band" id="checks">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">05 — En cada pull request, antes del merge</span>
+      <span class="lbl">05 — Una vez al instalar, y luego en cada pull request</span>
       <h2>Cinco puertas. Una instalación. Cero configuración.</h2>
-      <p>Los hallazgos llegan como comentario en el PR, con el fichero exacto, la línea, por qué
+      <p>Las mismas cinco puertas se ejecutan dos veces: sobre el código que ya está en el
+        repositorio en el momento de instalar, y después sobre cada pull request antes del merge.
+        Los hallazgos llegan como comentario en el PR, con el fichero exacto, la línea, por qué
         importa y cómo se arregla. Nadie de tu equipo instala nada.</p>
+      <p style="margin-top:.6rem">La pasada de instalación es a propósito más estrecha: un diff te
+        dice quién escribió una línea y cuándo, un fichero entero no. Informa de credenciales y de
+        la frontera del navegador, y se calla las heurísticas que necesitan ese contexto. La
+        ajustamos después de ejecutarla contra nuestro propio repositorio y obtener 15 hallazgos,
+        13 de ellos ruido.</p>
     </div>
 
     <div class="grid4">
@@ -697,10 +714,6 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
   });
 })();
 </script>
-
-</body>
-</html>
-
 
 </body>
 </html>

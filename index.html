@@ -97,17 +97,28 @@
       <h1>Your AI writes the code. <span class="hl">Something should read it</span> before you merge.</h1>
 
       <p class="lede">
-        Every dependency you add gets checked for <b>how old it is and whether anyone
-        actually uses it</b> — the profile of a package an attacker registered last week, which
-        installs without a word and has no advisory yet. Plus hardcoded credentials, SQL built by
-        interpolation, insecure deserialization and model output rendered as raw HTML. Findings
-        land as a comment on the pull request, with the file, the line and the fix.
+        <b>The first report arrives before your next pull request.</b> When you install, we read
+        the code that is already in the repository — because the mistake we find most often is
+        never added in a PR at all. After that, every dependency you add gets checked for
+        <b>how old it is and whether anyone actually uses it</b> — the profile of a package an
+        attacker registered last week, which installs without a word and has no advisory yet.
+        Plus hardcoded credentials, SQL built by interpolation, insecure deserialization and
+        model output rendered as raw HTML. Findings land as a comment on the pull request, with
+        the file, the line and the fix.
       </p>
       <div class="cta">
         <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub →</a>
         <button class="btn btn-2" type="button" id="demoBtn">Try it on a broken file ↓</button>
-        <span class="note">About a second per PR</span>
+        <span class="note">First report in about a minute</span>
       </div>
+      <p class="lede" style="margin-top:.9rem;font-size:.92rem">
+        Here is the measurement that made us build it that way. We looked for one specific
+        mistake — a service key carrying a <code>NEXT_PUBLIC_</code> or <code>VITE_</code>
+        prefix, which the framework ships to every visitor's browser — in 63 real pull requests
+        from Next.js and Vite projects. It appeared <b>zero</b> times. In the existing code of 8
+        real repositories it appeared in <b>seven</b>. It gets written once, the day the project
+        is created, and a tool that only reads diffs will never see it.
+      </p>
     <p class="lede" style="margin-top:.9rem;font-size:.92rem">
         We audit public pull requests every week to keep ourselves honest. In more than 1,400
         dependencies added by real developers we found <b>no invented packages</b> — the attack
@@ -320,10 +331,16 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
 <section class="band" id="checks">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">05 — On every pull request, before merge</span>
+      <span class="lbl">05 — Once at install, then on every pull request</span>
       <h2>Five gates. One install. Zero developer setup.</h2>
-      <p>Findings land as a comment on the PR with the exact file, the line, why it matters and how
-        to fix it. Nobody on your team installs anything.</p>
+      <p>The same five gates run twice: over the code that is already in the repository the moment
+        you install, and then over every pull request before merge. Findings land as a comment on
+        the PR with the exact file, the line, why it matters and how to fix it. Nobody on your
+        team installs anything.</p>
+      <p style="margin-top:.6rem">The install-time pass is deliberately narrower — a diff tells you
+        who wrote a line and when, a whole file does not. It reports credentials and the browser
+        boundary, and stays quiet about heuristics that need that context. We tightened it after
+        running it against our own repository and getting 15 findings, 13 of which were noise.</p>
     </div>
 
     <div class="grid4">
