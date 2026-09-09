@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MagSolutionsAI — Security review for AI-written pull requests</title>
-<meta name="description" content="Every pull request audited for hardcoded credentials, SQL injection, insecure deserialization, unsafe LLM output and dependencies that do not exist in any registry. A comment on the PR with the file, the line and the fix.">
+<meta name="description" content="Every dependency in a pull request checked for age and adoption — the profile of a package registered days ago that no advisory has caught yet. Plus credentials, injection and unsafe model output, with the file, the line and the fix.">
 <meta property="og:title" content="MagSolutionsAI — Security review for AI-written pull requests">
-<meta property="og:description" content="Credentials, injection and packages that do not exist. Checked on every pull request, before you merge.">
+<meta property="og:description" content="30% of npm malware sits on the registry over a day before any advisory. We flag age and adoption instead of waiting.">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="apple-touch-icon" href="logo-200.png">
 <link rel="canonical" href="https://magsolutionsai.com/">
@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="MagSolutionsAI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MagSolutionsAI — Security review for AI-written pull requests">
-<meta name="twitter:description" content="Credentials, injection and packages that do not exist. Checked on every pull request, before you merge.">
+<meta name="twitter:description" content="30% of npm malware sits on the registry over a day before any advisory. We flag age and adoption instead of waiting.">
 <meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
 <script type="application/ld+json">
 {
@@ -34,10 +34,10 @@
   "url": "https://magsolutionsai.com/",
   "installUrl": "https://github.com/apps/magaudit-agent",
   "image": "https://magsolutionsai.com/logo-512.png",
-  "description": "A GitHub App that reviews every pull request for hardcoded credentials, SQL injection, insecure deserialization, unsafe handling of model output, and dependencies that do not exist in PyPI or npm.",
+  "description": "A GitHub App that flags newly published, low-adoption dependencies added in a pull request — the profile of a package an attacker registered before any advisory exists — plus hardcoded credentials, SQL injection, insecure deserialization and unsafe handling of model output.",
   "featureList": [
+    "Detects recently published, low-adoption dependencies before any advisory exists",
     "Detects dependencies that do not exist in PyPI or npm",
-    "Detects recently published, low-adoption packages (claimed slopsquats)",
     "Suggests the correct package name, verified against the registry",
     "Detects hardcoded credentials with false-positive suppression",
     "Detects AI-specific flaws: unsanitised LLM output, client-side secrets, prompt injection sinks"
@@ -97,9 +97,11 @@
       <h1>Your AI writes the code. <span class="hl">Something should read it</span> before you merge.</h1>
 
       <p class="lede">
-        Hardcoded credentials, SQL built by string interpolation, insecure deserialization, model
-        output rendered as raw HTML, and dependencies that <b>do not exist in any registry</b>.
-        Findings land as a comment on the pull request, with the file, the line and the fix.
+        Every dependency you add gets checked for <b>how old it is and whether anyone
+        actually uses it</b> — the profile of a package an attacker registered last week, which
+        installs without a word and has no advisory yet. Plus hardcoded credentials, SQL built by
+        interpolation, insecure deserialization and model output rendered as raw HTML. Findings
+        land as a comment on the pull request, with the file, the line and the fix.
       </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem">
         We audit public pull requests every week to keep ourselves honest. In more than 1,400
@@ -235,17 +237,46 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
   <div class="wrap">
     <div class="sec-hd">
       <span class="lbl">04 — Why the tools you already pay for miss this</span>
-      <h2>Every scanner assumes the package exists.</h2>
-      <p>Snyk, Dependabot and npm audit look up known vulnerabilities in real packages. A name
-        invented five minutes ago has no CVE, no advisory and no history. It is invisible to all
-        of them — by design.</p>
+      <h2>The dangerous package is not the one that is missing. It is the one that
+        started existing on Tuesday.</h2>
+      <p>A package that does not exist is not your problem: <code>pip install</code> fails, your
+        CI goes red, somebody fixes it in a minute. We measured that too — across 1,778
+        dependencies added in real public pull requests we found <b>zero</b> invented packages,
+        and we say so on the home page.</p>
+      <p>The problem is the opposite. The attacker registered the name, so the package
+        <b>does</b> exist, <code>pip install</code> succeeds quietly and runs their install
+        script. Now the only thing that can save you is an advisory — and the advisory is not
+        there yet.</p>
+    </div>
+
+    <!-- El dato que sostiene todo lo demas. Medido el 2026-09-09 sobre los 100
+         advisories de malware npm mas recientes del GitHub Advisory Database,
+         comparando la fecha de publicacion del paquete en el registro con la
+         del advisory. Reproducible por cualquiera con las dos APIs. -->
+    <div class="ent" style="margin-bottom:1.1rem">
+      <p><b>We measured the window.</b> Taking the 100 most recent npm malware advisories and
+        comparing each package's publication date against its advisory date:</p>
+      <ul style="margin:.6rem 0 .4rem;padding-left:1.2rem;line-height:1.9">
+        <li><b>30%</b> of them sat on the registry for <b>more than a day</b> before any
+          advisory existed. The longest was <b>95 days</b>.</li>
+        <li><b>95%</b> were <b>less than 30 days old</b> when the advisory finally landed.</li>
+      </ul>
+      <p>Read those two lines together and you get the whole product. During that window every
+        CVE-based scanner reports the package as fine, because there is genuinely nothing to
+        find. But <b>the package is days old and nobody is using it</b>, and that is visible from
+        the registry the moment it lands in your pull request. We do not wait for the advisory.
+        We flag the age and the adoption.</p>
+      <p class="plan-note">In our weekly sweeps that rule fires on roughly one in every 290
+        dependencies added by real developers, so it is not a bot that shouts. Both numbers are
+        reproducible against the GitHub Advisory Database and the npm registry without trusting
+        us at all.</p>
     </div>
 
     <div class="vs">
       <div class="col old rv">
         <div class="col-hd">Conventional dependency scanning</div>
         <ul>
-          <li><span class="mk">✕</span><span><b>Needs a CVE to fire.</b> A package registered yesterday has none. Silence reads as safety.</span></li>
+          <li><span class="mk">✕</span><span><b>Needs an advisory to fire.</b> Measured on the 100 most recent npm malware advisories: 30% arrived more than a day after the package was published, one of them 95 days later. Until then, silence reads as safety.</span></li>
           <li><span class="mk">✕</span><span><b>Analyses behaviour, not existence.</b> Sandboxing a package requires downloading it — there is nothing to download when the name is pure hallucination.</span></li>
           <li><span class="mk">✕</span><span><b>40–60% false positives</b> is the industry norm for SAST. Teams learn to scroll past the bot.</span></li>
           <li><span class="mk">✕</span><span><b>Flags the problem, stops there.</b> "Unknown package" without telling you what you meant to type.</span></li>
