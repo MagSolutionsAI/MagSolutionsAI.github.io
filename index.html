@@ -142,6 +142,92 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
   </div>
 </section>
 
+<!-- ═══ 1b · LA PRUEBA QUE NADIE PUEDE COPIAR ══════════════
+     El argumento no es una opinion, es una imposibilidad: todo modelo tiene
+     fecha de corte. Se sirve en vivo desde /freshest para que el visitante lo
+     compruebe el mismo, que es mucho mas fuerte que pedirle que nos crea. -->
+<section class="band" id="proof">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">01b — Try this before you read anything else</span>
+      <h2>Ask your AI whether these packages are real.</h2>
+      <p>These were uploaded to PyPI in the last few minutes. Copy any of them into
+        Copilot, Claude or ChatGPT and ask whether the package exists. It cannot know:
+        every model has a training cutoff, and these were published after all of them.
+        <b>We do not infer existence. We ask the registry.</b></p>
+    </div>
+
+    <div class="ent">
+      <ul id="freshlist" style="margin:0;padding-left:1.1rem;line-height:2">
+        <li style="color:var(--fg-3)">Loading the newest packages on PyPI&hellip;</li>
+      </ul>
+      <p class="plan-note" style="margin-top:.8rem">
+        Live from <code>pypi.org</code>, refreshed every five minutes. If the list is
+        empty, the query failed and we show nothing rather than invent a name.
+      </p>
+    </div>
+
+    <div class="ent" style="margin-top:.9rem">
+      <p><b>This is the whole argument.</b> A package name invented by a model looks
+        exactly like a real one, and the model that invented it cannot tell you which
+        it is. You cannot fix a hallucination with another hallucination. A registry
+        lookup is a fact with a timestamp, and you can reproduce it with
+        <code>curl</code> without trusting us at all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 1c · CONTRA QUE SE NOS COMPARA, DICHO POR NOSOTROS ══
+     Un comprador evalua GitHub Advanced Security y "ya se lo pido a Copilot".
+     Callarlo no hace que no lo piense; decirlo, y decir donde ellos ganan, es
+     lo unico que hace creible donde ganamos nosotros. -->
+<section class="band" id="alternatives">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">01c — What you are probably comparing us against</span>
+      <h2>Two honest comparisons.</h2>
+    </div>
+
+    <div class="vs">
+      <div class="col old rv">
+        <div class="col-hd">GitHub Advanced Security</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Does far more than we do.</b> Full CodeQL taint
+            analysis, hundreds of secret patterns, push protection, security overview. If you
+            need all of that, buy it — we are not a replacement.</span></li>
+          <li><span class="mk">✕</span><span><b>Billed per committer.</b> Secret Protection is
+            $19 and Code Security $30 per active committer per month on private repositories.
+            A team of ten pays around $490 a month.</span></li>
+          <li><span class="mk">✕</span><span><b>Still assumes the package exists.</b> It looks
+            for known vulnerabilities in real packages. A name invented five minutes ago has
+            no CVE and no history.</span></li>
+        </ul>
+      </div>
+      <div class="col new rv">
+        <div class="col-hd">MagSolutionsAI</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Flat price per organisation.</b> From &euro;29 a
+            month for the whole team, however many people commit. No per-seat maths, no
+            surprise bill when you hire.</span></li>
+          <li><span class="mk">✓</span><span><b>Checks existence, not just known flaws.</b>
+            Every added dependency is resolved against the live registry at that moment.</span></li>
+          <li><span class="mk">✕</span><span><b>A narrow tool, on purpose.</b> We cover the
+            handful of things AI-written code actually gets wrong. We are not trying to be a
+            full application security platform, and we will say so.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ent" style="margin-top:1rem">
+      <p><b>&ldquo;Why not just ask Copilot or Claude to review the pull request?&rdquo;</b>
+        Do that too, it helps. But an assistant reviewing a diff is guessing about
+        existence, and guessing is what created the problem. It also cannot see the rest
+        of your repository, so it does not know which of your routes are supposed to be
+        authenticated. Different job, different failure mode.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ 2 · LA VIEJA FORMA vs LA NUESTRA ══════════════════ -->
 <section class="band" id="compare">
   <div class="wrap">
@@ -552,6 +638,49 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
   document.querySelectorAll('a[href^="https://github.com/apps/magaudit-agent"]').forEach(function (a) {
     a.addEventListener('click', function () { beacon('install_started'); });
   });
+})();
+
+// Paquetes recien publicados en PyPI. Es la unica prueba que el visitante puede
+// hacer contra nosotros y a nuestro favor a la vez: coge un nombre, se lo
+// pregunta a su asistente, y comprueba que no puede saberlo.
+//
+// Se pinta con textContent, nunca con innerHTML: el servidor ya valida el
+// nombre, pero una pagina que predica sobre inyeccion no puede permitirse
+// meter texto de un tercero en el DOM sin escapar.
+(function () {
+  var ul = document.getElementById('freshlist');
+  if (!ul || !window.fetch) return;
+
+  function vacio(mensaje) {
+    ul.textContent = '';
+    var li = document.createElement('li');
+    li.style.color = 'var(--fg-3)';
+    li.textContent = mensaje;
+    ul.appendChild(li);
+  }
+
+  fetch('https://api.magsolutionsai.com/freshest?n=6', { mode: 'cors', credentials: 'omit' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      var lista = (d && d.packages) || [];
+      if (!lista.length) { vacio('The registry query failed. We show nothing rather than invent a name.'); return; }
+      ul.textContent = '';
+      lista.forEach(function (p) {
+        var li = document.createElement('li');
+        var code = document.createElement('code');
+        code.textContent = p.name;
+        li.appendChild(code);
+        if (p.published) {
+          var span = document.createElement('span');
+          span.style.color = 'var(--fg-3)';
+          span.style.fontSize = '.86em';
+          span.textContent = '  ·  published ' + p.published;
+          li.appendChild(span);
+        }
+        ul.appendChild(li);
+      });
+    })
+    .catch(function () { vacio('The registry query failed. We show nothing rather than invent a name.'); });
 })();
 
 // Aviso de idioma. Nunca redirige: una redireccion automatica confunde al
