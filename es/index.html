@@ -58,6 +58,8 @@
     <a class="brand" href="./"><img src="../logo-200.png" alt=""><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
       <a href="#scan">Escáner</a>
+      <a href="#proof">Prueba</a>
+      <a href="#alternatives">Alternativas</a>
       <a href="#compare">Por qué es distinto</a>
       <a href="#checks">Qué detecta</a>
       <a href="../pricing.html">Precios</a>
@@ -89,7 +91,7 @@
         fichero, la línea y la corrección.
       </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem">
-        Auditamos pull requests públicos cada semana para no engañarnos. En unas 1.600
+        Auditamos pull requests públicos cada semana para no engañarnos. En 1.778
         dependencias añadidas por desarrolladores reales no encontramos <b>ningún paquete
         inventado</b>: el ataque del que todo el mundo escribe es más raro de lo que sugieren los
         titulares, y preferimos decírtelo a venderte un susto. Lo que sí aparece, en torno a un
@@ -131,11 +133,90 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
   </div>
 </section>
 
-<!-- ═══ 2 · POR QUÉ SE LES ESCAPA ═════════════════════════ -->
+<!-- ═══ 1b · LA PRUEBA QUE NADIE PUEDE COPIAR ══════════════ -->
+<section class="band" id="proof">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">02 — Pruébalo antes de leer nada más</span>
+      <h2>Pregúntale a tu IA si estos paquetes existen.</h2>
+      <p>Se subieron a PyPI hace unos minutos. Copia cualquiera y pregúntale a Copilot,
+        Claude o ChatGPT si el paquete es real. No puede saberlo: todo modelo tiene fecha
+        de corte de entrenamiento y estos se publicaron después de todas ellas.
+        <b>Nosotros no deducimos que existan. Se lo preguntamos al registro.</b></p>
+    </div>
+
+    <div class="ent">
+      <ul id="freshlist" style="margin:0;padding-left:1.1rem;line-height:2">
+        <li style="color:var(--fg-3)">Cargando los paquetes más recientes de PyPI&hellip;</li>
+      </ul>
+      <p class="plan-note" style="margin-top:.8rem">
+        En vivo desde <code>pypi.org</code>, cada cinco minutos. Si la lista sale vacía es que
+        la consulta falló, y preferimos no enseñar nada antes que inventarnos un nombre.
+      </p>
+    </div>
+
+    <div class="ent" style="margin-top:.9rem">
+      <p><b>Este es el argumento entero.</b> Un nombre de paquete inventado por un modelo es
+        idéntico a uno real, y el modelo que lo inventó no puede decirte cuál es cuál. Una
+        alucinación no se arregla con otra alucinación. Una consulta al registro es un hecho
+        con fecha, y puedes reproducirla con <code>curl</code> sin fiarte de nosotros.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 1c · CONTRA QUÉ SE NOS COMPARA ═════════════════════ -->
+<section class="band" id="alternatives">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">03 — Con qué nos estás comparando</span>
+      <h2>Dos comparaciones honestas.</h2>
+    </div>
+
+    <div class="vs">
+      <div class="col old rv">
+        <div class="col-hd">GitHub Advanced Security</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Hace muchísimo más que nosotros.</b> Análisis
+            completo de CodeQL, cientos de patrones de credenciales, push protection, panel de
+            seguridad. Si necesitas todo eso, cómpralo: no somos un sustituto.</span></li>
+          <li><span class="mk">✕</span><span><b>Se factura por persona.</b> Secret Protection
+            cuesta 19 $ y Code Security 30 $ por committer activo y mes en repositorios
+            privados. Un equipo de diez paga unos 490 $ al mes.</span></li>
+          <li><span class="mk">✕</span><span><b>Sigue dando por hecho que el paquete existe.</b>
+            Busca vulnerabilidades conocidas en paquetes reales. Un nombre inventado hace cinco
+            minutos no tiene CVE ni historial.</span></li>
+        </ul>
+      </div>
+      <div class="col new rv">
+        <div class="col-hd">MagSolutionsAI</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Precio plano por organización.</b> Desde 29 €
+            al mes para todo el equipo, con la gente que haga falta. Sin cuentas por asiento ni
+            sustos en la factura al contratar.</span></li>
+          <li><span class="mk">✓</span><span><b>Comprueba que exista, no solo si es
+            conocido.</b> Cada dependencia añadida se resuelve contra el registro en vivo, en
+            ese momento.</span></li>
+          <li><span class="mk">✕</span><span><b>Es una herramienta estrecha, a propósito.</b>
+            Cubrimos el puñado de cosas que el código escrito con IA hace mal. No pretendemos
+            ser una plataforma de seguridad completa, y lo decimos.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ent" style="margin-top:1rem">
+      <p><b>«¿Y por qué no le pido a Copilot o a Claude que revise el PR?»</b>
+        Hazlo también, ayuda. Pero un asistente que mira un diff está adivinando sobre la
+        existencia, y adivinar es lo que creó el problema. Tampoco ve el resto de tu
+        repositorio, así que no sabe cuáles de tus rutas deberían llevar autenticación.
+        Otro trabajo, otro modo de fallar.</p>
+    </div>
+  </div>
+</section>
+
 <section class="band" id="compare">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">02 — Por qué no lo ve lo que ya pagas</span>
+      <span class="lbl">04 — Por qué no lo ve lo que ya pagas</span>
       <h2>Todos los escáneres dan por hecho que el paquete existe.</h2>
       <p>Snyk, Dependabot y <code>npm audit</code> buscan vulnerabilidades conocidas en paquetes
         reales. Un nombre inventado hace cinco minutos no tiene CVE, ni aviso, ni historial. Es
@@ -170,8 +251,8 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
 <section class="band" id="checks">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">03 — En cada pull request, antes del merge</span>
-      <h2>Cuatro puertas. Una instalación. Cero configuración.</h2>
+      <span class="lbl">05 — En cada pull request, antes del merge</span>
+      <h2>Cinco puertas. Una instalación. Cero configuración.</h2>
       <p>Los hallazgos llegan como comentario en el PR, con el fichero exacto, la línea, por qué
         importa y cómo se arregla. Nadie de tu equipo instala nada.</p>
     </div>
@@ -182,7 +263,7 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
         <h3>Dependencias fantasma</h3>
         <p>Cada dependencia añadida se resuelve contra PyPI y npm en vivo. Si no aparece, o es una
           alucinación de la IA o es <b>un nombre libre que un atacante todavía puede registrar</b>.
-          Se bloquea como crítico.</p>
+          Se marca como crítico, con la respuesta del registro y la hora, para que puedas reproducirlo.</p>
       </article>
 
       <article class="cap rv">
@@ -206,6 +287,15 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
           <code>dangerouslySetInnerHTML</code>, claves de servidor publicadas en variables
           <code>NEXT_PUBLIC_</code>, sumideros de inyección de prompt.</p>
       </article>
+
+      <article class="cap rv">
+        <div class="metric">A03</div>
+        <h3>Inyección clásica y valores peligrosos por defecto</h3>
+        <p>Lo que la IA escribe sin pensar: SQL construido interpolando, <code>shell=True</code>
+          con variables, <code>pickle.load</code> sobre datos ajenos, <code>verify=False</code>
+          desactivando TLS. Una consulta correctamente parametrizada <b>no</b> se marca: nos
+          equivocamos una vez, lo corregimos, y la prueba que lo demuestra está en el repositorio.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -214,7 +304,7 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
 <section class="band" id="trust">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">04 — Verifícanos como te verificamos</span>
+      <span class="lbl">06 — Verifícanos como te verificamos</span>
       <h2>Todo lo que dice esta página se puede comprobar.</h2>
       <p>Somos un proveedor de seguridad pidiéndote acceso a tus repositorios. No deberías
         creernos nada — por eso hemos hecho que no haga falta.</p>
@@ -481,7 +571,7 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
         s.className = 'summary hit';
         s.textContent = '✕ ' + phantoms + ' paquete(s) no existen en PyPI. ' +
           (fresh ? fresh + ' recién publicados. ' : '') +
-          'En un pull request, este merge quedaría bloqueado.';
+          'En un pull request, esto se marcaría como crítico en el propio PR.';
       } else if (fresh) {
         s.className = 'summary err';
         s.textContent = '! ' + fresh + ' paquete(s) recién publicados — verifica al autor antes de fiarte.';
@@ -543,6 +633,45 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
   document.querySelectorAll('a[href^="https://github.com/apps/magaudit-agent"]').forEach(function (a) {
     a.addEventListener('click', function () { beacon('install_started'); });
   });
+})();
+
+// Paquetes recien publicados en PyPI. Mismo componente que en la version
+// inglesa: sin el, la pagina en espanol promete una prueba que no ensena.
+// textContent y nunca innerHTML, por lo mismo que alli.
+(function () {
+  var ul = document.getElementById('freshlist');
+  if (!ul || !window.fetch) return;
+
+  function vacio(mensaje) {
+    ul.textContent = '';
+    var li = document.createElement('li');
+    li.style.color = 'var(--fg-3)';
+    li.textContent = mensaje;
+    ul.appendChild(li);
+  }
+
+  fetch('https://api.magsolutionsai.com/freshest?n=6', { mode: 'cors', credentials: 'omit' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      var lista = (d && d.packages) || [];
+      if (!lista.length) { vacio('La consulta al registro falló. Preferimos no enseñar nada antes que inventar un nombre.'); return; }
+      ul.textContent = '';
+      lista.forEach(function (p) {
+        var li = document.createElement('li');
+        var code = document.createElement('code');
+        code.textContent = p.name;
+        li.appendChild(code);
+        if (p.published) {
+          var span = document.createElement('span');
+          span.style.color = 'var(--fg-3)';
+          span.style.fontSize = '.86em';
+          span.textContent = '  ·  publicado ' + p.published;
+          li.appendChild(span);
+        }
+        ul.appendChild(li);
+      });
+    })
+    .catch(function () { vacio('La consulta al registro falló. Preferimos no enseñar nada antes que inventar un nombre.'); });
 })();
 
 // Aviso de idioma. Nunca redirige: una redireccion automatica confunde al
