@@ -134,12 +134,11 @@
 
     </div>
 
-    <p class="plan-note">
-      If you subscribe from the page GitHub sends you to after installing, your plan activates
-      automatically as soon as Stripe confirms the payment, and we confirm it by email. If you
-      subscribed from here instead, email
+    <p class="plan-note" id="plan-note">
+      Install the app first: GitHub then sends you to a page that links your subscription to your
+      organisation automatically. If you subscribe from here without installing, email
       <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a> with your GitHub
-      organisation name.
+      organisation name and we will activate it by hand.
     </p>
 
 <script>
@@ -147,9 +146,37 @@
   function beacon(name) {
     try { navigator.sendBeacon('https://api.magsolutionsai.com/events/' + name); } catch (e) {}
   }
+
+  // Identificar la instalacion en el enlace de pago.
+  //
+  // Sin esto, un pago hecho DESDE ESTA PAGINA llega a Stripe sin decir que
+  // organizacion ha pagado: el webhook lo registra como `unattributed` y el
+  // plan del cliente se queda en `free`. Comprobado ejecutandolo el
+  // 2026-09-10 — welcome.html ya lo hacia, esta pagina no.
+  //
+  // El id lo guarda welcome.html en localStorage cuando GitHub redirige tras
+  // instalar, asi que aqui esta disponible aunque instalaran la semana pasada.
+  var id = null;
+  try {
+    var p = new URLSearchParams(window.location.search).get('installation_id');
+    id = (p && /^\d{1,20}$/.test(p)) ? p : localStorage.getItem('msai_installation_id');
+    if (id && !/^\d{1,20}$/.test(id)) id = null;   // solo digitos: no propaga nada mas
+  } catch (e) { id = null; }
+
   document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach(function (a) {
+    if (id) {
+      a.href += (a.href.indexOf('?') === -1 ? '?' : '&') +
+                'client_reference_id=' + encodeURIComponent(id);
+    }
     a.addEventListener('click', function () { beacon('checkout_started'); });
   });
+
+  // Y decir la verdad segun el caso, en vez de una nota generica que el
+  // cliente tiene que interpretar.
+  var nota = document.getElementById('plan-note');
+  if (nota) nota.textContent = id
+    ? 'Your installation is recognised on this browser, so your plan activates automatically as soon as Stripe confirms the payment.'
+    : 'Install the app first: GitHub then sends you to a page that links your subscription to your organisation automatically. If you subscribe from here without installing, write to contact@magsolutionsai.com with your GitHub organisation name and we will activate it by hand.';
   document.querySelectorAll('a[href^="https://github.com/apps/magaudit-agent"]').forEach(function (a) {
     a.addEventListener('click', function () { beacon('install_started'); });
   });
