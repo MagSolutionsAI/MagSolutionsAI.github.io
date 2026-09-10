@@ -1,2 +1,12 @@
 __pycache__/
 .DS_Store
+
+legal-notice.html
+
+# Aviso legal — LISTO PERO SIN PUBLICAR (2026-09-10)
+# Cumple el art. 10 LSSI, que hoy incumplimos. Le faltan tres valores reales:
+# PENDIENTE_NOMBRE, PENDIENTE_NIF, PENDIENTE_DOMICILIO.
+# Publicar un documento de identificación con huecos es peor que no tenerlo,
+# así que se retiene aquí. Al rellenarlo: borrar estas líneas, enlazarlo desde
+# el pie de todas las páginas y desde terms.html §11 y privacy.html §1.
+legal-notice.html

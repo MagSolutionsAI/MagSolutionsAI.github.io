@@ -28,17 +28,18 @@
 <main class="wrap legal">
 
   <h1>Privacy Policy</h1>
-  <p class="upd">Last updated: 30 July 2026</p>
+  <p class="upd">Last updated: 10 September 2026</p>
 
   <div class="callout">
-    <p><strong>The short version:</strong> we do not store your source code. Pull request diffs are
-    analysed in memory and discarded as soon as the audit finishes. We keep only the metadata
-    needed to run and bill the service.</p>
+    <p><strong>The short version:</strong> we do not store your source code. Two things are read:
+    the code already in your repositories, once, when you install; and the added lines of each
+    pull request after that. Both are analysed in memory and discarded as soon as the audit
+    finishes. We keep only the metadata needed to run and bill the service.</p>
   </div>
 
   <h2>1. Who we are</h2>
-  <p>MagSolutionsAI ("we", "us") provides a GitHub App that audits pull requests for security
-  issues.</p>
+  <p>MagSolutionsAI ("we", "us") provides a GitHub App that audits your repositories for security
+  issues: once when you install it, and then on every pull request.</p>
   <p><strong>Contact:</strong> <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a></p>
 
   <h2>2. What we process</h2>
@@ -47,6 +48,7 @@
   <div class="tw">
   <table>
     <tr><th>Data</th><th>Purpose</th><th>Retention</th></tr>
+    <tr><td><strong>Install-time scan.</strong> When you connect your installation we read files from <strong>up to 5 repositories, at most 40 files each, none larger than 120&nbsp;KB</strong>. Only paths that can hold the failure we look for: <code>.env</code> files, <code>next</code>/<code>nuxt</code>/<code>vite</code>/<code>astro</code> config, and <code>.ts .tsx .js .jsx .mjs .py</code> files under <code>src app lib pages components server api</code>. Documentation, images, binaries and everything else are never requested</td><td>Report credentials already committed, and service keys exposed to the browser, before you open your first pull request</td><td>File contents are discarded as the scan runs. The summary stays <strong>in memory only</strong> and is lost when the service restarts; it holds counts, file paths and line numbers — never file content</td></tr>
     <tr><td>Pull request diff (added lines)</td><td>Detect secrets, vulnerabilities and dependency issues</td><td>Discarded once the audit completes</td></tr>
     <tr><td>Audit report (findings with file, line and the affected code fragment; detected secrets are redacted)</td><td>Serve the report linked from the PR comment</td><td><strong>Ephemeral:</strong> held in memory for up to 7 days, and lost when the service restarts. It is not an archive: save a copy if you need one</td></tr>
   </table>
