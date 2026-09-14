@@ -6,7 +6,15 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Sep 2026 20:44:03 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 07:12:53 +0000</lastBuildDate>
+    <item>
+      <title>langgrap, openaii, transfomers, ollamaa — one typo each, one PyPI campaign</title>
+      <link>https://magsolutionsai.com/blog/openaii-typosquat-campaign.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/openaii-typosquat-campaign.html</guid>
+      <pubDate>Mon, 14 Sep 2026 09:00:00 +0000</pubDate>
+      <description>On 11 September 2026, GitHub reviewed four PyPI malware advisories in one batch, each a single-character typosquat of langgraph, openai, transformers or ollama. The payload includes code written to discourage analysis by AI coding agents.</description>
+      <category>supply chain</category><category>PyPI</category><category>case study</category><category>malware</category>
+    </item>
     <item>
       <title>We measured how late a malware advisory arrives. Sometimes 95 days.</title>
       <link>https://magsolutionsai.com/blog/advisory-window.html</link>
