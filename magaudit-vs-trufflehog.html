@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagAudit vs TruffleHog — an honest comparison</title>
+<meta name="description" content="TruffleHog verifies secrets against the provider API. We deliberately do not, and here is the legal reason why.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html">
+<link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Home</a><a href="pricing.html">Pricing</a><a href="blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>MagAudit vs TruffleHog</h1>
+  <p class="upd">Written by the people who make one of the two. Read it with that in mind.</p>
+
+  <h2>TruffleHog does one thing we will never do</h2>
+  <p>TruffleHog <strong>verifies</strong> a found credential by calling the
+  provider's API to see whether it still works. That is genuinely useful: it
+  separates a live key from a rotated one, and it collapses the triage pile.</p>
+  <p>We do not do it, and it is not a roadmap item. Under
+  <strong>article 197 bis of the Spanish Penal Code</strong> &mdash; we operate
+  from Spain &mdash; using someone else's credential to access a system without
+  authorisation carries six months to two years. Our scanner talks to
+  <code>api.github.com</code> and to the package registries, and to nothing
+  else. There is a test that fails if any other request is made.</p>
+  <p>If verification is what you need, use TruffleHog. It is open source and
+  free.</p>
+
+  <h2>Where we differ</h2>
+  <table>
+    <tr><th></th><th>TruffleHog</th><th>MagAudit</th></tr>
+    <tr><td>Verifies the key against the provider</td><td><strong>Yes</strong></td><td>No, by design</td></tr>
+    <tr><td>Runs in CI you configure</td><td>Yes</td><td>No CI config; a GitHub App</td></tr>
+    <tr><td>Browser-boundary violations</td><td>&mdash;</td><td><strong>Yes</strong></td></tr>
+    <tr><td>Comments on the pull request with file, line and fix</td><td>Via your pipeline</td><td>Built in</td></tr>
+    <tr><td>Config-file awareness<br><small>see the two cases below</small></td><td>&mdash;</td><td><strong>Yes</strong></td></tr>
+  </table>
+
+  <h2>The two cases that cost us a public apology</h2>
+
+  <p>We were preparing security notices for public repositories, and we check
+  every one by hand before sending. Both of these were wrong, and both are now
+  pinned by a regression test written from the exact line:</p>
+
+  <h3>1. A variable forced empty is the fix, not the bug</h3>
+  <pre><code>...(command === "build"
+  ? { "import.meta.env.VITE_OPENAI_API_KEY": '""' }
+  : {}),</code></pre>
+  <p>That line <em>removes</em> the key from every production build. A six-line
+  comment above it explains that Vite inlines <code>VITE_*</code> into the
+  bundle. We would have told a team that understands this better than our
+  scanner does that they have the bug they had already fixed.</p>
+
+  <h3>2. Reading a variable in Node is not publishing it</h3>
+  <pre><code>module.exports = {
+  openAIApiKey: process.env.VITE_OPENAI_API_KEY,
+}</code></pre>
+  <p>A translation tool's configuration. It runs in Node at build time. The
+  <code>VITE_</code> prefix misleads: the variable is never referenced by client
+  code, so nothing reaches the browser. Any scanner that greps for the prefix
+  will flag this, and be wrong.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a></p>
+  <p class="upd">Last reviewed: 14 September 2026. Every figure on this page is our own
+  measurement and is reproducible against
+  <a href="https://api.magsolutionsai.com/measurement">our public endpoint</a>.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagAudit vs GitGuardian — an honest comparison</title>
+<meta name="description" content="What GitGuardian does better, what we do differently, and the false positives we publish about ourselves.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html">
+<link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Home</a><a href="pricing.html">Pricing</a><a href="blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>MagAudit vs GitGuardian</h1>
+  <p class="upd">Written by the people who make one of the two. Read it with that in mind.</p>
+
+  <h2>Where GitGuardian is genuinely ahead</h2>
+  <p>GitGuardian scans public GitHub continuously and detects on the order of
+  <strong>500,000 compromised keys a month</strong>. When it finds one it emails
+  the developer within minutes, with no sales pitch attached. That reach and
+  that history coverage are not things a two-person product matches, and you
+  should not pick us because you think otherwise.</p>
+  <p>If what you need is <em>credential patterns across your whole git history,
+  at scale, with a mature incident workflow</em>, they are the better answer.</p>
+
+  <h2>Where we do something different</h2>
+  <table>
+    <tr><th></th><th>GitGuardian</th><th>MagAudit</th></tr>
+    <tr><td>Finds committed credential <em>values</em></td><td>Yes, at scale</td><td>Yes, 8 formats</td></tr>
+    <tr><td>Browser-boundary violations<br><small>a real key in a <code>NEXT_PUBLIC_</code> variable</small></td>
+        <td>Looks for credential patterns</td><td><strong>Yes</strong> — the prefix is the finding</td></tr>
+    <tr><td>Scans the code already in the repo at install</td><td>&mdash;</td><td><strong>Yes</strong></td></tr>
+    <tr><td>Dependencies resolved live against PyPI / npm</td><td>&mdash;</td><td>Yes</td></tr>
+    <tr><td>Pricing</td><td>Per seat</td><td>Flat, by private repository count</td></tr>
+  </table>
+  <p>The boundary case is the one worth understanding. A Supabase
+  <code>service_role</code> key in <code>NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY</code>
+  is a <em>correctly formatted, legitimate</em> credential. Nothing about the
+  string is wrong. What is wrong is that the framework compiles it into the
+  bundle served to every visitor. Pattern matching does not see that; the prefix
+  does.</p>
+  <p>We measured how often it appears: <strong>0 times in 63 real pull
+  requests</strong>, and in <strong>7 of 8 existing repositories</strong>. It is
+  written once, the day the project is created &mdash; which is why we scan the
+  existing code when you install rather than waiting for a diff.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a></p>
+  <p class="upd">Last reviewed: 14 September 2026. Every figure on this page is our own
+  measurement and is reproducible against
+  <a href="https://api.magsolutionsai.com/measurement">our public endpoint</a>.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+  </div>
+</footer>
+</body>
+</html>
