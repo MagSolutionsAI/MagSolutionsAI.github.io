@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to stop a service key reaching the browser in Next.js and Vite</title>
-<meta name="description" content="The NEXT_PUBLIC_ and VITE_ prefixes compile a value into the client bundle. What that means, and how to check.">
+<title>MagAudit vs CodeRabbit — an honest comparison</title>
+<meta name="description" content="CodeRabbit is bigger and better funded. Here is what an independent audit found about its noise, and what we do differently.">
 <link rel="icon" type="image/png" href="favicon-64.png">
-<link rel="canonical" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html">
+<link rel="canonical" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html">
 <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -20,32 +20,46 @@
 </header>
 <main class="wrap legal">
 
-  <h1>Stopping a service key from reaching the browser</h1>
+  <h1>MagAudit vs CodeRabbit</h1>
+  <p class="upd">Written by the people who make one of the two. Read it with that in mind.</p>
 
-  <p>Next.js inlines any environment variable prefixed <code>NEXT_PUBLIC_</code>
-  into the client bundle at build time. Vite does the same with
-  <code>VITE_</code>, Create React App with <code>REACT_APP_</code>. That is the
-  documented, intended behaviour: those prefixes exist to mark a value as
-  public.</p>
+  <h2>Where CodeRabbit is ahead, and it is not close</h2>
+  <p>CodeRabbit reviews more than two million pull requests a week, has over
+  17,000 customers including Nvidia and BMW, and reached roughly $50M in annual
+  recurring revenue by mid-2026. It reviews reasoning and design, not just
+  patterns. If you want a second opinion on <em>how</em> the code is written,
+  they do that and we do not.</p>
 
-  <p>The failure is putting a <em>secret</em> behind one of them. The credential
-  is real and correctly formatted; it is simply in the wrong build. Anyone can
-  open devtools and read it.</p>
+  <h2>What their own market says goes wrong</h2>
+  <p>These are not our numbers. An independent audit of 28 pull requests found
+  <strong>15% of CodeRabbit's comments were noise and 21% were nitpicking</strong>,
+  and the three reasons teams most often look for an alternative in 2026 are
+  comment volume, limited whole-codebase context, and per-seat pricing that
+  scales faster than the security budget. Teams report spending weeks tuning a
+  <code>.coderabbit.yaml</code> to stop it harassing the engineering team.</p>
 
-  <h2>Which keys are safe behind the prefix, and which are not</h2>
+  <h2>The three differences that follow from that</h2>
   <table>
-    <tr><th>Safe &mdash; designed to be public</th><th>Not safe &mdash; grants server access</th></tr>
-    <tr><td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td><td><code>NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY</code></td></tr>
-    <tr><td><code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code></td><td><code>NEXT_PUBLIC_STRIPE_SECRET_KEY</code></td></tr>
-    <tr><td><code>NEXT_PUBLIC_FIREBASE_API_KEY</code><br><small>public by design; secured by rules</small></td>
-        <td><code>VITE_OPENAI_API_KEY</code><br><small>bills your account, no rules protect it</small></td></tr>
+    <tr><th></th><th>CodeRabbit</th><th>MagAudit</th></tr>
+    <tr><td>Configuration before it is useful</td>
+        <td>A <code>.coderabbit.yaml</code> to curate</td>
+        <td><strong>None.</strong> There is no file to tune</td></tr>
+    <tr><td>Pricing</td><td>From $24 per developer per month</td>
+        <td><strong>Flat per organisation.</strong> Ten people: €69, not $240</td></tr>
+    <tr><td>Its own false-positive rate</td><td>Not published</td>
+        <td><strong><a href="https://api.magsolutionsai.com/quality">Published, and derived from the tests</a></strong></td></tr>
+    <tr><td>Reads the code already in the repo</td><td>Reviews the diff</td>
+        <td><strong>Yes, at install</strong></td></tr>
+    <tr><td>README badge</td><td>&mdash;</td><td><strong>Yes</strong></td></tr>
   </table>
 
-  <h2>How to check your own project in one minute</h2>
-  <pre><code># any browser-prefixed variable whose name suggests a secret
-grep -rEn "(NEXT_PUBLIC_|VITE_|REACT_APP_)[A-Z_]*(SECRET|SERVICE_ROLE|PRIVATE|API_KEY|TOKEN)" \
-  .env* src app lib 2&gt;/dev/null</code></pre>
-  <p>Then read every hit, because two of them will not be bugs:</p>
+  <h2>What we are not claiming</h2>
+  <p>We are not saying we are quieter than CodeRabbit. We have not measured
+  them; the 15% figure is someone else's audit and we link it rather than
+  restate it as ours. What we can say is what <em>our</em> rate was, because we
+  measured it and published it: the first automated run produced 150 findings
+  over 249 public pull requests, 79 of them critical, and almost none were
+  real. Here is what they were.</p>
 
   <h2>The two cases that cost us a public apology</h2>
 
@@ -70,18 +84,6 @@ grep -rEn "(NEXT_PUBLIC_|VITE_|REACT_APP_)[A-Z_]*(SECRET|SERVICE_ROLE|PRIVATE|AP
   <code>VITE_</code> prefix misleads: the variable is never referenced by client
   code, so nothing reaches the browser. Any scanner that greps for the prefix
   will flag this, and be wrong.</p>
-
-  <h2>The fix</h2>
-  <ol>
-    <li><strong>Rotate the key first.</strong> Assume it is compromised: the
-    bundle is public and may be cached or archived. Cleaning history takes
-    hours; the key is live for all of them.</li>
-    <li>Move it to a variable <em>without</em> the prefix, read only from server
-    code &mdash; a route handler, a server action, an API route.</li>
-    <li>If the browser genuinely needs to reach the provider, proxy the call
-    through your own backend, or use the publishable key, which exists for
-    exactly this.</li>
-  </ol>
 
   <h2>What we measure, and publish</h2>
   <table>
