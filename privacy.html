@@ -49,6 +49,7 @@
   <table>
     <tr><th>Data</th><th>Purpose</th><th>Retention</th></tr>
     <tr><td><strong>Install-time scan.</strong> When you connect your installation we read files from <strong>up to 5 repositories, at most 40 files each, none larger than 120&nbsp;KB</strong>. Only paths that can hold the failure we look for: <code>.env</code> files, <code>next</code>/<code>nuxt</code>/<code>vite</code>/<code>astro</code> config, and <code>.ts .tsx .js .jsx .mjs .py</code> files under <code>src app lib pages components server api</code>. Documentation, images, binaries and everything else are never requested</td><td>Report credentials already committed, and service keys exposed to the browser, before you open your first pull request</td><td>File contents are discarded as the scan runs. The summary stays <strong>in memory only</strong> and is lost when the service restarts; it holds counts, file paths and line numbers — never file content</td></tr>
+    <tr><td><strong>Your <code>.magaudit.yml</code></strong>, if the repository has one (paths to exclude, rules to disable, a minimum severity)</td><td>Apply the settings your team chose, so we report only what you asked for</td><td>Read from your repository on each audit and held in memory for up to 5 minutes. Never written to disk</td></tr>
     <tr><td>Pull request diff (added lines)</td><td>Detect secrets, vulnerabilities and dependency issues</td><td>Discarded once the audit completes</td></tr>
     <tr><td>Audit report (findings with file, line and the affected code fragment; detected secrets are redacted)</td><td>Serve the report linked from the PR comment</td><td><strong>Ephemeral:</strong> held in memory for up to 7 days, and lost when the service restarts. It is not an archive: save a copy if you need one</td></tr>
   </table>
@@ -63,6 +64,7 @@
     <tr><td>Repository name, pull request number</td><td>Usage log and support</td><td>Until you uninstall</td></tr>
     <tr><td>Risk level, number of findings</td><td>Usage metering and billing</td><td>Until you uninstall</td></tr>
     <tr><td>Plan, usage counters, dates</td><td>Billing</td><td>Until you uninstall</td></tr>
+    <tr><td><strong>Findings you muted</strong> and, where a mute came from a pull request comment, <strong>the GitHub username of the person who wrote it</strong> — plus the repository, the rule id or an 8-character hash of the finding, and the date</td><td>Honour your decision on the next audit, and leave your team an auditable record of who silenced what. The hash is derived from the rule, the file path and the flagged line; it cannot be reversed back into your code, and we store neither the path nor the code</td><td>Until you delete the mute (<code>@magaudit restore &lt;id&gt;</code>) or uninstall</td></tr>
   </table>
   </div>
 
