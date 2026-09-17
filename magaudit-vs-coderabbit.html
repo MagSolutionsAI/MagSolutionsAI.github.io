@@ -43,7 +43,10 @@
     <tr><th></th><th>CodeRabbit</th><th>MagAudit</th></tr>
     <tr><td>Configuration before it is useful</td>
         <td>A <code>.coderabbit.yaml</code> to curate</td>
-        <td><strong>None.</strong> There is no file to tune</td></tr>
+        <td><strong>None required.</strong> An optional <code>.magaudit.yml</code> exists if you want to tune it</td></tr>
+    <tr><td>If it is wrong about your code</td>
+        <td>Config file, or <code>@coderabbitai ignore</code></td>
+        <td><strong>Reply <code>@magaudit ignore &lt;id&gt;</code></strong>, a config file, or the marker your existing scanner already uses &mdash; <code>pragma: allowlist secret</code>, <code>nosec</code>, <code>nosemgrep</code>, <code>gitleaks:allow</code></td></tr>
     <tr><td>Pricing</td><td>From $24 per developer per month</td>
         <td><strong>Flat per organisation.</strong> Ten people: €69, not $240</td></tr>
     <tr><td>Its own false-positive rate</td><td>Not published</td>
