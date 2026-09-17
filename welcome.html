@@ -68,6 +68,22 @@
           being broken, so it always reports &mdash; including what it did <em>not</em> analyse.
         </div>
       </div>
+      <div class="wc-step">
+        <span class="wc-n">4</span>
+        <div>
+          <b>And if we are wrong about something, you do not have to wait for us.</b>
+          Reply <code>@magaudit ignore &lt;id&gt;</code> on the pull request with the id printed
+          next to the finding, or <code>@magaudit ignore rule &lt;RULE-ID&gt;</code> for all of
+          them. For a decision your whole team can see and review, a <code>.magaudit.yml</code>
+          in the repository. And if you already use another scanner we honour its markers
+          &mdash; <code>pragma: allowlist secret</code>, <code>nosec</code>,
+          <code>nosemgrep</code>, <code>gitleaks:allow</code> &mdash; so you never annotate the
+          same line twice.
+          <br><span style="color:var(--fg-3)">Whatever your settings hide is still counted and
+          still declared in the comment, with the reason for each one.
+          <a href="quality.html">Here is how often we get it wrong &rarr;</a></span>
+        </div>
+      </div>
     </div>
   </section>
 
