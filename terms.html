@@ -52,8 +52,15 @@
     <li><strong>The absence of findings does not mean your code is secure.</strong> The tool detects
         specific, documented patterns. An attacker using techniques outside that scope may find
         paths it does not cover.</li>
-    <li><strong>The tool analyses only the lines added in a pull request.</strong> It does not audit
-        your existing codebase, your infrastructure, your dependencies in depth, or your runtime.</li>
+    <li><strong>What the tool looks at.</strong> The lines added in a pull request, and &mdash; once,
+        when you install it &mdash; a bounded sample of files already in the repository. Alongside
+        application code it reads configuration committed to the repository: Dockerfiles,
+        docker-compose, GitHub Actions workflows, Terraform and Kubernetes manifests. For
+        dependencies whose version is pinned exactly, it queries the GitHub Advisory Database.</li>
+    <li><strong>What it does not look at.</strong> It does not audit your running infrastructure,
+        your runtime behaviour, or your git history. It does not perform cross-file data-flow
+        analysis. It does not resolve your full dependency tree, so a dependency declared as a
+        range rather than an exact version is not checked against advisories.</li>
     <li><strong>Findings require human verification.</strong> Every finding includes its exact
         location precisely so that a person can confirm it.</li>
     <li><strong>Registry checks reflect a moment in time.</strong> A package that exists today may
