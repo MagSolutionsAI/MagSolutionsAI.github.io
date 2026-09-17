@@ -1,0 +1,13 @@
+# Configuración de MagAudit para este repositorio.
+#
+# `evidence/` es nuestro corpus de regresión: un fichero lleno a propósito de
+# líneas que PARECEN credenciales, para comprobar que el detector no las marca.
+# Auditarlo sería pedirle al detector que se contradiga a sí mismo.
+#
+# Se deja aquí, a la vista, porque es exactamente para lo que sirve este fichero
+# y porque cualquiera que lea el comentario del pull request verá cuántos
+# hallazgos está ocultando esta línea y por qué. Callar sin decir cuánto se
+# calla es lo que hace que un equipo deje de fiarse de un escáner.
+
+excluir:
+  - evidence/**
