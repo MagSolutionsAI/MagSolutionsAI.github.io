@@ -49,6 +49,14 @@
         <td><strong>Reply <code>@magaudit ignore &lt;id&gt;</code></strong>, a config file, or the marker your existing scanner already uses &mdash; <code>pragma: allowlist secret</code>, <code>nosec</code>, <code>nosemgrep</code>, <code>gitleaks:allow</code></td></tr>
     <tr><td>Pricing</td><td>From $24 per developer per month</td>
         <td><strong>Flat per organisation.</strong> Ten people: €69, not $240</td></tr>
+    <tr><td>Known vulnerabilities in the dependencies you add</td>
+        <td>Add-on, usage-based pricing</td>
+        <td><strong>Included.</strong> Checked against the GitHub Advisory Database, and only reported when the line pins an exact version</td></tr>
+    <tr><td>Dockerfiles, workflows, Terraform, Kubernetes</td>
+        <td>Via linters you configure</td>
+        <td><strong>Included.</strong> Including <code>pull_request_target</code> with checkout of the contributor's branch &mdash; the one that hands your secrets to anyone who opens a pull request</td></tr>
+    <tr><td>Run it locally before you push</td><td>CLI, on paid plans</td>
+        <td><strong>The same detector, offline.</strong> If it is clean here it is clean there</td></tr>
     <tr><td>Its own false-positive rate</td><td>Not published</td>
         <td><strong><a href="https://api.magsolutionsai.com/quality">Published, and derived from the tests</a></strong></td></tr>
     <tr><td>Reads the code already in the repo</td><td>Reviews the diff</td>
