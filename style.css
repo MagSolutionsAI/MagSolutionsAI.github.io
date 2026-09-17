@@ -281,10 +281,16 @@ footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; position: rela
    WCAG 2.4.1. Con un menu de varios enlaces, quien navega con teclado o con
    lector de pantalla tenia que recorrerlos todos en cada pagina antes de
    llegar al texto. Solo aparece al recibir el foco. */
-.skip { position: absolute; left: -9999px; top: 0; z-index: 100;
+/* Se esconde en el eje VERTICAL, no sacandolo a la izquierda: un elemento
+   posicionado en `left:-9999px` puede ensanchar el area de scroll horizontal
+   en algunos navegadores, y una barra de scroll lateral en el movil es peor
+   que el problema que se estaba resolviendo. */
+.skip { position: fixed; left: 0; top: 0; z-index: 100; transform: translateY(-130%);
   background: var(--neon); color: #04150F; padding: .6rem 1rem;
-  border-radius: 0 0 7px 0; font-weight: 650; font-size: .88rem; }
-.skip:focus { left: 0; text-decoration: none; }
+  border-radius: 0 0 7px 0; font-weight: 650; font-size: .88rem;
+  transition: transform .12s ease; }
+.skip:focus { transform: none; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
 
 /* ── Pie como mapa del sitio ──────────────────────────────────
    Lo que sale del menu no desaparece: baja aqui. Arriba se decide, abajo se
