@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MagSolutionsAI — Security review for AI-written pull requests</title>
-<meta name="description" content="Every dependency in a pull request checked for age and adoption — the profile of a package registered days ago that no advisory has caught yet. Plus credentials, injection and unsafe model output, with the file, the line and the fix.">
+<meta name="description" content="Every pull request audited: dependencies that do not exist, were published days ago, or carry a published advisory — plus credentials, injection, unsafe model output and your Dockerfiles, workflows and Terraform. Flat price, free on public repos, and we publish our own false-positive rate.">
 <meta property="og:title" content="MagSolutionsAI — Security review for AI-written pull requests">
 <meta property="og:description" content="30% of npm malware sits on the registry over a day before any advisory. We flag age and adoption instead of waiting.">
 <link rel="icon" type="image/png" href="favicon-64.png">
@@ -34,13 +34,20 @@
   "url": "https://magsolutionsai.com/",
   "installUrl": "https://github.com/apps/magaudit-agent",
   "image": "https://magsolutionsai.com/logo-512.png",
-  "description": "A GitHub App that flags newly published, low-adoption dependencies added in a pull request — the profile of a package an attacker registered before any advisory exists — plus hardcoded credentials, SQL injection, insecure deserialization and unsafe handling of model output.",
+  "description": "A GitHub App that audits every pull request: dependencies that do not exist or were published days ago, dependencies with a published advisory, hardcoded credentials, SQL injection, insecure deserialization, unsafe handling of model output, and configuration — Dockerfiles, GitHub Actions workflows, Terraform and Kubernetes. Flat price per organisation, free on public repositories, and we publish our own false-positive rate.",
   "featureList": [
     "Detects recently published, low-adoption dependencies before any advisory exists",
     "Detects dependencies that do not exist in PyPI or npm",
+    "Checks pinned dependency versions against the GitHub Advisory Database",
     "Suggests the correct package name, verified against the registry",
     "Detects hardcoded credentials with false-positive suppression",
-    "Detects AI-specific flaws: unsanitised LLM output, client-side secrets, prompt injection sinks"
+    "Detects AI-specific flaws: unsanitised LLM output, client-side secrets, prompt injection sinks",
+    "Audits Dockerfiles, GitHub Actions workflows, Terraform and Kubernetes manifests",
+    "Flags pull_request_target combined with checkout of the contributor's branch",
+    "Findings can be muted from the pull request comment or a .magaudit.yml in the repository",
+    "Honours existing suppression markers from detect-secrets, bandit, semgrep and gitleaks",
+    "Runs locally before push with the same detector as the pull request",
+    "Publishes its own false-positive rate, derived from regression tests"
   ],
   "publisher": {
     "@type": "Organization",
@@ -332,8 +339,8 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
   <div class="wrap">
     <div class="sec-hd">
       <span class="lbl">05 — Once at install, then on every pull request</span>
-      <h2>Five gates. One install. Zero developer setup.</h2>
-      <p>The same five gates run twice: over the code that is already in the repository the moment
+      <h2>Seven gates. One install. Zero developer setup.</h2>
+      <p>The same gates run twice: over the code that is already in the repository the moment
         you install, and then over every pull request before merge. Findings land as a comment on
         the PR with the exact file, the line, why it matters and how to fix it. Nobody on your
         team installs anything.</p>
@@ -382,7 +389,86 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
           disabling TLS. A correctly parameterised query is <b>not</b> flagged — we got that wrong
           once, fixed it, and the regression test that proves it is in the repository.</p>
       </article>
+
+      <article class="cap rv">
+        <div class="metric warn">CVE</div>
+        <h3>Published Advisory Check</h3>
+        <p>The version this pull request pins, checked against the GitHub Advisory Database, with
+          the patched version in the fix line. We only say it when the line pins an <b>exact</b>
+          version and the affected range can be compared without guessing — a range like
+          <code>&gt;=2.0</code> does not tell anyone what will be installed, so we stay quiet
+          instead of guessing.</p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric dgr">IaC</div>
+        <h3>Configuration is code too</h3>
+        <p>Dockerfiles, docker-compose, GitHub Actions workflows, Terraform and Kubernetes.
+          Including the expensive one almost nobody checks: <code>pull_request_target</code>
+          combined with checking out the contributor's branch, which <b>runs a stranger's code
+          with your repository secrets and write permissions</b>. With the ordinary
+          <code>pull_request</code> trigger we stay silent — that is correct and everyone does it.</p>
+      </article>
     </div>
+
+      <p style="margin-top:1.6rem;color:var(--fg-2)">The same detector runs on your own machine
+        before you push: <code>python tools/magaudit.py --staged</code>. Exit code 1 if something
+        serious, 2 if something, 0 if clean — drop it in a pre-commit hook. It is literally the
+        same code that runs on the pull request, and a test in the repository exists purely to stop
+        the two from ever diverging. A local scanner that disagrees with CI makes you distrust
+        both.</p>
+  </div>
+</section>
+
+<!-- ═══ 3b · CUANDO NOS EQUIVOCAMOS ══════════════════════ -->
+<section class="band" id="wrong">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">05b — The part every team asks about second</span>
+      <h2>And when we are wrong about your code?</h2>
+      <p>Every scanner is wrong sometimes. What decides whether a team keeps it is what happens
+        next — and the usual answer is &ldquo;open a ticket, or uninstall&rdquo;. Three ways out,
+        none of which require waiting for us:</p>
+    </div>
+
+    <div class="grid4">
+      <article class="cap rv">
+        <h3>Reply to the comment</h3>
+        <p>Every finding carries a short id. <code>@magaudit ignore a1b2c3d4</code> in the pull
+          request, or <code>@magaudit ignore rule VULN-EVAL</code> for all of them. We answer with
+          a 👍, not another comment. Only repository owners, members and collaborators can do it —
+          anyone can comment on a public pull request, and if that switched off the detector,
+          switching it off would be step one of an attack.</p>
+      </article>
+
+      <article class="cap rv">
+        <h3>A file your team reviews</h3>
+        <p>An optional <code>.magaudit.yml</code>: paths to exclude, rules to disable, a minimum
+          severity. It lives in your repository and changes to it go through a pull request like
+          anything else, so the whole team can see what is being silenced and who decided it.</p>
+      </article>
+
+      <article class="cap rv">
+        <h3>The marker you already use</h3>
+        <p>Coming from another scanner? We honour its annotations:
+          <code>pragma: allowlist secret</code>, <code>nosec</code>, <code>nosemgrep</code>,
+          <code>gitleaks:allow</code>, <code>trufflehog:ignore</code>, <code>NOSONAR</code>.
+          You already answered the question; we are not going to make you answer it twice.</p>
+      </article>
+
+      <article class="cap rv">
+        <h3>And we say what we hid</h3>
+        <p>Whatever your settings suppress is <b>still counted and still declared</b> in the
+          comment, with the reason for each one. A tool that goes quiet without telling you how
+          quiet it went is not a tool you can rely on — least of all on the day your own exclusion
+          covers something real.</p>
+      </article>
+    </div>
+
+    <p style="margin-top:1.4rem;color:var(--fg-2)">What we will not do: <b>rewrite a report that
+      was already published.</b> A mute applies from the next audit onwards. Making an already
+      emitted security finding disappear is exactly the capability someone who just pushed a
+      credential would want, and we do not offer it — not even to the owner of the repository.</p>
   </div>
 </section>
 
@@ -409,9 +495,19 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       </div>
       <div class="tcard rv">
         <span class="lbl">No third parties</span>
-        <p>Only a package <b>name</b> leaves our server, to PyPI or npm. No third-party analytics,
+        <p>Only a package <b>name</b> leaves our server — to PyPI, to npm, and to GitHub's own
+          advisory database. <b>That list is the whole list</b>, and it is the reason we can say we
+          never test whether a credential you committed actually works: there is nowhere for us to
+          test it. We chose GitHub's advisory database over the alternatives specifically so the
+          list would not grow. No third-party analytics,
           no trackers, no font CDN. This page counts views and button clicks on our own server
           — an event name and a timestamp, <b>no cookie, IP or identifier</b>.</p>
+      </div>
+      <div class="tcard rv">
+        <span class="lbl">Our own error rate, in public</span>
+        <p>We publish how often <b>we</b> are wrong, derived from the regression tests, not written
+          by hand: each one is built from the exact line observed in a real public repository.
+          <a href="https://api.magsolutionsai.com/quality">See the live record →</a></p>
       </div>
       <div class="tcard rv">
         <span class="lbl">EU infrastructure</span>
