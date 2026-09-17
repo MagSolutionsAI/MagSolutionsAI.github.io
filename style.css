@@ -115,7 +115,19 @@ code,.mono { font-family: var(--mono); }
   border-radius: 7px; font-weight: 650; font-size: .85rem;
   box-shadow: 0 0 0 1px var(--neon-dim), 0 6px 22px -8px var(--neon); }
 .nav-cta:hover { text-decoration: none; filter: brightness(1.08); }
-@media (max-width: 820px) { .nav-links a:not(.nav-cta) { display: none; } }
+/* Por debajo de 820 px el menu NO se esconde: se pliega a una segunda fila.
+   La regla anterior lo ocultaba entero sin poner nada en su lugar, asi que en
+   un movil la web se quedaba sin una sola via de navegacion -- ni precios, ni
+   blog, ni comparativas. Un menu plegado es mas feo que uno de hamburguesa y
+   no necesita JavaScript, estado ni un boton que alguien tenga que descubrir. */
+@media (max-width: 820px) {
+  .nav-in { flex-wrap: wrap; row-gap: .55rem; }
+  .nav-links { width: 100%; margin-left: 0; order: 3; flex-wrap: wrap;
+    gap: .35rem .95rem; justify-content: flex-start; }
+  .nav-links a { font-size: .78rem; }
+  .nav-cta { margin-left: auto; padding: .34rem .7rem; font-size: .78rem; }
+  .lang { order: 0; }
+}
 
 /* ── Hero ─────────────────────────────────────────────────── */
 .hero { padding: clamp(2.8rem,7vw,5.5rem) 0 clamp(2.5rem,6vw,4rem); }
