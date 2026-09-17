@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Condiciones del servicio — MagSolutionsAI</title>
+<meta name="description" content="Terms of service for the MagSolutionsAI GitHub App.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="apple-touch-icon" href="../logo-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/terms.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/terms.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/terms.html">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/terms.html">
+<link rel="stylesheet" href="../style.css?v=8">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./">
+      <img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b>
+    </a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="terms.html">Términos</a>
+      <span class="lang">
+        <a href="../terms.html">EN</a>
+        <a href="./terms.html" aria-current="true">ES</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap legal">
+
+  <h1>Condiciones del servicio</h1>
+  <p class="upd">Última actualización: 17 de septiembre de 2026</p>
+
+  <h2>1. El servicio</h2>
+  <p>MagSolutionsAI es una GitHub App que analiza tu código automáticamente e informa de posibles
+  problemas de seguridad: credenciales escritas en el código, vulnerabilidades y dependencias que
+  no existen o que se publicaron hace muy poco.</p>
+  <p>Se ejecuta en dos momentos. <strong>Una vez, al instalarlo</strong>, sobre una muestra acotada
+  del código que ya está en tus repositorios — los límites y los tipos de fichero exactos están en
+  el apartado 2.1 de la <a href="privacy.html">política de privacidad</a>. <strong>Y después en
+  cada pull request</strong>, sobre las líneas añadidas.</p>
+  <p>Al instalar la App aceptas estas condiciones.</p>
+
+  <h2>2. Qué es el servicio, y qué no es</h2>
+
+  <div class="callout">
+    <p><strong>Esto es una herramienta automática de análisis estático. Es una ayuda a la revisión,
+    no una garantía de seguridad.</strong></p>
+  </div>
+
+  <p>Reconoces expresamente que:</p>
+  <ul>
+    <li><strong>La ausencia de hallazgos no significa que tu código sea seguro.</strong> La herramienta
+        detecta patrones concretos y documentados. Un atacante que use técnicas fuera de ese alcance
+        puede encontrar caminos que no cubre.</li>
+    <li><strong>Qué mira la herramienta.</strong> Las líneas añadidas en un pull request y &mdash; una
+        vez, al instalarla &mdash; una muestra acotada de ficheros ya presentes en el repositorio.
+        Junto al código de aplicación lee la configuración que esté en el repositorio: Dockerfiles,
+        docker-compose, workflows de GitHub Actions, Terraform y manifiestos de Kubernetes. Para las
+        dependencias con versión fijada de forma exacta, consulta la base de avisos de GitHub.</li>
+    <li><strong>Qué no mira.</strong> No audita tu infraestructura en ejecución, ni el comportamiento
+        en tiempo de ejecución, ni el historial de git. No hace análisis de flujo de datos entre
+        ficheros. No resuelve tu árbol de dependencias completo, así que una dependencia declarada
+        como rango en lugar de versión exacta no se contrasta con los avisos.</li>
+    <li><strong>Los hallazgos requieren verificación humana.</strong> Cada hallazgo incluye su
+        ubicación exacta precisamente para que una persona pueda confirmarlo.</li>
+    <li><strong>Las comprobaciones en los registros son de un instante.</strong> Un paquete que hoy
+        existe puede desaparecer mañana, y uno que hoy no existe puede registrarlo un atacante
+        minutos después.</li>
+  </ul>
+
+  <p>La herramienta no sustituye a una auditoría de seguridad, a un test de intrusión ni a una
+  revisión profesional. Las decisiones sobre fusionar código siguen siendo enteramente tuyas.</p>
+
+  <h2>3. Uso aceptable</h2>
+  <p>Te comprometes a no:</p>
+  <ul>
+    <li>Usar el servicio contra repositorios que no estés autorizado a auditar.</li>
+    <li>Intentar interrumpir, sobrecargar o aplicar ingeniería inversa al servicio.</li>
+    <li>Revender o redistribuir el servicio sin un acuerdo por escrito.</li>
+  </ul>
+  <p>Podemos suspender una instalación que incumpla este apartado de forma sustancial.</p>
+
+  <h2>4. Disponibilidad</h2>
+  <p>Procuramos mantener el servicio disponible, pero no nos comprometemos a ningún nivel concreto
+  de disponibilidad salvo acuerdo separado por escrito. El servicio depende de terceros (GitHub,
+  PyPI, npm) y sus caídas pueden afectarle. Cuando no se puede alcanzar un registro de paquetes, la
+  herramienta informa de la dependencia como <em>no verificable</em>, nunca como segura.</p>
+
+  <h2>5. Garantías</h2>
+  <p>El servicio se presta «tal cual» y «según disponibilidad». En la máxima medida permitida por la
+  legislación aplicable, rechazamos las garantías implícitas de comerciabilidad, idoneidad para un
+  fin concreto y no infracción. Nada en estas condiciones limita ninguna garantía o derecho que no
+  pueda excluirse conforme a la ley que te sea aplicable.</p>
+
+  <h2>6. Limitación de responsabilidad</h2>
+  <p>En la máxima medida permitida por la legislación aplicable, no respondemos de daños indirectos,
+  incidentales, especiales o consecuenciales, ni del lucro cesante, la pérdida de datos o de
+  oportunidad de negocio, derivados del uso o de la imposibilidad de uso del servicio — incluido
+  cualquier incidente de seguridad que la herramienta no haya detectado.</p>
+  <p>Cuando la responsabilidad no pueda excluirse, queda limitada al importe que hayas pagado por el
+  servicio en los doce meses anteriores a la reclamación. Nada en estas condiciones excluye la
+  responsabilidad por dolo o culpa grave, ni ninguna otra que no pueda excluirse legalmente.</p>
+
+  <h2>7. Precios</h2>
+  <p>Los planes gratuitos se prestan sin coste y pueden cambiar o terminar con un preaviso razonable.
+  Los planes de pago se facturan según lo indicado en el listado de GitHub Marketplace en el momento
+  de la compra. Las compras, subidas y bajadas de plan y las cancelaciones se gestionan a través de
+  GitHub Marketplace y están sujetas a las condiciones del propio GitHub.</p>
+
+  <h2>8. Datos</h2>
+  <p>El tratamiento de datos se describe en la <a href="privacy.html">política de privacidad</a>. En
+  resumen: no guardamos tu código.</p>
+
+  <h2>9. Terminación</h2>
+  <p>Puedes desinstalar la App cuando quieras; eso pone fin a estas condiciones para ti. Nosotros
+  podemos dar por terminada una instalación por incumplimiento sustancial del apartado 3, o
+  descontinuar el servicio con un preaviso razonable.</p>
+
+  <h2>10. Ley aplicable y jurisdicción</h2>
+  <p>Estas condiciones se rigen por la legislación española, sin atender a sus normas de conflicto de
+  leyes.</p>
+  <p><strong>Si actúas en el ejercicio de una actividad empresarial o profesional</strong>, cualquier
+  controversia derivada de estas condiciones o del servicio se somete a la jurisdicción exclusiva de
+  los juzgados y tribunales de Barcelona (España), con renuncia expresa de ambas partes a cualquier
+  otro fuero que pudiera corresponderles.</p>
+  <p><strong>Si eres consumidor</strong>, este apartado no te resulta aplicable: conservas la
+  protección de las disposiciones imperativas de la ley de tu país de residencia y puedes acudir a
+  los tribunales de ese país.</p>
+
+  <h2>11. Versión de referencia</h2>
+  <p>Esta es una traducción de cortesía de la
+  <a href="../terms.html">versión en inglés</a>, que es la que prevalece en caso de
+  discrepancia entre ambas. Si detectas una diferencia entre las dos,
+  <a href="mailto:contact@magsolutionsai.com">dínoslo</a> y la corregimos.</p>
+
+  <h2>12. Contacto</h2>
+  <p><a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a></p>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a>
+    <a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidad — MagSolutionsAI</title>
+<meta name="description" content="How MagSolutionsAI handles your data. In short: we never store your source code.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="apple-touch-icon" href="../logo-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/privacy.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/privacy.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/privacy.html">
+<link rel="stylesheet" href="../style.css?v=8">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./">
+      <img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b>
+    </a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="terms.html">Términos</a>
+      <span class="lang">
+        <a href="../privacy.html">EN</a>
+        <a href="./privacy.html" aria-current="true">ES</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap legal">
+
+  <h1>Política de privacidad</h1>
+  <p class="upd">Última actualización: 17 de septiembre de 2026</p>
+
+  <div class="callout">
+    <p><strong>En corto:</strong> no guardamos tu código. Se leen dos cosas: el código que ya está
+    en tus repositorios, una vez, al instalar; y las líneas añadidas de cada pull request a partir
+    de entonces. Las dos se analizan en memoria y se descartan en cuanto termina la auditoría. Solo
+    conservamos los metadatos necesarios para prestar el servicio y facturarlo.</p>
+  </div>
+
+  <h2>1. Quiénes somos</h2>
+  <p>MagSolutionsAI («nosotros») presta una GitHub App que audita tus repositorios en busca de
+  problemas de seguridad: una vez al instalarla y después en cada pull request.</p>
+  <p><strong>Contacto:</strong> <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a></p>
+
+  <h2>2. Qué tratamos</h2>
+
+  <h3>2.1 Se trata en memoria y no se almacena</h3>
+  <div class="tw">
+  <table>
+    <tr><th>Dato</th><th>Finalidad</th><th>Conservación</th></tr>
+    <tr><td><strong>Escaneo al instalar.</strong> Al conectar tu instalación leemos ficheros de <strong>hasta 5 repositorios, 40 ficheros como máximo en cada uno y ninguno mayor de 120&nbsp;KB</strong>. Solo rutas donde puede estar el fallo que buscamos: ficheros <code>.env</code>, configuración de <code>next</code>/<code>nuxt</code>/<code>vite</code>/<code>astro</code> y ficheros <code>.ts .tsx .js .jsx .mjs .py</code> bajo <code>src app lib pages components server api</code>. La documentación, las imágenes, los binarios y todo lo demás no se piden nunca</td><td>Avisar de credenciales ya subidas, y de claves de servidor expuestas al navegador, antes de que abras tu primer pull request</td><td>El contenido de los ficheros se descarta según avanza el escaneo. El resumen queda <strong>solo en memoria</strong> y se pierde al reiniciar el servicio; contiene recuentos, rutas y números de línea — nunca el contenido</td></tr>
+    <tr><td><strong>Tu <code>.magaudit.yml</code></strong>, si el repositorio lo tiene (rutas a excluir, reglas a desactivar, una severidad mínima)</td><td>Aplicar la configuración que eligió tu equipo, para informar solo de lo que pediste</td><td>Se lee de tu repositorio en cada auditoría y se guarda en memoria hasta 5 minutos. Nunca se escribe en disco</td></tr>
+    <tr><td>Diff del pull request (líneas añadidas)</td><td>Detectar credenciales, vulnerabilidades y problemas de dependencias</td><td>Se descarta al terminar la auditoría</td></tr>
+    <tr><td><strong>Nombres y versiones fijadas de las dependencias</strong> de los ficheros que toca el pull request</td><td>Preguntar a la base de avisos de GitHub si esa versión tiene una vulnerabilidad publicada</td><td>Se envía solo a <code>api.github.com</code>. La respuesta se cachea una hora; la consulta no se almacena. <strong>De nuestro servidor solo salen el nombre y la versión del paquete &mdash; nunca una línea de tu código</strong></td></tr>
+    <tr><td>Informe de auditoría (hallazgos con fichero, línea y el fragmento de código afectado; las credenciales detectadas van censuradas)</td><td>Servir el informe enlazado desde el comentario del PR</td><td><strong>Efímero:</strong> se guarda en memoria hasta 7 días y se pierde al reiniciar el servicio. No es un archivo histórico: guarda una copia si la necesitas</td></tr>
+  </table>
+  </div>
+
+  <h3>2.2 Se almacena</h3>
+  <div class="tw">
+  <table>
+    <tr><th>Dato</th><th>Finalidad</th><th>Conservación</th></tr>
+    <tr><td>ID de instalación de GitHub</td><td>Identificar tu instalación</td><td>Hasta que desinstales</td></tr>
+    <tr><td>Nombre de la organización</td><td>Identificar la cuenta</td><td>Hasta que desinstales</td></tr>
+    <tr><td>Nombre del repositorio y número del pull request</td><td>Registro de uso y soporte</td><td>Hasta que desinstales</td></tr>
+    <tr><td>Nivel de riesgo y número de hallazgos</td><td>Medición de uso y facturación</td><td>Hasta que desinstales</td></tr>
+    <tr><td>Plan, contadores de uso y fechas</td><td>Facturación</td><td>Hasta que desinstales</td></tr>
+    <tr><td><strong>Los hallazgos que has silenciado</strong> y, cuando el silenciado vino de un comentario en un pull request, <strong>el nombre de usuario de GitHub de quien lo escribió</strong> — además del repositorio, el identificador de la regla o un hash de 8 caracteres del hallazgo, y la fecha</td><td>Respetar tu decisión en la siguiente auditoría y dejar a tu equipo un registro auditable de quién silenció qué. El hash se deriva de la regla, la ruta del fichero y la línea marcada; no se puede revertir para obtener tu código, y no guardamos ni la ruta ni el código</td><td>Hasta que borres el silenciado (<code>@magaudit restaurar &lt;id&gt;</code>) o desinstales</td></tr>
+  </table>
+  </div>
+
+  <p><strong>Nunca escribimos en disco</strong> el diff, tu código ni el valor de ninguna credencial
+  detectada. Cuando detectamos una credencial informamos de dónde está — no conservamos la
+  credencial. El único sitio donde un fragmento de código sobrevive a la auditoría es el informe
+  efímero de arriba, en memoria, para que quien lee el comentario del PR pueda ver la línea.</p>
+
+  <h3>2.3 Recuentos de uso de la web</h3>
+  <p>Nuestra web envía unos pocos recuentos a nuestro propio servidor: se vio una página, se pulsó
+  el botón de instalar, se inició un pago. Cada uno es un nombre de evento y una marca de tiempo:
+  <strong>sin cookies, sin dirección IP, sin user agent y sin identificador de ningún tipo</strong>,
+  y no va nada a terceros. No hay forma de distinguir a dos visitantes, ni forma de oponerse porque
+  no hay nada personal a lo que oponerse.</p>
+
+  <h2>3. Terceros</h2>
+  <div class="tw">
+  <table>
+    <tr><th>Destinatario</th><th>Qué enviamos</th><th>Para qué</th></tr>
+    <tr><td>PyPI (pypi.org)</td><td>Solo <strong>nombres</strong> de paquete</td><td>Comprobar que una dependencia existe y cuándo se publicó por primera vez</td></tr>
+    <tr><td>npm (registry.npmjs.org)</td><td>Solo <strong>nombres</strong> de paquete</td><td>Lo mismo</td></tr>
+    <tr><td>GitHub</td><td>El comentario de auditoría que publicamos en tu pull request</td><td>Entregar el resultado</td></tr>
+  </table>
+  </div>
+
+  <p><strong>Nunca se envía código a ningún tercero.</strong> No descargamos, ejecutamos ni metemos
+  en un sandbox los paquetes que comprobamos: solo preguntamos al registro si un nombre existe.</p>
+
+  <p>No usamos tus datos para entrenar modelos. No vendemos ni compartimos tus datos con anunciantes
+  ni con intermediarios de datos.</p>
+
+  <h2>4. Dónde se tratan los datos</h2>
+  <p>El servicio corre en un servidor dedicado alojado por Hetzner Online GmbH en Finlandia (Unión
+  Europea). No se transfieren datos fuera de la UE salvo las consultas a los registros y las
+  llamadas a la API de GitHub descritas en el apartado 3.</p>
+
+  <h2>5. Seguridad</h2>
+  <ul>
+    <li>Cada evento de webhook se verifica con HMAC-SHA256 antes de procesarlo; las peticiones sin firma o manipuladas se rechazan.</li>
+    <li>Las credenciales viven en variables de entorno y en ficheros fuera del control de versiones.</li>
+    <li>El acceso al servidor está restringido a SSH con clave.</li>
+  </ul>
+
+  <h2>6. Brechas de seguridad</h2>
+  <p>Si se produce una violación de seguridad de datos personales, lo notificaremos a la autoridad
+  de control competente en un plazo de <strong>72 horas</strong> desde que tengamos constancia,
+  conforme al artículo 33 del RGPD. Cuando sea probable que entrañe un alto riesgo para tus
+  derechos y libertades, lo notificaremos a las organizaciones afectadas sin dilación indebida.</p>
+
+  <h2>7. Tus derechos</h2>
+  <p>Si estás en la UE/EEE o en el Reino Unido, tienes derecho a acceder, rectificar, suprimir,
+  limitar y portar tus datos personales, y a oponerte a su tratamiento. Para ejercer cualquiera de
+  ellos, escribe a <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a>.</p>
+
+  <p><strong>Borrar tus datos:</strong> desinstalar la GitHub App nos quita el acceso a tus
+  repositorios. Para pedir que borremos los metadatos almacenados, escríbenos y los borraremos en
+  un plazo de 30 días.</p>
+
+  <p>También tienes derecho a presentar una reclamación ante tu autoridad de control. En España es
+  la Agencia Española de Protección de Datos (AEPD).</p>
+
+  <h2>8. Cambios</h2>
+  <p>Actualizaremos la fecha de la cabecera cuando esta política cambie. Los cambios sustanciales se
+  anunciarán y, cuando proceda, se notificarán a las organizaciones que tengan la App instalada.</p>
+
+  <h2>9. Versión de referencia</h2>
+  <p>Esta es una traducción de cortesía de la
+  <a href="../privacy.html">versión en inglés</a>, que es la que prevalece en caso de
+  discrepancia entre ambas. Si detectas una diferencia entre las dos,
+  <a href="mailto:contact@magsolutionsai.com">dínoslo</a> y la corregimos.</p>
+
+  <h2>10. Contacto</h2>
+  <p><a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a></p>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a>
+    <a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
