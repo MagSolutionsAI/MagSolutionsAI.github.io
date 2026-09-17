@@ -411,7 +411,19 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       </article>
     </div>
 
-      <p style="margin-top:1.6rem;color:var(--fg-2)">The same detector runs on your own machine
+      <p style="margin-top:1.6rem;color:var(--fg-2)"><b>And where the fix is not a matter of
+        opinion, it arrives written.</b> The finding lands on the line with a
+        <code>suggestion</code> block and a <em>Commit suggestion</em> button:
+        <code>verify=False</code> becomes <code>verify=True</code>, a vulnerable pin becomes the
+        version the advisory itself declares patched, an unpinned action becomes the actual commit
+        SHA with the tag kept in a comment, a hardcoded key becomes the environment read. This is
+        the one place where being deterministic beats being clever: a reviewer built on a model has
+        to <em>invent</em> the patch. We derive it &mdash; and where it cannot be derived,
+        <b>we do not offer one</b>. No guessing a UID for you, no patches that need a second line,
+        nothing in a language where we would not write it correctly. A wrong patch on security code
+        carries our name and a button inviting someone to apply it without reading.</p>
+
+      <p style="margin-top:1.2rem;color:var(--fg-2)">The same detector runs on your own machine
         before you push: <code>python tools/magaudit.py --staged</code>. Exit code 1 if something
         serious, 2 if something, 0 if clean — drop it in a pre-commit hook. It is literally the
         same code that runs on the pull request, and a test in the repository exists purely to stop
