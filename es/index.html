@@ -53,19 +53,15 @@
   </div>
 </div>
 
+<a class="skip" href="#scan">Saltar al contenido</a>
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
-      <a href="#scan">Escáner</a>
-      <a href="#proof">Prueba</a>
-      <a href="#alternatives">Alternativas</a>
-      <a href="#compare">Por qué es distinto</a>
       <a href="#checks">Qué detecta</a>
-      <a href="#trust">Confianza</a>
+      <a href="quality.html">Cuántas veces nos equivocamos</a>
+      <a href="pricing.html">Precios</a>
       <a href="../blog/">Blog</a>
-      <a href="../pricing.html">Precios</a>
-      <a href="hallucination-index.html">Índice</a>
       <span class="lang">
         <a href="../">EN</a>
         <a href="./" aria-current="true">ES</a>
@@ -93,6 +89,11 @@
         cadenas, deserialización insegura, salida del modelo pintada como HTML sin filtrar, y
         dependencias que <b>no existen en ningún registro</b>. Los hallazgos llegan como
         comentario en el pull request, con el fichero, la línea y la corrección.
+      </p>
+      <p style="margin:-.4rem 0 1.1rem;font-size:.92rem;color:var(--fg-2)">
+        Antes de creerte nada de esto:
+        <a href="quality.html"><b>publicamos cuántas veces nos equivocamos</b> →</a>
+        83 correcciones, cada una de una línea que marcamos mal en un repositorio público real.
       </p>
       <div class="cta">
         <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Instalar en GitHub →</a>
@@ -264,8 +265,8 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
   <div class="wrap">
     <div class="sec-hd">
       <span class="lbl">05 — Una vez al instalar, y luego en cada pull request</span>
-      <h2>Cinco puertas. Una instalación. Cero configuración.</h2>
-      <p>Las mismas cinco puertas se ejecutan dos veces: sobre el código que ya está en el
+      <h2>Siete puertas. Una instalación. Cero configuración.</h2>
+      <p>Las mismas puertas se ejecutan dos veces: sobre el código que ya está en el
         repositorio en el momento de instalar, y después sobre cada pull request antes del merge.
         Los hallazgos llegan como comentario en el PR, con el fichero exacto, la línea, por qué
         importa y cómo se arregla. Nadie de tu equipo instala nada.</p>
@@ -315,7 +316,99 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
           desactivando TLS. Una consulta correctamente parametrizada <b>no</b> se marca: nos
           equivocamos una vez, lo corregimos, y la prueba que lo demuestra está en el repositorio.</p>
       </article>
+
+      <article class="cap rv">
+        <div class="metric warn">CVE</div>
+        <h3>Vulnerabilidades ya publicadas</h3>
+        <p>La versión que fija este pull request, contrastada con la base de avisos de GitHub, y
+          la versión parcheada en la línea del arreglo. Solo lo afirmamos cuando la línea fija una
+          versión <b>exacta</b> y el rango afectado se puede comparar sin adivinar: un rango como
+          <code>&gt;=2.0</code> no dice qué se va a instalar, así que preferimos callarnos antes
+          que suponer.</p>
+      </article>
+
+      <article class="cap rv">
+        <div class="metric dgr">IaC</div>
+        <h3>La configuración también es código</h3>
+        <p>Dockerfiles, docker-compose, workflows de GitHub Actions, Terraform y Kubernetes.
+          Incluido el fallo caro que casi nadie mira: <code>pull_request_target</code> combinado
+          con hacer checkout de la rama de quien abrió el PR, que <b>ejecuta código de un
+          desconocido con los secretos y los permisos de escritura de tu repositorio</b>. Con el
+          disparador <code>pull_request</code> normal nos callamos: eso es correcto y lo hace todo
+          el mundo.</p>
+      </article>
     </div>
+
+      <p style="margin-top:1.6rem;color:var(--fg-2)"><b>Y donde el arreglo no es discutible,
+        llega escrito.</b> El hallazgo aparece sobre la línea con un bloque
+        <code>suggestion</code> y el botón <em>Commit suggestion</em>:
+        <code>verify=False</code> pasa a <code>verify=True</code>, una versión vulnerable pasa a
+        la que el propio aviso declara parcheada, una acción sin fijar pasa al SHA real con la
+        etiqueta en un comentario, una clave escrita a mano pasa a leerse del entorno. Aquí ser
+        deterministas es la ventaja: un revisor basado en un modelo tiene que <em>inventar</em> el
+        parche. Nosotros lo derivamos — y donde no se puede derivar, <b>no proponemos ninguno</b>.
+        Ni elegir un UID por ti, ni parches que necesitan una segunda línea, ni nada en un
+        lenguaje donde no sabríamos escribirlo bien. Un parche equivocado sobre código de
+        seguridad lleva nuestra firma y un botón que invita a aplicarlo sin leerlo.</p>
+
+      <p style="margin-top:1.2rem;color:var(--fg-2)">El mismo detector corre en tu máquina antes
+        de hacer push: <code>python tools/magaudit.py --staged</code>. Devuelve 1 si hay algo
+        grave, 2 si hay algo, 0 si está limpio — para un hook de pre-commit o para tu propio CI.
+        Es literalmente el mismo código que corre en el pull request, y existe una prueba cuyo
+        único fin es impedir que los dos diverjan: un escáner local que no coincide con el de CI
+        hace que dejes de creerte los dos.</p>
+  </div>
+</section>
+
+<!-- ═══ 3b · CUANDO NOS EQUIVOCAMOS ══════════════════════ -->
+<section class="band" id="wrong">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">05b — Lo segundo que pregunta todo equipo</span>
+      <h2>¿Y cuándo nos equivocamos con tu código?</h2>
+      <p>Todo escáner se equivoca alguna vez. Lo que decide si un equipo lo conserva es qué pasa
+        después — y la respuesta habitual es «abre un ticket, o desinstala». Tres salidas, y
+        ninguna exige esperarnos:</p>
+    </div>
+
+    <div class="grid4">
+      <article class="cap rv">
+        <h3>Responder al comentario</h3>
+        <p>Cada hallazgo lleva un identificador corto. <code>@magaudit ignorar a1b2c3d4</code> en
+          el pull request, o <code>@magaudit ignorar regla VULN-EVAL</code> para todos.
+          Contestamos con un 👍, no con otro comentario. Solo pueden hacerlo dueños, miembros y
+          colaboradores del repositorio: cualquiera puede comentar en un PR público, y si eso
+          apagara el detector, apagarlo sería el primer paso de un ataque.</p>
+      </article>
+
+      <article class="cap rv">
+        <h3>Un fichero que revisa tu equipo</h3>
+        <p>Un <code>.magaudit.yml</code> opcional: rutas a excluir, reglas a desactivar, una
+          severidad mínima. Vive en tu repositorio y se cambia por pull request como cualquier
+          otra cosa, así que todo el equipo ve qué se está silenciando y quién lo decidió.</p>
+      </article>
+
+      <article class="cap rv">
+        <h3>El marcador que ya usas</h3>
+        <p>¿Vienes de otro escáner? Respetamos sus anotaciones:
+          <code>pragma: allowlist secret</code>, <code>nosec</code>, <code>nosemgrep</code>,
+          <code>gitleaks:allow</code>, <code>trufflehog:ignore</code>, <code>NOSONAR</code>.
+          Ya contestaste a la pregunta; no vamos a hacerte contestarla dos veces.</p>
+      </article>
+
+      <article class="cap rv">
+        <h3>Y decimos qué hemos ocultado</h3>
+        <p>Lo que tu configuración silencia <b>se sigue contando y se sigue declarando</b> en el
+          comentario, con el motivo de cada uno. Una herramienta que se calla sin decirte cuánto
+          se ha callado no es una herramienta fiable — y menos el día que tu propia exclusión tape
+          algo real.</p>
+      </article>
+    </div>
+
+    <p style="margin-top:1.4rem;color:var(--fg-2)">Lo que no haremos: <b>reescribir un informe ya
+      publicado.</b> Un silenciado vale desde la siguiente auditoría. Hacer desaparecer un
+      hallazgo de seguridad ya emitido es exactamente lo que querría quien acaba de subir una
+      credencial, y no lo ofrecemos ni al dueño del repositorio.</p>
   </div>
 </section>
 
@@ -405,10 +498,48 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
 </main>
 
 <footer>
+  <div class="wrap">
+    <div class="sitemap">
+      <div>
+        <h3>Producto</h3>
+        <ul>
+          <li><a href="#checks">Qué detecta</a></li>
+          <li><a href="#scan">Escáner en vivo</a></li>
+          <li><a href="#wrong">Cuando nos equivocamos</a></li>
+          <li><a href="pricing.html">Precios</a></li>
+          <li><a href="https://github.com/apps/magaudit-agent">Instalar en GitHub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Evidencia</h3>
+        <ul>
+          <li><a href="quality.html">Cuántas veces nos equivocamos</a></li>
+          <li><a href="hallucination-index.html">Índice de alucinaciones</a></li>
+          <li><a href="https://api.magsolutionsai.com/measurement">Cifras de campo en vivo</a></li>
+          <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence">El corpus</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Comparativas</h3>
+        <ul>
+          <li><a href="../magaudit-vs-coderabbit.html">vs. CodeRabbit <span style="color:var(--fg-3)">(EN)</span></a></li>
+          <li><a href="../magaudit-vs-gitguardian.html">vs. GitGuardian <span style="color:var(--fg-3)">(EN)</span></a></li>
+          <li><a href="../magaudit-vs-trufflehog.html">vs. TruffleHog <span style="color:var(--fg-3)">(EN)</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Leer</h3>
+        <ul>
+          <li><a href="../blog/">Blog <span style="color:var(--fg-3)">(EN)</span></a></li>
+          <li><a href="../">This site in English</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="wrap foot">
     <span>© 2026 MagSolutionsAI</span>
-    <a href="../privacy.html">Privacidad</a>
-    <a href="../terms.html">Términos</a>
+    <a href="privacy.html">Privacidad</a>
+    <a href="terms.html">Términos</a>
     <a href="mailto:contact@magsolutionsai.com">Contacto</a>
     <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>

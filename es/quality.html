@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuántas veces nos equivocamos — el registro de errores de MagAudit</title>
+<meta name="description" content="Publicamos nuestra propia tasa de falsos positivos. 83 correcciones, cada una fijada por una prueba de regresión construida con la línea exacta observada en un repositorio público real, con su pull request citado. Se deriva de las pruebas, no se escribe a mano.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/quality.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/quality.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/quality.html">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/quality.html">
+<link rel="stylesheet" href="../style.css?v=7">
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a>
+      <a href="pricing.html">Precios</a>
+      <a href="hallucination-index.html">Índice</a>
+      <span class="lang">
+        <a href="../quality.html">EN</a>
+        <a href="./quality.html" aria-current="true">ES</a>
+      </span>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Instalar gratis</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal" id="contenido">
+
+  <h1>Cuántas veces nos equivocamos</h1>
+  <p class="upd">Todo escáner de seguridad produce falsos positivos. Casi ninguno publica
+  cuántos. Este es el nuestro, y se deriva de las pruebas de regresión — nunca se
+  escribe a mano.</p>
+
+  <div class="callout">
+    <p><strong>Por qué no lo hace nadie más.</strong> Una empresa con 17.000 clientes no
+    puede empezar a decir «el 15&nbsp;% de nuestros comentarios son ruido», aunque una
+    auditoría independiente ya lo haya medido. Sus clientes preguntarían y sus inversores
+    también. Es una posición que solo sostiene quien todavía no tiene nada que perder — y
+    deja de poder sostenerla el día que lo tiene. Por eso la construimos ahora, mientras
+    aún podemos.</p>
+  </div>
+
+  <h2>Las cifras</h2>
+
+  <div class="tw">
+  <table>
+    <tr><th>Qué</th><th>Valor</th><th>De dónde sale</th></tr>
+    <tr><td><strong>Correcciones fijadas por una prueba de regresión</strong></td>
+        <td><b id="n-correcciones">83</b></td>
+        <td>Contadas del fichero de pruebas. Si alguien borra una, el número baja solo</td></tr>
+    <tr><td>Repositorios públicos citados como origen de una corrección</td>
+        <td><b id="n-repos">21</b></td>
+        <td>Cada prueba lleva un comentario <code>owner/repo#PR</code> que puedes abrir</td></tr>
+    <tr><td>Pull requests analizados en los barridos semanales</td>
+        <td><b id="n-prs">1246</b></td>
+        <td><span id="n-barridos">5</span> barridos, del <span id="n-desde">2026-09-04</span>
+            al <span id="n-hasta">2026-09-14</span></td></tr>
+    <tr><td>Dependencias resueltas contra los registros en vivo</td>
+        <td><b id="n-deps">1583</b></td>
+        <td>PyPI y npm, en el momento en que se abrió el pull request</td></tr>
+    <tr><td>Pull requests en los que dijimos algo</td>
+        <td><b id="n-tasa">6.4</b>&nbsp;%</td>
+        <td>El 93,6&nbsp;% restante recibió un check limpio y ningún comentario</td></tr>
+    <tr><td><strong>Paquetes alucinados confirmados</strong></td>
+        <td><b id="n-alucinados">0</b></td>
+        <td>De <span id="n-candidatos">10</span> candidatos 404 en bruto, todos resultaron
+            ser falsos positivos <em>nuestros</em> al revisarlos</td></tr>
+  </table>
+  </div>
+  <p class="upd" id="estado-cifras">Cifras congeladas en el último despliegue. Esta página
+  intenta refrescarlas en vivo desde <a href="https://api.magsolutionsai.com/quality">nuestro
+  endpoint público</a>; si falla, estás leyendo la copia congelada.</p>
+
+  <h2>La primera pasada fue pésima, y ese es el argumento</h2>
+  <p>La primera vez que el detector corrió contra 249 pull requests públicos reales produjo
+  <strong>150 hallazgos, 79 marcados como críticos</strong>. Los revisamos todos a mano.
+  <strong>Casi ninguno era real.</strong></p>
+  <p>Sobre la misma población, tras las correcciones: <strong>39 hallazgos, de cero a un
+  crítico.</strong> La diferencia son las 83 pruebas, y cada una existe porque nos
+  equivocamos sobre el código de otra gente.</p>
+
+  <div class="callout">
+    <p><strong>Uno reciente, para que veas la forma que tienen.</strong> El 17 de septiembre
+    de 2026, una auditoría de 6.000 ficheros de librerías ya publicadas — google-auth, numba,
+    torch, kubernetes — encontró cuatro hallazgos en nuestro escaneo de instalación. Los
+    cuatro eran falsos. Tres eran lo mismo: un comentario que <em>documentaba</em> el formato
+    PEM, <code>#&nbsp;"-----BEGIN PRIVATE KEY-----..."</code>, reportado como clave privada.
+    Sobre el mismo corpus hoy: <strong>cero</strong>. Y una clave de verdad comentada sigue
+    saltando — esa prueba de regresión también existe.</p>
+  </div>
+
+  <h2>Compruébalo tú mismo</h2>
+  <p>No «créenos». Esto se abre sin cuenta:</p>
+  <ul>
+    <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/blob/main/evidence/test_detector_false_positives.py"><strong>El corpus</strong></a>
+      — las 83 pruebas, cada una con la línea exacta y el pull request del que salió.</li>
+    <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/blob/main/evidence/fp_scan_prs.py"><strong>El instrumento</strong></a>
+      — cómo medimos el ruido contra pull requests públicos reales.</li>
+    <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/blob/main/evidence/README.md"><strong>Cómo verificarlo</strong></a>
+      — incluido por qué ninguna de las cadenas con forma de credencial del corpus es real.</li>
+    <li><a href="https://api.magsolutionsai.com/quality"><strong>El registro en crudo</strong></a>
+      y <a href="https://api.magsolutionsai.com/measurement">las cifras de campo en vivo</a>.</li>
+  </ul>
+  <p>Tres formas de comprobarlo, de menor a mayor esfuerzo: <strong>abrir un pull request
+  citado</strong> y buscar la línea; <strong>contar las funciones <code>def test_</code></strong>
+  y compararlo con la cifra de arriba; o <strong>instalar la App en un repositorio de usar y
+  tirar</strong>, pegar esas líneas en un pull request y ver si se comporta como dice la prueba.</p>
+
+  <h2>Lo que esta página no afirma</h2>
+  <ul>
+    <li><strong>No es una <em>tasa</em> de falsos positivos en sentido estadístico.</strong>
+      Es un recuento de correcciones y la población en la que se encontró cada una. No
+      afirmamos un porcentaje que no podríamos defender.</li>
+    <li><strong>El corpus es nuestro.</strong> Nosotros elegimos qué mirar. Una auditoría
+      independiente valdría más, y también la publicaríamos.</li>
+    <li><strong>Cero paquetes alucinados confirmados es un resultado real, no uno bueno.</strong>
+      Significa que la frecuencia base en pull requests corrientes es muy baja. Lo publicamos
+      porque debilita en parte uno de nuestros propios argumentos.</li>
+    <li><strong>Nos hemos equivocado en este mismo registro.</strong> El 16 de septiembre
+      informaba de 10 paquetes alucinados cuando la verdad era 0: se había etiquetado el
+      recuento de 404 en bruto como confirmados. Se detectó leyendo la salida en vivo, se
+      corrigió el mismo día y quedó fijado por una prueba. Está en el historial de git.</li>
+  </ul>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Instalar en GitHub &rarr;</a></p>
+  <p class="upd">Publicamos esto porque a un proveedor de seguridad que te pide acceso a tus
+  repositorios no deberías creerle por su palabra. Si encuentras algo en esta página que no se
+  sostiene, <a href="mailto:contact@magsolutionsai.com">dínoslo</a> y se corrige aquí, con la
+  fecha.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a><a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+  </div>
+</footer>
+<script>
+// Las cifras van congeladas en el HTML para que la pagina diga la verdad
+// aunque no haya JavaScript ni endpoint. Si el endpoint contesta, se
+// refrescan y se dice que son de ahora.
+(function () {
+  var pon = function (id, v) {
+    var e = document.getElementById(id);
+    if (e && v !== undefined && v !== null) e.textContent = String(v);
+  };
+  fetch('https://api.magsolutionsai.com/quality', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (d) {
+      var b = d.barrido_semanal || {};
+      pon('n-correcciones', d.correcciones_fijadas_por_prueba);
+      pon('n-repos', d.repositorios_publicos_citados);
+      pon('n-prs', b.prs_analizados_total);
+      pon('n-barridos', b.ejecuciones);
+      pon('n-desde', b.desde);
+      pon('n-hasta', b.hasta);
+      pon('n-deps', b.dependencias_resueltas_total);
+      pon('n-tasa', b.tasa_pr_con_hallazgo_pct);
+      pon('n-alucinados', b.paquetes_alucinados_confirmados);
+      pon('n-candidatos', b.candidatos_404_en_bruto);
+      var e = document.getElementById('estado-cifras');
+      if (e) e.innerHTML = 'En vivo, leídas de <a href="https://api.magsolutionsai.com/quality">' +
+        'nuestro endpoint público</a> al cargar esta página.';
+    })
+    .catch(function () { /* se queda la copia congelada, que es correcta */ });
+  try { navigator.sendBeacon('https://api.magsolutionsai.com/events/quality_view_es'); } catch (e) {}
+})();
+</script>
+</body>
+</html>
