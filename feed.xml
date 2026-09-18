@@ -8,6 +8,13 @@
     <language>en</language>
     <lastBuildDate>Mon, 14 Sep 2026 07:12:53 +0000</lastBuildDate>
     <item>
+      <title>Field report: 1000 real pull requests scanned, 0 hallucinated packages confirmed</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-09-18.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-09-18.html</guid>
+      <pubDate>Fri, 18 Sep 2026 09:00:00 +0000</pubDate>
+      <description>1000 real public pull requests scanned, 1200 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</description>
+    </item>
+    <item>
       <title>langgrap, openaii, transfomers, ollamaa — one typo each, one PyPI campaign</title>
       <link>https://magsolutionsai.com/blog/openaii-typosquat-campaign.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/openaii-typosquat-campaign.html</guid>
