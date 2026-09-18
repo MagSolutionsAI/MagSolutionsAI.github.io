@@ -1,0 +1,81 @@
+# Recoge el informe de campo semanal y lo publica en el blog.
+#
+# Corre aquí y no en el servidor porque la organización tiene deshabilitadas las
+# deploy keys, así que el servidor no puede escribir en este repositorio. Un
+# workflow sí puede escribir en el suyo, con el GITHUB_TOKEN que GitHub ya
+# proporciona: cero credenciales nuevas que crear, guardar o rotar.
+#
+# El lunes a las 09:30 UTC el servidor escribe el informe y lo publica en
+# dev.to. Este corre a las 10:30, con una hora de margen por si aquel se
+# retrasa. Si no hay nada nuevo, no hace nada y no falla.
+
+name: Informe de campo semanal
+
+on:
+  schedule:
+    - cron: "30 10 * * 1"
+  workflow_dispatch:        # para poder lanzarlo a mano sin esperar al lunes
+
+permissions:
+  contents: write           # lo único que necesita: escribir en este repositorio
+
+concurrency:
+  group: informe-semanal
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Recoger y publicar el informe
+        run: python scripts/publicar_informe.py
+
+      - name: Comprobar que el HTML no quedó a medias
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys, json
+          fallos = []
+          for p in list(pathlib.Path("blog").glob("*.html")) + [pathlib.Path("feed.xml")]:
+              t = p.read_text(encoding="utf-8")
+              if p.suffix == ".html":
+                  for tag in ("div", "article", "p", "table", "ul", "li", "tr"):
+                      a = len(re.findall(rf"<{tag}[ >]", t))
+                      c = t.count(f"</{tag}>")
+                      if a != c:
+                          fallos.append(f"{p}: <{tag}> {a} vs </{tag}> {c}")
+                  for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', t, re.S):
+                      try:
+                          json.loads(m.group(1))
+                      except Exception as e:
+                          fallos.append(f"{p}: JSON-LD invalido — {e}")
+              else:
+                  if t.count("<item>") != t.count("</item>"):
+                      fallos.append(f"{p}: items descuadrados")
+          if fallos:
+              print("\n".join(fallos))
+              sys.exit(1)
+          print("HTML y feed equilibrados.")
+          PY
+
+      - name: Publicar si hay cambios
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Sin cambios. Nada que publicar."
+            exit 0
+          fi
+          git config user.name  "MagAudit (informe semanal)"
+          git config user.email "agente@magsolutionsai.com"
+          git add -A
+          git commit -m "Informe de campo semanal
+
+          Generado y verificado en el servidor: cada cifra se resuelve contra
+          /measurement y /quality antes de publicarse, y se vuelve a comprobar
+          cada semana. Si alguna deja de ser cierta, este articulo recibe una
+          correccion fechada."
+          git push
