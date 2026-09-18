@@ -24,19 +24,28 @@
   <p class="upd">Written by the people who make one of the two. Read it with that in mind.</p>
 
   <h2>Where CodeRabbit is ahead, and it is not close</h2>
-  <p>CodeRabbit reviews more than two million pull requests a week, has over
-  17,000 customers including Nvidia and BMW, and reached roughly $50M in annual
-  recurring revenue by mid-2026. It reviews reasoning and design, not just
-  patterns. If you want a second opinion on <em>how</em> the code is written,
-  they do that and we do not.</p>
+  <p>CodeRabbit is far bigger and far better funded than we are, and their bot has
+  commented on <strong>more than 6.5 million public pull requests</strong> &mdash; a figure
+  anyone can reproduce with a GitHub search for <code>commenter:coderabbitai[bot]</code>,
+  which is how we got it on 18 September 2026. They review reasoning and design, not just
+  patterns. If you want a second opinion on <em>how</em> the code is written, they do that
+  and we do not.</p>
+
+  <p class="upd">We removed three other figures that used to sit in this paragraph &mdash;
+  customer count, revenue, weekly volume. They came from reporting we could not re-verify
+  today, and a number we cannot check has no business on a page comparing us to someone
+  else.</p>
 
   <h2>What their own market says goes wrong</h2>
-  <p>These are not our numbers. An independent audit of 28 pull requests found
-  <strong>15% of CodeRabbit's comments were noise and 21% were nitpicking</strong>,
-  and the three reasons teams most often look for an alternative in 2026 are
-  comment volume, limited whole-codebase context, and per-seat pricing that
-  scales faster than the security budget. Teams report spending weeks tuning a
-  <code>.coderabbit.yaml</code> to stop it harassing the engineering team.</p>
+  <p><strong>These are not our numbers, and we could not re-verify their source today,
+  so read them as reported rather than as measured.</strong> A third-party audit of 28
+  pull requests was reported to find that <strong>15% of CodeRabbit's comments were
+  noise and 21% were nitpicking</strong>. We keep the figure because it is the kind of
+  number we ask to be judged by ourselves &mdash; but we will not present someone else's
+  reporting as if we had measured it.</p>
+  <p>What we <em>can</em> say from our own side: we publish our own false-positive rate,
+  derived from the tests, at <a href="quality.html">this page</a>. They do not publish
+  theirs. That asymmetry is the argument; the 15% is not.</p>
 
   <h2>The three differences that follow from that</h2>
   <table>
@@ -68,9 +77,11 @@
   </table>
 
   <h2>What we are not claiming</h2>
-  <p>We are not saying we are quieter than CodeRabbit. We have not measured
-  them; the 15% figure is someone else's audit and we link it rather than
-  restate it as ours. What we can say is what <em>our</em> rate was, because we
+  <p>We are not saying we are quieter than CodeRabbit. <strong>We have not measured
+  them</strong>, and the 15% above is someone else's reporting that we could not
+  re-verify today &mdash; so we mark it as reported and we do not restate it as ours.
+  Until 18 September this paragraph said we linked that audit. We did not, and there was
+  no link on the page. That was wrong and it is corrected here rather than quietly removed. What we can say is what <em>our</em> rate was, because we
   measured it and published it: the first automated run produced 150 findings
   over 249 public pull requests, 79 of them critical, and almost none were
   real. Here is what they were.</p>
@@ -119,9 +130,15 @@
 
   <p style="margin-top:2.5rem"><a class="btn btn-1"
      href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a></p>
-  <p class="upd">Last reviewed: 16 September 2026. Every figure on this page is our own
-  measurement and is reproducible against
-  <a href="https://api.magsolutionsai.com/measurement">our public endpoint</a>.</p>
+  <p class="upd">Last reviewed: 18 September 2026. <strong>Every figure about
+  <em>us</em></strong> is our own measurement and reproducible against
+  <a href="https://api.magsolutionsai.com/measurement">our public endpoint</a> and
+  <a href="quality.html">our error record</a>. Figures about CodeRabbit are either
+  verifiable by you in one step &mdash; their price, read from their own pricing page;
+  their public comment count, from a GitHub search &mdash; or explicitly marked as
+  reported by someone else. Until today this line said every figure here was our own
+  measurement, which was not true of four of them. If you find anything else on this page
+  that does not hold up, <a href="mailto:contact@magsolutionsai.com">tell us</a>.</p>
 </main>
 <footer>
   <div class="wrap foot">
