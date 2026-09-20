@@ -100,14 +100,8 @@
       <h1>Your AI writes the code. <span class="hl">Something should read it</span> before you merge.</h1>
 
       <p class="lede">
-        <b>The first report arrives before your next pull request.</b> When you install, we read
-        the code that is already in the repository — because the mistake we find most often is
-        never added in a PR at all. After that, every dependency you add gets checked for
-        <b>how old it is and whether anyone actually uses it</b> — the profile of a package an
-        attacker registered last week, which installs without a word and has no advisory yet.
-        Plus hardcoded credentials, SQL built by interpolation, insecure deserialization and
-        model output rendered as raw HTML. Findings land as a comment on the pull request, with
-        the file, the line and the fix.
+        <b>The first report lands about a minute after you install</b> — on the code already in
+        your repository, not just on your next pull request.
       </p>
       <p style="margin:-.4rem 0 1.1rem;font-size:.92rem;color:var(--fg-2)">
         Before you trust any of that:
@@ -119,6 +113,15 @@
         <button class="btn btn-2" type="button" id="demoBtn">Try it on a broken file ↓</button>
         <span class="note">First report in about a minute</span>
       </div>
+      <p class="lede" style="margin-top:1.2rem">
+        We start with the code that is already there, because the mistake we find most often is
+        never added in a pull request at all. After that, every dependency you add gets checked
+        for <b>how old it is and whether anyone actually uses it</b> — the profile of a package an
+        attacker registered last week, which installs without a word and has no advisory yet.
+        Plus hardcoded credentials, SQL built by interpolation, insecure deserialization and
+        model output rendered as raw HTML. Findings land as a comment on the pull request, with
+        the file, the line and the fix.
+      </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem">
         Here is the measurement that made us build it that way. We looked for one specific
         mistake — a service key carrying a <code>NEXT_PUBLIC_</code> or <code>VITE_</code>

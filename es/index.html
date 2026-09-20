@@ -83,12 +83,8 @@
       <h1>La IA escribe el código. <span class="hl">Alguien debería leerlo</span> antes del merge.</h1>
 
       <p class="lede">
-        <b>El primer informe llega antes de tu siguiente pull request.</b> Al instalar leemos el
-        código que ya está en el repositorio, porque el fallo que más encontramos no se añade
-        nunca en un PR. A partir de ahí: credenciales en el código, SQL construido concatenando
-        cadenas, deserialización insegura, salida del modelo pintada como HTML sin filtrar, y
-        dependencias que <b>no existen en ningún registro</b>. Los hallazgos llegan como
-        comentario en el pull request, con el fichero, la línea y la corrección.
+        <b>El primer informe llega un minuto después de instalar</b> — sobre el código que ya está
+        en tu repositorio, no solo sobre tu siguiente pull request.
       </p>
       <p style="margin:-.4rem 0 1.1rem;font-size:.92rem;color:var(--fg-2)">
         Antes de creerte nada de esto:
@@ -100,6 +96,13 @@
         <button class="btn btn-2" type="button" id="demoBtn">Probar con un fichero roto ↓</button>
         <span class="note">Primer informe en cerca de un minuto</span>
       </div>
+      <p class="lede" style="margin-top:1.2rem">
+        Empezamos por el código que ya está ahí, porque el fallo que más encontramos no se añade
+        nunca en un PR. A partir de ahí: credenciales en el código, SQL construido concatenando
+        cadenas, deserialización insegura, salida del modelo pintada como HTML sin filtrar, y
+        dependencias que <b>no existen en ningún registro</b>. Los hallazgos llegan como
+        comentario en el pull request, con el fichero, la línea y la corrección.
+      </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem">
         Esta es la medición que nos hizo construirlo así. Buscamos un fallo concreto —una clave de
         servicio con prefijo <code>NEXT_PUBLIC_</code> o <code>VITE_</code>, que el framework
