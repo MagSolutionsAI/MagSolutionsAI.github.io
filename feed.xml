@@ -8,6 +8,13 @@
     <language>en</language>
     <lastBuildDate>Mon, 21 Sep 2026 07:13:57 +0000</lastBuildDate>
     <item>
+      <title>Field report: 1496 real pull requests scanned, 7 hallucinated packages confirmed</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-09-21.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-09-21.html</guid>
+      <pubDate>Mon, 21 Sep 2026 09:00:00 +0000</pubDate>
+      <description>1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 7 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</description>
+    </item>
+    <item>
       <title>A package labelled itself &quot;SECURITY RESEARCH.&quot; GitHub flagged it as malware anyway.</title>
       <link>https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html</guid>
