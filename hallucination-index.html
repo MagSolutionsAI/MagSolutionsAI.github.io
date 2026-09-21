@@ -105,11 +105,10 @@ td code { color:var(--fg); }
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="./"><img src="logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <a class="brand" href="./"><img src="logo-200.png" alt=""><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
       <a href="./#scan">Live scan</a>
       <a href="hallucination-index.html">Index</a>
-      <a href="quality.html">Our error rate</a>
       <span class="lang">
         <a href="./hallucination-index.html" aria-current="true">EN</a>
         <a href="es/hallucination-index.html">ES</a>
@@ -122,7 +121,7 @@ td code { color:var(--fg); }
 <main class="wrap">
 
   <section class="idx-hero">
-    <div class="pill"><span class="dot"></span> Updated 09 Sep 2026 · from real pull requests</div>
+    <div class="pill"><span class="dot"></span> Updated 21 Sep 2026 · from real pull requests</div>
     <h1>The Hallucination Index</h1>
     <p>Package names that AI coding assistants invent, which do not exist in any registry — and which of them somebody has registered since. Published datasets record what models invent when prompted on benchmark tasks; this index records what actually reaches real pull requests.</p>
   </section>
@@ -152,7 +151,7 @@ td code { color:var(--fg); }
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d || !d.dependencies_resolved) return;
-        p.textContent = 'We have resolved ' + d.dependencies_resolved.toLocaleString('en') + ' dependencies added in ' + d.prs_analysed.toLocaleString('en') + ' public pull requests since ' + d.since + ', across ' + d.runs + ' automated sweeps, and confirmed ' + d.confirmed_hallucinated + ' hallucinated packages. Raw 404 candidates are reviewed by hand before entering the index; every one so far turned out to be our own false positive.';
+        p.textContent = 'We have resolved ' + d.dependencies_resolved.toLocaleString('en') + ' dependencies added in ' + d.prs_analysed.toLocaleString('en') + ' public pull requests since ' + d.since + ', across ' + d.runs + ' automated sweeps, and confirmed ' + d.confirmed_hallucinated + ' hallucinated packages, with ' + (d.rejected_on_review || 0) + ' discarded on review and ' + (d.candidates_pending_review || 0) + ' still pending. A 404 means a name is not published; it does not mean anyone invented it, because an unpublished sibling inside a monorepo looks identical. Only names a person has confirmed are counted.';
       })
       .catch(function () {});
   })();
@@ -195,7 +194,7 @@ td code { color:var(--fg); }
     <span>&copy; 2026 MagSolutionsAI</span>
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>
-    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
     <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
   </div>

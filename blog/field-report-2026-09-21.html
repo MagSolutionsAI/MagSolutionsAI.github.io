@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Field report: 1496 real pull requests scanned, 7 hallucinated packages confirmed | MagSolutionsAI</title>
-<meta name="description" content="1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 7 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.">
-<meta property="og:title" content="Field report: 1496 real pull requests scanned, 7 hallucinated packages confirmed | MagSolutionsAI">
-<meta property="og:description" content="1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 7 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.">
+<title>Field report: 1496 real pull requests scanned, 0 hallucinated packages confirmed | MagSolutionsAI</title>
+<meta name="description" content="1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.">
+<meta property="og:title" content="Field report: 1496 real pull requests scanned, 0 hallucinated packages confirmed | MagSolutionsAI">
+<meta property="og:description" content="1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://magsolutionsai.com/blog/field-report-2026-09-21.html">
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
 <meta property="og:site_name" content="MagSolutionsAI">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Field report: 1496 real pull requests scanned, 7 hallucinated packages confirmed | MagSolutionsAI">
-<meta name="twitter:description" content="1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 7 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.">
+<meta name="twitter:title" content="Field report: 1496 real pull requests scanned, 0 hallucinated packages confirmed | MagSolutionsAI">
+<meta name="twitter:description" content="1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.">
 <meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://magsolutionsai.com/blog/field-report-2026-09-21.html">
@@ -23,8 +23,8 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Field report: 1496 real pull requests scanned, 7 hallucinated packages confirmed",
-  "description": "1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 7 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.",
+  "headline": "Field report: 1496 real pull requests scanned, 0 hallucinated packages confirmed",
+  "description": "1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.",
   "datePublished": "2026-09-21",
   "dateModified": "2026-09-21",
   "url": "https://magsolutionsai.com/blog/field-report-2026-09-21.html",
@@ -60,8 +60,18 @@
         <span class="sep">&middot;</span>
         <span>1 min read</span>
       </div>
-      <h1>Field report: 1496 real pull requests scanned, 7 hallucinated packages confirmed</h1>
-      <p class="post-lede">1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 7 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</p>
+      <h1>Field report: 1496 real pull requests scanned, 0 hallucinated packages confirmed</h1>
+      <blockquote>
+<p><strong>Correction — 21 September 2026.</strong> This article was published automatically this morning with a headline number that was wrong, and a sentence next to it that was false. Both are corrected below, and the original claim is left visible rather than quietly edited away.</p>
+<ul>
+<li><strong>It said 7 hallucinated packages confirmed. The correct number is 0.</strong></li>
+<li>It said <em>&ldquo;each one reviewed by hand before it entered the count.&rdquo;</em> <strong>Nobody had reviewed them.</strong> The weekly sweep wrote them straight into the index, and this article read the total back out.</li>
+</ul>
+<p>Six of the seven were unpublished siblings inside a monorepo. <code>@memberjunction/*</code> has twenty published siblings on npm; <code>prismarine-xbox-services</code> has a hundred and fifty-three. The seventh, <code>@akp/application</code>, we cannot call either way, so it stays uncounted.</p>
+<p>The mistake underneath was ours and it fits in a line: <strong>a 404 means a name is not published. It does not mean anyone invented it.</strong> An unpublished workspace package returns exactly the same 404 as a name a model made up, and no HTTP request can tell them apart.</p>
+<p>The index now counts only names a person has confirmed, and publishes the pending and discarded counts beside the total so the discard rate is visible. Sorry &mdash; this is precisely the kind of number we ask people to hold us to.</p>
+</blockquote>
+<p class="post-lede">1496 real public pull requests scanned, 1728 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</p>
       <div class="ptags"><span class="ptag">security</span><span class="ptag">supply chain</span><span class="ptag">measurement</span><span class="ptag">open source</span></div>
     </header>
 
@@ -71,11 +81,12 @@
 <tr><td>Pull requests analysed</td><td><strong>1496</strong></td></tr>
 <tr><td>Dependencies resolved against live PyPI and npm</td><td><strong>1728</strong></td></tr>
 <tr><td>Distinct package names seen</td><td><strong>1566</strong></td></tr>
-<tr><td><strong>Hallucinated packages confirmed</strong></td><td><strong>7</strong></td></tr>
-<tr><td>Raw 404 candidates, before review</td><td>17</td></tr>
+<tr><td><strong>Hallucinated packages confirmed</strong></td><td><strong>0</strong></td></tr>
+<tr><td>Candidates discarded on review</td><td>6</td></tr>
+<tr><td>Candidates still pending review</td><td>1</td></tr>
 <tr><td>Sweeps, since 2026-09-04</td><td>6</td></tr>
 </table></div>
-    <p><strong>7 confirmed this week.</strong> Each one reviewed by hand before it entered the count: a 404 from a registry is a candidate, not a finding.</p>
+    <p><strong>Zero confirmed this week, and six discarded.</strong> That discard rate is the interesting number, and it is why it is published next to the count: a 404 from a registry is a candidate, not a finding, and most candidates do not survive being looked at.</p>
     <h2>Check any of this yourself</h2>
     <ul><li>The raw record: <a href="https://api.magsolutionsai.com/quality">https://api.magsolutionsai.com/quality</a></li><li>The live field figures: <a href="https://api.magsolutionsai.com/measurement">https://api.magsolutionsai.com/measurement</a></li><li>The corpus behind both, with every cited pull request: <a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence">https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence</a></li><li>Written up in full: <a href="https://magsolutionsai.com/quality.html">https://magsolutionsai.com/quality.html</a></li></ul>
     <p class="upd">Generated on 2026-09-21 from measurements taken on public repositories. Every figure above is resolved against the endpoints linked here before publishing, and re-checked weekly afterwards — if one stops being true, this article gets a dated correction at the top.</p>

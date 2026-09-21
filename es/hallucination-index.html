@@ -105,7 +105,7 @@ td code { color:var(--fg); }
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="../"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <a class="brand" href="../"><img src="../logo-200.png" alt=""><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
       <a href="../#scan">Escáner</a>
       <a href="hallucination-index.html">Índice</a>
@@ -121,7 +121,7 @@ td code { color:var(--fg); }
 <main class="wrap">
 
   <section class="idx-hero">
-    <div class="pill"><span class="dot"></span> Actualizado 09 Sep 2026 · desde pull requests reales</div>
+    <div class="pill"><span class="dot"></span> Actualizado 21 Sep 2026 · desde pull requests reales</div>
     <h1>El Índice de Alucinaciones</h1>
     <p>Nombres de paquete que los asistentes de IA inventan, que no existen en ningún registro — y cuáles ha registrado alguien después. Los conjuntos de datos publicados recogen lo que los modelos inventan al resolver tareas de prueba; este índice recoge lo que llega de verdad a pull requests reales.</p>
   </section>
@@ -151,7 +151,7 @@ td code { color:var(--fg); }
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d || !d.dependencies_resolved) return;
-        p.textContent = 'Hemos resuelto ' + d.dependencies_resolved.toLocaleString('es') + ' dependencias añadidas en ' + d.prs_analysed.toLocaleString('es') + ' pull requests públicos desde el ' + d.since + ', en ' + d.runs + ' barridos automáticos, y confirmado ' + d.confirmed_hallucinated + ' paquetes alucinados. Cada candidato que devuelve 404 se revisa a mano antes de entrar en el índice; todos los habidos hasta hoy resultaron ser falsos positivos nuestros.';
+        p.textContent = 'Hemos resuelto ' + d.dependencies_resolved.toLocaleString('es') + ' dependencias añadidas en ' + d.prs_analysed.toLocaleString('es') + ' pull requests públicos desde el ' + d.since + ', en ' + d.runs + ' barridos automáticos, y confirmado ' + d.confirmed_hallucinated + ' paquetes alucinados, con ' + (d.rejected_on_review || 0) + ' descartados al revisarlos y ' + (d.candidates_pending_review || 0) + ' pendientes. Un 404 dice que el nombre no está publicado, no que alguien se lo inventara: un hermano de monorepo sin publicar da exactamente el mismo 404. Solo se cuentan los nombres que ha confirmado una persona.';
       })
       .catch(function () {});
   })();
@@ -194,7 +194,7 @@ td code { color:var(--fg); }
     <span>&copy; 2026 MagSolutionsAI</span>
     <a href="../privacy.html">Privacidad</a>
     <a href="../terms.html">Términos</a>
-    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contacto</a>
     <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
   </div>
