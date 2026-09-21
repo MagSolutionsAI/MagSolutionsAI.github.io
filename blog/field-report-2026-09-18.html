@@ -19,6 +19,7 @@
 <link rel="canonical" href="https://magsolutionsai.com/blog/field-report-2026-09-18.html">
 <link rel="alternate" type="application/rss+xml" title="MagSolutionsAI Blog" href="https://magsolutionsai.com/feed.xml">
 <link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,70 +29,119 @@
   "datePublished": "2026-09-18",
   "dateModified": "2026-09-18",
   "url": "https://magsolutionsai.com/blog/field-report-2026-09-18.html",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://magsolutionsai.com/blog/field-report-2026-09-18.html" },
-  "author": { "@type": "Organization", "name": "MagSolutionsAI" },
-  "publisher": { "@type": "Organization", "name": "MagSolutionsAI",
-    "logo": { "@type": "ImageObject", "url": "https://magsolutionsai.com/logo-512.png" } }
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://magsolutionsai.com/blog/field-report-2026-09-18.html"
+  },
+  "image": "https://magsolutionsai.com/logo-512.png",
+  "inLanguage": "en",
+  "keywords": [
+    "security",
+    "supply chain",
+    "measurement",
+    "open source"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://magsolutionsai.com/logo-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://magsolutionsai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://magsolutionsai.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Field report: 1000 real pull requests scanned, 0 hallucinated packages confirmed",
+      "item": "https://magsolutionsai.com/blog/field-report-2026-09-18.html"
+    }
+  ]
 }
 </script>
 <link rel="stylesheet" href="/style.css?v=8">
 </head>
 <body>
-<a class="skip" href="#post">Skip to content</a>
+
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img src="/logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
       <a href="/">Home</a>
       <a href="/blog/">Blog</a>
-      <a href="/quality.html">How often we are wrong</a>
       <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
       <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap post" id="post">
+<main class="wrap post">
   <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
   <article>
     <header class="post-hd">
       <div class="post-meta">
         <time datetime="2026-09-18">18 September 2026</time>
         <span class="sep">&middot;</span>
-        <span>2 min read</span>
+        <span>1 min read</span>
       </div>
       <h1>Field report: 1000 real pull requests scanned, 0 hallucinated packages confirmed</h1>
       <p class="post-lede">1000 real public pull requests scanned, 1200 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</p>
       <div class="ptags"><span class="ptag">security</span><span class="ptag">supply chain</span><span class="ptag">measurement</span><span class="ptag">open source</span></div>
     </header>
-
-    <p>We run a security scanner on public pull requests and publish what it finds — including what it gets wrong. This is the weekly number.</p>
-    <h2>What the field looks like this week</h2>
-    <div class="tw"><table>
-<tr><td>Pull requests analysed</td><td><strong>1000</strong></td></tr>
-<tr><td>Dependencies resolved against live PyPI and npm</td><td><strong>1200</strong></td></tr>
-<tr><td>Distinct package names seen</td><td><strong>900</strong></td></tr>
-<tr><td><strong>Hallucinated packages confirmed</strong></td><td><strong>0</strong></td></tr>
-<tr><td>Raw 404 candidates, before review</td><td>10</td></tr>
-<tr><td>Sweeps, since 2026-09-04</td><td>5</td></tr>
-</table></div>
-    <p><strong>Zero is the headline, and it is not good news for us.</strong></p>
-    <p>A lot has been written about AI assistants inventing package names. On 1000 real pull requests we have confirmed <strong>none</strong>. The 10 candidates that came back 404 were reviewed by hand and every one was *our* false positive — sibling packages of a monorepo, and configuration keys read as package names.</p>
-    <p>We publish this because it partly undercuts one of our own arguments. The laboratory studies that report high hallucination rates measure what a model produces when asked to solve a task. That is a different population from what survives review and reaches a pull request, and the difference matters if you are deciding where to spend attention.</p>
-    <h2>What we got wrong, and fixed</h2>
-    <p><strong>80 new correction(s) to the detector this week.</strong> Each one is pinned by a regression test built from the exact line we misread, in a real public repository, with the pull request cited.</p>
-    <p>That brings the public record to <strong>80 corrections across 20 cited repositories</strong>. The number is counted from the test file, not written by hand — delete a test and it drops by itself.</p>
-    <p>Recent sources: <code>a/b#1</code>.</p>
-    <h2>Check any of this yourself</h2>
-    <ul><li>The raw record: <a href="https://api.magsolutionsai.com/quality">https://api.magsolutionsai.com/quality</a></li><li>The live field figures: <a href="https://api.magsolutionsai.com/measurement">https://api.magsolutionsai.com/measurement</a></li><li>The corpus behind both, with every cited pull request: <a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence">https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence</a></li><li>Written up in full: <a href="https://magsolutionsai.com/quality.html">https://magsolutionsai.com/quality.html</a></li></ul>
-    <p class="upd">Generated on 2026-09-18 from measurements taken on public repositories. Every figure above is resolved against the endpoints linked here before publishing, and re-checked weekly afterwards — if one stops being true, this article gets a dated correction at the top.</p>
-
-    <p class="upd">This report was generated from measurements, not written by hand: every
-    figure above is resolved against
-    <a href="https://api.magsolutionsai.com/measurement">our public endpoints</a> before publishing and re-checked
-    once a week afterwards. If one stops being true, a dated correction appears at the top of
-    this page. <a href="/quality.html">How often we are wrong &rarr;</a></p>
+    <div class="post-body">
+<p>We run a security scanner on public pull requests and publish what it finds — including what it gets wrong. This is the weekly number.</p>
+<h2>What the field looks like this week</h2>
+<div class="tw"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>Pull requests analysed</td><td><b>1000</b></td></tr><tr><td>Dependencies resolved against live PyPI and npm</td><td><b>1200</b></td></tr><tr><td>Distinct package names seen</td><td><b>900</b></td></tr><tr><td><b>Hallucinated packages confirmed</b></td><td><b>0</b></td></tr><tr><td>Raw 404 candidates, before review</td><td>10</td></tr><tr><td>Sweeps, since 2026-09-04</td><td>5</td></tr></tbody></table></div>
+<p><b>Zero is the headline, and it is not good news for us.</b></p>
+<p>A lot has been written about AI assistants inventing package names. On 1000 real pull requests we have confirmed <b>none</b>. The 10 candidates that came back 404 were reviewed by hand and every one was <em>our</em> false positive — sibling packages of a monorepo, and configuration keys read as package names.</p>
+<p>We publish this because it partly undercuts one of our own arguments. The laboratory studies that report high hallucination rates measure what a model produces when asked to solve a task. That is a different population from what survives review and reaches a pull request, and the difference matters if you are deciding where to spend attention.</p>
+<h2>What we got wrong, and fixed</h2>
+<p><b>80 new correction(s) to the detector this week.</b> Each one is pinned by a regression test built from the exact line we misread, in a real public repository, with the pull request cited.</p>
+<p>That brings the public record to <b>80 corrections across 20 cited repositories</b>. The number is counted from the test file, not written by hand — delete a test and it drops by itself.</p>
+<p>Recent sources: <code>a/b#1</code>.</p>
+<h2>Check any of this yourself</h2>
+<ul><li>The raw record: &lt;https://api.magsolutionsai.com/quality&gt;</li><li>The live field figures: &lt;https://api.magsolutionsai.com/measurement&gt;</li><li>The corpus behind both, with every cited pull request: &lt;https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence&gt;</li><li>Written up in full: &lt;https://magsolutionsai.com/quality.html&gt;</li></ul>
+<p>---</p>
+<p>&lt;sub&gt;Generated on 2026-09-18 from measurements taken on public repositories. Every figure above is resolved against the endpoints linked here before publishing, and re-checked weekly afterwards — if one stops being true, this article gets a dated correction at the top.&lt;/sub&gt;</p>
+    </div>
   </article>
+  
+<section class="post-cta">
+  <h2>Check this on your own pull requests</h2>
+  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
+     against the live PyPI and npm registries, and blocks the ones that do not exist.
+     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <div class="cta">
+    <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a>
+    <a class="btn btn-2" href="/pricing.html">See pricing</a>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -99,10 +149,11 @@
     <span>&copy; 2026 MagSolutionsAI</span>
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
-    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
     <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
   </div>
 </footer>
+
 </body>
 </html>

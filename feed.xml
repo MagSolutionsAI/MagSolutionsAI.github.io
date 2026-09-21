@@ -6,13 +6,22 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 07:12:53 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 07:13:57 +0000</lastBuildDate>
+    <item>
+      <title>A package labelled itself &quot;SECURITY RESEARCH.&quot; GitHub flagged it as malware anyway.</title>
+      <link>https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html</guid>
+      <pubDate>Mon, 21 Sep 2026 09:00:00 +0000</pubDate>
+      <description>On 20 September 2026 someone published starbucks-sdk to npm, described it in the registry as a dependency-confusion proof of concept, and shipped a preinstall script that phones home. The advisory that followed didn&#x27;t care about the label.</description>
+      <category>supply chain</category><category>npm</category><category>case study</category><category>dependency confusion</category>
+    </item>
     <item>
       <title>Field report: 1000 real pull requests scanned, 0 hallucinated packages confirmed</title>
       <link>https://magsolutionsai.com/blog/field-report-2026-09-18.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-09-18.html</guid>
       <pubDate>Fri, 18 Sep 2026 09:00:00 +0000</pubDate>
       <description>1000 real public pull requests scanned, 1200 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</description>
+      <category>security</category><category>supply chain</category><category>measurement</category><category>open source</category>
     </item>
     <item>
       <title>langgrap, openaii, transfomers, ollamaa — one typo each, one PyPI campaign</title>

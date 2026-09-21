@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A package labelled itself &quot;SECURITY RESEARCH.&quot; GitHub flagged it as malware anyway. | MagSolutionsAI</title>
+<meta name="description" content="On 20 September 2026 someone published starbucks-sdk to npm, described it in the registry as a dependency-confusion proof of concept, and shipped a preinstall script that phones home. The advisory that followed didn&#x27;t care about the label.">
+<meta property="og:title" content="A package labelled itself &quot;SECURITY RESEARCH.&quot; GitHub flagged it as malware anyway. | MagSolutionsAI">
+<meta property="og:description" content="On 20 September 2026 someone published starbucks-sdk to npm, described it in the registry as a dependency-confusion proof of concept, and shipped a preinstall script that phones home. The advisory that followed didn&#x27;t care about the label.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A package labelled itself &quot;SECURITY RESEARCH.&quot; GitHub flagged it as malware anyway. | MagSolutionsAI">
+<meta name="twitter:description" content="On 20 September 2026 someone published starbucks-sdk to npm, described it in the registry as a dependency-confusion proof of concept, and shipped a preinstall script that phones home. The advisory that followed didn&#x27;t care about the label.">
+<meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html">
+<link rel="alternate" type="application/rss+xml" title="MagSolutionsAI Blog" href="https://magsolutionsai.com/feed.xml">
+<link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A package labelled itself \"SECURITY RESEARCH.\" GitHub flagged it as malware anyway.",
+  "description": "On 20 September 2026 someone published starbucks-sdk to npm, described it in the registry as a dependency-confusion proof of concept, and shipped a preinstall script that phones home. The advisory that followed didn't care about the label.",
+  "datePublished": "2026-09-21",
+  "dateModified": "2026-09-21",
+  "url": "https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html"
+  },
+  "image": "https://magsolutionsai.com/logo-512.png",
+  "inLanguage": "en",
+  "keywords": [
+    "supply chain",
+    "npm",
+    "case study",
+    "dependency confusion"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://magsolutionsai.com/logo-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://magsolutionsai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://magsolutionsai.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "A package labelled itself \"SECURITY RESEARCH.\" GitHub flagged it as malware anyway.",
+      "item": "https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/style.css?v=8">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent">Install free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap post">
+  <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
+  <article>
+    <header class="post-hd">
+      <div class="post-meta">
+        <time datetime="2026-09-21">21 September 2026</time>
+        <span class="sep">&middot;</span>
+        <span>4 min read</span>
+      </div>
+      <h1>A package labelled itself &quot;SECURITY RESEARCH.&quot; GitHub flagged it as malware anyway.</h1>
+      <p class="post-lede">On 20 September 2026 someone published starbucks-sdk to npm, described it in the registry as a dependency-confusion proof of concept, and shipped a preinstall script that phones home. The advisory that followed didn&#x27;t care about the label.</p>
+      <div class="ptags"><span class="ptag">supply chain</span><span class="ptag">npm</span><span class="ptag">case study</span><span class="ptag">dependency confusion</span></div>
+    </header>
+    <div class="post-body">
+<p>On 20 September 2026, a single-version npm package called <code>starbucks-sdk</code> was published by a maintainer whose npm username is <code>atulnagu123</code>. The package&#x27;s own <code>description</code> field, visible to anyone who queries the registry, reads:</p>
+<pre><code>SECURITY RESEARCH - Dependency Confusion PoC</code></pre>
+<p>The <code>author</code> field says <code>Security Researcher</code>. Less than a day later, GitHub&#x27;s Advisory Database published <a href="https://github.com/advisories/GHSA-6m74-h462-fr23">GHSA-6m74-h462-fr23</a>, classifying <code>starbucks-sdk</code> as malware, credited to Amazon Inspector and the OpenSSF Package Analysis project.</p>
+<p>The label didn&#x27;t matter. The behaviour did.</p>
+<h2>What dependency confusion is</h2>
+<p>Large organisations often depend on internal packages that live only on a private registry — things named like <code>starbucks-sdk</code>, <code>internal-auth-lib</code>, or <code>acme-billing-utils</code>, never published publicly. Dependency confusion is the trick of publishing a <em>public</em> package under that exact name. If a build is misconfigured to check the public registry first, or a developer&#x27;s local config resolves the public name before the private one, the attacker&#x27;s version installs instead of the real one. Alex Birsan&#x27;s original research on this technique, in 2021, got him bug bounties from Apple, Microsoft, PayPal and dozens of other companies — by doing exactly this, safely, against real corporate namespaces.</p>
+<p><code>starbucks-sdk</code> fits that shape: a plausible internal-sounding name at a company big enough to have one, published by someone identifying as a researcher.</p>
+<h2>What the package actually does</h2>
+<p>You don&#x27;t need to trust an advisory summary to check this — the registry serves the full package metadata, and the tarball, over plain HTTPS:</p>
+<pre><code class="lang-bash">curl -s https://registry.npmjs.org/starbucks-sdk | jq &#x27;.time, .maintainers, .versions.&quot;1.0.0&quot;.description&#x27;</code></pre>
+<p>That returns one published version, one maintainer, created <code>2026-09-20T00:29:17Z</code>. Pulling the tarball and reading <code>callback.js</code> — the file wired up as the package&#x27;s <code>preinstall</code> script — shows this:</p>
+<pre><code class="lang-js">const info = {
+    hostname: os.hostname(),
+    user: os.userInfo().username,
+    platform: os.platform(),
+    cwd: process.cwd(),
+    time: new Date().toISOString(),
+    secrets: Object.keys(process.env).filter(k =&gt; /token|secret|key|pass|auth|api|aws/i.test(k)).slice(0,10)
+};</code></pre>
+<p>That object — hostname, username, platform, working directory, and the <b>names</b> (not the values) of up to ten environment variables matching a credential-shaped pattern — gets POSTed to the Telegram Bot API, using a bot token and chat ID hardcoded directly in the file, the moment <code>npm install</code> runs. No confirmation, no opt-out. The advisory&#x27;s own description matches this exactly: &quot;install-time reconnaissance and exfiltration of installer/build-host identity and credential-shaped environment variable names to an attacker-controlled Telegram channel.&quot;</p>
+<p>One detail worth being precise about, because the advisory prose doesn&#x27;t spell it out: the script sends variable <em>names</em>, not their contents. A run on a host with <code>AWS_SECRET_ACCESS_KEY</code> set would report that the key exists and is called that — not the key itself. That&#x27;s reconnaissance, not a completed credential theft. It still tells whoever is reading the Telegram channel exactly which machines are worth attacking next, and by what name to ask for the secret.</p>
+<h2>Why the &quot;research&quot; label didn&#x27;t save it</h2>
+<p>OpenSSF&#x27;s Package Analysis project and Amazon Inspector don&#x27;t parse the <code>description</code> field for disclaimers. They run the package, or sandbox its install scripts, and watch what happens: outbound network calls to endpoints that aren&#x27;t declared anywhere, environment enumeration, process spawning. <code>starbucks-sdk</code> did all three of the things a real credential-stealer does. That it also introduced itself as research changes the intent, not the behaviour — and every automated scanner in this space, ours included, can only ever see the behaviour. A README is not a control.</p>
+<p>This is worth sitting with if you assume &quot;I&#x27;d recognise a proof of concept when I see one.&quot; You wouldn&#x27;t, not from the name, not from installing it, and in this case not even from the file that was supposedly there to explain itself — the tarball ships no README at all (<code>&quot;readme&quot;:&quot;ERROR: No README data found!&quot;</code> in the registry response). The only place the disclaimer exists is a metadata field nothing in the npm install path displays to you.</p>
+<h2>Why this looks like the packages we check for</h2>
+<p>Strip away the &quot;research&quot; framing and the shape of <code>starbucks-sdk</code> is the same shape as a genuine targeted attack: a single version, published hours before anyone looked at it, one maintainer with no history, a name chosen to resemble something a specific company would plausibly use internally. Age and adoption are exactly the two signals that are visible the moment a package like this lands in a pull request — before any advisory exists to tell you it&#x27;s bad, and, as this case shows, regardless of whether the author ever meant harm.</p>
+<h2>What this doesn&#x27;t tell you</h2>
+<p>We don&#x27;t know whether <code>atulnagu123</code> had any engagement or authorisation from Starbucks to test their namespace, or whether this was an unsolicited scan of a name that seemed plausible. Birsan&#x27;s original research had explicit scope and disclosure agreements with each target; nothing in the registry metadata or the advisory says whether this did. We don&#x27;t know if the Telegram channel received data from any real machine — the package could have sat unused, or been installed by dozens of build systems, and the public record doesn&#x27;t say which. And we don&#x27;t know how many other <code>*-sdk</code>-named dependency-confusion probes are sitting on the registry right now under a similar &quot;research&quot; label, un-flagged, because nobody has run them yet. This is one advisory, for one package, read the same day it was published.</p>
+    </div>
+  </article>
+  
+<section class="post-cta">
+  <h2>Check this on your own pull requests</h2>
+  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
+     against the live PyPI and npm registries, and blocks the ones that do not exist.
+     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <div class="cta">
+    <a class="btn btn-1" href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a>
+    <a class="btn btn-2" href="/pricing.html">See pricing</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

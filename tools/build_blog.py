@@ -201,7 +201,7 @@ def _head(title, desc, canonical, extra_ld="", is_article=False):
 <link rel="icon" type="image/png" href="/favicon-64.png">
 <link rel="apple-touch-icon" href="/logo-200.png">
 {extra_ld}
-<link rel="stylesheet" href="/style.css?v=6">
+<link rel="stylesheet" href="/style.css?v=8">
 </head>
 <body>
 
