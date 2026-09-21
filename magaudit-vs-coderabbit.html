@@ -36,6 +36,52 @@
   today, and a number we cannot check has no business on a page comparing us to someone
   else.</p>
 
+  <h2>We put both of them on the same pull request</h2>
+  <p>On 18 September 2026 we installed CodeRabbit on our own public repository and opened a
+  pull request containing a file we had made defective on purpose. Both reviewers saw the
+  same diff at the same moment. CodeRabbit ran on its own defaults throughout &mdash; it says
+  so in its comment &mdash; because a comparison where we configure the other side is worth
+  nothing. <strong>We published our own expected result before opening the pull request, as a
+  SHA-256 hash committed twelve seconds earlier, so it could not be edited afterwards.</strong></p>
+
+  <table>
+    <tr><th>Planted defect</th><th>MagAudit</th><th>CodeRabbit</th></tr>
+    <tr><td>Hardcoded credential</td><td><strong>Found</strong></td><td>Missed</td></tr>
+    <tr><td><code>pickle.loads</code> on outside data</td><td><strong>Found</strong></td><td>Missed</td></tr>
+    <tr><td><code>shell=True</code> with an interpolated value</td><td><strong>Found</strong></td><td>Missed</td></tr>
+    <tr><td>TLS verification disabled</td><td><strong>Found</strong></td><td><strong>Found</strong></td></tr>
+    <tr><td>SQL built from a variable</td><td><strong>Found</strong></td><td><strong>Found</strong></td></tr>
+    <tr><td>Double refund &mdash; check-then-write race</td><td>Missed</td><td><strong>Found</strong></td></tr>
+    <tr><td>Fee truncated to zero by integer division</td><td>Missed</td><td>Missed</td></tr>
+    <tr><td>Three pieces of correct code that look wrong</td><td><strong>0 false alarms</strong></td><td><strong>0 false alarms</strong></td></tr>
+  </table>
+
+  <p><strong>Where they beat us, they beat us on the thing we cannot do.</strong> CodeRabbit
+  found that a refund function reads a balance, checks it, then writes it with no transaction
+  and no row lock, so the same entry can be refunded twice. Every line of that function is
+  valid Python and valid SQL; there is no pattern to match. It also followed a value out of one
+  function and into another, and ran the query in a sandbox to show the effect. That is a class
+  of bug we do not detect and do not claim to.</p>
+
+  <p>Where we were ahead, it was on severity: it did not raise the committed credential, the
+  <code>pickle.loads</code> or the <code>shell=True</code>. The last two are textbook remote code
+  execution. And the integer-division bug that quietly zeroes small fees was missed by both of
+  us, which we would rather write down than leave out.</p>
+
+  <p class="upd"><strong>One asymmetry we have to declare, because it favours us.</strong>
+  CodeRabbit could see our findings and we could not see its: our check run publishes annotations
+  on the pull request, and its comment quotes them. It also ran Ruff and OpenGrep. We ran on the
+  diff alone. Its three findings were reached with our five already visible, and it still did not
+  echo them &mdash; but the two columns are not strictly comparable, and saying so is cheaper than
+  being caught not saying it.</p>
+
+  <p>The first attempt at this comparison was ours to lose and we lost it: the fixture documented
+  itself, CodeRabbit read the comment saying it was a deliberate test and correctly reported
+  nothing, and we fired anyway because we do not read context. That round is published too,
+  including why it did not count. <a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/benchmark">Both
+  rounds, the answer key and the hash are here</a> &mdash; one file, one run each, so read it as
+  an illustration of where two tools differ in kind, not as a score.</p>
+
   <h2>What their own market says goes wrong</h2>
   <p><strong>These are not our numbers, and we could not re-verify their source today,
   so read them as reported rather than as measured.</strong> A third-party audit of 28
@@ -118,7 +164,7 @@
     <tr><td>Same population after four rounds of fixes</td>
         <td>39 findings, 0&ndash;1 CRITICAL</td></tr>
     <tr><td>Dependencies resolved live against PyPI and npm</td>
-        <td>1,419</td></tr>
+        <td>1,728</td></tr>
     <tr><td>AI-hallucinated packages confirmed</td>
         <td><strong>0</strong></td></tr>
   </table>
@@ -130,7 +176,7 @@
 
   <p style="margin-top:2.5rem"><a class="btn btn-1"
      href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a></p>
-  <p class="upd">Last reviewed: 18 September 2026. <strong>Every figure about
+  <p class="upd">Last reviewed: 21 September 2026. <strong>Every figure about
   <em>us</em></strong> is our own measurement and reproducible against
   <a href="https://api.magsolutionsai.com/measurement">our public endpoint</a> and
   <a href="quality.html">our error record</a>. Figures about CodeRabbit are either

@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>You're in — MagSolutionsAI</title>
-<meta name="description" content="MagSolutionsAI is installed. Open a pull request and the first audit runs automatically.">
+<title>Ya está — MagSolutionsAI</title>
+<meta name="description" content="MagSolutionsAI está instalado. Abre un pull request y la primera auditoría corre sola.">
 <meta name="robots" content="noindex, follow">
-<link rel="icon" type="image/png" href="favicon-64.png">
-<link rel="apple-touch-icon" href="logo-200.png">
-<link rel="canonical" href="https://magsolutionsai.com/welcome.html">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="apple-touch-icon" href="../logo-200.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/welcome.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/welcome.html">
+<link rel="stylesheet" href="../style.css?v=8">
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="./"><img src="logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
-      <a href="./">Home</a>
-      <a href="blog/">Blog</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="hallucination-index.html">Index</a>
+      <a href="./">Inicio</a>
+      <a href="../blog/">Blog</a>
+      <a href="pricing.html">Precios</a>
+      <a href="hallucination-index.html">Índice</a>
     </nav>
   </div>
 </header>
@@ -28,13 +29,13 @@
 <main class="wrap" style="max-width:74ch">
 
   <section class="hero" style="padding-bottom:1.4rem">
-    <div class="pill"><span class="dot"></span> Installed &middot; nothing else to configure</div>
-    <h1 style="font-size:clamp(2rem,4.4vw,2.9rem)">You're set. <span class="hl">Open a pull request.</span></h1>
+    <div class="pill"><span class="dot"></span> Instalado &middot; no hay nada más que configurar</div>
+    <h1 style="font-size:clamp(2rem,4.4vw,2.9rem)">Ya está. <span class="hl">Abre un pull request.</span></h1>
     <p class="lede">
-      The next PR opened on any repository you granted access to gets audited automatically &mdash;
-      dependencies checked against the live PyPI and npm registries, secrets and AI-specific flaws
-      flagged inline. Findings arrive as a comment on the PR, usually in a couple of seconds.
-      <b>No SDK, no CI config, nothing to install locally.</b>
+      El siguiente PR que se abra en cualquier repositorio al que hayas dado acceso se audita solo &mdash;
+      las dependencias se resuelven contra los registros en vivo de PyPI y npm, y las credenciales y los fallos propios del código escrito con IA
+      se marcan en la línea. Los hallazgos llegan como comentario en el PR, normalmente en un par de segundos.
+      <b>Sin SDK, sin tocar el CI, sin instalar nada en local.</b>
     </p>
   </section>
 
@@ -42,46 +43,46 @@
        se pierde al usuario que acaba de instalar y no ve nada. -->
   <section class="band" style="border-top:0;padding-top:0">
     <div class="sec-hd">
-      <span class="lbl">What happens next</span>
-      <h2 style="font-size:1.4rem">Three things, in this order.</h2>
+      <span class="lbl">Qué pasa ahora</span>
+      <h2 style="font-size:1.4rem">Cuatro cosas, en este orden.</h2>
     </div>
     <div class="rows-wc">
       <div class="wc-step">
         <span class="wc-n">1</span>
         <div>
-          <b>Someone opens a PR.</b> Yours or a teammate's &mdash; it does not matter who, and
-          nobody needs an account with us.
+          <b>Alguien abre un PR.</b> Tuyo o de alguien del equipo &mdash;da igual quién, y
+          nadie necesita cuenta con nosotros.
         </div>
       </div>
       <div class="wc-step">
         <span class="wc-n">2</span>
         <div>
-          <b>A comment appears on that PR.</b> Every added dependency resolved against the registry,
-          every finding with its exact file and line, and the query you can reproduce with
-          <code>curl</code> yourself.
+          <b>Aparece un comentario en ese PR.</b> Cada dependencia añadida resuelta contra el registro,
+          cada hallazgo con su fichero y su línea exactos, y la consulta que puedes reproducir tú con
+          <code>curl</code>.
         </div>
       </div>
       <div class="wc-step">
         <span class="wc-n">3</span>
         <div>
-          <b>A clean PR gets a clean comment.</b> Silence would be indistinguishable from the app
-          being broken, so it always reports &mdash; including what it did <em>not</em> analyse.
+          <b>Un PR limpio recibe un comentario limpio.</b> El silencio sería indistinguible de que la App
+          estuviera rota, así que siempre informa &mdash;incluido lo que <em>no</em> analizó.
         </div>
       </div>
       <div class="wc-step">
         <span class="wc-n">4</span>
         <div>
-          <b>And if we are wrong about something, you do not have to wait for us.</b>
-          Reply <code>@magaudit ignore &lt;id&gt;</code> on the pull request with the id printed
-          next to the finding, or <code>@magaudit ignore rule &lt;RULE-ID&gt;</code> for all of
-          them. For a decision your whole team can see and review, a <code>.magaudit.yml</code>
-          in the repository. And if you already use another scanner we honour its markers
+          <b>Y si nos equivocamos en algo, no tienes que esperarnos.</b>
+          Contesta <code>@magaudit ignore &lt;id&gt;</code> en el pull request con el id que aparece
+          al lado del hallazgo, o <code>@magaudit ignore rule &lt;RULE-ID&gt;</code> para todos
+          ellos. Para una decisión que todo el equipo pueda ver y revisar, un <code>.magaudit.yml</code>
+          en el repositorio. Y si ya usas otro escáner, respetamos sus marcadores
           &mdash; <code>pragma: allowlist secret</code>, <code>nosec</code>,
-          <code>nosemgrep</code>, <code>gitleaks:allow</code> &mdash; so you never annotate the
-          same line twice.
-          <br><span style="color:var(--fg-3)">Whatever your settings hide is still counted and
-          still declared in the comment, with the reason for each one.
-          <a href="quality.html">Here is how often we get it wrong &rarr;</a></span>
+          <code>nosemgrep</code>, <code>gitleaks:allow</code> &mdash; para que nunca tengas que anotar la
+          misma línea dos veces.
+          <br><span style="color:var(--fg-3)">Lo que oculte tu configuración se sigue contando y se sigue
+          declarando en el comentario, con el motivo de cada caso.
+          <a href="quality.html">Aquí está cuántas veces nos equivocamos &rarr;</a></span>
         </div>
       </div>
     </div>
@@ -94,79 +95,79 @@
        de instalar, y hasta ahora no veia nada hasta que abriera un PR. -->
   <section class="band" id="firstscan" style="border-top:0;padding-top:0" hidden>
     <div class="sec-hd">
-      <span class="lbl">Your first report</span>
-      <h2 style="font-size:1.4rem" id="scan-title">Looking at what is already in your repositories&hellip;</h2>
-      <p id="scan-sub">We check the code you already have, not just the next pull request.
-        The most common problem in AI-written apps is written once, when the project is
-        created, so a tool that only reads pull requests never sees it.</p>
+      <span class="lbl">Tu primer informe</span>
+      <h2 style="font-size:1.4rem" id="scan-title">Mirando lo que ya hay en tus repositorios&hellip;</h2>
+      <p id="scan-sub">Revisamos el código que ya tienes, no solo el siguiente pull request.
+        El problema más frecuente en aplicaciones escritas con IA se escribe una sola vez, el día que se
+        crea el proyecto, así que una herramienta que solo lee pull requests no lo ve nunca.</p>
     </div>
     <div class="ent">
       <div id="scan-body" style="line-height:1.9">
-        <span style="color:var(--fg-3)">Running&hellip; this usually takes under a minute.</span>
+        <span style="color:var(--fg-3)">Ejecutando&hellip; normalmente tarda menos de un minuto.</span>
       </div>
     </div>
   </section>
 
   <section class="band" id="upgrade">
     <div class="sec-hd">
-      <span class="lbl">Private repositories</span>
-      <h2 style="font-size:1.4rem">Public repos are free forever. Private ones need a plan.</h2>
-      <p>Same detection engine on every tier &mdash; nothing is locked behind a higher plan. You
-        only pay for how many private repositories it covers.</p>
+      <span class="lbl">Repositorios privados</span>
+      <h2 style="font-size:1.4rem">Los repos públicos son gratis para siempre. Los privados necesitan un plan.</h2>
+      <p>El mismo motor de detección en todos los planes &mdash;no hay nada reservado a un plan superior.
+        Solo pagas por cuántos repositorios privados cubre.</p>
     </div>
 
     <div class="plans">
       <div class="plan">
         <span class="plan-name">Team 5</span>
-        <div class="price"><span class="amt">&euro;29</span><span class="per">/month</span></div>
-        <p class="plan-sub">Up to 5 private repositories.</p>
+        <div class="price"><span class="amt">&euro;29</span><span class="per">/mes</span></div>
+        <p class="plan-sub">Hasta 5 repositorios privados.</p>
         <a class="btn btn-2 plan-cta" data-plan="team5"
-           href="https://buy.stripe.com/00w5kxdWY6BqecP7BUcfK00">Subscribe &rarr;</a>
+           href="https://buy.stripe.com/00w5kxdWY6BqecP7BUcfK00">Suscribirse &rarr;</a>
       </div>
       <div class="plan featured">
-        <span class="badge">Most popular</span>
+        <span class="badge">El más elegido</span>
         <span class="plan-name">Team 15</span>
-        <div class="price"><span class="amt">&euro;69</span><span class="per">/month</span></div>
-        <p class="plan-sub">Up to 15 private repositories.</p>
+        <div class="price"><span class="amt">&euro;69</span><span class="per">/mes</span></div>
+        <p class="plan-sub">Hasta 15 repositorios privados.</p>
         <a class="btn btn-1 plan-cta" data-plan="team15"
-           href="https://buy.stripe.com/8x2aER8CE3pe2u7f4mcfK01">Subscribe &rarr;</a>
+           href="https://buy.stripe.com/8x2aER8CE3pe2u7f4mcfK01">Suscribirse &rarr;</a>
       </div>
       <div class="plan">
         <span class="plan-name">Business 40</span>
-        <div class="price"><span class="amt">&euro;149</span><span class="per">/month</span></div>
-        <p class="plan-sub">Up to 40 private repositories.</p>
+        <div class="price"><span class="amt">&euro;149</span><span class="per">/mes</span></div>
+        <p class="plan-sub">Hasta 40 repositorios privados.</p>
         <a class="btn btn-2 plan-cta" data-plan="business40"
-           href="https://buy.stripe.com/28EbIVbOQ8Jy6Kn9K2cfK02">Subscribe &rarr;</a>
+           href="https://buy.stripe.com/28EbIVbOQ8Jy6Kn9K2cfK02">Suscribirse &rarr;</a>
       </div>
     </div>
 
     <p class="plan-note" id="linked" hidden>
-      Your installation is linked. A subscription started from this page is activated on your
-      organisation automatically as soon as Stripe confirms the payment; we also confirm it by
-      email, and fix it by hand in the rare case something did not match. Nothing to send us.
+      Tu instalación está vinculada. Una suscripción iniciada desde esta página se activa sola en tu
+      organización en cuanto Stripe confirma el pago; además la confirmamos por
+      correo, y la arreglamos a mano en el caso raro de que algo no cuadre. No tienes que enviarnos nada.
     </p>
     <p class="plan-note" id="unlinked">
-      Reached this page directly? Subscribing still works. Email
-      <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a> with your GitHub
-      organisation name and we will activate the plan within one business day.
+      ¿Has llegado a esta página directamente? Suscribirse funciona igual. Escribe a
+      <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a> con el nombre de tu
+      organización de GitHub y activamos el plan en un día laborable.
     </p>
   </section>
 
   <section class="band">
     <div class="sec-hd">
-      <span class="lbl">While you wait for that first PR</span>
-      <h2 style="font-size:1.4rem">Two things worth five minutes.</h2>
+      <span class="lbl">Mientras esperas ese primer PR</span>
+      <h2 style="font-size:1.4rem">Dos cosas que valen cinco minutos.</h2>
     </div>
     <div class="ent">
-      <p><b>Scan a dependency file right now</b> &mdash; paste a <code>requirements.txt</code> into
-        the scanner on the homepage. It queries PyPI live, from your browser, and shows you the same
-        verdict the App gives on a PR.</p>
-      <a class="btn btn-2" href="./#scan">Open the scanner &rarr;</a>
+      <p><b>Escanea un fichero de dependencias ahora mismo</b> &mdash; pega un <code>requirements.txt</code> en
+        el escáner de la portada. Consulta PyPI en vivo, desde tu navegador, y te enseña el mismo
+        veredicto que da la App en un PR.</p>
+      <a class="btn btn-2" href="./#scan">Abrir el escáner &rarr;</a>
     </div>
     <div class="ent" style="margin-top:.9rem">
-      <p><b>Read what the App actually looks for</b> &mdash; the seven gates, why CVE-based scanners
-        miss invented packages, and what we deliberately do not claim.</p>
-      <a class="btn btn-2" href="blog/what-is-slopsquatting.html">Read the write-up &rarr;</a>
+      <p><b>Lee qué busca realmente la App</b> &mdash; las siete puertas, por qué los escáneres basados en CVE
+        no ven los paquetes inventados, y qué decidimos deliberadamente no afirmar.</p>
+      <a class="btn btn-2" href="../blog/what-is-slopsquatting.html">Leer el artículo &rarr;</a>
     </div>
   </section>
 
@@ -175,9 +176,9 @@
 <footer>
   <div class="wrap foot">
     <span>&copy; 2026 MagSolutionsAI</span>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+    <a href="privacy.html">Privacidad</a>
+    <a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
     <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
   </div>
@@ -275,20 +276,20 @@
 
   function pinta(d) {
     if (!d || d.estado === 'sin_datos') {
-      titulo.textContent = 'No report yet';
-      texto(cuerpo, 'We could not read your repositories. Open a pull request and the audit runs there.');
+      titulo.textContent = 'Aún no hay informe';
+      texto(cuerpo, 'No pudimos leer tus repositorios. Abre un pull request y la auditoría corre ahí.');
       return true;
     }
     if (d.estado === 'en_curso') return false;
 
     var n = d.hallazgos || 0;
     if (!n) {
-      titulo.textContent = 'Nothing found in what you already have';
-      texto(cuerpo, 'We read ' + (d.ficheros || 0) + ' files across ' + (d.repos || 0) +
-            ' repositories and found nothing worth reporting. From here on, every pull request gets the same check.');
+      titulo.textContent = 'No encontramos nada en lo que ya tenías';
+      texto(cuerpo, 'Leímos ' + (d.ficheros || 0) + ' ficheros en ' + (d.repos || 0) +
+            ' repositorios y no encontramos nada que merezca informe. A partir de ahora, cada pull request pasa la misma revisión.');
       return true;
     }
-    titulo.textContent = n + ' finding' + (n === 1 ? '' : 's') + ' in code you already had';
+    titulo.textContent = n + (n === 1 ? ' hallazgo' : ' hallazgos') + ' en código que ya tenías';
     cuerpo.textContent = '';
     var ul = document.createElement('ul');
     ul.style.margin = '0'; ul.style.paddingLeft = '1.1rem';
@@ -304,8 +305,8 @@
     var p = document.createElement('p');
     p.className = 'plan-note';
     p.style.marginTop = '.8rem';
-    p.textContent = 'Read ' + (d.ficheros || 0) + ' files across ' + (d.repos || 0) +
-      ' repositories. We keep the location, never the code.';
+    p.textContent = 'Leídos ' + (d.ficheros || 0) + ' ficheros en ' + (d.repos || 0) +
+      ' repositorios. Guardamos la ubicación, nunca el código.';
     cuerpo.appendChild(p);
     return true;
   }
@@ -318,11 +319,11 @@
       .then(function (d) {
         if (pinta(d)) return;
         if (++intentos < 20) setTimeout(mira, 4000);
-        else texto(cuerpo, 'Still running. Reload this page in a minute.');
+        else texto(cuerpo, 'Sigue ejecutándose. Recarga esta página en un minuto.');
       })
       .catch(function () {
         if (++intentos < 5) setTimeout(mira, 4000);
-        else texto(cuerpo, 'We could not reach the report. Open a pull request and the audit runs there.');
+        else texto(cuerpo, 'No pudimos acceder al informe. Abre un pull request y la auditoría corre ahí.');
       });
   })();
 })();

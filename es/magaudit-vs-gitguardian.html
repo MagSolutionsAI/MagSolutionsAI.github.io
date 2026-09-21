@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagAudit vs GitGuardian — una comparativa honesta</title>
+<meta name="description" content="GitGuardian tiene un alcance que no igualamos. Dónde nos gana, y qué hacemos nosotros que es distinto.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/magaudit-vs-gitguardian.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html">
+<link rel="stylesheet" href="../style.css?v=8">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a><a href="pricing.html">Precios</a><a href="quality.html">Nuestra tasa de error</a><a href="../blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>MagAudit vs GitGuardian</h1>
+  <p class="upd">Escrito por quienes hacemos uno de los dos. Léelo teniéndolo en cuenta.</p>
+
+  <h2>Dónde GitGuardian nos gana de verdad</h2>
+  <p>GitGuardian escanea GitHub público de forma continua y detecta del orden de
+  <strong>500.000 claves comprometidas al mes</strong>. Cuando encuentra una, escribe al
+  desarrollador en minutos, sin discurso de venta adjunto. Ese alcance y esa cobertura del
+  historial no son cosas que iguale un producto de dos personas, y no deberías elegirnos
+  pensando lo contrario.</p>
+  <p>Si lo que necesitas son <em>patrones de credenciales en todo tu historial de git, a
+  escala, con un flujo maduro de gestión de incidentes</em>, ellos son la mejor respuesta.</p>
+
+  <h2>Dónde hacemos algo distinto</h2>
+  <table>
+    <tr><th></th><th>GitGuardian</th><th>MagAudit</th></tr>
+    <tr><td>Encuentra el <em>valor</em> de una credencial subida</td><td>Sí, a escala</td><td>Sí, 8 formatos</td></tr>
+    <tr><td>Violaciones del límite del navegador<br><small>una clave real en una variable <code>NEXT_PUBLIC_</code></small></td>
+        <td>Busca patrones de credencial</td><td><strong>Sí</strong> — el prefijo es el hallazgo</td></tr>
+    <tr><td>Escanea al instalar el código que ya está en el repositorio</td><td>&mdash;</td><td><strong>Sí</strong></td></tr>
+    <tr><td>Dependencias resueltas en vivo contra PyPI / npm</td><td>&mdash;</td><td>Sí</td></tr>
+    <tr><td>Precio</td><td>Por puesto</td><td>Plano, según número de repositorios privados</td></tr>
+  </table>
+  <p>El caso del límite es el que merece entenderse. Una clave <code>service_role</code> de
+  Supabase dentro de <code>NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY</code> es una credencial
+  <em>legítima y con el formato correcto</em>. No hay nada mal en la cadena. Lo que está mal
+  es que el framework la compila dentro del paquete que se sirve a cada visitante. La
+  coincidencia de patrones no ve eso; el prefijo sí.</p>
+  <p>Medimos con qué frecuencia aparece: <strong>0 veces en 63 pull requests reales</strong>,
+  y en <strong>7 de 8 repositorios ya existentes</strong>. Se escribe una sola vez, el día que
+  se crea el proyecto &mdash;que es la razón por la que escaneamos el código existente cuando
+  instalas, en vez de esperar a un diff.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Instalar en GitHub &rarr;</a></p>
+  <p class="upd">Última revisión: 21 de septiembre de 2026. <strong>Todas las cifras sobre
+  <em>nosotros</em></strong> son medición propia y reproducibles contra
+  <a href="https://api.magsolutionsai.com/measurement">nuestro endpoint público</a> y
+  <a href="quality.html">nuestro registro de errores</a>. Cualquier cifra sobre otro producto
+  o la puedes verificar tú en un paso, o está marcada como informada por un tercero. Hasta el
+  18 de septiembre esta línea afirmaba que todas las cifras de aquí eran medición nuestra, lo
+  que no era cierto de todas ellas.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a><a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+  </div>
+</footer>
+</body>
+</html>

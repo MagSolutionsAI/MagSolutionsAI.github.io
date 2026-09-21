@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagAudit vs CodeRabbit — una comparativa honesta</title>
+<meta name="description" content="CodeRabbit es más grande y tiene más dinero. Pusimos a los dos sobre el mismo pull request y publicamos el resultado, incluido donde nos ganan.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/magaudit-vs-coderabbit.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html">
+<link rel="stylesheet" href="../style.css?v=8">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a><a href="pricing.html">Precios</a><a href="quality.html">Nuestra tasa de error</a><a href="../blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>MagAudit vs CodeRabbit</h1>
+  <p class="upd">Escrito por quienes hacemos uno de los dos. Léelo teniéndolo en cuenta.</p>
+
+  <h2>Dónde nos gana CodeRabbit, y no es de cerca</h2>
+  <p>CodeRabbit es mucho más grande y tiene mucho más dinero que nosotros, y su bot ha
+  comentado en <strong>más de 6,5 millones de pull requests públicos</strong> &mdash; una
+  cifra que cualquiera reproduce con una búsqueda en GitHub por
+  <code>commenter:coderabbitai[bot]</code>, que es como la obtuvimos el 18 de septiembre de
+  2026. Ellos revisan el razonamiento y el diseño, no solo patrones. Si quieres una segunda
+  opinión sobre <em>cómo</em> está escrito el código, eso lo hacen ellos y nosotros no.</p>
+
+  <p class="upd">Quitamos otras tres cifras que estaban en este párrafo &mdash;número de
+  clientes, facturación, volumen semanal&mdash;. Venían de informaciones que hoy no pudimos
+  volver a verificar, y un número que no podemos comprobar no pinta nada en una página que
+  nos compara con otro.</p>
+
+  <h2>Pusimos a los dos sobre el mismo pull request</h2>
+  <p>El 18 de septiembre de 2026 instalamos CodeRabbit en nuestro propio repositorio público
+  y abrimos un pull request con un fichero que habíamos hecho defectuoso a propósito. Los dos
+  revisores vieron el mismo diff en el mismo instante. CodeRabbit corrió con su configuración
+  por defecto todo el rato &mdash;lo dice él mismo en su comentario&mdash; porque una
+  comparativa en la que nosotros configuramos al otro no vale nada. <strong>Publicamos nuestro
+  resultado esperado antes de abrir el pull request, como una huella SHA-256 registrada doce
+  segundos antes, para que no se pudiera retocar después.</strong></p>
+
+  <table>
+    <tr><th>Defecto plantado</th><th>MagAudit</th><th>CodeRabbit</th></tr>
+    <tr><td>Credencial escrita en el código</td><td><strong>Lo encuentra</strong></td><td>Se le escapa</td></tr>
+    <tr><td><code>pickle.loads</code> sobre datos externos</td><td><strong>Lo encuentra</strong></td><td>Se le escapa</td></tr>
+    <tr><td><code>shell=True</code> con un valor interpolado</td><td><strong>Lo encuentra</strong></td><td>Se le escapa</td></tr>
+    <tr><td>Verificación TLS desactivada</td><td><strong>Lo encuentra</strong></td><td><strong>Lo encuentra</strong></td></tr>
+    <tr><td>SQL construido con una variable</td><td><strong>Lo encuentra</strong></td><td><strong>Lo encuentra</strong></td></tr>
+    <tr><td>Doble reembolso &mdash; carrera entre comprobar y escribir</td><td>Se nos escapa</td><td><strong>Lo encuentra</strong></td></tr>
+    <tr><td>Comisión truncada a cero por división entera</td><td>Se nos escapa</td><td>Se le escapa</td></tr>
+    <tr><td>Tres trozos de código correcto con mala pinta</td><td><strong>0 falsas alarmas</strong></td><td><strong>0 falsas alarmas</strong></td></tr>
+  </table>
+
+  <p><strong>Donde nos ganan, nos ganan en lo que no sabemos hacer.</strong> CodeRabbit
+  detectó que una función de reembolso lee un saldo, lo comprueba y lo escribe sin
+  transacción ni bloqueo de fila, de forma que el mismo apunte se puede devolver dos veces.
+  Todas las líneas de esa función son Python válido y SQL válido; no hay patrón que casar.
+  Además siguió un valor desde una función hasta otra, y ejecutó la consulta en un entorno
+  aislado para demostrar el efecto. Esa es una clase de error que no detectamos ni decimos
+  detectar.</p>
+
+  <p>Donde íbamos por delante era en gravedad: no levantó la credencial escrita en el código,
+  ni el <code>pickle.loads</code>, ni el <code>shell=True</code>. Los dos últimos son
+  ejecución de código a distancia de manual. Y el error de división entera que deja las
+  comisiones pequeñas a cero se nos escapó a los dos, que preferimos escribirlo a omitirlo.</p>
+
+  <p class="upd"><strong>Una asimetría que tenemos que declarar, porque nos favorece.</strong>
+  CodeRabbit podía ver nuestros hallazgos y nosotros no veíamos los suyos: nuestro check
+  publica anotaciones en el pull request, y su comentario las cita. Además ejecutó Ruff y
+  OpenGrep. Nosotros corrimos solo sobre el diff. Sus tres hallazgos se alcanzaron con los
+  nuestros cinco ya a la vista, y aun así no los repitió &mdash;pero las dos columnas no son
+  estrictamente comparables, y decirlo sale más barato que que nos pillen no diciéndolo.</p>
+
+  <p>El primer intento de esta comparativa lo teníamos para perder y lo perdimos: el fichero
+  de prueba se documentaba a sí mismo, CodeRabbit leyó el comentario que decía que era un
+  examen deliberado y con buen criterio no reportó nada, y nosotros disparamos igual porque no
+  leemos el contexto. Esa ronda también está publicada, incluido por qué no contaba.
+  <a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/benchmark">Las
+  dos rondas, la hoja de respuestas y la huella están aquí</a> &mdash; un fichero, una
+  ejecución cada uno, así que léelo como una ilustración de en qué se diferencian dos
+  herramientas, no como un marcador.</p>
+
+  <h2>Lo que dice su propio mercado que falla</h2>
+  <p><strong>Estas no son cifras nuestras, y hoy no pudimos volver a verificar su fuente, así
+  que léelas como informadas y no como medidas.</strong> Se informó de una auditoría ajena
+  sobre 28 pull requests que encontró que <strong>el 15 % de los comentarios de CodeRabbit era
+  ruido y el 21 % quisquilloso</strong>. Mantenemos la cifra porque es el tipo de número por
+  el que pedimos que se nos juzgue a nosotros &mdash;pero no vamos a presentar la información
+  de otro como si la hubiéramos medido.</p>
+  <p>Lo que sí <em>podemos</em> decir de nuestro lado: publicamos nuestra propia tasa de falsos
+  positivos, derivada de las pruebas, en <a href="quality.html">esta página</a>. Ellos no
+  publican la suya. La asimetría es el argumento; el 15 % no.</p>
+
+  <h2>Las diferencias que salen de ahí</h2>
+  <table>
+    <tr><th></th><th>CodeRabbit</th><th>MagAudit</th></tr>
+    <tr><td>Configuración antes de que sirva</td>
+        <td>Un <code>.coderabbit.yaml</code> que cuidar</td>
+        <td><strong>Ninguna.</strong> Existe un <code>.magaudit.yml</code> opcional si quieres ajustarlo</td></tr>
+    <tr><td>Si se equivoca sobre tu código</td>
+        <td>Fichero de configuración, o <code>@coderabbitai ignore</code></td>
+        <td><strong>Contestas <code>@magaudit ignore &lt;id&gt;</code></strong>, un fichero de configuración, o el marcador que ya usa tu escáner actual &mdash; <code>pragma: allowlist secret</code>, <code>nosec</code>, <code>nosemgrep</code>, <code>gitleaks:allow</code></td></tr>
+    <tr><td>Precio</td><td>Desde 24 $ por desarrollador y mes</td>
+        <td><strong>Plano por organización.</strong> Diez personas: 69 €, no 240 $</td></tr>
+    <tr><td>Vulnerabilidades conocidas en las dependencias que añades</td>
+        <td>Complemento, con precio por uso</td>
+        <td><strong>Incluido.</strong> Contrastado con la GitHub Advisory Database, y solo se informa cuando la línea fija una versión exacta</td></tr>
+    <tr><td>Dockerfiles, workflows, Terraform, Kubernetes</td>
+        <td>Con linters que configuras tú</td>
+        <td><strong>Incluido.</strong> Incluido <code>pull_request_target</code> con checkout de la rama de quien contribuye &mdash; el que entrega tus secretos a cualquiera que abra un pull request</td></tr>
+    <tr><td>Correcciones de un clic</td>
+        <td>Generadas por un modelo &mdash; potentes, y a veces equivocadas</td>
+        <td><strong>Deducidas, no inventadas.</strong> Se ofrecen solo donde la corrección se deduce de la regla; donde no, no hay sugerencia</td></tr>
+    <tr><td>Ejecutarlo en local antes de subir</td><td>CLI, en los planes de pago</td>
+        <td><strong>El mismo detector, sin conexión.</strong> Si aquí sale limpio, allí sale limpio</td></tr>
+    <tr><td>Su propia tasa de falsos positivos</td><td>No publicada</td>
+        <td><strong><a href="https://api.magsolutionsai.com/quality">Publicada, y derivada de las pruebas</a></strong></td></tr>
+    <tr><td>Lee el código que ya está en el repositorio</td><td>Revisa el diff</td>
+        <td><strong>Sí, al instalar</strong></td></tr>
+    <tr><td>Distintivo para el README</td><td>&mdash;</td><td><strong>Sí</strong></td></tr>
+  </table>
+
+  <h2>Lo que NO estamos afirmando</h2>
+  <p>No decimos que seamos más silenciosos que CodeRabbit. <strong>No los hemos medido a
+  ellos</strong>, y el 15 % de arriba es información de un tercero que hoy no pudimos volver a
+  verificar &mdash;así que la marcamos como informada y no la repetimos como nuestra. Hasta el
+  18 de septiembre este párrafo decía que enlazábamos esa auditoría. No la enlazábamos, y no
+  había ningún enlace en la página. Eso estaba mal y se corrige aquí en vez de quitarlo en
+  silencio. Lo que sí podemos decir es cuál fue <em>nuestra</em> tasa, porque la medimos y la
+  publicamos: la primera ejecución automática produjo 150 hallazgos sobre 249 pull requests
+  públicos, 79 de ellos críticos, y casi ninguno era real. Esto es lo que eran.</p>
+
+  <h2>Los dos casos que nos costaron una disculpa pública</h2>
+
+  <p>Estábamos preparando avisos de seguridad para repositorios públicos, y comprobamos cada
+  uno a mano antes de enviarlo. Los dos estaban mal, y los dos están ahora fijados por una
+  prueba de regresión escrita con la línea exacta:</p>
+
+  <h3>1. Una variable forzada a vacío es el arreglo, no el fallo</h3>
+  <pre><code>...(command === "build"
+  ? { "import.meta.env.VITE_OPENAI_API_KEY": '""' }
+  : {}),</code></pre>
+  <p>Esa línea <em>elimina</em> la clave de todas las compilaciones de producción. Un
+  comentario de seis líneas encima explica que Vite incrusta las <code>VITE_*</code> en el
+  paquete. Le habríamos dicho a un equipo que entiende esto mejor que nuestro escáner que
+  tenía el fallo que ya había arreglado.</p>
+
+  <h3>2. Leer una variable en Node no es publicarla</h3>
+  <pre><code>module.exports = {
+  openAIApiKey: process.env.VITE_OPENAI_API_KEY,
+}</code></pre>
+  <p>La configuración de una herramienta de traducción. Corre en Node en tiempo de
+  compilación. El prefijo <code>VITE_</code> despista: el código de cliente nunca referencia
+  la variable, así que nada llega al navegador. Cualquier escáner que busque el prefijo va a
+  marcar esto, y se va a equivocar.</p>
+
+  <h2>Lo que medimos, y publicamos</h2>
+  <table>
+    <tr><th>Medición</th><th>Resultado</th></tr>
+    <tr><td>Primera ejecución automática sobre 249 pull requests públicos</td>
+        <td>150 hallazgos, <strong>79 CRÍTICOS</strong> — casi ninguno real</td></tr>
+    <tr><td>La misma población tras cuatro rondas de correcciones</td>
+        <td>39 hallazgos, 0&ndash;1 CRÍTICO</td></tr>
+    <tr><td>Dependencias resueltas en vivo contra PyPI y npm</td>
+        <td>1.728</td></tr>
+    <tr><td>Paquetes alucinados por IA confirmados</td>
+        <td><strong>0</strong></td></tr>
+  </table>
+  <p>Esa última fila juega en nuestra contra: construimos esto alrededor de los nombres de
+  paquete inventados, lo medimos, y el ataque resulta ser más raro de lo que sugiere el sector.
+  Un paquete que no existe hace que <code>pip install</code> falle y que el CI se ponga rojo,
+  gratis. Lo publicamos porque un proveedor al que puedes comprobar vale más que un proveedor
+  al que tienes que creer.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Instalar en GitHub &rarr;</a></p>
+  <p class="upd">Última revisión: 21 de septiembre de 2026. <strong>Todas las cifras sobre
+  <em>nosotros</em></strong> son medición propia y reproducibles contra
+  <a href="https://api.magsolutionsai.com/measurement">nuestro endpoint público</a> y
+  <a href="quality.html">nuestro registro de errores</a>. Las cifras sobre CodeRabbit o las
+  puedes verificar tú en un paso &mdash;su precio, leído de su propia página de precios; su
+  recuento de comentarios públicos, de una búsqueda en GitHub&mdash; o están marcadas
+  explícitamente como informadas por un tercero. Si encuentras cualquier otra cosa en esta
+  página que no se sostenga, <a href="mailto:contact@magsolutionsai.com">dínoslo</a>.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a><a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+  </div>
+</footer>
+</body>
+</html>

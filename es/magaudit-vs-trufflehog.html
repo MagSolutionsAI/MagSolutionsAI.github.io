@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagAudit vs TruffleHog — una comparativa honesta</title>
+<meta name="description" content="TruffleHog hace algo que nosotros no haremos nunca: comprobar si una credencial encontrada sigue funcionando. Por qué, y en qué nos diferenciamos.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/magaudit-vs-trufflehog.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html">
+<link rel="stylesheet" href="../style.css?v=8">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a><a href="pricing.html">Precios</a><a href="quality.html">Nuestra tasa de error</a><a href="../blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>MagAudit vs TruffleHog</h1>
+  <p class="upd">Escrito por quienes hacemos uno de los dos. Léelo teniéndolo en cuenta.</p>
+
+  <h2>TruffleHog hace una cosa que nosotros no haremos nunca</h2>
+  <p>TruffleHog <strong>verifica</strong> una credencial encontrada llamando a la API del
+  proveedor para ver si sigue funcionando. Eso es útil de verdad: separa una clave viva de una
+  ya rotada, y reduce el montón por triar.</p>
+  <p>Nosotros no lo hacemos, y no está en la hoja de ruta. Según el
+  <strong>artículo 197 bis del Código Penal español</strong> &mdash;operamos desde
+  España&mdash;, usar la credencial de otro para acceder a un sistema sin autorización son de
+  seis meses a dos años. Nuestro escáner habla con <code>api.github.com</code> y con los
+  registros de paquetes, y con nada más. Hay una prueba que falla si se hace cualquier otra
+  petición.</p>
+  <p>Si lo que necesitas es la verificación, usa TruffleHog. Es de código abierto y
+  gratuito.</p>
+
+  <h2>En qué nos diferenciamos</h2>
+  <table>
+    <tr><th></th><th>TruffleHog</th><th>MagAudit</th></tr>
+    <tr><td>Verifica la clave contra el proveedor</td><td><strong>Sí</strong></td><td>No, por diseño</td></tr>
+    <tr><td>Corre en el CI que configuras tú</td><td>Sí</td><td>Sin tocar el CI; es una App de GitHub</td></tr>
+    <tr><td>Violaciones del límite del navegador</td><td>&mdash;</td><td><strong>Sí</strong></td></tr>
+    <tr><td>Comenta en el pull request con fichero, línea y corrección</td><td>Con tu pipeline</td><td>Incluido</td></tr>
+    <tr><td>Entiende los ficheros de configuración<br><small>ver los dos casos de abajo</small></td><td>&mdash;</td><td><strong>Sí</strong></td></tr>
+  </table>
+
+  <h2>Los dos casos que nos costaron una disculpa pública</h2>
+
+  <p>Estábamos preparando avisos de seguridad para repositorios públicos, y comprobamos cada
+  uno a mano antes de enviarlo. Los dos estaban mal, y los dos están ahora fijados por una
+  prueba de regresión escrita con la línea exacta:</p>
+
+  <h3>1. Una variable forzada a vacío es el arreglo, no el fallo</h3>
+  <pre><code>...(command === "build"
+  ? { "import.meta.env.VITE_OPENAI_API_KEY": '""' }
+  : {}),</code></pre>
+  <p>Esa línea <em>elimina</em> la clave de todas las compilaciones de producción. Un
+  comentario de seis líneas encima explica que Vite incrusta las <code>VITE_*</code> en el
+  paquete. Le habríamos dicho a un equipo que entiende esto mejor que nuestro escáner que
+  tenía el fallo que ya había arreglado.</p>
+
+  <h3>2. Leer una variable en Node no es publicarla</h3>
+  <pre><code>module.exports = {
+  openAIApiKey: process.env.VITE_OPENAI_API_KEY,
+}</code></pre>
+  <p>La configuración de una herramienta de traducción. Corre en Node en tiempo de
+  compilación. El prefijo <code>VITE_</code> despista: el código de cliente nunca referencia
+  la variable, así que nada llega al navegador. Cualquier escáner que busque el prefijo va a
+  marcar esto, y se va a equivocar.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Instalar en GitHub &rarr;</a></p>
+  <p class="upd">Última revisión: 21 de septiembre de 2026. <strong>Todas las cifras sobre
+  <em>nosotros</em></strong> son medición propia y reproducibles contra
+  <a href="https://api.magsolutionsai.com/measurement">nuestro endpoint público</a> y
+  <a href="quality.html">nuestro registro de errores</a>. Cualquier cifra sobre otro producto
+  o la puedes verificar tú en un paso, o está marcada como informada por un tercero. Hasta el
+  18 de septiembre esta línea afirmaba que todas las cifras de aquí eran medición nuestra, lo
+  que no era cierto de todas ellas.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a><a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+  </div>
+</footer>
+</body>
+</html>
