@@ -76,7 +76,7 @@ code,.mono { font-family: var(--mono); }
 .nav { position: sticky; top: 0; z-index: 60; background: rgba(9,13,22,.72);
   backdrop-filter: saturate(160%) blur(16px); -webkit-backdrop-filter: saturate(160%) blur(16px);
   border-bottom: 1px solid var(--line); }
-.nav-in { display: flex; align-items: center; gap: 1rem; padding: .7rem 0; }
+.nav-in { display: flex; align-items: center; gap: 1rem; padding-top: .7rem; padding-bottom: .7rem; }
 .brand { display: flex; align-items: center; gap: .58rem; color: var(--fg); font-weight: 700; letter-spacing: -.02em; }
 .brand:hover { text-decoration: none; }
 .brand img { width: 28px; height: 28px; border-radius: 50%; display: block; flex: 0 0 28px; }
