@@ -30,12 +30,42 @@ import sys
 import urllib.request
 
 ENDPOINT = "https://api.magsolutionsai.com/articulo-semanal"
+MEDICION = "https://api.magsolutionsai.com/measurement"
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
+
+# Cuanto puede haber crecido la medicion entre que el servidor escribe el
+# articulo (lunes 09:30) y este script lo recoge (10:30). El barrido corre a
+# las 06:00, asi que en ese hueco no deberia crecer nada; el margen es holgura.
+MARGEN = 0.10
 
 
 def traer() -> dict:
     with urllib.request.urlopen(ENDPOINT, timeout=30) as r:
         return json.loads(r.read().decode("utf-8"))
+
+
+def cifras_en_vivo() -> dict:
+    with urllib.request.urlopen(MEDICION, timeout=30) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def motivo_para_no_publicar(articulo: dict, vivo: dict) -> str | None:
+    """La unica decision que toma este script: si las cifras del articulo
+    no son las de la medicion real, no se publica.
+
+    El 2026-09-18 se publico aqui un articulo con las cifras de las PRUEBAS
+    del servidor (1000 PRs, `a/b#1`): el fichero de prueba viajo en un
+    despliegue y este script lo publico sin mirar. Un articulo sin cifras
+    declaradas tampoco se publica: lo que no se puede contrastar no sale."""
+    cifras = articulo.get("cifras") or {}
+    escrito = cifras.get("prs_analysed")
+    real = vivo.get("prs_analysed")
+    if not isinstance(escrito, int) or not isinstance(real, int) or real <= 0:
+        return f"no se pueden contrastar las cifras (articulo {escrito!r}, medicion {real!r})"
+    if not (real * (1 - MARGEN) <= escrito <= real):
+        return (f"el articulo dice {escrito} pull requests y la medicion en vivo dice "
+                f"{real}: no es una medicion real")
+    return None
 
 
 def insertar(fichero: pathlib.Path, ancla: str, fragmento: str,
@@ -72,6 +102,15 @@ def main() -> int:
     for clave in ("html", "markdown", "tarjeta", "jsonld", "rss", "fecha"):
         if not d.get(clave):
             raise SystemExit(f"ERROR: el endpoint no trae '{clave}'. No se publica nada.")
+
+    try:
+        vivo = cifras_en_vivo()
+    except Exception as e:
+        raise SystemExit(f"ERROR: no se pudo leer la medicion en vivo ({type(e).__name__}). "
+                         "Sin contrastar las cifras no se publica nada.")
+    motivo = motivo_para_no_publicar(d, vivo)
+    if motivo:
+        raise SystemExit(f"ERROR: {motivo}. No se publica nada.")
 
     pagina.write_text(d["html"], encoding="utf-8")
     posts = RAIZ / "content" / "posts"

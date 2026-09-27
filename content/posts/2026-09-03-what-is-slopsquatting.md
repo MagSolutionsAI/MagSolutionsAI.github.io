@@ -34,14 +34,24 @@ them a stream of victims, for free, indefinitely.
 
 ## How common is this
 
-The study that put numbers on it examined 2.23 million AI-generated code samples and found
-**19.7% contained at least one package that does not exist**. Later measurements in 2026 place
-the rate closer to 5% as models improved.
+**Correction — 27 September 2026.** An earlier version said the study examined "2.23 million code
+samples" and that 19.7% of them contained a non-existent package. 2.23 million is the number of
+package names, and 19.7% is the share of those names. It also multiplied that rate by pull
+requests, which it does not describe. Both are corrected below.
 
-Five percent sounds manageable until you multiply it by how much code is now written this way.
-If your team merges 200 AI-assisted pull requests a month and 5% of them carry a phantom import,
-that is ten opportunities a month for someone else's code to enter your build. You need to be
-right every time. The attacker needs you to be wrong once.
+The study that put numbers on it ([Spracklen et al., USENIX Security 2025](https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen))
+generated 576,000 code samples with 16 models. Of the 2.23 million package names in them,
+**19.7% did not exist** — an average of at least 5.2% for commercial models and 21.7% for
+open-source ones. A [2026 measurement of frontier models](https://arxiv.org/abs/2605.17062) puts
+the rate between 4.6% and 6.1%.
+
+Note what that rate counts: package names a model suggests, not pull requests that reach you.
+An invented dependency usually breaks `pip install` or `npm install` within a minute, so it
+rarely survives to be committed. As of 27 September 2026 our own daily sweep of public pull
+requests had confirmed none ([live count](https://api.magsolutionsai.com/measurement)). The
+dangerous moment is earlier: when a developer or a coding agent runs the install command a model
+suggested, and the name has already been registered by someone else. You need to be right every
+time. The attacker needs you to be wrong once.
 
 ## Why the tools you already pay for miss it
 

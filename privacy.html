@@ -35,7 +35,7 @@
 <main class="wrap legal">
 
   <h1>Privacy Policy</h1>
-  <p class="upd">Last updated: 10 September 2026</p>
+  <p class="upd">Last updated: 27 September 2026</p>
 
   <div class="callout">
     <p><strong>The short version:</strong> we do not store your source code. Two things are read:
@@ -72,6 +72,7 @@
     <tr><td>Repository name, pull request number</td><td>Usage log and support</td><td>Until you uninstall</td></tr>
     <tr><td>Risk level, number of findings</td><td>Usage metering and billing</td><td>Until you uninstall</td></tr>
     <tr><td>Plan, usage counters, dates</td><td>Billing</td><td>Until you uninstall</td></tr>
+    <tr><td>Stripe customer ID and payment events (event type, plan, date), if you subscribe to a paid plan</td><td>Link your payment to your installation</td><td>Until you ask us to delete it. Invoices themselves are kept by Stripe</td></tr>
     <tr><td><strong>Findings you muted</strong> and, where a mute came from a pull request comment, <strong>the GitHub username of the person who wrote it</strong> — plus the repository, the rule id or an 8-character hash of the finding, and the date</td><td>Honour your decision on the next audit, and leave your team an auditable record of who silenced what. The hash is derived from the rule, the file path and the flagged line; it cannot be reversed back into your code, and we store neither the path nor the code</td><td>Until you delete the mute (<code>@magaudit restore &lt;id&gt;</code>) or uninstall</td></tr>
   </table>
   </div>
@@ -89,12 +90,24 @@
   because there is nothing personal to opt out of.</p>
 
   <h2>3. Third parties</h2>
+  <p>Every organisation that receives data from us or on our behalf, and exactly what it receives.
+  The first group processes data <strong>for us</strong> (processors under Article 28 GDPR); the
+  second receives only what is needed to answer a lookup.</p>
+  <div class="tw">
+  <table>
+    <tr><th>Recipient</th><th>What it receives</th><th>Why</th></tr>
+    <tr><td>Hetzner Online GmbH (Germany; server in Finland)</td><td>Everything in section 2, as the host of our server</td><td>Run the service</td></tr>
+    <tr><td>Stripe</td><td>Your GitHub installation ID, added to the payment link. You type your email and card on Stripe&rsquo;s own page; they never reach our server. Stripe sends back a customer ID and the subscription status</td><td>Take payment for paid plans</td></tr>
+    <tr><td>Namecheap (email forwarding) and Google (Gmail)</td><td>Emails you send us: Namecheap forwards mail for magsolutionsai.com, and our mailbox is hosted by Gmail</td><td>Read and answer your messages</td></tr>
+    <tr><td>GitHub Pages</td><td>This website is served by GitHub Pages, which receives your IP address when you load a page, as any web host does. We receive none of it</td><td>Serve this website</td></tr>
+  </table>
+  </div>
   <div class="tw">
   <table>
     <tr><th>Recipient</th><th>What we send</th><th>Why</th></tr>
     <tr><td>PyPI (pypi.org)</td><td>Package <strong>names</strong> only</td><td>Verify a dependency exists and when it was first published</td></tr>
     <tr><td>npm (registry.npmjs.org)</td><td>Package <strong>names</strong> only</td><td>Same</td></tr>
-    <tr><td>GitHub</td><td>The audit comment we post on your pull request</td><td>Deliver the result</td></tr>
+    <tr><td>GitHub (api.github.com)</td><td>The audit comment and check result we post on your pull request; the name and pinned version of dependencies it touches</td><td>Deliver the result; ask GitHub&rsquo;s Advisory Database about published vulnerabilities</td></tr>
   </table>
   </div>
 
@@ -106,8 +119,9 @@
 
   <h2>4. Where data is processed</h2>
   <p>The service runs on a dedicated server hosted by Hetzner Online GmbH in Finland (European
-  Union). Data is not transferred outside the EU except for the registry lookups and GitHub API
-  calls described in section 3.</p>
+  Union). GitHub, Stripe and Google are companies based in the United States, and PyPI and npm
+  are run by US organisations; what each of them receives is listed in section 3, and nothing
+  else leaves the EU.</p>
 
   <h2>5. Security</h2>
   <ul>

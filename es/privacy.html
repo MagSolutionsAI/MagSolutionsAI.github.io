@@ -35,7 +35,7 @@
 <main class="wrap legal">
 
   <h1>Política de privacidad</h1>
-  <p class="upd">Última actualización: 17 de septiembre de 2026</p>
+  <p class="upd">Última actualización: 27 de septiembre de 2026</p>
 
   <div class="callout">
     <p><strong>En corto:</strong> no guardamos tu código. Se leen dos cosas: el código que ya está
@@ -72,6 +72,7 @@
     <tr><td>Nombre del repositorio y número del pull request</td><td>Registro de uso y soporte</td><td>Hasta que desinstales</td></tr>
     <tr><td>Nivel de riesgo y número de hallazgos</td><td>Medición de uso y facturación</td><td>Hasta que desinstales</td></tr>
     <tr><td>Plan, contadores de uso y fechas</td><td>Facturación</td><td>Hasta que desinstales</td></tr>
+    <tr><td>ID de cliente de Stripe y eventos de pago (tipo, plan y fecha), si contratas un plan de pago</td><td>Vincular tu pago con tu instalación</td><td>Hasta que nos pidas borrarlo. Las facturas las conserva Stripe</td></tr>
     <tr><td><strong>Los hallazgos que has silenciado</strong> y, cuando el silenciado vino de un comentario en un pull request, <strong>el nombre de usuario de GitHub de quien lo escribió</strong> — además del repositorio, el identificador de la regla o un hash de 8 caracteres del hallazgo, y la fecha</td><td>Respetar tu decisión en la siguiente auditoría y dejar a tu equipo un registro auditable de quién silenció qué. El hash se deriva de la regla, la ruta del fichero y la línea marcada; no se puede revertir para obtener tu código, y no guardamos ni la ruta ni el código</td><td>Hasta que borres el silenciado (<code>@magaudit restaurar &lt;id&gt;</code>) o desinstales</td></tr>
   </table>
   </div>
@@ -89,12 +90,25 @@
   no hay nada personal a lo que oponerse.</p>
 
   <h2>3. Terceros</h2>
+  <p>Todas las organizaciones que reciben datos nuestros o en nuestro nombre, y qué recibe
+  exactamente cada una. El primer grupo trata datos <strong>por cuenta nuestra</strong>
+  (encargados del tratamiento, art. 28 RGPD); el segundo solo recibe lo necesario para responder
+  a una consulta.</p>
+  <div class="tw">
+  <table>
+    <tr><th>Destinatario</th><th>Qué recibe</th><th>Para qué</th></tr>
+    <tr><td>Hetzner Online GmbH (Alemania; servidor en Finlandia)</td><td>Todo lo del apartado 2, como proveedor que aloja nuestro servidor</td><td>Prestar el servicio</td></tr>
+    <tr><td>Stripe</td><td>El ID de tu instalación de GitHub, añadido al enlace de pago. El correo y la tarjeta los escribes en la página de Stripe; nunca llegan a nuestro servidor. Stripe nos devuelve un ID de cliente y el estado de la suscripción</td><td>Cobrar los planes de pago</td></tr>
+    <tr><td>Namecheap (reenvío de correo) y Google (Gmail)</td><td>Los correos que nos envías: Namecheap reenvía el correo de magsolutionsai.com y nuestro buzón está en Gmail</td><td>Leer y contestar tus mensajes</td></tr>
+    <tr><td>GitHub Pages</td><td>Esta web la sirve GitHub Pages, que recibe tu dirección IP al cargar una página, como cualquier alojamiento web. Nosotros no recibimos nada de eso</td><td>Servir esta web</td></tr>
+  </table>
+  </div>
   <div class="tw">
   <table>
     <tr><th>Destinatario</th><th>Qué enviamos</th><th>Para qué</th></tr>
     <tr><td>PyPI (pypi.org)</td><td>Solo <strong>nombres</strong> de paquete</td><td>Comprobar que una dependencia existe y cuándo se publicó por primera vez</td></tr>
     <tr><td>npm (registry.npmjs.org)</td><td>Solo <strong>nombres</strong> de paquete</td><td>Lo mismo</td></tr>
-    <tr><td>GitHub</td><td>El comentario de auditoría que publicamos en tu pull request</td><td>Entregar el resultado</td></tr>
+    <tr><td>GitHub (api.github.com)</td><td>El comentario y el resultado de la comprobación que publicamos en tu pull request; el nombre y la versión fijada de las dependencias que toca</td><td>Entregar el resultado; consultar en la Advisory Database de GitHub si hay vulnerabilidades publicadas</td></tr>
   </table>
   </div>
 
@@ -106,8 +120,9 @@
 
   <h2>4. Dónde se tratan los datos</h2>
   <p>El servicio corre en un servidor dedicado alojado por Hetzner Online GmbH en Finlandia (Unión
-  Europea). No se transfieren datos fuera de la UE salvo las consultas a los registros y las
-  llamadas a la API de GitHub descritas en el apartado 3.</p>
+  Europea). GitHub, Stripe y Google son empresas con sede en Estados Unidos, y PyPI y npm los
+  gestionan organizaciones estadounidenses; lo que recibe cada una está en el apartado 3, y nada más sale de
+  la UE.</p>
 
   <h2>5. Seguridad</h2>
   <ul>

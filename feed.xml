@@ -23,11 +23,11 @@
       <category>supply chain</category><category>npm</category><category>case study</category><category>dependency confusion</category>
     </item>
     <item>
-      <title>Field report: 1000 real pull requests scanned, 0 hallucinated packages confirmed</title>
+      <title>Withdrawn: the field report of 18 September 2026 was built from test data</title>
       <link>https://magsolutionsai.com/blog/field-report-2026-09-18.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-09-18.html</guid>
       <pubDate>Fri, 18 Sep 2026 09:00:00 +0000</pubDate>
-      <description>1000 real public pull requests scanned, 1200 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</description>
+      <description>This report was published with figures from our own test suite, not from a measurement. It is withdrawn; the real figures are published live.</description>
       <category>security</category><category>supply chain</category><category>measurement</category><category>open source</category>
     </item>
     <item>
