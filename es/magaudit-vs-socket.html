@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://magsolutionsai.com/es/magaudit-vs-socket.html">
 <link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html">
 <link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html">
-<link rel="stylesheet" href="../style.css?v=8">
+<link rel="stylesheet" href="../style.css?v=9">
 </head>
 <body>
 <header class="nav">
@@ -42,7 +42,7 @@
   ni tus Dockerfiles, workflows o Terraform (<a href="https://socket.dev/features">socket.dev/features</a>).
   Esa es la otra mitad, y es donde está casi todo lo que encontramos: en torno a un pull request
   público de cada quince, lo que marcamos es una credencial o una inyección, no un paquete.</p>
-  <table>
+  <div class="tw"><table>
     <tr><th></th><th>Socket</th><th>MagAudit</th></tr>
     <tr><td>Comportamiento malicioso del paquete (scripts de instalación, red, ofuscación)</td><td><strong>Sí</strong></td><td>No</td></tr>
     <tr><td>Paquetes nuevos y poco usados, marcados antes de cualquier aviso</td><td>Sí, con muchas más señales</td><td>Sí — antigüedad y uso, PyPI y npm</td></tr>
@@ -52,7 +52,7 @@
     <tr><td>Revisa el código que ya existe al instalar</td><td>&mdash;</td><td>Sí, una muestra: hasta 5 repositorios, 40 ficheros cada uno</td></tr>
     <tr><td>Qué lee y dónde</td><td>Tus ficheros de dependencias; empresa estadounidense</td><td>Tu código, en un servidor en Finlandia; nunca se envía a un modelo de IA</td></tr>
     <tr><td>Precio en repositorios privados</td><td>El plan gratuito de arriba; Team, 25 $ por desarrollador y mes, mínimo cinco</td><td>Plano por organización: 29, 69 o 149 € al mes</td></tr>
-  </table>
+  </table></div>
 
   <h2>Cómo decidir</h2>
   <p>Solo dependencias: el plan gratuito de Socket. Dependencias <em>y</em> credenciales y
@@ -62,7 +62,7 @@
   <h2>Sobre la ventana del aviso, con precisión</h2>
   <p>La medimos sobre los 100 avisos de malware npm más recientes. La mediana entre que aparece
   el paquete y llega el aviso es de <strong>cero días</strong>: la mayoría se detecta el mismo
-  día, y herramientas como Socket tienen mucho que ver. Pero el <strong>30 %</strong> tardó más
+  día. Pero el <strong>30 %</strong> tardó más
   de un día y el caso más largo, <strong>95 días</strong>; y el 95 % de esos paquetes tenía menos
   de 30 días cuando llegó el aviso. La antigüedad y el uso se ven desde el primer segundo: esa es
   la señal que usamos.</p>

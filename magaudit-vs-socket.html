@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://magsolutionsai.com/magaudit-vs-socket.html">
 <link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html">
 <link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <header class="nav">
@@ -42,7 +42,7 @@
   and Terraform (<a href="https://socket.dev/features">socket.dev/features</a>). That is the other
   half, and it is where most of what we find lives: on about one public pull request in fifteen,
   what we flag is a credential or an injection, not a package.</p>
-  <table>
+  <div class="tw"><table>
     <tr><th></th><th>Socket</th><th>MagAudit</th></tr>
     <tr><td>Malicious package behaviour (install scripts, network, obfuscation)</td><td><strong>Yes</strong></td><td>No</td></tr>
     <tr><td>New, barely used packages flagged before any advisory</td><td>Yes, with far more signals</td><td>Yes — age and adoption, PyPI and npm</td></tr>
@@ -52,7 +52,7 @@
     <tr><td>Scans the code already in the repository at install</td><td>&mdash;</td><td>Yes, a sample: up to 5 repositories, 40 files each</td></tr>
     <tr><td>What it reads, and where</td><td>Your dependency manifests; a US company</td><td>Your code, on one server in Finland; never sent to an AI model</td></tr>
     <tr><td>Price on private repositories</td><td>Free plan above; Team $25 per developer per month, minimum five</td><td>Flat per organisation: &euro;29, &euro;69 or &euro;149 a month</td></tr>
-  </table>
+  </table></div>
 
   <h2>How to decide</h2>
   <p>Only dependencies: Socket's free plan. Dependencies <em>and</em> credentials and configuration
@@ -61,8 +61,8 @@
 
   <h2>About the advisory window, precisely</h2>
   <p>We measured it on the 100 most recent npm malware advisories. The median gap between the
-  package appearing and the advisory was <strong>zero days</strong> — most are caught the same day,
-  and tools like Socket are part of why. But <strong>30%</strong> took more than a day and the
+  package appearing and the advisory was <strong>zero days</strong> — most are caught the same day.
+  But <strong>30%</strong> took more than a day and the
   longest took <strong>95 days</strong>, and 95% of those packages were under 30 days old when the
   advisory landed. Age and adoption are visible from the first second; that is the signal we use.</p>
 
