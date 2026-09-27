@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MagSolutionsAI — Security review for AI-written pull requests</title>
-<meta name="description" content="Every pull request audited: dependencies that do not exist, were published days ago, or carry a published advisory — plus credentials, injection, unsafe model output and your Dockerfiles, workflows and Terraform. Flat price, free on public repos, and we publish our own false-positive rate.">
-<meta property="og:title" content="MagSolutionsAI — Security review for AI-written pull requests">
-<meta property="og:description" content="30% of npm malware sits on the registry over a day before any advisory. We flag age and adoption instead of waiting.">
+<title>MagSolutionsAI — A security check on every pull request, hosted in the EU</title>
+<meta name="description" content="A security check on every pull request that stops leaked keys and days-old packages before they merge — flat price for the whole team, and your code never leaves one EU server or touches an AI model. Free on public repositories.">
+<meta property="og:title" content="MagSolutionsAI — A security check on every pull request, hosted in the EU">
+<meta property="og:description" content="Leaked keys and days-old packages, stopped before merge. Flat price per team, code analysed in the EU, never sent to an AI model.">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="apple-touch-icon" href="logo-200.png">
 <link rel="canonical" href="https://magsolutionsai.com/">
@@ -19,8 +19,8 @@
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
 <meta property="og:site_name" content="MagSolutionsAI">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MagSolutionsAI — Security review for AI-written pull requests">
-<meta name="twitter:description" content="30% of npm malware sits on the registry over a day before any advisory. We flag age and adoption instead of waiting.">
+<meta name="twitter:title" content="MagSolutionsAI — A security check on every pull request, hosted in the EU">
+<meta name="twitter:description" content="Leaked keys and days-old packages, stopped before merge. Flat price per team, code analysed in the EU, never sent to an AI model.">
 <meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
 <script type="application/ld+json">
 {
@@ -34,9 +34,10 @@
   "url": "https://magsolutionsai.com/",
   "installUrl": "https://github.com/apps/magaudit-agent",
   "image": "https://magsolutionsai.com/logo-512.png",
-  "description": "A GitHub App that audits every pull request: dependencies that do not exist or were published days ago, dependencies with a published advisory, hardcoded credentials, SQL injection, insecure deserialization, unsafe handling of model output, and configuration — Dockerfiles, GitHub Actions workflows, Terraform and Kubernetes. Flat price per organisation, free on public repositories, and we publish our own false-positive rate.",
+  "description": "A GitHub App that runs a security check on every pull request: hardcoded credentials and keys shipped to the browser, recently published low-adoption dependencies, dependencies with a published advisory, injection, insecure deserialization, and configuration — Dockerfiles, GitHub Actions workflows, Terraform and Kubernetes. Flat price per organisation, code analysed on a server in the EU and never sent to an AI model, free on public repositories, and we publish our own false-positive rate.",
   "featureList": [
     "Detects recently published, low-adoption dependencies before any advisory exists",
+    "Code is analysed on a single server in the EU and never sent to an AI model",
     "Detects dependencies that do not exist in PyPI or npm",
     "Checks pinned dependency versions against the GitHub Advisory Database",
     "Suggests the correct package name, verified against the registry",
@@ -95,13 +96,19 @@
   <div class="wrap hero-grid">
 
     <div>
-      <div class="pill"><span class="dot"></span> Free for public repos · no SDK · no CI config</div>
+      <div class="pill"><span class="dot"></span> Flat price per team · hosted in the EU · no AI · free for public repos</div>
 
-      <h1>Your AI writes the code. <span class="hl">Something should read it</span> before you merge.</h1>
+      <h1>Stop leaked keys and days-old packages <span class="hl">before they merge.</span></h1>
 
       <p class="lede">
-        <b>The first report lands about a minute after you install</b> — on the code already in
-        your repository, not just on your next pull request.
+        One security check on every pull request, at <b>a flat price for the whole team</b>.
+        Your code is read on one server in Finland and <b>never sent to an AI model</b> or any
+        third party — only package names and versions go out, to the registries.
+      </p>
+      <p class="lede" style="margin-top:-.3rem;font-size:.95rem">
+        The check fails when it finds something serious, so it blocks the merge as soon as you
+        mark it as required. The first report lands about a minute after you install, on the code
+        already in your repository.
       </p>
       <p style="margin:-.4rem 0 1.1rem;font-size:.92rem;color:var(--fg-2)">
         Before you trust any of that:
@@ -131,15 +138,16 @@
         is created, and a tool that only reads diffs will never see it.
       </p>
     <p class="lede" style="margin-top:.9rem;font-size:.92rem">
-        We audit public pull requests every week to keep ourselves honest. In more than 1,400
+        We audit public pull requests every day to keep ourselves honest. In more than 1,400
         dependencies added by real developers we found <b>no invented packages</b> — the attack
         everyone writes about is rarer than the headlines suggest, and we would rather tell you
         that than sell you a scare. What we do find, on about one pull request in fifteen, is
-        credentials and injection. <a href="blog/advisory-window.html">Read the measurement</a>, or <a href="hallucination-index.html">see the live count</a>.
+        credentials and injection. <a href="blog/advisory-window.html">Read the measurement</a>, or <a href="https://api.magsolutionsai.com/measurement">see the live count</a>.
       </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem;color:var(--fg-3)">
-        Built for small and mid-size SaaS teams and agencies shipping React/Next.js and Python
-        with Copilot, Cursor or Claude — and for the CTO or lead who signs off on the merge.
+        Built for European software teams and agencies of five to twenty developers shipping
+        React/Next.js and Python with Copilot, Cursor or Claude — and for the lead who has to tell
+        a client where their code goes. <a href="trust.html">Where your code goes →</a>
       </p>
 
       </div>
@@ -168,40 +176,6 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
   </div>
 </section>
 
-<!-- ═══ 1b · LA PRUEBA QUE NADIE PUEDE COPIAR ══════════════
-     El argumento no es una opinion, es una imposibilidad: todo modelo tiene
-     fecha de corte. Se sirve en vivo desde /freshest para que el visitante lo
-     compruebe el mismo, que es mucho mas fuerte que pedirle que nos crea. -->
-<section class="band" id="proof">
-  <div class="wrap">
-    <div class="sec-hd">
-      <span class="lbl">02 — Try this before you read anything else</span>
-      <h2>Ask your AI whether these packages are real.</h2>
-      <p>These were uploaded to PyPI in the last few minutes. Copy any of them into
-        Copilot, Claude or ChatGPT and ask whether the package exists. It cannot know:
-        every model has a training cutoff, and these were published after all of them.
-        <b>We do not infer existence. We ask the registry.</b></p>
-    </div>
-
-    <div class="ent">
-      <ul id="freshlist" style="margin:0;padding-left:1.1rem;line-height:2">
-        <li style="color:var(--fg-3)">Loading the newest packages on PyPI&hellip;</li>
-      </ul>
-      <p class="plan-note" style="margin-top:.8rem">
-        Live from <code>pypi.org</code>, refreshed every five minutes. If the list is
-        empty, the query failed and we show nothing rather than invent a name.
-      </p>
-    </div>
-
-    <div class="ent" style="margin-top:.9rem">
-      <p><b>This is the whole argument.</b> A package name invented by a model looks
-        exactly like a real one, and the model that invented it cannot tell you which
-        it is. You cannot fix a hallucination with another hallucination. A registry
-        lookup is a fact with a timestamp, and you can reproduce it with
-        <code>curl</code> without trusting us at all.</p>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ 1c · CONTRA QUE SE NOS COMPARA, DICHO POR NOSOTROS ══
      Un comprador evalua GitHub Advanced Security y "ya se lo pido a Copilot".
@@ -210,7 +184,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
 <section class="band" id="alternatives">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">03 — What you are probably comparing us against</span>
+      <span class="lbl">02 — What you are probably comparing us against</span>
       <h2>Two honest comparisons.</h2>
     </div>
 
@@ -252,24 +226,27 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
     <div class="ent" style="margin-top:1rem">
       <p><b>Socket.dev</b> does the dependency half better than we do, and you should know that
         from us rather than from a search. They analyse package <em>behaviour</em> — install
-        scripts, network and filesystem access, obfuscated code — which we do not. They are free
-        for open source and free up to 1,000 scans a month. If dependency risk is your whole
-        problem, install Socket.</p>
-      <p>Where we differ is scope and billing. Socket looks at your dependencies; we look at the
-        dependency <em>and</em> the code in the same comment — hardcoded credentials, SQL built by
-        interpolation, insecure deserialization, model output rendered as raw HTML. And their paid
-        tier is $25 per seat per month, while ours is a flat price for the whole organisation.
-        Ten people: $250 a month there, &euro;69 here.</p>
+        scripts, network and filesystem access, obfuscated code — which we do not. Their free plan
+        covers unlimited developers and repositories, up to 1,000 scans a month, and blocks
+        malicious dependencies automatically. If dependency risk is your whole problem, install
+        Socket — for free.</p>
+      <p>Where we differ is scope. Socket looks at your dependencies; we look at the
+        dependency <em>and</em> the code in the same check — hardcoded credentials, keys shipped to
+        the browser, SQL built by interpolation, insecure deserialization, your workflows and
+        Terraform. If you need both halves on private repositories, their paid tier is $25 per
+        developer per month with a minimum of five; ours is a flat price for the whole
+        organisation. <a href="magaudit-vs-socket.html">The full comparison →</a></p>
+      <p class="plan-note">Prices as published on each vendor's pricing page on 27 September 2026.</p>
       <p class="plan-note">We would rather tell you who is better at one half than have you find
         out later and wonder what else we left out.</p>
     </div>
 
     <div class="ent" style="margin-top:1rem">
       <p><b>&ldquo;Why not just ask Copilot or Claude to review the pull request?&rdquo;</b>
-        Do that too, it helps. But an assistant reviewing a diff is guessing about
-        existence, and guessing is what created the problem. It also cannot see the rest
-        of your repository, so it does not know which of your routes are supposed to be
-        authenticated. Different job, different failure mode.</p>
+        Do that too, it helps with logic. But whether a package was published last Tuesday is
+        a registry fact, not a judgement, and a model cannot know it. It also means sending your
+        code to one more AI provider — a decision your own clients may want a say in. Different
+        job, different failure mode.</p>
     </div>
   </div>
 </section>
@@ -278,7 +255,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
 <section class="band" id="compare">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">04 — Why the tools you already pay for miss this</span>
+      <span class="lbl">03 — Why the tools you already pay for miss this</span>
       <h2>The dangerous package is not the one that is missing. It is the one that
         started existing on Tuesday.</h2>
       <p>A package that does not exist is not your problem: <code>pip install</code> fails, your
@@ -299,16 +276,17 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       <p><b>We measured the window.</b> Taking the 100 most recent npm malware advisories and
         comparing each package's publication date against its advisory date:</p>
       <ul style="margin:.6rem 0 .4rem;padding-left:1.2rem;line-height:1.9">
-        <li><b>30%</b> of them sat on the registry for <b>more than a day</b> before any
+        <li>The median gap is <b>zero days</b>: most are caught the same day.</li>
+        <li>But <b>30%</b> sat on the registry for <b>more than a day</b> before any
           advisory existed. The longest was <b>95 days</b>.</li>
         <li><b>95%</b> were <b>less than 30 days old</b> when the advisory finally landed.</li>
       </ul>
-      <p>Read those two lines together and you get the whole product. During that window every
+      <p>During that window every
         CVE-based scanner reports the package as fine, because there is genuinely nothing to
         find. But <b>the package is days old and nobody is using it</b>, and that is visible from
         the registry the moment it lands in your pull request. We do not wait for the advisory.
         We flag the age and the adoption.</p>
-      <p class="plan-note">In our weekly sweeps that rule fires on roughly one in every 290
+      <p class="plan-note">In our sweeps of public pull requests that rule fires on roughly one in every 290
         dependencies added by real developers, so it is not a bot that shouts. Both numbers are
         reproducible against the GitHub Advisory Database and the npm registry without trusting
         us at all.</p>
@@ -319,8 +297,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
         <div class="col-hd">Conventional dependency scanning</div>
         <ul>
           <li><span class="mk">✕</span><span><b>Needs an advisory to fire.</b> Measured on the 100 most recent npm malware advisories: 30% arrived more than a day after the package was published, one of them 95 days later. Until then, silence reads as safety.</span></li>
-          <li><span class="mk">✕</span><span><b>Analyses behaviour, not existence.</b> Sandboxing a package requires downloading it — there is nothing to download when the name is pure hallucination.</span></li>
-          <li><span class="mk">✕</span><span><b>40–60% false positives</b> is the industry norm for SAST. Teams learn to scroll past the bot.</span></li>
+          <li><span class="mk">✕</span><span><b>Billed per developer.</b> The bill grows with every hire, and a team of ten pays for ten seats.</span></li>
           <li><span class="mk">✕</span><span><b>Flags the problem, stops there.</b> "Unknown package" without telling you what you meant to type.</span></li>
         </ul>
       </div>
@@ -330,11 +307,39 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
         <ul>
           <li><span class="mk">✓</span><span><b>Asks the registry directly.</b> HTTP 404 is not a heuristic — it is a fact, with a timestamp you can reproduce with curl.</span></li>
           <li><span class="mk">✓</span><span><b>Catches the claimed ones too.</b> Existence isn't enough: a package published 6 days ago with 40 downloads gets flagged as well.</span></li>
-          <li><span class="mk">✓</span><span><b>A fact, not an opinion.</b> A 404 from the registry is not a heuristic. The judgement is in <em>what</em> we ask about, and that is where we measure ourselves: we audit public pull requests every week and publish what we get wrong.</span></li>
+          <li><span class="mk">✓</span><span><b>A fact, not an opinion.</b> A 404 from the registry is not a heuristic. The judgement is in <em>what</em> we ask about, and that is where we measure ourselves: we audit public pull requests every day and publish what we get wrong.</span></li>
           <li><span class="mk">✓</span><span><b>Gives you the right name.</b> Candidate corrections are verified against the registry before being suggested. Never a guess.</span></li>
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ 1b · LA PRUEBA QUE NADIE PUEDE COPIAR ══════════════
+     El argumento no es una opinion, es una imposibilidad: todo modelo tiene
+     fecha de corte. Se sirve en vivo desde /freshest para que el visitante lo
+     compruebe el mismo, que es mucho mas fuerte que pedirle que nos crea. -->
+<section class="band" id="proof">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">04 — Why we ask the registry, not a model</span>
+      <h2>Ask your AI whether these packages are real.</h2>
+      <p>These were uploaded to PyPI in the last few minutes. Copy any of them into
+        Copilot, Claude or ChatGPT and ask whether the package exists. It cannot know:
+        every model has a training cutoff, and these were published after all of them.
+        <b>We do not infer existence. We ask the registry.</b></p>
+    </div>
+
+    <div class="ent">
+      <ul id="freshlist" style="margin:0;padding-left:1.1rem;line-height:2">
+        <li style="color:var(--fg-3)">Loading the newest packages on PyPI&hellip;</li>
+      </ul>
+      <p class="plan-note" style="margin-top:.8rem">
+        Live from <code>pypi.org</code>, refreshed every five minutes. If the list is
+        empty, the query failed and we show nothing rather than invent a name.
+      </p>
+    </div>
+
   </div>
 </section>
 
@@ -505,14 +510,17 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
           <b>Run the curl yourself</b> — the finding either reproduces or it doesn't.</p>
       </div>
       <div class="tcard rv">
-        <span class="lbl">Zero code retention</span>
-        <p>Diffs are analysed in memory and discarded. We store installation ID, repo name, PR
-          number and risk level. <b>Never your source, never a detected secret.</b></p>
+        <span class="lbl">Nothing written to disk</span>
+        <p>Diffs are analysed in memory and never written to disk. The report linked from the pull
+          request keeps the flagged line in memory for up to seven days, then it is gone. We store
+          installation ID, repo name, PR number and risk level — <b>never your source, never a
+          detected secret</b>.</p>
       </div>
       <div class="tcard rv">
         <span class="lbl">No third parties</span>
-        <p>Only a package <b>name</b> leaves our server — to PyPI, to npm, and to GitHub's own
-          advisory database. <b>That list is the whole list</b>, and it is the reason we can say we
+        <p>Only package <b>names</b> (and, for the advisory check, the pinned version) leave our
+          server — to PyPI, to npm, and to GitHub's own advisory database. No AI model ever sees
+          your code. <b>That list is the whole list</b>, and it is the reason we can say we
           never test whether a credential you committed actually works: there is nowhere for us to
           test it. We chose GitHub's advisory database over the alternatives specifically so the
           list would not grow. No third-party analytics,
@@ -528,7 +536,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       <div class="tcard rv">
         <span class="lbl">EU infrastructure</span>
         <p>Hosted in Finland. Webhooks verified with HMAC-SHA256 over TLS 1.2+. GDPR Art. 33 breach
-          notification in <b>72 hours</b>. <a href="privacy.html">Full policy →</a></p>
+          notification in <b>72 hours</b>. <a href="trust.html">Trust and security →</a></p>
       </div>
     </div>
 
@@ -558,8 +566,10 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
 
     <div class="limits rv">
       <b>What this is not.</b> An automated static analysis tool and an aid to review — not a
-      guarantee of security. It analyses only the lines added in a pull request: not your existing
-      codebase, your infrastructure or your runtime. Registry checks reflect a point in time — a
+      guarantee of security. It analyses the lines added in each pull request and, once at
+      install, a limited sample of the code already there (up to 5 repositories, 40 files each) —
+      not your whole codebase, your infrastructure or your runtime. It matches patterns, so it does
+      not find logic flaws. Registry checks reflect a point in time — a
       package that does not exist today may be registered by an attacker minutes later.
       <b>The absence of findings does not mean your code is secure.</b> Every finding carries its
       exact location precisely so a human can verify it.
@@ -569,13 +579,13 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
 
   <section class="band" style="text-align:center">
     <div class="wrap">
-      <span class="lbl" style="display:block;margin-bottom:.8rem">Public data</span>
+      <span class="lbl" style="display:block;margin-bottom:.8rem">Before you install</span>
       <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);font-weight:760;margin-bottom:.9rem">
-        We publish what the machines invent.</h2>
+        Where your code goes, who touches it, and what we do not have.</h2>
       <p style="color:var(--fg-2);max-width:56ch;margin:0 auto 1.6rem">
-        A live record of package names that don't exist — and which ones somebody registered
-        after we first saw them. Free, no signup. Published datasets measure what a model invents on benchmark tasks; this one measures what reaches real pull requests.</p>
-      <a class="btn btn-2" href="hallucination-index.html">Open the Hallucination Index →</a>
+        Every organisation that processes data for us, what each one receives, how long we keep
+        anything, and the certifications we do not hold — on one page.</p>
+      <a class="btn btn-2" href="trust.html">Trust and security →</a>
     </div>
   </section>
 
@@ -598,6 +608,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
         <h3>Evidence</h3>
         <ul>
           <li><a href="quality.html">How often we are wrong</a></li>
+          <li><a href="trust.html">Trust and security</a></li>
           <li><a href="hallucination-index.html">Hallucination index</a></li>
           <li><a href="https://api.magsolutionsai.com/measurement">Live field figures</a></li>
           <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence">The corpus</a></li>
@@ -606,6 +617,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       <div>
         <h3>Compare</h3>
         <ul>
+          <li><a href="magaudit-vs-socket.html">vs. Socket</a></li>
           <li><a href="magaudit-vs-coderabbit.html">vs. CodeRabbit</a></li>
           <li><a href="magaudit-vs-gitguardian.html">vs. GitGuardian</a></li>
           <li><a href="magaudit-vs-trufflehog.html">vs. TruffleHog</a></li>

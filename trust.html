@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trust and security — MagSolutionsAI</title>
+<meta name="description" content="Where your code is read, what leaves the server, what we store and for how long, who processes data for us, and the certifications we do not hold. Written for vendor review.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/trust.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html">
+<link rel="stylesheet" href="style.css?v=8">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Home</a><a href="pricing.html">Pricing</a><a href="quality.html">Our error rate</a><a href="blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>Trust and security</h1>
+  <p class="upd">Last reviewed: 27 September 2026. Written for whoever does vendor review. The
+  binding texts are the <a href="privacy.html">privacy policy</a> and the
+  <a href="terms.html">terms</a>; where this page and they differ, they win.</p>
+
+  <h2>1. Where your code goes</h2>
+  <div class="tw"><table>
+    <tr><th>Question</th><th>Answer</th></tr>
+    <tr><td>Where is my code read?</td><td>On one dedicated server run by Hetzner Online GmbH in
+      Finland (European Union). Nowhere else.</td></tr>
+    <tr><td>Does any AI model see it?</td><td><strong>No.</strong> The checks are deterministic.
+      Your code is never sent to an AI model, and an automated test blocks our deployment if any
+      part of the service is wired to one.</td></tr>
+    <tr><td>What leaves the server?</td><td>Package names — and, for the advisory check, the pinned
+      version — to <code>pypi.org</code>, <code>registry.npmjs.org</code> and
+      <code>api.github.com</code>. That list is the whole list.</td></tr>
+    <tr><td>What do you write to disk?</td><td>Installation ID, organisation, repository name,
+      pull request number, risk level, counts and billing data. <strong>Never your source code and
+      never the value of a secret we detect.</strong></td></tr>
+    <tr><td>And the report linked from the pull request?</td><td>Held in memory only, for up to
+      seven days, and lost if the service restarts. It includes the flagged lines so the person
+      reading it can see them.</td></tr>
+    <tr><td>What happens when I uninstall?</td><td>Access ends immediately, and the stored data
+      about your organisation is deleted automatically. If you were on a paid plan we keep only
+      the link to your Stripe customer, anonymised, so a subscription can be cancelled or refunded
+      cleanly.</td></tr>
+  </table></div>
+  <p>The complete list of organisations that process data for us — hosting, payments, email,
+  this website — and exactly what each one receives is in
+  <a href="privacy.html">section 3 of the privacy policy</a>.</p>
+
+  <h2>2. What we do not have</h2>
+  <ul>
+    <li><strong>No SOC 2 and no ISO 27001.</strong> We have not been audited against either.</li>
+    <li><strong>No uptime commitment.</strong> One server, one person. If the service is down,
+      the check does not run. If you made it a required check, GitHub waits for it; repository
+      admins can merge anyway or remove the requirement.</li>
+    <li><strong>No logic review.</strong> We match patterns. A reviewer that understands your
+      code will find flaws we cannot — our own <a href="magaudit-vs-coderabbit.html">benchmark</a>
+      shows one.</li>
+  </ul>
+  <p>If your vendor review requires any of these, we are not the right vendor for you yet, and
+  we would rather you knew now than after a trial. We will start a certification when a paying
+  customer's review requires one, and we will say so on this page when we do.</p>
+
+  <h2>3. How the service is run</h2>
+  <ul>
+    <li>Every webhook from GitHub is verified with HMAC-SHA256 before anything is processed.</li>
+    <li>The server is reached by SSH key only — the administrator account refuses passwords and
+      every other account is locked — behind a firewall that denies incoming traffic by default.</li>
+    <li>Dependencies are pinned and watched by Dependabot; on 27 September 2026 there were no
+      open alerts.</li>
+    <li>A deployment is refused unless more than 1,200 automated tests pass, and unless every
+      figure and promise we publish still matches what the code does.</li>
+    <li>When we detect a credential we report where it is. <strong>We never test whether it
+      works</strong>, and we never store or print its value.</li>
+  </ul>
+
+  <h2>4. How often we are wrong</h2>
+  <p>Every false positive we have fixed is pinned by a regression test built from the exact line
+  we got wrong, in a real public repository, with the pull request cited.
+  <a href="quality.html">The record is public →</a></p>
+
+  <h2>5. If something goes wrong</h2>
+  <p>If a personal data breach occurs we notify the supervisory authority within 72 hours, as
+  Article 33 GDPR requires, and affected organisations without undue delay. If you find a
+  vulnerability in our service, write to
+  <a href="mailto:contact@magsolutionsai.com?subject=Security">contact@magsolutionsai.com</a>
+  with the subject &ldquo;Security&rdquo; and please do not open a public issue.</p>
+
+  <h2>6. Who is behind it</h2>
+  <p>MagSolutionsAI is built and run by one person in Spain, under Spanish law. The
+  service went live in July 2026 and has no paying customers yet; we will not show logos or
+  testimonials until there are real ones.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Install on GitHub &rarr;</a></p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+  </div>
+</footer>
+</body>
+</html>

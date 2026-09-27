@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confianza y seguridad — MagSolutionsAI</title>
+<meta name="description" content="Dónde se lee tu código, qué sale del servidor, qué guardamos y cuánto tiempo, quién trata datos por cuenta nuestra y qué certificaciones no tenemos. Escrito para la revisión de proveedores.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/trust.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html">
+<link rel="stylesheet" href="../style.css?v=8">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a><a href="pricing.html">Precios</a><a href="quality.html">Nuestra tasa de error</a><a href="../blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>Confianza y seguridad</h1>
+  <p class="upd">Última revisión: 27 de septiembre de 2026. Escrito para quien hace la revisión
+  de proveedores. Los textos que obligan son la <a href="privacy.html">política de
+  privacidad</a> y los <a href="terms.html">términos</a>; si esta página y ellos no coinciden,
+  mandan ellos.</p>
+
+  <h2>1. Dónde va tu código</h2>
+  <div class="tw"><table>
+    <tr><th>Pregunta</th><th>Respuesta</th></tr>
+    <tr><td>¿Dónde se lee mi código?</td><td>En un único servidor dedicado de Hetzner Online GmbH
+      en Finlandia (Unión Europea). En ningún otro sitio.</td></tr>
+    <tr><td>¿Lo ve algún modelo de IA?</td><td><strong>No.</strong> Las comprobaciones son
+      deterministas. Tu código nunca se envía a un modelo de IA, y una prueba automática bloquea
+      nuestro despliegue si alguna parte del servicio se conecta a uno.</td></tr>
+    <tr><td>¿Qué sale del servidor?</td><td>Nombres de paquete —y, para el aviso de
+      vulnerabilidades, la versión fijada— hacia <code>pypi.org</code>,
+      <code>registry.npmjs.org</code> y <code>api.github.com</code>. Esa es la lista
+      completa.</td></tr>
+    <tr><td>¿Qué escribís en disco?</td><td>ID de instalación, organización, nombre del
+      repositorio, número de pull request, nivel de riesgo, recuentos y datos de facturación.
+      <strong>Nunca tu código fuente ni el valor de un secreto que detectemos.</strong></td></tr>
+    <tr><td>¿Y el informe enlazado desde el pull request?</td><td>Solo en memoria, hasta siete
+      días, y se pierde si el servicio se reinicia. Incluye las líneas marcadas para que quien lo
+      lea pueda verlas.</td></tr>
+    <tr><td>¿Qué pasa si desinstalo?</td><td>El acceso termina en el acto y los datos guardados
+      sobre tu organización se borran automáticamente. Si tenías un plan de pago conservamos
+      solo el vínculo con tu cliente de Stripe, anonimizado, para poder cancelar o devolver una
+      suscripción sin problemas.</td></tr>
+  </table></div>
+  <p>La lista completa de organizaciones que tratan datos por cuenta nuestra —alojamiento,
+  pagos, correo, esta web— y qué recibe exactamente cada una está en el
+  <a href="privacy.html">apartado 3 de la política de privacidad</a>.</p>
+
+  <h2>2. Lo que no tenemos</h2>
+  <ul>
+    <li><strong>Ni SOC 2 ni ISO 27001.</strong> No nos han auditado contra ninguna de las dos.</li>
+    <li><strong>Ningún compromiso de disponibilidad.</strong> Un servidor, una persona. Si el
+      servicio está caído, el check no se ejecuta. Si lo marcaste como obligatorio, GitHub lo
+      espera; los administradores del repositorio pueden fusionar igualmente o quitar el
+      requisito.</li>
+    <li><strong>Ninguna revisión de lógica.</strong> Buscamos patrones. Un revisor que entienda
+      tu código encontrará fallos que nosotros no — nuestro propio
+      <a href="magaudit-vs-coderabbit.html">benchmark</a> enseña uno.</li>
+  </ul>
+  <p>Si tu revisión de proveedores exige alguna de estas cosas, hoy no somos tu proveedor, y
+  preferimos que lo sepas ahora que después de una prueba. Empezaremos una certificación cuando
+  la revisión de un cliente de pago la exija, y lo diremos en esta página cuando ocurra.</p>
+
+  <h2>3. Cómo se opera el servicio</h2>
+  <ul>
+    <li>Cada webhook de GitHub se verifica con HMAC-SHA256 antes de procesar nada.</li>
+    <li>Al servidor solo se entra con clave SSH —la cuenta de administración rechaza contraseñas
+      y todas las demás están bloqueadas—, detrás de un cortafuegos que deniega por defecto el
+      tráfico entrante.</li>
+    <li>Las dependencias están fijadas y vigiladas por Dependabot; el 27 de septiembre de 2026 no
+      había ningún aviso abierto.</li>
+    <li>Un despliegue se rechaza si no pasan más de 1.200 pruebas automáticas, y si alguna cifra o
+      promesa que publicamos ha dejado de coincidir con lo que hace el código.</li>
+    <li>Cuando detectamos una credencial decimos dónde está. <strong>Nunca comprobamos si
+      funciona</strong>, y nunca guardamos ni mostramos su valor.</li>
+  </ul>
+
+  <h2>4. Cuántas veces nos equivocamos</h2>
+  <p>Cada falso positivo que hemos corregido queda fijado con una prueba de regresión construida
+  con la línea exacta que marcamos mal, en un repositorio público real, con su pull request
+  citado. <a href="quality.html">El registro es público →</a></p>
+
+  <h2>5. Si algo sale mal</h2>
+  <p>Si hay una brecha de datos personales, lo notificamos a la autoridad de control en 72 horas,
+  como exige el artículo 33 del RGPD, y a las organizaciones afectadas sin dilación indebida. Si
+  encuentras una vulnerabilidad en nuestro servicio, escribe a
+  <a href="mailto:contact@magsolutionsai.com?subject=Security">contact@magsolutionsai.com</a>
+  con el asunto «Security», y por favor no abras una incidencia pública.</p>
+
+  <h2>6. Quién hay detrás</h2>
+  <p>MagSolutionsAI lo construye y lo opera una sola persona en España, bajo la ley española. El
+  servicio salió en julio de 2026 y todavía no tiene clientes de pago; no enseñaremos logos ni
+  testimonios hasta que los haya de verdad.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Instalar en GitHub &rarr;</a></p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a><a href="terms.html">Términos</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+  </div>
+</footer>
+</body>
+</html>

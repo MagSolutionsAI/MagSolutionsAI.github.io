@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MagSolutionsAI — Revisión de seguridad para pull requests escritos con IA</title>
-<meta name="description" content="Cada pull request auditado en busca de credenciales en el código, inyección SQL, deserialización insegura, salida de LLM sin filtrar y dependencias que no existen en ningún registro. Un comentario en el PR con el fichero, la línea y la corrección.">
-<meta name="keywords" content="slopsquatting, paquetes alucinados, dependencias falsas, comprobar paquete pypi, escaner dependencias, seguridad cadena de suministro, GitHub App seguridad">
-<meta property="og:title" content="MagSolutionsAI — Revisión de seguridad para pull requests escritos con IA">
-<meta property="og:description" content="Credenciales, inyección y paquetes que no existen. Comprobado en cada pull request, antes del merge.">
+<title>MagSolutionsAI — Un check de seguridad en cada pull request, alojado en la UE</title>
+<meta name="description" content="Un check de seguridad en cada pull request que para claves filtradas y paquetes de hace días antes de fusionar — precio plano para todo el equipo, y tu código no sale de un servidor en la UE ni pasa por ninguna IA. Gratis en repositorios públicos.">
+<meta name="keywords" content="seguridad pull request, credenciales filtradas, secretos en el código, dependencias maliciosas, cadena de suministro, RGPD, GitHub App seguridad, alojado en la UE">
+<meta property="og:title" content="MagSolutionsAI — Un check de seguridad en cada pull request, alojado en la UE">
+<meta property="og:description" content="Claves filtradas y paquetes de hace días, parados antes del merge. Precio plano por equipo, código analizado en la UE y nunca enviado a un modelo de IA.">
 <meta property="og:url" content="https://magsolutionsai.com/es/">
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
 <meta property="og:locale" content="es_ES">
@@ -31,7 +31,7 @@
   "installUrl": "https://github.com/apps/magaudit-agent",
   "image": "https://magsolutionsai.com/logo-512.png",
   "inLanguage": "es",
-  "description": "GitHub App que revisa cada pull request en busca de credenciales en el código, inyección SQL, deserialización insegura, salida de modelo sin filtrar y dependencias que no existen en PyPI ni en npm.",
+  "description": "GitHub App que pasa un check de seguridad a cada pull request: credenciales en el código y claves enviadas al navegador, dependencias recién publicadas y poco usadas, dependencias con aviso publicado, inyección, deserialización insegura y configuración (Dockerfiles, workflows, Terraform, Kubernetes). Precio plano por organización, código analizado en un servidor en la UE y nunca enviado a un modelo de IA.",
   "publisher": {
     "@type": "Organization",
     "name": "MagSolutionsAI",
@@ -78,13 +78,20 @@
   <div class="wrap hero-grid">
 
     <div>
-      <div class="pill"><span class="dot"></span> Gratis para repos públicos · sin SDK · sin tocar el CI</div>
+      <div class="pill"><span class="dot"></span> Precio plano por equipo · alojado en la UE · sin IA · gratis en repos públicos</div>
 
-      <h1>La IA escribe el código. <span class="hl">Alguien debería leerlo</span> antes del merge.</h1>
+      <h1>Para claves filtradas y paquetes de hace días <span class="hl">antes del merge.</span></h1>
 
       <p class="lede">
-        <b>El primer informe llega un minuto después de instalar</b> — sobre el código que ya está
-        en tu repositorio, no solo sobre tu siguiente pull request.
+        Un check de seguridad en cada pull request, con <b>un precio plano para todo el
+        equipo</b>. Tu código se lee en un servidor en Finlandia y <b>nunca se envía a un modelo
+        de IA</b> ni a ningún tercero: solo salen nombres y versiones de paquete, hacia los
+        registros.
+      </p>
+      <p class="lede" style="margin-top:-.3rem;font-size:.95rem">
+        El check falla cuando encuentra algo grave, así que bloquea el merge en cuanto lo marcas
+        como obligatorio. El primer informe llega cerca de un minuto después de instalar, sobre
+        el código que ya está en tu repositorio.
       </p>
       <p style="margin:-.4rem 0 1.1rem;font-size:.92rem;color:var(--fg-2)">
         Antes de creerte nada de esto:
@@ -98,10 +105,12 @@
       </div>
       <p class="lede" style="margin-top:1.2rem">
         Empezamos por el código que ya está ahí, porque el fallo que más encontramos no se añade
-        nunca en un PR. A partir de ahí: credenciales en el código, SQL construido concatenando
-        cadenas, deserialización insegura, salida del modelo pintada como HTML sin filtrar, y
-        dependencias que <b>no existen en ningún registro</b>. Los hallazgos llegan como
-        comentario en el pull request, con el fichero, la línea y la corrección.
+        nunca en un pull request. A partir de ahí, cada dependencia que añadas se comprueba por
+        <b>su antigüedad y por si alguien la usa de verdad</b> — el perfil de un paquete que un
+        atacante registró la semana pasada, que se instala sin decir nada y todavía no tiene
+        aviso. Y además credenciales en el código, SQL construido concatenando cadenas,
+        deserialización insegura y salida del modelo pintada como HTML sin filtrar. Los hallazgos
+        llegan como comentario en el pull request, con el fichero, la línea y la corrección.
       </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem">
         Esta es la medición que nos hizo construirlo así. Buscamos un fallo concreto —una clave de
@@ -111,17 +120,18 @@
         apareció en <b>siete</b>. Se escribe una sola vez, el día que se crea el proyecto, y una
         herramienta que solo lee diffs no lo va a ver nunca.
       </p>
-    <p class="lede" style="margin-top:.9rem;font-size:.92rem">
-        Auditamos pull requests públicos cada semana para no engañarnos. En más de 1.400
+      <p class="lede" style="margin-top:.9rem;font-size:.92rem">
+        Auditamos pull requests públicos cada día para no engañarnos. En más de 1.400
         dependencias añadidas por desarrolladores reales no encontramos <b>ningún paquete
         inventado</b>: el ataque del que todo el mundo escribe es más raro de lo que sugieren los
         titulares, y preferimos decírtelo a venderte un susto. Lo que sí aparece, en torno a un
         pull request de cada quince, son credenciales e inyección.
-        <a href="../blog/advisory-window.html">Lee la medición</a>, o <a href="hallucination-index.html">mira el recuento en vivo</a>.
+        <a href="../blog/advisory-window.html">Lee la medición</a>, o <a href="https://api.magsolutionsai.com/measurement">mira el recuento en vivo</a>.
       </p>
       <p class="lede" style="margin-top:.9rem;font-size:.92rem;color:var(--fg-3)">
-        Para equipos SaaS pequeños y medianos y agencias que entregan React/Next.js y Python con
-        Copilot, Cursor o Claude — y para el CTO o lead que aprueba el merge.
+        Pensado para equipos de software y agencias europeas de cinco a veinte desarrolladores
+        que entregan React/Next.js y Python con Copilot, Cursor o Claude — y para quien tiene que
+        explicarle a un cliente dónde va su código. <a href="trust.html">Dónde va tu código →</a>
       </p>
 
       </div>
@@ -149,11 +159,136 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
   </div>
 </section>
 
-<!-- ═══ 1b · LA PRUEBA QUE NADIE PUEDE COPIAR ══════════════ -->
+<!-- ═══ 2 · CONTRA QUÉ SE NOS COMPARA ═════════════════════ -->
+<section class="band" id="alternatives">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">02 — Con qué nos estás comparando</span>
+      <h2>Dos comparaciones honestas.</h2>
+    </div>
+
+    <div class="vs">
+      <div class="col old rv">
+        <div class="col-hd">GitHub Advanced Security</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Hace muchísimo más que nosotros.</b> Análisis
+            completo de CodeQL, cientos de patrones de credenciales, push protection, panel de
+            seguridad. Si necesitas todo eso, cómpralo: no somos un sustituto.</span></li>
+          <li><span class="mk">✕</span><span><b>Se factura por persona.</b> Secret Protection
+            cuesta 19 $ y Code Security 30 $ por committer activo y mes en repositorios
+            privados. Un equipo de diez paga unos 490 $ al mes.</span></li>
+          <li><span class="mk">✕</span><span><b>Espera a que haya aviso.</b> Busca
+            vulnerabilidades conocidas. Medido sobre los 100 avisos de malware npm más
+            recientes, el 30 % llegó más de un día después de publicarse el paquete, y uno tardó
+            95 días. Hasta entonces, da el paquete por bueno.</span></li>
+        </ul>
+      </div>
+      <div class="col new rv">
+        <div class="col-hd">MagSolutionsAI</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Precio plano por organización.</b> Desde 29 €
+            al mes para todo el equipo, con la gente que haga falta. Sin cuentas por asiento ni
+            sustos en la factura al contratar.</span></li>
+          <li><span class="mk">✓</span><span><b>Mira la antigüedad y el uso, no solo fallos
+            conocidos.</b> El 95 % de ese malware tenía menos de 30 días cuando llegó el aviso, y
+            un paquete de hace días sin descargas se ve en el registro al instante.</span></li>
+          <li><span class="mk">✕</span><span><b>Es una herramienta estrecha, a propósito.</b>
+            Cubrimos el puñado de cosas que el código escrito con IA hace mal. No pretendemos
+            ser una plataforma de seguridad completa, y lo decimos.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ent" style="margin-top:1rem">
+      <p><b>Socket</b> hace la mitad de las dependencias mejor que nosotros, y es mejor que lo
+        sepas por nosotros que por un buscador. Analiza el <em>comportamiento</em> del paquete
+        —scripts de instalación, acceso a red y a disco, código ofuscado—, cosa que nosotros no
+        hacemos. Su plan gratuito cubre desarrolladores y repositorios ilimitados, hasta 1.000
+        escaneos al mes, y bloquea dependencias maliciosas automáticamente. Si tu único problema
+        son las dependencias, instala Socket: es gratis.</p>
+      <p>Donde nos diferenciamos es en el alcance. Socket mira tus dependencias; nosotros miramos
+        la dependencia <em>y</em> el código en el mismo check: credenciales escritas a mano,
+        claves enviadas al navegador, SQL concatenado, deserialización insegura, tus workflows y
+        tu Terraform. Si necesitas las dos mitades en repositorios privados, su plan de pago
+        cuesta 25 $ por desarrollador y mes con un mínimo de cinco; el nuestro es un precio plano
+        para toda la organización. <a href="magaudit-vs-socket.html">La comparación completa →</a></p>
+      <p class="plan-note">Precios tal como aparecían en la página de cada proveedor el 27 de
+        septiembre de 2026.</p>
+    </div>
+
+    <div class="ent" style="margin-top:1rem">
+      <p><b>«¿Y por qué no le pido a Copilot o a Claude que revise el PR?»</b>
+        Hazlo también: ayuda con la lógica. Pero si un paquete se publicó el martes pasado es un
+        dato del registro, no una opinión, y un modelo no puede saberlo. Además supone mandar tu
+        código a un proveedor de IA más — una decisión en la que tus clientes quizá quieran
+        opinar. Otro trabajo, otro modo de fallar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3 · LO QUE NO VE LO QUE YA PAGAS ═════════════════ -->
+<section class="band" id="compare">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="lbl">03 — Por qué no lo ve lo que ya pagas</span>
+      <h2>El paquete peligroso no es el que falta. Es el que empezó a existir el martes.</h2>
+      <p>Un paquete que no existe no es tu problema: <code>pip install</code> falla, el CI se
+        pone en rojo y alguien lo arregla en un minuto. También lo medimos: en 1.778
+        dependencias añadidas en pull requests públicos reales encontramos <b>cero</b> paquetes
+        inventados, y lo decimos en la portada.</p>
+      <p>El problema es el contrario. El atacante registró el nombre, así que el paquete
+        <b>sí</b> existe, <code>pip install</code> funciona sin decir nada y ejecuta su script
+        de instalación. Lo único que te salva entonces es un aviso de seguridad — y el aviso
+        todavía no está.</p>
+    </div>
+
+    <div class="ent" style="margin-bottom:1.1rem">
+      <p><b>Medimos esa ventana.</b> Con los 100 avisos de malware npm más recientes,
+        comparando la fecha de publicación de cada paquete con la de su aviso:</p>
+      <ul style="margin:.6rem 0 .4rem;padding-left:1.2rem;line-height:1.9">
+        <li>La mediana es de <b>cero días</b>: la mayoría se detecta el mismo día.</li>
+        <li>Pero el <b>30 %</b> estuvo en el registro <b>más de un día</b> sin ningún aviso, y
+          el caso más largo fueron <b>95 días</b>.</li>
+        <li>El <b>95 %</b> tenía <b>menos de 30 días</b> cuando por fin llegó el aviso.</li>
+      </ul>
+      <p>Durante esa ventana, todo escáner basado en CVE da el paquete por bueno, porque de
+        verdad no hay nada que encontrar. Pero <b>el paquete tiene días y casi nadie lo usa</b>,
+        y eso el registro lo dice en cuanto aparece en tu pull request. No esperamos al aviso:
+        marcamos la antigüedad y el uso.</p>
+      <p class="plan-note">En nuestros barridos de pull requests públicos esa regla salta en
+        torno a una de cada 290 dependencias añadidas por desarrolladores reales, así que no es
+        un bot que grita. Las dos cifras se reproducen con la base de avisos de GitHub y el
+        registro de npm sin fiarse de nosotros.</p>
+    </div>
+
+    <div class="vs">
+      <div class="col old rv">
+        <div class="col-hd">Escaneo de dependencias convencional</div>
+        <ul>
+          <li><span class="mk">✕</span><span><b>Necesita un aviso para saltar.</b> El 30 % de esos avisos llegó más de un día tarde, uno de ellos 95 días. Hasta entonces, el silencio se lee como seguridad.</span></li>
+          <li><span class="mk">✕</span><span><b>Se factura por desarrollador.</b> La factura crece con cada contratación, y un equipo de diez paga diez puestos.</span></li>
+          <li><span class="mk">✕</span><span><b>Señala el problema y ahí se queda.</b> «Paquete desconocido», sin decirte qué querías escribir.</span></li>
+        </ul>
+      </div>
+
+      <div class="col now rv">
+        <div class="col-hd">MagSolutionsAI</div>
+        <ul>
+          <li><span class="mk">✓</span><span><b>Pregunta al registro directamente.</b> Un HTTP 404 no es una heurística: es un hecho, con hora, que puedes reproducir con <code>curl</code>.</span></li>
+          <li><span class="mk">✓</span><span><b>También pilla los ya reclamados.</b> Existir no basta: un paquete publicado hace 6 días con 40 descargas también salta.</span></li>
+          <li><span class="mk">✓</span><span><b>Un hecho, no una opinión.</b> El criterio está en <em>qué</em> preguntamos, y ahí es donde nos medimos: auditamos pull requests públicos cada día y publicamos en qué nos equivocamos.</span></li>
+          <li><span class="mk">✓</span><span><b>Te da el nombre correcto.</b> Cada corrección se verifica contra el registro antes de proponerla. Nunca una conjetura.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4 · POR QUÉ EL REGISTRO Y NO UN MODELO ════════════ -->
 <section class="band" id="proof">
   <div class="wrap">
     <div class="sec-hd">
-      <span class="lbl">02 — Pruébalo antes de leer nada más</span>
+      <span class="lbl">04 — Por qué preguntamos al registro y no a un modelo</span>
       <h2>Pregúntale a tu IA si estos paquetes existen.</h2>
       <p>Se subieron a PyPI hace unos minutos. Copia cualquiera y pregúntale a Copilot,
         Claude o ChatGPT si el paquete es real. No puede saberlo: todo modelo tiene fecha
@@ -169,96 +304,6 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
         En vivo desde <code>pypi.org</code>, cada cinco minutos. Si la lista sale vacía es que
         la consulta falló, y preferimos no enseñar nada antes que inventarnos un nombre.
       </p>
-    </div>
-
-    <div class="ent" style="margin-top:.9rem">
-      <p><b>Este es el argumento entero.</b> Un nombre de paquete inventado por un modelo es
-        idéntico a uno real, y el modelo que lo inventó no puede decirte cuál es cuál. Una
-        alucinación no se arregla con otra alucinación. Una consulta al registro es un hecho
-        con fecha, y puedes reproducirla con <code>curl</code> sin fiarte de nosotros.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 1c · CONTRA QUÉ SE NOS COMPARA ═════════════════════ -->
-<section class="band" id="alternatives">
-  <div class="wrap">
-    <div class="sec-hd">
-      <span class="lbl">03 — Con qué nos estás comparando</span>
-      <h2>Dos comparaciones honestas.</h2>
-    </div>
-
-    <div class="vs">
-      <div class="col old rv">
-        <div class="col-hd">GitHub Advanced Security</div>
-        <ul>
-          <li><span class="mk">✓</span><span><b>Hace muchísimo más que nosotros.</b> Análisis
-            completo de CodeQL, cientos de patrones de credenciales, push protection, panel de
-            seguridad. Si necesitas todo eso, cómpralo: no somos un sustituto.</span></li>
-          <li><span class="mk">✕</span><span><b>Se factura por persona.</b> Secret Protection
-            cuesta 19 $ y Code Security 30 $ por committer activo y mes en repositorios
-            privados. Un equipo de diez paga unos 490 $ al mes.</span></li>
-          <li><span class="mk">✕</span><span><b>Sigue dando por hecho que el paquete existe.</b>
-            Busca vulnerabilidades conocidas en paquetes reales. Un nombre inventado hace cinco
-            minutos no tiene CVE ni historial.</span></li>
-        </ul>
-      </div>
-      <div class="col new rv">
-        <div class="col-hd">MagSolutionsAI</div>
-        <ul>
-          <li><span class="mk">✓</span><span><b>Precio plano por organización.</b> Desde 29 €
-            al mes para todo el equipo, con la gente que haga falta. Sin cuentas por asiento ni
-            sustos en la factura al contratar.</span></li>
-          <li><span class="mk">✓</span><span><b>Comprueba que exista, no solo si es
-            conocido.</b> Cada dependencia añadida se resuelve contra el registro en vivo, en
-            ese momento.</span></li>
-          <li><span class="mk">✕</span><span><b>Es una herramienta estrecha, a propósito.</b>
-            Cubrimos el puñado de cosas que el código escrito con IA hace mal. No pretendemos
-            ser una plataforma de seguridad completa, y lo decimos.</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="ent" style="margin-top:1rem">
-      <p><b>«¿Y por qué no le pido a Copilot o a Claude que revise el PR?»</b>
-        Hazlo también, ayuda. Pero un asistente que mira un diff está adivinando sobre la
-        existencia, y adivinar es lo que creó el problema. Tampoco ve el resto de tu
-        repositorio, así que no sabe cuáles de tus rutas deberían llevar autenticación.
-        Otro trabajo, otro modo de fallar.</p>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="compare">
-  <div class="wrap">
-    <div class="sec-hd">
-      <span class="lbl">04 — Por qué no lo ve lo que ya pagas</span>
-      <h2>Todos los escáneres dan por hecho que el paquete existe.</h2>
-      <p>Snyk, Dependabot y <code>npm audit</code> buscan vulnerabilidades conocidas en paquetes
-        reales. Un nombre inventado hace cinco minutos no tiene CVE, ni aviso, ni historial. Es
-        invisible para todos ellos — por diseño.</p>
-    </div>
-
-    <div class="vs">
-      <div class="col old rv">
-        <div class="col-hd">Escaneo de dependencias convencional</div>
-        <ul>
-          <li><span class="mk">✕</span><span><b>Necesita un CVE para saltar.</b> Un paquete registrado ayer no tiene ninguno. El silencio se lee como seguridad.</span></li>
-          <li><span class="mk">✕</span><span><b>Analiza comportamiento, no existencia.</b> Meter un paquete en un sandbox exige descargarlo — y no hay nada que descargar cuando el nombre es pura alucinación.</span></li>
-          <li><span class="mk">✕</span><span><b>40-60% de falsos positivos</b> es la norma del sector en SAST. El equipo aprende a pasar de largo del bot.</span></li>
-          <li><span class="mk">✕</span><span><b>Señala el problema y ahí se queda.</b> «Paquete desconocido», sin decirte qué querías escribir.</span></li>
-        </ul>
-      </div>
-
-      <div class="col now rv">
-        <div class="col-hd">MagSolutionsAI</div>
-        <ul>
-          <li><span class="mk">✓</span><span><b>Pregunta al registro directamente.</b> Un HTTP 404 no es una heurística: es un hecho, con hora, que puedes reproducir con <code>curl</code>.</span></li>
-          <li><span class="mk">✓</span><span><b>También pilla los ya reclamados.</b> Existir no basta: un paquete publicado hace 6 días con 40 descargas también salta.</span></li>
-          <li><span class="mk">✓</span><span><b>Un hecho, no una opinión.</b> Un 404 del registro no es una heurística. El criterio está en <em>qué</em> preguntamos, y ahí es donde nos medimos: auditamos pull requests públicos cada semana y publicamos en qué nos equivocamos.</span></li>
-          <li><span class="mk">✓</span><span><b>Te da el nombre correcto.</b> Cada corrección se verifica contra el registro antes de proponerla. Nunca una conjetura.</span></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -432,20 +477,23 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
           hora. <b>Lanza tú el curl</b> — o el hallazgo se reproduce, o no.</p>
       </div>
       <div class="tcard rv">
-        <span class="lbl">Cero retención de código</span>
-        <p>El diff se analiza en memoria y se descarta. Guardamos ID de instalación, nombre del
-          repo, número de PR y nivel de riesgo. <b>Nunca tu código ni el valor de un secreto.</b></p>
+        <span class="lbl">Nada escrito en disco</span>
+        <p>El diff se analiza en memoria y nunca se escribe en disco. El informe enlazado desde el
+          pull request conserva la línea marcada en memoria hasta siete días, y después
+          desaparece. Guardamos ID de instalación, nombre del repo, número de PR y nivel de
+          riesgo — <b>nunca tu código ni el valor de un secreto</b>.</p>
       </div>
       <div class="tcard rv">
         <span class="lbl">Sin terceros</span>
-        <p>De nuestro servidor solo sale un <b>nombre</b> de paquete, hacia PyPI o npm. Sin
-          analítica, sin rastreadores, sin CDN de fuentes — esta página no carga ni un recurso
-          externo.</p>
+        <p>De nuestro servidor solo salen <b>nombres</b> de paquete (y, para el aviso de
+          vulnerabilidades, la versión fijada), hacia PyPI, npm y la base de avisos de GitHub.
+          Ningún modelo de IA ve tu código. Sin analítica de terceros, sin rastreadores, sin CDN
+          de fuentes.</p>
       </div>
       <div class="tcard rv">
         <span class="lbl">Infraestructura en la UE</span>
         <p>Alojado en Finlandia. Webhooks verificados con HMAC-SHA256 sobre TLS 1.2+. Notificación
-          de brechas en <b>72 horas</b> según el RGPD. <a href="../privacy.html">Política completa →</a></p>
+          de brechas en <b>72 horas</b> según el RGPD. <a href="trust.html">Confianza y seguridad →</a></p>
       </div>
     </div>
 
@@ -462,16 +510,16 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
   </div>
 </section>
 
-<!-- ═══ 5 · ÍNDICE PÚBLICO ════════════════════════════════ -->
+<!-- ═══ 5 · ANTES DE INSTALAR ═══════════════════════════ -->
 <section class="band" style="text-align:center">
   <div class="wrap">
-    <span class="lbl" style="display:block;margin-bottom:.8rem">Datos públicos</span>
+    <span class="lbl" style="display:block;margin-bottom:.8rem">Antes de instalar</span>
     <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);font-weight:760;margin-bottom:.9rem">
-      Publicamos lo que las máquinas inventan.</h2>
+      Dónde va tu código, quién lo toca y qué no tenemos.</h2>
     <p style="color:var(--fg-2);max-width:56ch;margin:0 auto 1.6rem">
-      Un registro vivo de nombres de paquete que no existen — y cuáles ha registrado alguien
-      después de que los viéramos. Gratis, sin registro. Los conjuntos publicados miden lo que inventa un modelo ante tareas de prueba; este registro mide lo que llega a pull requests reales.</p>
-    <a class="btn btn-2" href="hallucination-index.html">Abrir el Índice de Alucinaciones →</a>
+      Cada organización que trata datos por cuenta nuestra, qué recibe cada una, cuánto
+      guardamos y las certificaciones que no tenemos, en una sola página.</p>
+    <a class="btn btn-2" href="trust.html">Confianza y seguridad →</a>
   </div>
 </section>
 
@@ -488,8 +536,10 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
 
     <div class="limits rv">
       <b>Lo que esto no es.</b> Una herramienta de análisis estático automatizado y una ayuda a la
-      revisión — no una garantía de seguridad. Analiza únicamente las líneas añadidas en un pull
-      request: ni tu código existente, ni tu infraestructura, ni el comportamiento en ejecución.
+      revisión — no una garantía de seguridad. Analiza las líneas añadidas en cada pull request
+      y, una vez al instalar, una muestra limitada del código que ya existe (hasta 5 repositorios,
+      40 ficheros en cada uno) — no todo tu código, ni tu infraestructura, ni el comportamiento
+      en ejecución. Busca patrones, así que no encuentra fallos de lógica.
       Las comprobaciones contra el registro reflejan un momento concreto — un paquete que hoy no
       existe puede registrarlo un atacante minutos después.
       <b>La ausencia de hallazgos no significa que tu código sea seguro.</b> Cada hallazgo lleva su
@@ -517,6 +567,7 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
         <h3>Evidencia</h3>
         <ul>
           <li><a href="quality.html">Cuántas veces nos equivocamos</a></li>
+          <li><a href="trust.html">Confianza y seguridad</a></li>
           <li><a href="hallucination-index.html">Índice de alucinaciones</a></li>
           <li><a href="https://api.magsolutionsai.com/measurement">Cifras de campo en vivo</a></li>
           <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/tree/main/evidence">El corpus</a></li>
@@ -525,9 +576,10 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
       <div>
         <h3>Comparativas</h3>
         <ul>
-          <li><a href="../magaudit-vs-coderabbit.html">vs. CodeRabbit <span style="color:var(--fg-3)">(EN)</span></a></li>
-          <li><a href="../magaudit-vs-gitguardian.html">vs. GitGuardian <span style="color:var(--fg-3)">(EN)</span></a></li>
-          <li><a href="../magaudit-vs-trufflehog.html">vs. TruffleHog <span style="color:var(--fg-3)">(EN)</span></a></li>
+          <li><a href="magaudit-vs-socket.html">vs. Socket</a></li>
+          <li><a href="magaudit-vs-coderabbit.html">vs. CodeRabbit</a></li>
+          <li><a href="magaudit-vs-gitguardian.html">vs. GitGuardian</a></li>
+          <li><a href="magaudit-vs-trufflehog.html">vs. TruffleHog</a></li>
         </ul>
       </div>
       <div>

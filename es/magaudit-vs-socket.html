@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagAudit vs Socket — una comparativa honesta</title>
+<meta name="description" content="Socket es mejor con las dependencias y su plan gratuito bloquea paquetes maliciosos. En qué nos diferenciamos: un solo check para dependencias, credenciales y configuración, precio plano, código analizado en la UE y nunca enviado a un modelo de IA.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/magaudit-vs-socket.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html">
+<link rel="stylesheet" href="../style.css?v=8">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a><a href="pricing.html">Precios</a><a href="quality.html">Nuestra tasa de error</a><a href="trust.html">Confianza</a><a href="../blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>MagAudit vs Socket</h1>
+  <p class="upd">Escrito por quienes hacemos uno de los dos. Léelo teniéndolo en cuenta.</p>
+
+  <h2>Si las dependencias son todo tu problema, usa Socket</h2>
+  <p>Socket analiza lo que un paquete <em>hace</em>: scripts de instalación, acceso a red y a
+  disco, código ofuscado, robo de secretos. Nosotros no: miramos cuántos días tiene un paquete y
+  cuánta gente lo usa. Cuando se comprometió Axios, Socket marcó la dependencia maliciosa
+  <strong>en seis minutos</strong> (<a href="https://socket.dev/blog/series-c">según su
+  relato</a>).</p>
+  <p>Y es gratis. Su plan gratuito cubre <strong>desarrolladores y repositorios ilimitados, hasta
+  1.000 escaneos al mes, y bloquea dependencias maliciosas automáticamente</strong>
+  (<a href="https://socket.dev/pricing">socket.dev/pricing</a>). Un equipo pequeño cuya única
+  preocupación es la cadena de suministro no tiene motivo para pagarnos por esa mitad.</p>
+
+  <h2>En qué somos distintos</h2>
+  <p>La propia lista de funciones de Socket describe un producto construido alrededor de las
+  dependencias. No anuncia revisar <em>tu</em> código en busca de credenciales escritas a mano,
+  ni tus Dockerfiles, workflows o Terraform (<a href="https://socket.dev/features">socket.dev/features</a>).
+  Esa es la otra mitad, y es donde está casi todo lo que encontramos: en torno a un pull request
+  público de cada quince, lo que marcamos es una credencial o una inyección, no un paquete.</p>
+  <table>
+    <tr><th></th><th>Socket</th><th>MagAudit</th></tr>
+    <tr><td>Comportamiento malicioso del paquete (scripts de instalación, red, ofuscación)</td><td><strong>Sí</strong></td><td>No</td></tr>
+    <tr><td>Paquetes nuevos y poco usados, marcados antes de cualquier aviso</td><td>Sí, con muchas más señales</td><td>Sí — antigüedad y uso, PyPI y npm</td></tr>
+    <tr><td>Credenciales escritas a mano y claves enviadas al navegador (<code>NEXT_PUBLIC_</code>, <code>VITE_</code>)</td><td>No lo anuncia</td><td><strong>Sí</strong></td></tr>
+    <tr><td>Dockerfiles, GitHub Actions, Terraform, Kubernetes</td><td>No lo anuncia</td><td><strong>Sí</strong></td></tr>
+    <tr><td>Inyección y valores peligrosos en tu código</td><td>No lo anuncia</td><td>Sí, por patrones</td></tr>
+    <tr><td>Revisa el código que ya existe al instalar</td><td>&mdash;</td><td>Sí, una muestra: hasta 5 repositorios, 40 ficheros cada uno</td></tr>
+    <tr><td>Qué lee y dónde</td><td>Tus ficheros de dependencias; empresa estadounidense</td><td>Tu código, en un servidor en Finlandia; nunca se envía a un modelo de IA</td></tr>
+    <tr><td>Precio en repositorios privados</td><td>El plan gratuito de arriba; Team, 25 $ por desarrollador y mes, mínimo cinco</td><td>Plano por organización: 29, 69 o 149 € al mes</td></tr>
+  </table>
+
+  <h2>Cómo decidir</h2>
+  <p>Solo dependencias: el plan gratuito de Socket. Dependencias <em>y</em> credenciales y
+  configuración en un solo check, con un precio que no crece con cada contratación y analizado
+  en la UE: eso es lo que hemos construido. A muchos equipos les iría bien usar los dos.</p>
+
+  <h2>Sobre la ventana del aviso, con precisión</h2>
+  <p>La medimos sobre los 100 avisos de malware npm más recientes. La mediana entre que aparece
+  el paquete y llega el aviso es de <strong>cero días</strong>: la mayoría se detecta el mismo
+  día, y herramientas como Socket tienen mucho que ver. Pero el <strong>30 %</strong> tardó más
+  de un día y el caso más largo, <strong>95 días</strong>; y el 95 % de esos paquetes tenía menos
+  de 30 días cuando llegó el aviso. La antigüedad y el uso se ven desde el primer segundo: esa es
+  la señal que usamos.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent">Instalar en GitHub &rarr;</a></p>
+  <p class="upd">Última revisión: 27 de septiembre de 2026. Las cifras sobre Socket son suyas,
+  enlazadas donde aparecen, tal como estaban publicadas ese día. Las cifras sobre nosotros son
+  medición propia y se pueden reproducir contra
+  <a href="https://api.magsolutionsai.com/measurement">nuestro endpoint público</a> y
+  <a href="quality.html">nuestro registro de errores</a>.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a><a href="terms.html">Términos</a><a href="trust.html">Confianza</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+  </div>
+</footer>
+</body>
+</html>
