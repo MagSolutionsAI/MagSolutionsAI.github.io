@@ -1,133 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
   <url>
-    <loc>https://magsolutionsai.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://magsolutionsai.com/blog/advisory-window.html</loc>
   </url>
-
   <url>
-    <loc>https://magsolutionsai.com/es/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://magsolutionsai.com/blog/claudedashbord-pypi-typosquat.html</loc>
   </url>
-
   <url>
-    <loc>https://magsolutionsai.com/hallucination-index.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/hallucination-index.html"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</loc>
   </url>
-
+  <url>
+    <loc>https://magsolutionsai.com/blog/field-report-2026-09-18.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/field-report-2026-09-21.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/field-report-2026-09-28.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/huggingface-cli-case.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/openaii-typosquat-campaign.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/transitive-dependency-malware.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/verify-a-package-exists.html</loc>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/blog/what-is-slopsquatting.html</loc>
+  </url>
   <url>
     <loc>https://magsolutionsai.com/es/hallucination-index.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/hallucination-index.html"/>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
-
+  <url>
+    <loc>https://magsolutionsai.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/magaudit-vs-coderabbit.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-coderabbit.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/magaudit-vs-gitguardian.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-gitguardian.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/magaudit-vs-socket.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/magaudit-vs-trufflehog.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-trufflehog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/prevent-secret-leaks-nextjs.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/prevent-secret-leaks-nextjs.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/pricing.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/pricing.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/quality.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/quality.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/quality.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/quality.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/terms.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/trust.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/trust.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/welcome.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/welcome.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/welcome.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/welcome.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/hallucination-index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/hallucination-index.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/magaudit-vs-coderabbit.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-coderabbit.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/magaudit-vs-gitguardian.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-gitguardian.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/magaudit-vs-socket.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/magaudit-vs-trufflehog.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-trufflehog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/prevent-secret-leaks-nextjs.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/prevent-secret-leaks-nextjs.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
+  </url>
   <url>
     <loc>https://magsolutionsai.com/pricing.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/pricing.html"/>
   </url>
-
   <url>
     <loc>https://magsolutionsai.com/privacy.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/privacy.html"/>
   </url>
-
+  <url>
+    <loc>https://magsolutionsai.com/quality.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/quality.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/quality.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/quality.html"/>
+  </url>
   <url>
     <loc>https://magsolutionsai.com/terms.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- blog:start -->
-  <url>
-    <loc>https://magsolutionsai.com/blog/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/terms.html"/>
   </url>
   <url>
-    <loc>https://magsolutionsai.com/blog/claudedashbord-pypi-typosquat.html</loc>
-    <lastmod>2026-09-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://magsolutionsai.com/trust.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/trust.html"/>
   </url>
   <url>
-    <loc>https://magsolutionsai.com/blog/field-report-2026-09-21.html</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://magsolutionsai.com/welcome.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/welcome.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/welcome.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/welcome.html"/>
   </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/field-report-2026-09-18.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/openaii-typosquat-campaign.html</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/advisory-window.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/transitive-dependency-malware.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/what-is-slopsquatting.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/huggingface-cli-case.html</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/blog/verify-a-package-exists.html</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <!-- blog:end -->
-
 </urlset>

@@ -36,6 +36,9 @@ jobs:
       - name: Recoger y publicar el informe
         run: python scripts/publicar_informe.py
 
+      - name: Regenerar el sitemap con todas las paginas
+        run: python scripts/sitemap.py
+
       - name: Comprobar que el HTML no quedó a medias
         run: |
           python - <<'PY'
