@@ -35,7 +35,7 @@
 <main class="wrap legal">
 
   <h1>Privacy Policy</h1>
-  <p class="upd">Last updated: 27 September 2026</p>
+  <p class="upd">Last updated: 28 September 2026</p>
 
   <div class="callout">
     <p><strong>The short version:</strong> we do not store your source code. Two things are read:
@@ -107,6 +107,8 @@
     <tr><th>Recipient</th><th>What we send</th><th>Why</th></tr>
     <tr><td>PyPI (pypi.org)</td><td>Package <strong>names</strong> only</td><td>Verify a dependency exists and when it was first published</td></tr>
     <tr><td>npm (registry.npmjs.org)</td><td>Package <strong>names</strong> only</td><td>Same</td></tr>
+    <tr><td>npm download counts (api.npmjs.org)</td><td>Package <strong>names</strong> only</td><td>Weekly downloads of a new dependency: how many people actually use it</td></tr>
+    <tr><td>pypistats.org, an independent service that publishes PyPI download counts</td><td>Package <strong>names</strong> only, and only for Python packages published less than 90 days ago</td><td>Same: PyPI itself does not publish download counts</td></tr>
     <tr><td>GitHub (api.github.com)</td><td>The audit comment and check result we post on your pull request; the name and pinned version of dependencies it touches</td><td>Deliver the result; ask GitHub&rsquo;s Advisory Database about published vulnerabilities</td></tr>
   </table>
   </div>
@@ -120,7 +122,8 @@
   <h2>4. Where data is processed</h2>
   <p>The service runs on a dedicated server hosted by Hetzner Online GmbH in Finland (European
   Union). GitHub, Stripe and Google are companies based in the United States, and PyPI and npm
-  are run by US organisations; what each of them receives is listed in section 3, and nothing
+  are run by US organisations; pypistats.org is an independent service whose hosting we have
+  not verified, so treat it as outside the EU too; what each of them receives is listed in section 3, and nothing
   else leaves the EU.</p>
 
   <h2>5. Security</h2>

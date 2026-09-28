@@ -86,7 +86,7 @@
         Un check de seguridad en cada pull request, con <b>un precio plano para todo el
         equipo</b>. Tu código se lee en un servidor en Finlandia y <b>nunca se envía a un modelo
         de IA</b> ni a ningún tercero: solo salen nombres y versiones de paquete, hacia los
-        registros.
+        registros de paquetes y sus contadores de descargas.
       </p>
       <p class="lede" style="margin-top:-.3rem;font-size:.95rem">
         El check falla cuando encuentra algo grave, así que bloquea el merge en cuanto lo marcas
@@ -486,7 +486,9 @@ No se sube nada: tu navegador consulta PyPI directamente."></textarea>
       <div class="tcard rv">
         <span class="lbl">Sin terceros</span>
         <p>De nuestro servidor solo salen <b>nombres</b> de paquete (y, para el aviso de
-          vulnerabilidades, la versión fijada), hacia PyPI, npm y la base de avisos de GitHub.
+          vulnerabilidades, la versión fijada), hacia PyPI y npm, sus contadores de descargas
+          (<code>api.npmjs.org</code>, y <code>pypistats.org</code> para paquetes de Python de menos
+          de 90 días) y la base de avisos de GitHub. Esa es la lista completa.
           Ningún modelo de IA ve tu código. Sin analítica de terceros, sin rastreadores, sin CDN
           de fuentes.</p>
       </div>

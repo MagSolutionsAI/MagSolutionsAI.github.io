@@ -23,7 +23,7 @@
 <main class="wrap legal">
 
   <h1>Trust and security</h1>
-  <p class="upd">Last reviewed: 27 September 2026. Written for whoever does vendor review. The
+  <p class="upd">Last reviewed: 28 September 2026. Written for whoever does vendor review. The
   binding texts are the <a href="privacy.html">privacy policy</a> and the
   <a href="terms.html">terms</a>; where this page and they differ, they win.</p>
 
@@ -36,8 +36,10 @@
       Your code is never sent to an AI model, and an automated test blocks our deployment if any
       part of the service is wired to one.</td></tr>
     <tr><td>What leaves the server?</td><td>Package names — and, for the advisory check, the pinned
-      version — to <code>pypi.org</code>, <code>registry.npmjs.org</code> and
-      <code>api.github.com</code>. That list is the whole list.</td></tr>
+      version — to <code>pypi.org</code> and <code>registry.npmjs.org</code>; to their download
+      counters, <code>api.npmjs.org</code> and, only for Python packages under 90 days old,
+      <code>pypistats.org</code>; and to <code>api.github.com</code>. 
+      That list is the whole list.</td></tr>
     <tr><td>What do you write to disk?</td><td>Installation ID, organisation, repository name,
       pull request number, risk level, counts and billing data. <strong>Never your source code and
       never the value of a secret we detect.</strong></td></tr>

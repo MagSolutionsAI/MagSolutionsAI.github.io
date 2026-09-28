@@ -103,7 +103,8 @@
       <p class="lede">
         One security check on every pull request, at <b>a flat price for the whole team</b>.
         Your code is read on one server in Finland and <b>never sent to an AI model</b> or any
-        third party — only package names and versions go out, to the registries.
+        third party — only package names and versions go out, to the package registries and
+        their download counters.
       </p>
       <p class="lede" style="margin-top:-.3rem;font-size:.95rem">
         The check fails when it finds something serious, so it blocks the merge as soon as you
@@ -519,8 +520,10 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       <div class="tcard rv">
         <span class="lbl">No third parties</span>
         <p>Only package <b>names</b> (and, for the advisory check, the pinned version) leave our
-          server — to PyPI, to npm, and to GitHub's own advisory database. No AI model ever sees
-          your code. <b>That list is the whole list</b>, and it is the reason we can say we
+          server — to PyPI and npm, to their download counters (<code>api.npmjs.org</code>, and
+          <code>pypistats.org</code> for Python packages under 90 days old), and to GitHub's own
+          advisory database. No AI model ever sees your code. <b>That list is the whole list</b>,
+          and it is the reason we can say we
           never test whether a credential you committed actually works: there is nowhere for us to
           test it. We chose GitHub's advisory database over the alternatives specifically so the
           list would not grow. No third-party analytics,
