@@ -113,11 +113,12 @@
       <p class="post-lede">This report was published with figures from our own test suite, not from a measurement. It is withdrawn; the real figures are published live.</p>
       <div class="ptags"><span class="ptag">security</span><span class="ptag">supply chain</span><span class="ptag">measurement</span><span class="ptag">open source</span></div>
     </header>
-
-    <p><strong>Withdrawn &mdash; 27 September 2026.</strong> This article was published automatically on 18 September 2026 with figures that were <strong>not measured</strong>. They came from the fixtures of our own test suite: a test wrote a sample article into the file our server serves, a deployment shipped that file, and the blog workflow published it without checking it against the live measurement.</p>
-    <p>Every figure it contained was fictitious: 1000 pull requests analysed, 1200 dependencies resolved, 900 distinct package names, 10 candidates reviewed by hand, 80 detector corrections across 20 cited repositories, and the source <code>a/b#1</code>. None of them should be quoted. The report our server actually generated from the measurement that day recorded <strong>1,246</strong> pull requests analysed, <strong>1,583</strong> dependencies resolved and <strong>0</strong> hallucinated packages confirmed.</p>
-    <p>What we changed so it cannot happen again: the test suite now fails if it modifies any file that is deployed; that file is no longer part of a deployment; and the blog refuses to publish a report whose figures do not match <a href="https://api.magsolutionsai.com/measurement">the live measurement</a>.</p>
-    <p>The real, current figures are always at <a href="https://api.magsolutionsai.com/measurement">api.magsolutionsai.com/measurement</a>, and our record of mistakes is at <a href="/quality.html">How often we are wrong</a>.</p>
+    <div class="post-body">
+<p><b>Withdrawn — 27 September 2026.</b> This article was published automatically on 18 September 2026 with figures that were <b>not measured</b>. They came from the fixtures of our own test suite: a test wrote a sample article into the file our server serves, a deployment shipped that file, and the blog workflow published it without checking it against the live measurement.</p>
+<p>Every figure it contained was fictitious: 1000 pull requests analysed, 1200 dependencies resolved, 900 distinct package names, 10 candidates reviewed by hand, 80 detector corrections across 20 cited repositories, and the source <code>a/b#1</code>. None of them should be quoted. The report our server actually generated from the measurement that day recorded <b>1,246</b> pull requests analysed, <b>1,583</b> dependencies resolved and <b>0</b> hallucinated packages confirmed.</p>
+<p>What we changed so it cannot happen again: the test suite now fails if it modifies any file that is deployed; that file is no longer part of a deployment; and the blog refuses to publish a report whose figures do not match <a href="https://api.magsolutionsai.com/measurement">the live measurement</a>.</p>
+<p>The real, current figures are always at <a href="https://api.magsolutionsai.com/measurement">api.magsolutionsai.com/measurement</a>, and our record of mistakes is at <a href="https://magsolutionsai.com/quality.html">How often we are wrong</a>.</p>
+    </div>
   </article>
   
 <section class="post-cta">
