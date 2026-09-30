@@ -235,12 +235,25 @@
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(data).toString() });
   }
+  //
+  // La vinculacion devuelve, SOLO la primera vez, la capacidad que permite
+  // leer el escaneo inicial. Se guarda aqui y en ningun otro sitio: sin ella
+  // el servidor no ensena el resultado a nadie (2026-09-30).
+  function avisa(t) {
+    try { window.dispatchEvent(new CustomEvent('msai-scan-token', { detail: t || null })); } catch (e) {}
+  }
   try {
     post('/install/nonce', { installation_id: id })
       .then(function (r) { return r.json(); })
       .then(function (j) { if (j && j.nonce) return post('/install/link', { installation_id: id, nonce: j.nonce }); })
-      .catch(function () {});
-  } catch (e) {}
+      .then(function (r) { return r ? r.json() : null; })
+      .then(function (j) {
+        var t = j && j.scan_token;
+        if (t) { try { localStorage.setItem('msai_scan_t_' + id, t); } catch (e) {} }
+        avisa(t);
+      })
+      .catch(function () { avisa(null); });
+  } catch (e) { avisa(null); }
 })();
 
 // Balizas del embudo: solo nombre de evento, sin cuerpo ni identificador.
@@ -311,10 +324,15 @@
     return true;
   }
 
+  // La capacidad llega de la vinculacion (evento) o de una visita anterior.
+  var t = null;
+  try { t = localStorage.getItem('msai_scan_t_' + id); } catch (e) {}
   var intentos = 0;
-  (function mira() {
-    fetch('https://api.magsolutionsai.com/install/scan?installation_id=' + encodeURIComponent(id),
-          { mode: 'cors', credentials: 'omit' })
+  function mira() {
+    fetch('https://api.magsolutionsai.com/install/scan', {
+          method: 'POST', mode: 'cors', credentials: 'omit',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ installation_id: id, t: t || '' }).toString() })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (pinta(d)) return;
@@ -325,7 +343,17 @@
         if (++intentos < 5) setTimeout(mira, 4000);
         else texto(cuerpo, 'We could not reach the report. Open a pull request and the audit runs there.');
       });
-  })();
+  }
+  if (t) { mira(); return; }
+  var empezado = false;
+  function arranca(nuevo) {
+    if (empezado) return;
+    empezado = true;
+    if (nuevo) t = nuevo;
+    mira();
+  }
+  window.addEventListener('msai-scan-token', function (ev) { arranca(ev.detail); });
+  setTimeout(function () { arranca(null); }, 15000);
 })();
 </script>
 
