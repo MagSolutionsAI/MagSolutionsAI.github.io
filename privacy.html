@@ -73,6 +73,7 @@
     <tr><td>Risk level, number of findings</td><td>Usage metering and billing</td><td>Until you uninstall</td></tr>
     <tr><td>Plan, usage counters, dates</td><td>Billing</td><td>Until you uninstall</td></tr>
     <tr><td>Stripe customer ID and payment events (event type, plan, date), if you subscribe to a paid plan</td><td>Link your payment to your installation</td><td>Until you ask us to delete it. Invoices themselves are kept by Stripe</td></tr>
+    <tr><td>When you uninstall: a SHA-256 hash of your organisation login and the date your 14-day trial started</td><td>Keep the trial from restarting when the App is uninstalled and installed again</td><td>Until you ask us to delete it. The login itself is deleted, but anyone who already knows a login can hash it and compare, so treat the hash as identifying your organisation</td></tr>
     <tr><td><strong>Findings you muted</strong> and, where a mute came from a pull request comment, <strong>the GitHub username of the person who wrote it</strong> — plus the repository, the rule id or an 8-character hash of the finding, and the date</td><td>Honour your decision on the next audit, and leave your team an auditable record of who silenced what. The hash is derived from the rule, the file path and the flagged line; it cannot be reversed back into your code, and we store neither the path nor the code</td><td>Until you delete the mute (<code>@magaudit restore &lt;id&gt;</code>) or uninstall</td></tr>
   </table>
   </div>
