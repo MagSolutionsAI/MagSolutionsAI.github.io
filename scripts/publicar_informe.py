@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import sys
 import urllib.request
 
@@ -93,7 +94,14 @@ def main() -> int:
         print("Todavía no hay informe generado.")
         return 0
 
-    slug = d["slug"]
+    # `slug` y `fecha` llegan de la API y acaban en rutas. Hasta el 2026-09-30
+    # se usaban tal cual: `slug="../index"` escribia la portada del dominio
+    # (auditoria adversarial, H12). Solo kebab-case y fecha ISO.
+    slug, fecha = str(d.get("slug") or ""), str(d.get("fecha") or "")
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):
+        raise SystemExit(f"ERROR: slug no valido {slug[:60]!r}. No se publica nada.")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", fecha):
+        raise SystemExit(f"ERROR: fecha no valida {fecha[:60]!r}. No se publica nada.")
     pagina = RAIZ / "blog" / f"{slug}.html"
     if pagina.exists():
         print(f"{slug} ya está publicado. Nada que hacer.")
