@@ -240,6 +240,19 @@
   // La vinculacion devuelve, SOLO la primera vez, la capacidad que permite
   // leer el escaneo inicial. Se guarda aqui y en ningun otro sitio: sin ella
   // el servidor no ensena el resultado a nadie (2026-09-30).
+  // Antes de pagar, a que cuenta ira el pago. Un enlace trucado con el
+  // installation_id de otro hacia pagar su plan sin verlo (H13, 2026-09-30).
+  function cuenta(org) {
+    if (!linked || !/^[A-Za-z0-9-]{1,39}$/.test(org)) return;
+    var p = document.createElement('p');
+    p.className = 'plan-note';
+    p.appendChild(document.createTextNode('Las suscripciones que se inicien desde esta página se activarán en la cuenta de GitHub '));
+    var b = document.createElement('b');
+    b.textContent = org;
+    p.appendChild(b);
+    p.appendChild(document.createTextNode('. Si no es tu organización, no te suscribas desde aquí: escríbenos a contact@magsolutionsai.com.'));
+    linked.appendChild(p);
+  }
   function avisa(t) {
     try { window.dispatchEvent(new CustomEvent('msai-scan-token', { detail: t || null })); } catch (e) {}
   }
@@ -251,6 +264,7 @@
       .then(function (j) {
         var t = j && j.scan_token;
         if (t) { try { localStorage.setItem('msai_scan_t_' + id, t); } catch (e) {} }
+        if (j && j.org) cuenta(j.org);
         avisa(t);
       })
       .catch(function () { avisa(null); });
