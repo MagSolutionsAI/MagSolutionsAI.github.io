@@ -56,7 +56,32 @@
   this website — and exactly what each one receives is in
   <a href="privacy.html">section 3 of the privacy policy</a>.</p>
 
-  <h2>2. What we do not have</h2>
+  <h2>2. What we ask GitHub for, and why</h2>
+  <p>GitHub shows you this list when you install. Here is what each permission is for, and what
+  we never do with it.</p>
+  <div class="tw"><table>
+    <tr><th>Permission</th><th>What we use it for</th><th>What we never do</th></tr>
+    <tr><td><strong>Contents: read</strong></td><td>Download the diff of each pull request, read
+      the files of the install-time scan (limits in our <a href="privacy.html">privacy
+      policy</a>), and read your <code>.magaudit.yml</code></td><td>Write, push or delete code. We
+      cannot: the permission is read-only</td></tr>
+    <tr><td><strong>Pull requests: read &amp; write</strong></td><td>Post the findings comment and
+      the suggested fixes you can commit with one click</td><td>Merge, close, approve or edit your
+      pull requests</td></tr>
+    <tr><td><strong>Checks: read &amp; write</strong></td><td>Publish the pass/fail check, which
+      only blocks a merge if <em>you</em> mark it as required</td><td>Change your branch
+      protection or anyone else&rsquo;s checks</td></tr>
+    <tr><td><strong>Issues: read &amp; write</strong></td><td>Update our own comment instead of
+      adding a new one, and react 👍 when an owner sends a <code>@magaudit ignore</code>
+      command</td><td>Open, close or edit your issues</td></tr>
+    <tr><td><strong>Metadata: read</strong></td><td>Repository names and visibility. Every GitHub
+      App gets this</td><td>&mdash;</td></tr>
+  </table></div>
+  <p>We only see the repositories you select during install, and you can change that list at any
+  time. Uninstalling cuts our access immediately and deletes your data as described in the
+  privacy policy. We never receive your organisation settings, your secrets or your members.</p>
+
+  <h2>3. What we do not have</h2>
   <ul>
     <li><strong>No SOC 2 and no ISO 27001.</strong> We have not been audited against either.</li>
     <li><strong>No uptime commitment.</strong> One server, one person. If the service is down,
@@ -70,7 +95,7 @@
   we would rather you knew now than after a trial. We will start a certification when a paying
   customer's review requires one, and we will say so on this page when we do.</p>
 
-  <h2>3. How the service is run</h2>
+  <h2>4. How the service is run</h2>
   <ul>
     <li>Every webhook from GitHub is verified with HMAC-SHA256 before anything is processed.</li>
     <li>The server is reached by SSH key only — the administrator account refuses passwords and
@@ -83,19 +108,19 @@
       works</strong>, and we never store or print its value.</li>
   </ul>
 
-  <h2>4. How often we are wrong</h2>
+  <h2>5. How often we are wrong</h2>
   <p>Every false positive we have fixed is pinned by a regression test built from the exact line
   we got wrong, in a real public repository, with the pull request cited.
   <a href="quality.html">The record is public →</a></p>
 
-  <h2>5. If something goes wrong</h2>
+  <h2>6. If something goes wrong</h2>
   <p>If a personal data breach occurs we notify the supervisory authority within 72 hours, as
   Article 33 GDPR requires, and affected organisations without undue delay. If you find a
   vulnerability in our service, write to
   <a href="mailto:contact@magsolutionsai.com?subject=Security">contact@magsolutionsai.com</a>
   with the subject &ldquo;Security&rdquo; and please do not open a public issue.</p>
 
-  <h2>6. Who is behind it</h2>
+  <h2>7. Who is behind it</h2>
   <p>MagSolutionsAI is built and run by one person in Spain, under Spanish law. The
   service went live in July 2026 and has no paying customers yet; we will not show logos or
   testimonials until there are real ones.</p>

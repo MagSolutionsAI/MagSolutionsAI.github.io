@@ -58,7 +58,33 @@
   pagos, correo, esta web— y qué recibe exactamente cada una está en el
   <a href="privacy.html">apartado 3 de la política de privacidad</a>.</p>
 
-  <h2>2. Lo que no tenemos</h2>
+  <h2>2. Qué le pedimos a GitHub, y por qué</h2>
+  <p>GitHub te enseña esta lista al instalar. Esto es para qué usamos cada permiso, y lo que
+  nunca hacemos con él.</p>
+  <div class="tw"><table>
+    <tr><th>Permiso</th><th>Para qué lo usamos</th><th>Lo que nunca hacemos</th></tr>
+    <tr><td><strong>Contents: lectura</strong></td><td>Bajar el diff de cada pull request, leer
+      los ficheros del escaneo al instalar (límites en la <a href="privacy.html">política de
+      privacidad</a>) y leer tu <code>.magaudit.yml</code></td><td>Escribir, empujar ni borrar
+      código. No podemos: el permiso es solo de lectura</td></tr>
+    <tr><td><strong>Pull requests: lectura y escritura</strong></td><td>Publicar el comentario con
+      los hallazgos y los arreglos sugeridos que aceptas con un clic</td><td>Fusionar, cerrar,
+      aprobar ni editar tus pull requests</td></tr>
+    <tr><td><strong>Checks: lectura y escritura</strong></td><td>Publicar el check de aprobado o
+      fallo, que solo bloquea un merge si <em>tú</em> lo marcas como obligatorio</td><td>Cambiar
+      la protección de tus ramas ni los checks de nadie más</td></tr>
+    <tr><td><strong>Issues: lectura y escritura</strong></td><td>Actualizar nuestro propio
+      comentario en vez de añadir otro, y reaccionar 👍 cuando alguien con permiso nos manda
+      <code>@magaudit ignore</code></td><td>Abrir, cerrar ni editar tus issues</td></tr>
+    <tr><td><strong>Metadata: lectura</strong></td><td>Nombres y visibilidad de los
+      repositorios. Lo recibe toda GitHub App</td><td>&mdash;</td></tr>
+  </table></div>
+  <p>Solo vemos los repositorios que eliges al instalar, y puedes cambiar esa lista cuando
+  quieras. Al desinstalar perdemos el acceso al instante y se borran tus datos como dice la
+  política de privacidad. Nunca recibimos la configuración de tu organización, tus secretos ni
+  tus miembros.</p>
+
+  <h2>3. Lo que no tenemos</h2>
   <ul>
     <li><strong>Ni SOC 2 ni ISO 27001.</strong> No nos han auditado contra ninguna de las dos.</li>
     <li><strong>Ningún compromiso de disponibilidad.</strong> Un servidor, una persona. Si el
@@ -73,7 +99,7 @@
   preferimos que lo sepas ahora que después de una prueba. Empezaremos una certificación cuando
   la revisión de un cliente de pago la exija, y lo diremos en esta página cuando ocurra.</p>
 
-  <h2>3. Cómo se opera el servicio</h2>
+  <h2>4. Cómo se opera el servicio</h2>
   <ul>
     <li>Cada webhook de GitHub se verifica con HMAC-SHA256 antes de procesar nada.</li>
     <li>Al servidor solo se entra con clave SSH —la cuenta de administración rechaza contraseñas
@@ -87,19 +113,19 @@
       funciona</strong>, y nunca guardamos ni mostramos su valor.</li>
   </ul>
 
-  <h2>4. Cuántas veces nos equivocamos</h2>
+  <h2>5. Cuántas veces nos equivocamos</h2>
   <p>Cada falso positivo que hemos corregido queda fijado con una prueba de regresión construida
   con la línea exacta que marcamos mal, en un repositorio público real, con su pull request
   citado. <a href="quality.html">El registro es público →</a></p>
 
-  <h2>5. Si algo sale mal</h2>
+  <h2>6. Si algo sale mal</h2>
   <p>Si hay una brecha de datos personales, lo notificamos a la autoridad de control en 72 horas,
   como exige el artículo 33 del RGPD, y a las organizaciones afectadas sin dilación indebida. Si
   encuentras una vulnerabilidad en nuestro servicio, escribe a
   <a href="mailto:contact@magsolutionsai.com?subject=Security">contact@magsolutionsai.com</a>
   con el asunto «Security», y por favor no abras una incidencia pública.</p>
 
-  <h2>6. Quién hay detrás</h2>
+  <h2>7. Quién hay detrás</h2>
   <p>MagSolutionsAI lo construye y lo opera una sola persona en España, bajo la ley española. El
   servicio salió en julio de 2026 y todavía no tiene clientes de pago; no enseñaremos logos ni
   testimonios hasta que los haya de verdad.</p>
