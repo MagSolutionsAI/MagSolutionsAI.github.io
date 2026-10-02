@@ -689,3 +689,112 @@ class TestRespetamosLoQueElEquipoYaHabiaDeclarado:
                          'a = "hQ7bZp2LxV9nR4mKdT8wYcF3gJ6sA1eU"  # nosec',
                          'api_key = "zR4mKdT8wYcF3gJ6sA1eUhQ7bZp2L"')
         assert reglas != set()
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# Barrido de startups open source europeas — 2026-10-02
+#
+# Ultimos 10 PRs fusionados de 16 startups, por el detector real. 4 hallazgos,
+# los 4 falsos al revisarlos a mano. Ninguno de esos proyectos fue contactado.
+# ══════════════════════════════════════════════════════════════════════════
+
+
+def _diff_varios(*ficheros) -> str:
+    """Un diff con varios ficheros: (ruta, [lineas])."""
+    trozos = []
+    for path, lines in ficheros:
+        cuerpo = "".join(f"+{l}\n" for l in lines)
+        trozos.append(f"diff --git a/{path} b/{path}\n--- /dev/null\n+++ b/{path}\n"
+                      f"@@ -0,0 +1,{len(lines)} @@\n{cuerpo}")
+    return "".join(trozos)
+
+
+_PLANTILLA_SKORE = ("skore/src/skore/_utils/repr/common/paginated_metrics.html.j2", [
+    '<div class="skore-metrics-pager">',
+    '{%- if inline_assets %}',
+    '    <style>',
+    '{% include "common/css/metrics_pager.css" %}',
+    '    </style>',
+    '{%- endif %}',
+    '    <div class="skore-metrics-table-wrap">{{ table_html | safe }}</div>',
+])
+
+
+def _xss(*ficheros) -> list:
+    return [(f["file"], f["line"]) for f in audit_diff(_diff_varios(*ficheros))["findings"]
+            if f["rule_id"] == "VULN-LLM-XSS"]
+
+
+class TestUnaTablaQuePandasYaEscapoNoEsXss:
+    """`|safe` sobre la salida de `DataFrame.to_html`, que escapa por defecto.
+    No es salida de un modelo ni de un usuario: `|safe` solo evita escapar dos
+    veces. La linea sola no lo dice; el resto del mismo PR, si."""
+
+    def test_el_caso_exacto_del_mundo_real(self):
+        # probabl-ai/skore#3270 — HIGH sobre paginated_metrics.html.j2:7
+        assert _xss(_PLANTILLA_SKORE, ("skore/src/skore/_utils/repr/paginated_metrics.py", [
+            "    df = _prepare_metrics_html_frame(frame)",
+            "    table_html = df.to_html(index=False)",
+            "    if len(df) <= METRICS_HTML_PAGE_SIZE:",
+            "        return table_html",
+            "",
+            "    table_html = _annotate_tbody_rows(table_html)",
+            "    return render_template(",
+            '        "common/paginated_metrics.html.j2",',
+            '        {"table_html": table_html, "inline_assets": inline_assets},',
+            "    )",
+        ])) == []
+
+    @pytest.mark.parametrize("origen", [
+        # Sin escape, `to_html` devuelve el texto de las celdas tal cual
+        ["table_html = df.to_html(index=False, escape=False)"],
+        # El Styler de pandas NO escapa por defecto
+        ["table_html = df.style.format(precision=3).to_html()"],
+        # Una asignacion de otra procedencia rompe la evidencia
+        ["table_html = df.to_html(index=False)", "table_html = respuesta_del_modelo"],
+        ["table_html = df.to_html(index=False)", "table_html = table_html + comentario"],
+        # El PR no dice de donde sale: se avisa
+        [],
+    ])
+    def test_sin_evidencia_de_escape_sigue_saltando(self, origen):
+        ficheros = [_PLANTILLA_SKORE]
+        if origen:
+            ficheros.append(("skore/src/skore/_utils/repr/paginated_metrics.py", origen))
+        assert _xss(*ficheros), f"sin escape demostrado hay que avisar: {origen}"
+
+    def test_otro_safe_en_la_misma_linea_sigue_saltando(self):
+        """La excepcion es por variable, no por linea."""
+        assert _xss(
+            ("t.html.j2", ["<div>{{ table_html | safe }}{{ answer | safe }}</div>"]),
+            ("r.py", ["table_html = df.to_html(index=False)"]))
+
+
+class TestUnValorSinteticoDePruebaNoEsUnSecreto:
+    """Valores escritos a mano para una prueba: un nombre con contador y una
+    secuencia de cifras repetida. Los dos superaban el umbral de entropia, asi
+    que -- como con las URL -- el filtro tiene que ser estructural."""
+
+    @pytest.mark.parametrize("fichero,linea", [
+        # baptisteArno/typebot.io#2604 — LOW en tests/webhook/replay.mts:15
+        ("tests/webhook/replay.mts", 'const secret = "synthetic-local-webhook-relay-key-0001";'),
+        # mismo PR — LOW en tests/webhook/run.mts:11
+        ("tests/webhook/run.mts", 'const relaySecret = "synthetic-local-webhook-relay-key-0001";'),
+    ])
+    def test_un_nombre_con_contador_no_es_un_secreto(self, fichero, linea):
+        assert "SECRET-GENERIC" not in _reglas(fichero, linea)
+
+    def test_una_secuencia_repetida_no_es_un_secreto(self):
+        # baptisteArno/typebot.io#2598 — LOW en workspaceReadAccess.test.ts:6
+        assert "SECRET-GENERIC" not in _reglas(
+            "apps/builder/src/features/workspace/api/workspaceReadAccess.test.ts",
+            'process.env.ENCRYPTION_SECRET = "12345678901234567890123456789012";')
+
+    @pytest.mark.parametrize("linea", [
+        # Cifras y letras mezcladas dentro del trozo: no es un nombre
+        'relay_secret = "prod_k8f3j2l9x0q7w"',
+        'const secret = "relay-key-a8Fz3Kq9Lm2Xw7Rt";',
+        # Casi periodico no es periodico
+        'ENCRYPTION_SECRET = "12345678901234567890123456789x12"',
+    ])
+    def test_un_secreto_de_verdad_sigue_saltando(self, linea):
+        assert "SECRET-GENERIC" in _reglas("src/config.ts", linea)

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How often we are wrong — MagAudit's own error record</title>
-<meta name="description" content="We publish our own false-positive rate. 83 corrections, each pinned by a regression test built from the exact line observed in a real public repository, with the pull request cited. Derived from the tests, never written by hand.">
+<meta name="description" content="We publish our own false-positive rate. 89 corrections, each pinned by a regression test built from the exact line observed in a real public repository, with the pull request cited. Derived from the tests, never written by hand.">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="canonical" href="https://magsolutionsai.com/quality.html">
 <link rel="alternate" hreflang="en" href="https://magsolutionsai.com/quality.html">
@@ -79,7 +79,7 @@
   produced <strong>150 findings, 79 of them marked critical</strong>. We reviewed
   every one by hand. <strong>Almost none were real.</strong></p>
   <p>On the same population, after the corrections: <strong>39 findings, zero to one
-  critical.</strong> The difference is the 83 tests below, and every one of them
+  critical.</strong> The difference is the 89 tests below, and every one of them
   exists because we got something wrong on somebody else's code.</p>
 
   <div class="callout">
@@ -96,7 +96,7 @@
   <p>Not &ldquo;trust us&rdquo;. These open without an account:</p>
   <ul>
     <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/blob/main/evidence/test_detector_false_positives.py"><strong>The corpus</strong></a>
-      — all 83 tests, each with the exact line and the pull request it came from.</li>
+      — all 89 tests, each with the exact line and the pull request it came from.</li>
     <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/blob/main/evidence/fp_scan_prs.py"><strong>The instrument</strong></a>
       — how we measure the noise against real public pull requests.</li>
     <li><a href="https://github.com/MagSolutionsAI/MagSolutionsAI.github.io/blob/main/evidence/README.md"><strong>How to verify</strong></a>
