@@ -36,21 +36,25 @@ def _reglas(path: str, *lines: str) -> set:
 class TestFalsosPositivosMedidosEnAbierto:
     """Cada caso se observo en un PR publico real."""
 
+    @pytest.mark.correccion
     def test_exec_de_una_expresion_regular_no_es_ejecucion_dinamica(self):
         # apache/hugegraph-doc#472 — se marcaba CRITICAL
         assert "VULN-EVAL" not in _reglas(
             "assets/js/kapa-adapter.js",
             "var match = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(color);")
 
+    @pytest.mark.correccion
     def test_metodo_eval_de_un_modelo_no_es_ejecucion_dinamica(self):
         assert "VULN-EVAL" not in _reglas("train.py", "model.eval()")
 
+    @pytest.mark.correccion
     def test_un_comentario_que_menciona_eval_no_es_un_hallazgo(self):
         # unslothai/unsloth#10113 — dos CRITICAL sobre lineas de comentario
         assert "VULN-EVAL" not in _reglas(
             "scripts/lint_exec_literals.py",
             "# Obfuscation: large single-line base64-ish blob behind Function()/ eval().")
 
+    @pytest.mark.correccion
     def test_bundle_minificado_no_produce_hallazgos_de_codigo(self):
         # ArgusLabs-ai/ARGUS#71 — un build de Next.js dentro del PR
         assert _reglas(
@@ -58,17 +62,20 @@ class TestFalsosPositivosMedidosEnAbierto:
             '"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push('
             '[[287],{7648:function(e,t,n){return eval(r)}}]);') == set()
 
+    @pytest.mark.correccion
     def test_la_palabra_update_en_un_mensaje_no_es_sql_injection(self):
         # michaeljabbour/addteam#33 — tres HIGH sobre texto de consola
         assert "VULN-SQLI-FSTRING" not in _reglas(
             "src/addteam/app.py",
             'results.append((u, "would", f"update - {current_perm} -> {collab.permission}"))')
 
+    @pytest.mark.correccion
     def test_texto_de_version_con_flecha_no_es_sql_injection(self):
         assert "VULN-SQLI-FSTRING" not in _reglas(
             "src/addteam/ui.py",
             'print(f"  update available: {__version__} -> {latest}")')
 
+    @pytest.mark.correccion
     def test_nombre_de_variable_de_entorno_no_es_un_secreto(self):
         # dreadnought-foundry/bureau-pipeline#263 — tres HIGH
         assert "SECRET-GENERIC" not in _reglas(
@@ -76,12 +83,14 @@ class TestFalsosPositivosMedidosEnAbierto:
             'RETRY_TOKEN_ENV = "PUSH_RESCUE_RETRY"',
             'TOKEN_SOURCE_ENV = "PUSH_TOKEN_SOURCE"')
 
+    @pytest.mark.correccion
     def test_sk_dentro_de_una_palabra_corriente_no_es_una_clave(self):
         # weni-ai/retail-setup#567 — "task-..." contiene "sk-"
         assert "SECRET-OPENAI" not in _reglas(
             "retail/settings.py",
             'CELERY_BEAT_SCHEDULE = {"task-retail-back-in-stock-status-check": {}}')
 
+    @pytest.mark.correccion
     def test_prompt_con_dato_interno_no_es_inyeccion_de_prompt(self):
         # rarescos-pixel/ripple-agentic-plan-repair#7
         assert "VULN-LLM-INJECT" not in _reglas(
@@ -92,6 +101,7 @@ class TestFalsosPositivosMedidosEnAbierto:
 class TestSegundaRondaDeFalsosPositivos:
     """Casos que sobrevivieron a la primera correccion, en el mismo barrido."""
 
+    @pytest.mark.correccion
     def test_exec_no_es_un_builtin_en_typescript(self):
         # happytomatoe/fedora-speech-to-text#157 — seis CRITICAL sobre un
         # ayudante `exec()` escrito por el propio autor
@@ -99,15 +109,18 @@ class TestSegundaRondaDeFalsosPositivos:
             "e2e/lib/transport.ts",
             "  async exec(command: string, timeoutMs = 30000): Promise<ExecResult> {")
 
+    @pytest.mark.correccion
     def test_llamar_a_un_exec_propio_en_typescript_no_es_ejecucion_dinamica(self):
         assert "VULN-EVAL" not in _reglas(
             "e2e/e2e.ts",
             "const cwd = (await exec(`readlink /proc/${svcPid}/cwd`)).stdout.trim();")
 
+    @pytest.mark.correccion
     def test_definir_una_funcion_llamada_exec_no_es_ejecutarla(self):
         # Luecx/OpenCAE-Studio#48 — CRITICAL sobre `def exec(self):`
         assert "VULN-EVAL" not in _reglas("tests/test_ui.py", "    def exec(self):")
 
+    @pytest.mark.correccion
     def test_una_tabla_de_markdown_no_es_una_plantilla(self):
         # ousui/sdlc-ai-spec#10 — el texto "| safe automated execution |"
         # casaba con el filtro `|safe` de Jinja
@@ -115,12 +128,14 @@ class TestSegundaRondaDeFalsosPositivos:
             "docs/08-TRACEABILITY.md",
             "| safe automated/manual/hybrid execution | Design; Architecture |")
 
+    @pytest.mark.correccion
     def test_se_respeta_una_supresion_de_seguridad_explicita(self):
         # full-chaos/dev-health-ops#2224 — el autor ya marco `# noqa: S608`
         assert "VULN-SQLI-FSTRING" not in _reglas(
             "tests/test_migration.py",
             'sql = f"UPDATE daily_metrics_runs SET {column} = {value} "  # noqa: S608')
 
+    @pytest.mark.contraprueba
     def test_pero_un_noqa_de_estilo_no_silencia_nada(self):
         """`# noqa: E501` es longitud de linea. No autoriza nada de seguridad."""
         assert "VULN-SQLI-FSTRING" in _reglas(
@@ -130,21 +145,25 @@ class TestSegundaRondaDeFalsosPositivos:
 class TestTerceraRondaDeFalsosPositivos:
     """Casos de la segunda medicion, ya con el detector corregido una vez."""
 
+    @pytest.mark.correccion
     def test_vaciar_un_nodo_no_es_xss(self):
         # MilBia/Suchar-Overflow#316
         assert "VULN-LLM-XSS" not in _reglas(
             "tests/js/theme_spam.test.js", 'document.body.innerHTML = "";')
 
+    @pytest.mark.correccion
     def test_html_constante_no_es_xss(self):
         # colehurwitz/remote-factory#8 — literal fijo, no lo controla nadie
         assert "VULN-LLM-XSS" not in _reglas(
             "app.js", "panel.innerHTML = '<div>Waiting for games...</div>';")
 
+    @pytest.mark.correccion
     def test_marcador_de_token_de_slack_en_un_readme_no_es_una_filtracion(self):
         # pydantic/pydantic-ai-harness#794
         assert "SECRET-SLACK" not in _reglas(
             "docs/channels.md", "export SLACK_BOT_TOKEN='xoxb-your-token'")
 
+    @pytest.mark.correccion
     def test_comentario_de_plantilla_jinja_no_es_un_hallazgo(self):
         # ClankJake/Painel-Plex#23
         assert "VULN-LLM-XSS" not in _reglas(
@@ -153,6 +172,7 @@ class TestTerceraRondaDeFalsosPositivos:
 
 
 class TestCuartaRondaDeFalsosPositivos:
+    @pytest.mark.correccion
     def test_una_consulta_parametrizada_no_es_inyeccion_sql(self):
         """El peor falso positivo posible: marcar como vulnerable la forma
         CORRECTA de escribir la consulta. ContextualWisdomLab/pg-llm-batch#323."""
@@ -160,24 +180,29 @@ class TestCuartaRondaDeFalsosPositivos:
             "token_counter.py",
             'cur.execute("SELECT tiktoken_count(%s, %s)", (tiktoken_name, text))')
 
+    @pytest.mark.correccion
     def test_referencia_a_una_variable_de_entorno_no_es_un_secreto(self):
         # darkmatter/centaur#54 — PGPASSWORD="$CENTAUR_DB_PASSWORD"
         assert "SECRET-GENERIC" not in _reglas(
             ".github/workflows/ci.yml", 'PGPASSWORD="$CENTAUR_DB_PASSWORD" createdb')
 
+    @pytest.mark.correccion
     def test_no_se_cruza_el_limite_de_una_cadena(self):
         # uzkba/nexusflow#24 — capturaba trozos de codigo como si fueran el valor
         assert "SECRET-GENERIC" not in _reglas(
             "backend/tests/test_auth_login.py",
             'token_puro = cabecera.split("refresh_token=")[1].split(";")[0]')
 
+    @pytest.mark.contraprueba
     def test_sql_construido_con_el_operador_de_formato_si_salta(self):
         assert "VULN-SQLI" in _reglas(
             "db.py", 'cur.execute("SELECT * FROM t WHERE id = %s" % uid)')
 
+    @pytest.mark.contraprueba
     def test_sql_concatenado_si_salta(self):
         assert "VULN-SQLI" in _reglas("db.py", 'cur.execute("SELECT * FROM " + tabla)')
 
+    @pytest.mark.contraprueba
     def test_sql_con_format_si_salta(self):
         assert "VULN-SQLI" in _reglas(
             "db.py", 'cur.execute("SELECT * FROM {}".format(tabla))')
@@ -188,21 +213,26 @@ class TestSoloSeAuditaCodigo:
     de clientes: 581 hallazgos graves, casi todos sobre ficheros `.canonical` de
     datos de prueba que contienen la palabra eval."""
 
+    @pytest.mark.correccion
     def test_un_fichero_de_datos_no_se_audita_como_codigo(self):
         assert _reglas("tests/golden_data/cgtoaa.canonical",
                        "  eval( $atom_name )") == set()
 
+    @pytest.mark.correccion
     def test_ni_un_csv_ni_un_log(self):
         assert _reglas("data/muestras.csv", 'id,expr\n1,"eval(x)"') == set()
         assert _reglas("salida.log", "DEBUG llamada a eval(payload)") == set()
 
+    @pytest.mark.contraprueba
     def test_pero_el_codigo_de_verdad_si(self):
         assert "VULN-EVAL" in _reglas("src/app.py", "eval(peticion.body)")
 
+    @pytest.mark.contraprueba
     def test_un_dockerfile_es_codigo(self):
         assert "VULN-SHELL" in _reglas(
             "Dockerfile", "RUN subprocess.run(cmd, shell=True)")
 
+    @pytest.mark.contraprueba
     def test_una_credencial_en_un_fichero_de_datos_si_se_marca(self):
         """La lista blanca es solo para reglas de CODIGO. Una clave filtrada
         lo esta igual dentro de un .txt."""
@@ -213,34 +243,41 @@ class TestMencionarNoEsEjecutar:
     """haddocking/haddock3#1686: una expresion regular que reconoce la palabra
     eval en ficheros ajenos se marcaba como ejecucion dinamica CRITICA."""
 
+    @pytest.mark.correccion
     def test_una_regex_que_menciona_eval_no_lo_ejecuta(self):
         assert "VULN-EVAL" not in _reglas(
             "src/haddock/libs/libcnscanonical.py",
             r'PATRON = r"eval(?:uate)?\s*\(\s*\$(?P<name>[A-Za-z0-9_]+)\s*=\s*"')
 
+    @pytest.mark.correccion
     def test_una_cadena_normal_que_menciona_eval_tampoco(self):
         assert "VULN-EVAL" not in _reglas(
             "app.py", 'log.warning("no uses eval(x) aqui")')
 
+    @pytest.mark.contraprueba
     def test_pero_eval_de_verdad_junto_a_una_cadena_si_salta(self):
         assert "VULN-EVAL" in _reglas("app.py", 'resultado = eval(peticion["expr"])')
 
+    @pytest.mark.contraprueba
     def test_exec_con_compile_sigue_saltando(self):
         assert "VULN-EVAL" in _reglas(
             "tests/t.py", 'exec(compile(modulo, str(RUTA), "exec"), espacio)')
 
 
 class TestGravedadSegunDondeVive:
+    @pytest.mark.contraprueba
     def test_en_produccion_mantiene_la_gravedad(self):
         f = audit_diff(_diff("app/db.py",
                              'sql = f"select {c} from usuarios where id = {i}"'))["findings"][0]
         assert f["severity"] == "HIGH"
 
+    @pytest.mark.correccion
     def test_en_una_prueba_baja_un_nivel(self):
         f = audit_diff(_diff("tests/test_db.py",
                              'sql = f"select {c} from usuarios where id = {i}"'))["findings"][0]
         assert f["severity"] == "MEDIUM" and f["confidence"] == "medium"
 
+    @pytest.mark.contraprueba
     def test_pero_se_sigue_informando(self):
         assert "VULN-SQLI-FSTRING" in _reglas(
             "tests/test_db.py", 'sql = f"select {c} from usuarios where id = {i}"')
@@ -249,55 +286,68 @@ class TestGravedadSegunDondeVive:
 class TestLoQueDebeSeguirSaltando:
     """Sin esta clase, la correccion anterior se podria 'aprobar' apagando todo."""
 
+    @pytest.mark.contraprueba
     def test_eval_de_verdad_sigue_siendo_critico(self):
         assert "VULN-EVAL" in _reglas("app.py", "resultado = eval(peticion.body)")
 
+    @pytest.mark.contraprueba
     def test_exec_de_verdad_en_python_sigue_saltando(self):
         assert "VULN-EVAL" in _reglas("app.py", "exec(codigo_del_usuario)")
 
+    @pytest.mark.contraprueba
     def test_eval_en_javascript_sigue_saltando(self):
         """`eval` SI es un builtin en JS, a diferencia de `exec`."""
         assert "VULN-EVAL" in _reglas("app.js", "const r = eval(req.body.expr);")
 
+    @pytest.mark.contraprueba
     def test_sql_real_interpolado_sigue_saltando(self):
         # dbt-labs/dbt-adapters#2147 — este SI era correcto
         assert "VULN-SQLI-FSTRING" in _reglas(
             "test_create_or_alter.py",
             'project.run_sql(f"drop schema if exists {project.test_schema} cascade")')
 
+    @pytest.mark.contraprueba
     def test_select_from_interpolado_sigue_saltando(self):
         assert "VULN-SQLI-FSTRING" in _reglas(
             "q.py", 'sql = f"select {cols} from usuarios where id = {uid}"')
 
+    @pytest.mark.contraprueba
     def test_update_set_interpolado_sigue_saltando(self):
         assert "VULN-SQLI-FSTRING" in _reglas(
             "q.py", 'sql = f"UPDATE usuarios SET nombre = {nombre} WHERE id = {uid}"')
 
+    @pytest.mark.contraprueba
     def test_reindex_interpolado_sigue_saltando(self):
         # Mu-L/prefect#712 — correcto, aunque el riesgo practico sea bajo
         assert "VULN-SQLI-FSTRING" in _reglas(
             "migracion.py", 'op.execute(f"REINDEX INDEX CONCURRENTLY {index[0]}")')
 
+    @pytest.mark.contraprueba
     def test_pickle_sigue_saltando(self):
         # papayasamosa/Media-Mix-Lab#351 — correcto
         assert "VULN-PICKLE" in _reglas(
             "fit_job_service.py", "return cast(dict, pickle.load(handle))")
 
+    @pytest.mark.contraprueba
     def test_clave_de_openai_de_verdad_sigue_saltando(self):
         assert "SECRET-OPENAI" in _reglas(
             "config.py", 'OPENAI_KEY = "sk-proj-Ab3xZ9kQ2mN7pR4tV6wY8uI0oP1aS5dF"')
 
+    @pytest.mark.contraprueba
     def test_clave_de_aws_sigue_saltando(self):
         assert "SECRET-AWS" in _reglas("config.py", 'key = "AKIAZ9Y8X7W6V5U4T3S2"')
 
+    @pytest.mark.contraprueba
     def test_prompt_con_entrada_de_usuario_sigue_saltando(self):
         assert "VULN-LLM-INJECT" in _reglas(
             "chat.py", 'prompt = f"Responde a esto: {user_message}"')
 
+    @pytest.mark.contraprueba
     def test_shell_true_sigue_saltando(self):
         assert "VULN-SHELL" in _reglas(
             "run.py", "subprocess.run(cmd, shell=True)")
 
+    @pytest.mark.contraprueba
     def test_un_secreto_dentro_de_un_bundle_sigue_saltando(self):
         """El silencio de ficheros generados es solo para reglas de CODIGO.
         Una credencial real publicada en un bundle es una filtracion real."""
@@ -319,33 +369,40 @@ class TestCredencialesDeEjemploDeLaDocumentacion:
     ambiguedad: es la cadena literal del fabricante.
     """
 
+    @pytest.mark.correccion
     def test_no_marca_la_clave_de_ejemplo_de_aws(self):
         assert "SECRET-AWS" not in _reglas(
             "config.py", 'AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"')
 
+    @pytest.mark.correccion
     def test_tampoco_su_clave_secreta(self):
         assert not _reglas(
             "config.py",
             'AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"')
 
+    @pytest.mark.correccion
     def test_ni_en_un_fichero_de_entorno(self):
         assert "SECRET-AWS" not in _reglas(
             ".env.example", "AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE")
 
+    @pytest.mark.correccion
     def test_una_variante_con_example_dentro_tampoco(self):
         assert "SECRET-AWS" not in _reglas(
             "docs/guia.md", 'key = "AKIAEXAMPLEKEY1234XY"')
 
+    @pytest.mark.contraprueba
     def test_pero_una_clave_con_forma_valida_si(self):
         """El corte no puede ser 'cualquier cosa que huela a demo'."""
         assert "SECRET-AWS" in _reglas("config.py", 'key = "AKIAZ9Y8X7W6V5U4T3S2"')
 
+    @pytest.mark.contraprueba
     def test_ni_apaga_las_demas_reglas(self):
         assert "SECRET-OPENAI" in _reglas(
             "config.py", 'OPENAI_KEY = "sk-proj-Ab3xZ9kQ2mN7pR4tV6wY8uI0oP1aS5dF"')
 
 
 class TestRuidoGlobal:
+    @pytest.mark.correccion
     def test_un_pr_normal_no_produce_ningun_hallazgo(self):
         reglas = _reglas(
             "src/util.py",
@@ -372,11 +429,13 @@ class TestUnaVariableVaciadaEsLaCorreccionNoElFallo:
     La puerta humana de precisión existe para esto, y esta vez sirvió.
     """
 
+    @pytest.mark.correccion
     def test_el_caso_exacto_del_mundo_real(self):
         assert "VULN-CLIENT-SECRET" not in _reglas(
             "apps/kiosk/vite.config.ts",
             '''      ? { "import.meta.env.VITE_OPENAI_API_KEY": '""' }''')
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("linea", [
         'NEXT_PUBLIC_OPENAI_API_KEY=',
         'NEXT_PUBLIC_STRIPE_SECRET_KEY=""',
@@ -388,6 +447,7 @@ class TestUnaVariableVaciadaEsLaCorreccionNoElFallo:
     def test_otras_formas_de_vaciarla(self, linea):
         assert "VULN-CLIENT-SECRET" not in _reglas("vite.config.ts", linea)
 
+    @pytest.mark.contraprueba
     @pytest.mark.parametrize("fichero,linea", [
         (".env.local", 'NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiJ9.real'),
         # Ojo con la ruta: leer del entorno en un `*.config.*` corre en Node y
@@ -413,11 +473,13 @@ class TestLeerUnaVariableEnNodeNoEsPublicarlaEnElNavegador:
     valor real y que el cliente la referencie, y eso no se ve en esa línea.
     """
 
+    @pytest.mark.correccion
     def test_el_caso_exacto_del_mundo_real(self):
         assert "VULN-CLIENT-SECRET" not in _reglas(
             "frontend/transmart.config.js",
             "  openAIApiKey: process.env.VITE_OPENAI_API_KEY,")
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("fichero", [
         "vite.config.ts", "next.config.mjs", "astro.config.mjs",
         "apps/web/nuxt.config.ts", "tailwind.config.cjs",
@@ -426,17 +488,20 @@ class TestLeerUnaVariableEnNodeNoEsPublicarlaEnElNavegador:
         assert "VULN-CLIENT-SECRET" not in _reglas(
             fichero, "  key: process.env.NEXT_PUBLIC_OPENAI_API_KEY,")
 
+    @pytest.mark.contraprueba
     def test_pero_el_codigo_de_CLIENTE_sigue_saltando(self):
         """`src/` no es configuración: eso sí acaba en el bundle."""
         assert "VULN-CLIENT-SECRET" in _reglas(
             "src/lib/db.ts",
             "const c = createClient(process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY);")
 
+    @pytest.mark.contraprueba
     def test_y_una_asignacion_directa_en_un_env_tambien(self):
         """Ahí no hay `process.env` de por medio: es el valor, no una lectura."""
         assert "VULN-CLIENT-SECRET" in _reglas(
             ".env.local", "NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiJ9.real")
 
+    @pytest.mark.contraprueba
     def test_un_config_que_asigna_un_valor_literal_no_se_libra(self):
         """La excusa es LEER del entorno. Escribir la clave a pelo en el
         config es otra cosa y sigue siendo un hallazgo."""
@@ -473,6 +538,7 @@ class TestLaCabeceraPemCitadaNoEsUnaClave:
     cabecera sin cuerpo no es una clave.
     """
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("linea", [
         # google-auth · google/auth/transport/_mtls_helper.py:37-40
         '# "-----BEGIN PRIVATE KEY-----...",',
@@ -488,6 +554,7 @@ class TestLaCabeceraPemCitadaNoEsUnaClave:
     def test_no_dispara(self, linea):
         assert _reglas("src/app.py", linea) == set()
 
+    @pytest.mark.contraprueba
     @pytest.mark.parametrize("linea", [
         # Lo que SI tiene que seguir disparando, para no cambiar ruido por ceguera
         'KEY = "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAAKCAQEA7Xk9wS2vQ8fK"',
@@ -506,6 +573,7 @@ class TestUnaUrlUnaRutaOUnaFraseNoSonUnaCredencial:
     Las cuatro llevan `token` en el nombre, que es justo lo que la regla busca.
     """
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("linea", [
         # google-auth · google/auth/downscoped.py:64-69
         '_STS_REQUESTED_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:access_token"',
@@ -522,6 +590,7 @@ class TestUnaUrlUnaRutaOUnaFraseNoSonUnaCredencial:
     def test_no_dispara(self, linea):
         assert _reglas("src/app.py", linea) == set()
 
+    @pytest.mark.contraprueba
     def test_un_secreto_de_verdad_en_la_misma_forma_sigue_saltando(self):
         assert _reglas("src/app.py", 'api_token = "hQ7bZp2LxV9nR4mKdT8wYcF3gJ6sA1eU"')
 
@@ -531,6 +600,7 @@ class TestDebugTrueNoEsSiempreModoDepuracion:
     argumento de cualquier llamada es un parametro corriente; lo que si es la
     vulnerabilidad es la constante de configuracion de un servidor web."""
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("linea", [
         # numba · numba/cuda/tests/cudapy/test_exception.py:25,37
         "safe_foo = cuda.jit(debug=True, opt=False)(foo)",
@@ -545,6 +615,7 @@ class TestDebugTrueNoEsSiempreModoDepuracion:
     def test_no_dispara(self, linea):
         assert _reglas("src/app.py", linea) == set()
 
+    @pytest.mark.contraprueba
     @pytest.mark.parametrize("linea", [
         "DEBUG = True",
         "app.run(host='0.0.0.0', debug=True)",
@@ -559,6 +630,7 @@ class TestUnViajeDeIdaYVueltaConPickleNoEsUnRiesgo:
     serializar: no hay entrada de un tercero, que es lo unico que hace
     peligroso a pickle. Era el patron mas repetido del corpus."""
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("linea", [
         # arch · arch/tests/univariate/test_recursions.py:271
         "gu = pickle.loads(pickle.dumps(gu))",
@@ -567,6 +639,7 @@ class TestUnViajeDeIdaYVueltaConPickleNoEsUnRiesgo:
     def test_no_dispara(self, linea):
         assert _reglas("src/app.py", linea) == set()
 
+    @pytest.mark.contraprueba
     def test_deserializar_algo_que_llega_de_fuera_sigue_saltando(self):
         assert _reglas("src/app.py", "datos = pickle.loads(request.body)")
 
@@ -585,6 +658,7 @@ class TestElSufijoSpecEsCodigoDePrueba:
     regla solo reconocia `spec` como SEGMENTO de ruta, asi que un token de
     fixture salia como HIGH sobre codigo que nadie ejecuta en produccion."""
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("ruta", [
         # Neonity2020/hermes-agent#601
         "apps/desktop/e2e/group-create-gate-remote-roster.spec.ts",
@@ -599,6 +673,7 @@ class TestElSufijoSpecEsCodigoDePrueba:
             assert f["severity"] != "HIGH", \
                 f"{ruta} es codigo de prueba: avisar si, alarmar no"
 
+    @pytest.mark.contraprueba
     def test_el_mismo_token_en_produccion_si_alarma(self):
         hall = audit_diff(_diff("src/api/cliente.ts",
                                 "const REMOTE_TOKEN = 'e2e-abcdefghijklmnopqrstuvwx'"))
@@ -613,6 +688,7 @@ class TestNoSePuedeInyectarPorUnaConstante:
     de modulo. Lo marcamos como inyeccion SQL.
     """
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("linea", [
         'cur.execute(f"SELECT 1 FROM {MARKER_TABLE} WHERE source=?", (SOURCE_NAME,))',
         'cur.execute(f"CREATE TABLE IF NOT EXISTS {MARKER_TABLE} (source TEXT PRIMARY KEY)")',
@@ -621,6 +697,7 @@ class TestNoSePuedeInyectarPorUnaConstante:
     def test_no_dispara(self, linea):
         assert not [r for r in _reglas("gateway/rooms.py", linea) if r.startswith("VULN-SQLI")]
 
+    @pytest.mark.contraprueba
     @pytest.mark.parametrize("linea", [
         'cur.execute(f"SELECT * FROM users WHERE name={nombre}")',
         'cur.execute(f"PRAGMA table_info({name})")',
@@ -635,6 +712,7 @@ class TestElMismoProblemaNoSeCuentaDosVeces:
     cliente veia el mismo problema dos veces con dos nombres, que es la forma
     mas rapida de que deje de leernos."""
 
+    @pytest.mark.correccion
     def test_una_sola_regla_por_linea_y_debilidad(self):
         # Neonity2020/hermes-agent#601 · gateway/hosted_rooms.py:367
         reglas = _reglas("gateway/hosted_rooms.py",
@@ -642,10 +720,12 @@ class TestElMismoProblemaNoSeCuentaDosVeces:
         sqli = [r for r in reglas if r.startswith("VULN-SQLI")]
         assert len(sqli) == 1, f"un problema, un aviso: {sqli}"
 
+    @pytest.mark.contraprueba
     def test_sobrevive_la_que_dice_que_arreglar(self):
         reglas = _reglas("m.py", 'op.execute(f"REINDEX INDEX CONCURRENTLY {index[0]}")')
         assert "VULN-SQLI-FSTRING" in reglas
 
+    @pytest.mark.contraprueba
     def test_dos_debilidades_distintas_en_una_linea_siguen_siendo_dos(self):
         reglas = _reglas("app.py", 'eval(requests.get(url, verify=False).text)')
         assert len(reglas) >= 2, "esto si son dos problemas diferentes"
@@ -665,6 +745,7 @@ class TestRespetamosLoQueElEquipoYaHabiaDeclarado:
     codigo dos veces.
     """
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("linea", [
         'PASSWORD = "Sup3rS3cr42xyz"  # pragma: allowlist secret',      # detect-secrets
         'subprocess.call(cmd, shell=True)  # nosec',                     # bandit
@@ -678,10 +759,12 @@ class TestRespetamosLoQueElEquipoYaHabiaDeclarado:
     def test_una_linea_ya_revisada_no_se_vuelve_a_mirar(self, linea):
         assert _reglas("src/app.py", linea) == set()
 
+    @pytest.mark.contraprueba
     def test_la_misma_linea_sin_marcador_si_se_reporta(self):
         assert _reglas("src/app.py",
                        'api_key = "hQ7bZp2LxV9nR4mKdT8wYcF3gJ6sA1eU"') != set()
 
+    @pytest.mark.contraprueba
     def test_el_marcador_solo_vale_para_SU_linea(self):
         """Un `# nosec` no puede apagar el fichero entero: eso convertiria una
         anotacion puntual en una puerta trasera."""
@@ -730,6 +813,7 @@ class TestUnaTablaQuePandasYaEscapoNoEsXss:
     No es salida de un modelo ni de un usuario: `|safe` solo evita escapar dos
     veces. La linea sola no lo dice; el resto del mismo PR, si."""
 
+    @pytest.mark.correccion
     def test_el_caso_exacto_del_mundo_real(self):
         # probabl-ai/skore#3270 — HIGH sobre paginated_metrics.html.j2:7
         assert _xss(_PLANTILLA_SKORE, ("skore/src/skore/_utils/repr/paginated_metrics.py", [
@@ -743,8 +827,13 @@ class TestUnaTablaQuePandasYaEscapoNoEsXss:
             '        "common/paginated_metrics.html.j2",',
             '        {"table_html": table_html, "inline_assets": inline_assets},',
             "    )",
+            "",
+            # En el PR real, linea 60 del mismo fichero. Anadida el 2026-10-02
+            # cuando `x = f(x)` paso a exigir que `f` este definida en el diff.
+            "def _annotate_tbody_rows(table_html: str) -> str:",
         ])) == []
 
+    @pytest.mark.contraprueba
     @pytest.mark.parametrize("origen", [
         # Sin escape, `to_html` devuelve el texto de las celdas tal cual
         ["table_html = df.to_html(index=False, escape=False)"],
@@ -762,6 +851,7 @@ class TestUnaTablaQuePandasYaEscapoNoEsXss:
             ficheros.append(("skore/src/skore/_utils/repr/paginated_metrics.py", origen))
         assert _xss(*ficheros), f"sin escape demostrado hay que avisar: {origen}"
 
+    @pytest.mark.contraprueba
     def test_otro_safe_en_la_misma_linea_sigue_saltando(self):
         """La excepcion es por variable, no por linea."""
         assert _xss(
@@ -774,6 +864,7 @@ class TestUnValorSinteticoDePruebaNoEsUnSecreto:
     secuencia de cifras repetida. Los dos superaban el umbral de entropia, asi
     que -- como con las URL -- el filtro tiene que ser estructural."""
 
+    @pytest.mark.correccion
     @pytest.mark.parametrize("fichero,linea", [
         # baptisteArno/typebot.io#2604 — LOW en tests/webhook/replay.mts:15
         ("tests/webhook/replay.mts", 'const secret = "synthetic-local-webhook-relay-key-0001";'),
@@ -783,12 +874,14 @@ class TestUnValorSinteticoDePruebaNoEsUnSecreto:
     def test_un_nombre_con_contador_no_es_un_secreto(self, fichero, linea):
         assert "SECRET-GENERIC" not in _reglas(fichero, linea)
 
+    @pytest.mark.correccion
     def test_una_secuencia_repetida_no_es_un_secreto(self):
         # baptisteArno/typebot.io#2598 — LOW en workspaceReadAccess.test.ts:6
         assert "SECRET-GENERIC" not in _reglas(
             "apps/builder/src/features/workspace/api/workspaceReadAccess.test.ts",
             'process.env.ENCRYPTION_SECRET = "12345678901234567890123456789012";')
 
+    @pytest.mark.contraprueba
     @pytest.mark.parametrize("linea", [
         # Cifras y letras mezcladas dentro del trozo: no es un nombre
         'relay_secret = "prod_k8f3j2l9x0q7w"',

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cuántas veces nos equivocamos — el registro de errores de MagAudit</title>
-<meta name="description" content="Publicamos nuestra propia tasa de falsos positivos. 89 correcciones, cada una fijada por una prueba de regresión construida con la línea exacta observada en un repositorio público real, con su pull request citado. Se deriva de las pruebas, no se escribe a mano.">
+<meta name="description" content="Publicamos nuestra propia tasa de falsos positivos. 46 correcciones, cada una fijada por una prueba de regresión construida con la línea exacta observada en un repositorio público real, con su pull request citado, y 43 contrapruebas que demuestran que ningún arreglo calló un problema real. Se deriva de las pruebas, no se escribe a mano.">
 <link rel="icon" type="image/png" href="../favicon-64.png">
 <link rel="canonical" href="https://magsolutionsai.com/es/quality.html">
 <link rel="alternate" hreflang="en" href="https://magsolutionsai.com/quality.html">
@@ -52,7 +52,10 @@
     <tr><th>Qué</th><th>Valor</th><th>De dónde sale</th></tr>
     <tr><td><strong>Correcciones fijadas por una prueba de regresión</strong></td>
         <td><b id="n-correcciones">&mdash;</b></td>
-        <td>Contadas del fichero de pruebas. Si alguien borra una, el número baja solo</td></tr>
+        <td>Contadas del fichero de pruebas, por la etiqueta que lleva cada una. Si alguien borra una, el número baja solo</td></tr>
+    <tr><td><strong>Contrapruebas: un problema real que sigue avisando tras un arreglo</strong></td>
+        <td><b id="n-contrapruebas">&mdash;</b></td>
+        <td>Mismo fichero. Hasta el 2 de octubre de 2026 también las contábamos como correcciones; no lo son</td></tr>
     <tr><td>Repositorios públicos citados como origen de una corrección</td>
         <td><b id="n-repos">&mdash;</b></td>
         <td>Cada prueba lleva un comentario <code>owner/repo#PR</code> que puedes abrir</td></tr>
@@ -155,6 +158,7 @@
     .then(function (d) {
       var b = d.barrido_semanal || {};
       pon('n-correcciones', d.correcciones_fijadas_por_prueba);
+      pon('n-contrapruebas', d.contrapruebas_que_siguen_avisando);
       pon('n-repos', d.repositorios_publicos_citados);
       pon('n-prs', b.prs_analizados_total);
       pon('n-barridos', b.ejecuciones);
