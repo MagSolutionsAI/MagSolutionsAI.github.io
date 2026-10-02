@@ -2,7 +2,7 @@
 title: "pull_request_target in the wild: 60 public workflows, 6 exploitable, and the fixes that actually work"
 description: We checked 60 public GitHub Actions workflows that use pull_request_target. Most that look dangerous are not. One that explicitly declared its risk was, and our own rule missed it until today.
 date: 2026-10-02
-tags: security, github actions, ci, measurement
+tags: security, github actions, ci, open source
 ---
 
 `pull_request_target` is the GitHub Actions trigger behind a steady stream of

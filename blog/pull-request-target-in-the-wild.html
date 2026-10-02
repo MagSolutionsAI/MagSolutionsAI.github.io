@@ -39,7 +39,7 @@
     "security",
     "github actions",
     "ci",
-    "measurement"
+    "open source"
   ],
   "author": {
     "@type": "Organization",
@@ -111,7 +111,7 @@
       </div>
       <h1>pull_request_target in the wild: 60 public workflows, 6 exploitable, and the fixes that actually work</h1>
       <p class="post-lede">We checked 60 public GitHub Actions workflows that use pull_request_target. Most that look dangerous are not. One that explicitly declared its risk was, and our own rule missed it until today.</p>
-      <div class="ptags"><span class="ptag">security</span><span class="ptag">github actions</span><span class="ptag">ci</span><span class="ptag">measurement</span></div>
+      <div class="ptags"><span class="ptag">security</span><span class="ptag">github actions</span><span class="ptag">ci</span><span class="ptag">open source</span></div>
     </header>
     <div class="post-body">
 <p><code>pull_request_target</code> is the GitHub Actions trigger behind a steady stream of security advisories titled some variant of "secrets exfiltration via pull_request_target". It runs in the context of the base repository, with its secrets and a token that can write, even when the pull request comes from a stranger's fork. On its own that is fine. It becomes a takeover when the workflow also checks out the contributor's code <b>and runs it</b>.</p>
