@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://magsolutionsai.com/es/trust.html">
 <link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html">
 <link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html">
-<link rel="stylesheet" href="../style.css?v=11">
+<link rel="stylesheet" href="../style.css?v=12">
 </head>
 <body>
 <header class="nav">
@@ -29,6 +29,96 @@
   mandan ellos.</p>
 
   <h2>1. Dónde va tu código</h2>
+  <figure class="flow">
+    <div class="flow-scroll">
+    <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mag-flow-title mag-flow-desc">
+      <title id="mag-flow-title">Dónde va tu código</title>
+      <desc id="mag-flow-desc">Un pull request de GitHub envía su diff al check de MagAudit, en un único servidor en Finlandia. El check devuelve a GitHub un comentario y un check, guarda el informe en memoria hasta siete días, almacena solo metadatos y envía solo nombres y versiones de paquete a los registros de paquetes. El camino hacia un modelo de IA está cortado en la frontera del servidor.</desc>
+      <defs>
+        <pattern id="mag-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9" fill="rgba(233,239,247,0.08)"/>
+        </pattern>
+        <marker id="mag-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#93A7C2"/></marker>
+        <marker id="mag-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00E5A0"/></marker>
+        <marker id="mag-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6A95D8"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#090D16"/>
+      <rect width="100%" height="100%" fill="url(#mag-dots)" opacity="0.55"/>
+
+      <!-- Zones (drawn first) -->
+      <rect x="24" y="72" width="196" height="352" rx="8" fill="rgba(233,239,247,0.02)" stroke="#2A3A52" stroke-width="0.8"/>
+      <rect x="66" y="66" width="112" height="12" rx="2" fill="#090D16"/>
+      <text x="122" y="75" fill="#6B7F9C" font-size="7" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.14em">TU GITHUB</text>
+
+      <rect x="292" y="72" width="420" height="352" rx="8" fill="rgba(0,229,160,0.025)" stroke="rgba(0,229,160,0.45)" stroke-width="1" stroke-dasharray="6,4"/>
+      <rect x="402" y="66" width="200" height="12" rx="2" fill="#090D16"/>
+      <text x="502" y="75" fill="#00E5A0" font-size="7" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.14em">UN SERVIDOR · FINLANDIA · UE</text>
+
+      <rect x="784" y="72" width="192" height="352" rx="8" fill="rgba(233,239,247,0.02)" stroke="#2A3A52" stroke-width="0.8"/>
+      <rect x="834" y="66" width="92" height="12" rx="2" fill="#090D16"/>
+      <text x="880" y="75" fill="#6B7F9C" font-size="7" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.14em">TERCEROS</text>
+
+      <!-- Arrows (behind nodes) -->
+      <path d="M 196,152 H 260 Q 268,152 268,160 V 200 Q 268,208 276,208 H 320" fill="none" stroke="#6A95D8" stroke-width="1.2" marker-end="url(#mag-arrow-link)"/>
+      <path d="M 320,248 H 276 Q 268,248 268,256 V 304 Q 268,312 260,312 H 196" fill="none" stroke="#00E5A0" stroke-width="1.4" marker-end="url(#mag-arrow-accent)"/>
+      <path d="M 488,208 H 800" fill="none" stroke="#6A95D8" stroke-width="1.2" marker-end="url(#mag-arrow-link)"/>
+      <path d="M 404,264 V 300" fill="none" stroke="#93A7C2" stroke-width="1.2" marker-end="url(#mag-arrow)"/>
+      <path d="M 488,248 H 540 Q 548,248 548,256 V 300" fill="none" stroke="#93A7C2" stroke-width="1.2" marker-end="url(#mag-arrow)"/>
+      <!-- Forbidden route: stops at the server boundary -->
+      <path d="M 488,236 H 640 Q 648,236 648,244 V 352 Q 648,360 656,360 H 704" fill="none" stroke="#FF6070" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <line x1="706" y1="352" x2="722" y2="368" stroke="#FF6070" stroke-width="1.6"/>
+      <line x1="722" y1="352" x2="706" y2="368" stroke="#FF6070" stroke-width="1.6"/>
+
+      <!-- Arrow labels -->
+      <rect x="212" y="166" width="48" height="12" rx="2" fill="#090D16"/>
+      <text x="236" y="175" fill="#6A95D8" font-size="8" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">DIFF</text>
+      <rect x="200" y="286" width="64" height="12" rx="2" fill="#090D16"/>
+      <text x="232" y="295" fill="#00E5A0" font-size="8" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">HALLAZGOS</text>
+      <rect x="644" y="188" width="128" height="12" rx="2" fill="#090D16"/>
+      <text x="708" y="197" fill="#6A95D8" font-size="8" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">NOMBRES + VERSIONES</text>
+      <rect x="660" y="376" width="64" height="12" rx="2" fill="#090D16"/>
+      <text x="692" y="385" fill="#FF6070" font-size="8" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">NUNCA</text>
+
+      <!-- Node: Pull request -->
+      <rect x="48" y="120" width="148" height="64" rx="6" fill="#101928" stroke="#2A3A52" stroke-width="1"/>
+      <text x="122" y="148" fill="#E9EFF7" font-size="12" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif" text-anchor="middle">Pull request</text>
+      <text x="122" y="164" fill="#93A7C2" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">abierto o actualizado</text>
+
+      <!-- Node: Comment + check -->
+      <rect x="48" y="280" width="148" height="64" rx="6" fill="#101928" stroke="#2A3A52" stroke-width="1"/>
+      <text x="122" y="308" fill="#E9EFF7" font-size="12" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif" text-anchor="middle">Comentario + check</text>
+      <text x="122" y="324" fill="#93A7C2" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">línea, motivo, arreglo</text>
+
+      <!-- Node: MagAudit check (focal) -->
+      <rect x="320" y="184" width="168" height="80" rx="6" fill="rgba(0,229,160,0.10)" stroke="#00E5A0" stroke-width="1"/>
+      <text x="404" y="216" fill="#E9EFF7" font-size="12" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif" text-anchor="middle">Check de MagAudit</text>
+      <text x="404" y="232" fill="#93A7C2" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">determinista · sin IA</text>
+      <text x="404" y="246" fill="#93A7C2" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">diff en memoria y se descarta</text>
+
+      <!-- Node: Report -->
+      <rect x="320" y="304" width="168" height="64" rx="6" fill="#101928" stroke="#2A3A52" stroke-width="1"/>
+      <text x="404" y="332" fill="#E9EFF7" font-size="12" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif" text-anchor="middle">Informe completo</text>
+      <text x="404" y="348" fill="#93A7C2" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">solo en memoria · ≤ 7 días</text>
+
+      <!-- Node: Metadata -->
+      <rect x="500" y="304" width="136" height="64" rx="6" fill="#101928" stroke="#2A3A52" stroke-width="1"/>
+      <text x="568" y="332" fill="#E9EFF7" font-size="12" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif" text-anchor="middle">Metadatos</text>
+      <text x="568" y="348" fill="#93A7C2" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">recuentos · sin código</text>
+
+      <!-- Node: Package registries -->
+      <rect x="800" y="176" width="164" height="64" rx="6" fill="#101928" stroke="#2A3A52" stroke-width="1"/>
+      <text x="882" y="204" fill="#E9EFF7" font-size="12" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif" text-anchor="middle">Registros de paquetes</text>
+      <text x="882" y="220" fill="#93A7C2" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">PyPI · npm · avisos</text>
+
+      <!-- Node: AI model (forbidden) -->
+      <rect x="800" y="328" width="164" height="64" rx="6" fill="rgba(255,96,112,0.06)" stroke="#FF6070" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="882" y="356" fill="#E9EFF7" font-size="12" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif" text-anchor="middle">Modelos de IA</text>
+      <text x="882" y="372" fill="#FF6070" font-size="9" font-family="ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace" text-anchor="middle">cortado en la frontera</text>
+    </svg>
+    </div>
+    <figcaption>Todo el recorrido en una imagen. La tabla de debajo da el detalle; la política de privacidad es el texto que obliga.</figcaption>
+  </figure>
   <div class="tw"><table>
     <tr><th>Pregunta</th><th>Respuesta</th></tr>
     <tr><td>¿Dónde se lee mi código?</td><td>En un único servidor virtual que alquilamos a Hetzner
