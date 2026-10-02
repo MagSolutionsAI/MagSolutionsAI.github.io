@@ -6,7 +6,15 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Sep 2026 07:29:06 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 09:00:00 +0000</lastBuildDate>
+    <item>
+      <title>pull_request_target in the wild: 60 public workflows, 6 exploitable, and the fixes that actually work</title>
+      <link>https://magsolutionsai.com/blog/pull-request-target-in-the-wild.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/pull-request-target-in-the-wild.html</guid>
+      <pubDate>Fri, 02 Oct 2026 09:00:00 +0000</pubDate>
+      <description>We checked 60 public GitHub Actions workflows that use pull_request_target. Most that look dangerous are not. One that explicitly declared its risk was, and our own rule missed it until today.</description>
+      <category>security</category><category>github actions</category><category>ci</category><category>measurement</category>
+    </item>
     <item>
       <title>Field report: 3734 real pull requests scanned, 0 hallucinated packages confirmed</title>
       <link>https://magsolutionsai.com/blog/field-report-2026-09-28.html</link>
