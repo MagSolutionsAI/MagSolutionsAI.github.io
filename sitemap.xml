@@ -53,6 +53,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
   </url>
   <url>
+    <loc>https://magsolutionsai.com/es/legal-notice.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/legal-notice.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/legal-notice.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/legal-notice.html"/>
+  </url>
+  <url>
     <loc>https://magsolutionsai.com/es/magaudit-vs-coderabbit.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-coderabbit.html"/>
@@ -113,12 +119,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/trust.html"/>
   </url>
   <url>
-    <loc>https://magsolutionsai.com/es/welcome.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/welcome.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/welcome.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/welcome.html"/>
-  </url>
-  <url>
     <loc>https://magsolutionsai.com/hallucination-index.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html"/>
@@ -129,6 +129,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/legal-notice.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/legal-notice.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/legal-notice.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/legal-notice.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/magaudit-vs-coderabbit.html</loc>
@@ -189,11 +195,5 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/trust.html"/>
-  </url>
-  <url>
-    <loc>https://magsolutionsai.com/welcome.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/welcome.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/welcome.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/welcome.html"/>
   </url>
 </urlset>

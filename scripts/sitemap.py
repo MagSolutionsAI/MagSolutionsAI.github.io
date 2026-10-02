@@ -21,7 +21,10 @@ import re
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 DOMINIO = "https://magsolutionsai.com"
 # Verificacion de Search Console y paginas que no se sirven.
-EXCLUIR = re.compile(r"^(google[0-9a-f]+\.html|legal-notice\.html|404\.html)$")
+EXCLUIR = re.compile(r"^(google[0-9a-f]+\.html|404\.html)$")
+# Una pagina que pide no indexarse (p. ej. la bienvenida post-instalacion) no
+# va al sitemap: lo decide su propia meta, no una lista que se desincroniza.
+NOINDEX = re.compile(r'<meta\s+name="robots"\s+content="[^"]*noindex', re.I)
 
 
 def _url(ruta: str) -> str:
@@ -37,8 +40,9 @@ def paginas() -> list:
     for patron in ("*.html", "es/*.html", "blog/*.html"):
         for p in RAIZ.glob(patron):
             ruta = p.relative_to(RAIZ).as_posix()
-            if not EXCLUIR.match(p.name):
-                fuera.append(ruta)
+            if EXCLUIR.match(p.name) or NOINDEX.search(p.read_text(encoding="utf-8")):
+                continue
+            fuera.append(ruta)
     return sorted(fuera)
 
 

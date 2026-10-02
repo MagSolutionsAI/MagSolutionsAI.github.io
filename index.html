@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GitHub pull request security check, hosted in the EU — MagSolutionsAI</title>
-<meta name="description" content="A security check on every pull request that stops leaked keys and days-old packages before they merge — flat price for the whole team, and your code never leaves one EU server or touches an AI model. Free on public repositories.">
-<meta property="og:title" content="GitHub pull request security check, hosted in the EU — MagSolutionsAI">
-<meta property="og:description" content="Leaked keys and days-old packages, stopped before merge. Flat price per team, code analysed in the EU, never sent to an AI model.">
+<title>GitHub PR Security Scanner | MagAudit Agent</title>
+<meta name="description" content="Automated security reviews on every GitHub pull request: leaked secrets, vulnerabilities and risky dependencies, with one-click inline fixes. Hosted in the EU, code never sent to an AI model. Free on public repos.">
+<meta property="og:title" content="GitHub PR Security Scanner | MagAudit Agent">
+<meta property="og:description" content="Automated security reviews on every pull request, with one-click inline fixes. Hosted in the EU, code never sent to an AI model.">
 <link rel="icon" type="image/png" href="favicon-64.png">
 <link rel="apple-touch-icon" href="logo-200.png">
 <link rel="canonical" href="https://magsolutionsai.com/">
@@ -19,8 +19,8 @@
 <meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
 <meta property="og:site_name" content="MagSolutionsAI">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GitHub pull request security check, hosted in the EU — MagSolutionsAI">
-<meta name="twitter:description" content="Leaked keys and days-old packages, stopped before merge. Flat price per team, code analysed in the EU, never sent to an AI model.">
+<meta name="twitter:title" content="GitHub PR Security Scanner | MagAudit Agent">
+<meta name="twitter:description" content="Automated security reviews on every pull request, with one-click inline fixes. Hosted in the EU, code never sent to an AI model.">
 <meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
 <script type="application/ld+json">
 {
@@ -59,7 +59,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -71,7 +71,7 @@
   </div>
 </div>
 
-<a class="skip" href="#scan">Skip to content</a>
+<a class="skip" href="#top">Skip to content</a>
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="./"><img src="logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
@@ -92,14 +92,64 @@
 <main>
 
 <!-- ═══ 1 · HERO ═══════════════════════════════════════════ -->
-<section class="hero" id="scan">
+<section class="hero" id="top">
   <div class="wrap hero-grid">
 
     <div>
       <div class="pill"><span class="dot"></span> Flat price per team · hosted in the EU · no AI · free for public repos</div>
 
-      <h1>Stop leaked keys and days-old packages <span class="hl">before they merge.</span></h1>
+      <h1>Automated Code Security Reviews <span class="hl">on Every Pull Request.</span></h1>
 
+      <ul class="hero-pts">
+        <li><span><b>Zero-Config Secret &amp; Vulnerability Detection.</b> Install it and the first report lands in about a minute, on the code already in your repository. Credentials, injection, insecure settings and risky dependencies.</span></li>
+        <li><span><b>Private &amp; Ephemeral:</b> your code is never written to disk and <b>never sent to an AI model</b> or any third party. It is read on one server in the EU and discarded.</span></li>
+        <li><span><b>Actionable Inline Fixes</b> directly inside GitHub PR comments: the line, the reason and a one-click <i>Commit suggestion</i> &mdash; offered only where the fix is certain.</span></li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn btn-1" href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub →</a>
+        <button class="btn btn-2" type="button" id="demoBtn">Try it on a broken file ↓</button>
+        <span class="note">Free on public repos · 14 days free on private</span>
+      </div>
+      <p style="margin:1.1rem 0 0;font-size:.92rem;color:var(--fg-2)">
+        Before you trust any of that:
+        <a href="quality.html"><b>we publish how often we are wrong</b> →</a>
+        83 corrections, each one from a line we got wrong in a real public repository.
+      </p>
+    </div>
+
+    <!-- Maqueta (ilustración): regla SECRET-GENERIC, gravedad y arreglo tal
+         como los producen detector.py y arreglos.proponer() para esta línea. -->
+    <figure class="prc rv" aria-label="Illustration: a MagAudit Agent review comment on a GitHub pull request, with a one-line fix">
+      <div class="prc-file"><span>src/lib/payments.ts</span><span class="prc-tag">Illustration</span></div>
+      <div class="prc-code" aria-hidden="true">
+        <div class="prc-ln"><span class="no">11</span><span class="sg"> </span><code>import Stripe from &quot;stripe&quot;;</code></div>
+        <div class="prc-ln add"><span class="no">12</span><span class="sg">+</span><code>const paymentsApiKey = &quot;pk9Xq2Lr7Tz4&hellip;&quot;;</code></div>
+      </div>
+      <div class="prc-th">
+        <div class="prc-hd"><img src="logo-64.png" alt="" width="20" height="20"><b>magaudit-agent</b><span class="prc-bot">bot</span><span>commented just now</span></div>
+        <p class="prc-ttl"><span class="prc-sev">HIGH</span> · Possible secret in 'paymentsApiKey'</p>
+        <div class="prc-sug">
+          <div class="prc-sug-hd">Suggested change</div>
+          <div class="prc-code">
+            <div class="prc-ln del"><span class="sg">-</span><code>const paymentsApiKey = &quot;pk9Xq2Lr7Tz4&hellip;&quot;;</code></div>
+            <div class="prc-ln add"><span class="sg">+</span><code>const paymentsApiKey = process.env.PAYMENTS_API_KEY;</code></div>
+          </div>
+          <div class="prc-sug-ft"><span class="prc-btn ghost">Add suggestion to batch</span><span class="prc-btn">Commit suggestion</span></div>
+        </div>
+        <p class="prc-sub">If this is a real secret, revoke it and read it from an environment variable. If it is an example, use an obvious placeholder such as YOUR_KEY_HERE.</p>
+      </div>
+      <figcaption>Illustration of a real inline comment: the rule, the severity and the fix are exactly what the App writes for this line.</figcaption>
+    </figure>
+
+  </div>
+</section>
+
+<!-- ═══ 1b · LA MEDICIÓN Y EL ESCÁNER EN VIVO ═══════════════ -->
+<section class="hero hero-2" id="scan">
+  <div class="wrap hero-grid">
+
+    <div>
       <p class="lede">
         One security check on every pull request, at <b>a flat price for the whole team</b>.
         Your code is read on one server in Finland and <b>never sent to an AI model</b> or any
@@ -111,16 +161,6 @@
         mark it as required. The first report lands about a minute after you install, on the code
         already in your repository.
       </p>
-      <p style="margin:.5rem 0 1.1rem;font-size:.92rem;color:var(--fg-2)">
-        Before you trust any of that:
-        <a href="quality.html"><b>we publish how often we are wrong</b> →</a>
-        83 corrections, each one from a line we got wrong in a real public repository.
-      </p>
-      <div class="cta">
-        <a class="btn btn-1" href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub →</a>
-        <button class="btn btn-2" type="button" id="demoBtn">Try it on a broken file ↓</button>
-        <span class="note">Free on public repos · 14 days free on private</span>
-      </div>
       <p class="lede" style="margin-top:1.2rem">
         We start with the code that is already there, because the mistake we find most often is
         never added in a pull request at all. After that, every dependency you add gets checked
@@ -640,7 +680,7 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
   <div class="wrap foot">
     <span>© 2026 MagSolutionsAI</span>
     <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
+    <a href="terms.html">Terms</a><a href="legal-notice.html">Legal notice</a>
     <a href="mailto:contact@magsolutionsai.com">Contact</a>
     <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
