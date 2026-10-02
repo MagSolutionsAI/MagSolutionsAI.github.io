@@ -116,8 +116,11 @@
     <li>Every webhook from GitHub is verified with HMAC-SHA256 before anything is processed.</li>
     <li>The server is reached by SSH key only — the administrator account refuses passwords and
       every other account is locked — behind a firewall that denies incoming traffic by default.</li>
-    <li>Dependencies are pinned and watched by Dependabot; on 27 September 2026 there were no
-      open alerts.</li>
+    <li>Dependencies are pinned and watched by Dependabot, and every day our own detector checks
+      the versions we pin. On 2 October 2026 there were no open alerts.
+      <em>Correction:</em> until that date this line said there were none on 27 September. That
+      was wrong: alerts about PyJWT, the library we use to sign GitHub tokens, had been open since
+      30 July. We upgraded it on 30 September.</li>
     <li>A deployment is refused unless more than 1,200 automated tests pass, and unless every
       figure and promise we publish still matches what the code does.</li>
     <li>When we detect a credential we report where it is. <strong>We never test whether it

@@ -123,8 +123,11 @@
     <li>Al servidor solo se entra con clave SSH —la cuenta de administración rechaza contraseñas
       y todas las demás están bloqueadas—, detrás de un cortafuegos que deniega por defecto el
       tráfico entrante.</li>
-    <li>Las dependencias están fijadas y vigiladas por Dependabot; el 27 de septiembre de 2026 no
-      había ningún aviso abierto.</li>
+    <li>Las dependencias están fijadas y vigiladas por Dependabot, y cada día nuestro propio
+      detector revisa las versiones que fijamos. El 2 de octubre de 2026 no había ningún aviso
+      abierto. <em>Corrección:</em> hasta esa fecha esta línea decía que no había ninguno el 27 de
+      septiembre. No era cierto: había avisos sobre PyJWT, la librería con la que firmamos los
+      tokens de GitHub, abiertos desde el 30 de julio. La actualizamos el 30 de septiembre.</li>
     <li>Un despliegue se rechaza si no pasan más de 1.200 pruebas automáticas, y si alguna cifra o
       promesa que publicamos ha dejado de coincidir con lo que hace el código.</li>
     <li>Cuando detectamos una credencial decimos dónde está. <strong>Nunca comprobamos si
