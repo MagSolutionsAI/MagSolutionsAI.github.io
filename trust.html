@@ -59,24 +59,40 @@
   <h2>2. What we ask GitHub for, and why</h2>
   <p>GitHub shows you this list when you install. Here is what each permission is for, and what
   we never do with it.</p>
-  <div class="tw"><table>
-    <tr><th>Permission</th><th>What we use it for</th><th>What we never do</th></tr>
-    <tr><td><strong>Contents: read</strong></td><td>Download the diff of each pull request, read
-      the files of the install-time scan (limits in our <a href="privacy.html">privacy
-      policy</a>), and read your <code>.magaudit.yml</code></td><td>Write, push or delete code. We
-      cannot: the permission is read-only</td></tr>
-    <tr><td><strong>Pull requests: read &amp; write</strong></td><td>Post the findings comment and
-      the suggested fixes you can commit with one click</td><td>Merge, close, approve or edit your
-      pull requests</td></tr>
-    <tr><td><strong>Checks: read &amp; write</strong></td><td>Publish the pass/fail check, which
-      only blocks a merge if <em>you</em> mark it as required</td><td>Change your branch
-      protection or anyone else&rsquo;s checks</td></tr>
-    <tr><td><strong>Issues: read &amp; write</strong></td><td>Update our own comment instead of
-      adding a new one, and react 👍 when an owner sends a <code>@magaudit ignore</code>
-      command</td><td>Open, close or edit your issues</td></tr>
-    <tr><td><strong>Metadata: read</strong></td><td>Repository names and visibility. Every GitHub
-      App gets this</td><td>&mdash;</td></tr>
-  </table></div>
+  <div class="grid4" style="margin:1rem 0 1.4rem">
+    <article class="cap">
+      <div class="metric">read</div>
+      <h3>Contents</h3>
+      <p>Download the diff of each pull request, read the files of the install-time scan (limits
+        in our <a href="privacy.html">privacy policy</a>) and read your <code>.magaudit.yml</code>.</p>
+      <p><b>Never:</b> write, push or delete code. We cannot &mdash; the permission is read-only.</p>
+    </article>
+    <article class="cap">
+      <div class="metric warn">write</div>
+      <h3>Pull requests</h3>
+      <p>Post the findings comment and the suggested fixes you can commit with one click.</p>
+      <p><b>Never:</b> merge, close, approve or edit your pull requests.</p>
+    </article>
+    <article class="cap">
+      <div class="metric warn">write</div>
+      <h3>Checks</h3>
+      <p>Publish the pass/fail check, which only blocks a merge if <em>you</em> mark it as
+        required.</p>
+      <p><b>Never:</b> change your branch protection or anyone else&rsquo;s checks.</p>
+    </article>
+    <article class="cap">
+      <div class="metric warn">write</div>
+      <h3>Issues</h3>
+      <p>Update our own comment instead of adding a new one, and react 👍 when an owner sends a
+        <code>@magaudit ignore</code> command.</p>
+      <p><b>Never:</b> open, close or edit your issues.</p>
+    </article>
+    <article class="cap">
+      <div class="metric">read</div>
+      <h3>Metadata</h3>
+      <p>Repository names and visibility. Every GitHub App gets this.</p>
+    </article>
+  </div>
   <p>We only see the repositories you select during install, and you can change that list at any
   time. Uninstalling cuts our access immediately and deletes your data as described in the
   privacy policy. We never receive your organisation settings, your secrets or your members.</p>
