@@ -17,7 +17,7 @@
 
   --fg:        #E9EFF7;
   --fg-2:      #93A7C2;
-  --fg-3:      #6B7F9C;
+  --fg-3:      #8496B0;   /* 5,9:1 sobre las tarjetas (antes 4,3:1, por debajo de AA) */
 
   --neon:      #00E5A0;
   --neon-dim:  #00B37D;
@@ -109,6 +109,13 @@ code,.mono { font-family: var(--mono); }
   cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 0 .2rem; font-family: inherit; }
 .langbar button:hover { color: var(--fg); }
 @media (max-width: 620px) { .lang { order: 3; } }
+/* Con el dedo, 44 px como minimo (WCAG 2.5.5 y las guias de iOS/Android).
+   Solo en pantallas tactiles: con raton el aspecto no cambia. */
+@media (pointer: coarse) {
+  .lang a { padding: .86rem .75rem; }
+  .langbar button { min-width: 44px; min-height: 44px; }
+  .nav-links a { display: inline-block; padding: .78rem .15rem; }
+}
 .nav-links a { font-size: .85rem; color: var(--fg-2); }
 .nav-links a:hover { color: var(--fg); text-decoration: none; }
 .nav-cta { background: var(--neon); color: #04150F !important; padding: .45rem .95rem;
@@ -192,7 +199,7 @@ code,.mono { font-family: var(--mono); }
 .prc-hd { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; font-size: .82rem; color: var(--fg-2); }
 .prc-hd img { border-radius: 50%; }
 .prc-hd b { color: var(--fg); }
-.prc-bot { font-size: .62rem; border: 1px solid var(--line-lit); border-radius: 100px; padding: 0 .4rem; color: var(--fg-3); }
+.prc-bot { font-size: .7rem; border: 1px solid var(--line-lit); border-radius: 100px; padding: 0 .4rem; color: var(--fg-3); }
 .prc-ttl { margin: .7rem 0 .6rem; font-size: .9rem; font-weight: 650; color: var(--fg); }
 .prc-sev { color: var(--danger); }
 .prc-sug { border: 1px solid var(--line-lit); border-radius: 8px; overflow: hidden; }
@@ -222,7 +229,7 @@ code,.mono { font-family: var(--mono); }
 .scan textarea::placeholder { color: var(--fg-3); }
 .scan-ft { display: flex; align-items: center; gap: .6rem; padding: .65rem .95rem;
   border-top: 1px solid var(--line); flex-wrap: wrap; }
-.scan-ft .hint { font-family: var(--mono); font-size: .67rem; color: var(--fg-3); }
+.scan-ft .hint { font-family: var(--mono); font-size: .72rem; color: var(--fg-3); }
 .scan-ft .sp { margin-left: auto; }
 .btn-scan { background: var(--neon); color: #04150F; border: 0; border-radius: 7px;
   padding: .52rem 1.1rem; font-weight: 700; font-size: .84rem; cursor: pointer;
@@ -243,7 +250,7 @@ code,.mono { font-family: var(--mono); }
 .res.pend .mk { color: var(--fg-3); }
 .res .nm { color: var(--fg); overflow: hidden; text-overflow: ellipsis; }
 .res.bad .nm { color: var(--danger); }
-.res .meta { font-size: .69rem; color: var(--fg-3); text-align: right; white-space: nowrap; }
+.res .meta { font-size: .72rem; color: var(--fg-3); text-align: right; white-space: nowrap; }
 .res.bad .meta { color: var(--danger); }
 .res .fix { grid-column: 2 / -1; font-size: .71rem; color: var(--neon); padding-top: .12rem; }
 .summary { padding: .72rem .95rem; font-family: var(--mono); font-size: .76rem; border-top: 1px solid var(--line); }
@@ -489,7 +496,12 @@ td { background: rgba(16,25,40,.45); color: var(--fg-2); }
 .pcard p { font-size: .88rem; color: var(--fg-2); }
 
 /* ── Revelado ─────────────────────────────────────────────── */
-.rv { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+/* Solo se oculta si el navegador ejecuta scripts: sin JavaScript (o con un
+   navegador que no lo hace) el contenido se ve. Hasta el 2026-10-03 se
+   ocultaba siempre y dependia de que el script lo volviera a mostrar. */
+@media (scripting: enabled) {
+  .rv { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+}
 .rv.in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
