@@ -142,13 +142,12 @@ curl -s https://registry.npmjs.org/PACKAGE | jq -r &#x27;.time.created&#x27;</co
 <p>We also measure things that work against us. Across 1,778 dependencies added in real public pull requests we found <b>zero</b> AI-hallucinated packages — the attack much of this industry writes about, including us, is rarer than the headlines suggest. A package that does not exist makes <code>pip install</code> fail and your CI go red, for free, without anybody selling you anything.</p>
 <p>We would rather be the vendor whose numbers you can check than the one whose claims you have to take on faith. Both figures here are reproducible against public APIs, and if you get a different answer we would like to know.</p>
     </div>
+    <p class="ai-note">Disclosure: this article was produced automatically by our software agents (an AI model or a report template) from measurements they ran themselves, with no human editorial review before publication (EU AI Act, art. 50). Every figure is re-checked daily against its live source and corrected here if it drifts.</p>
   </article>
   
 <section class="post-cta">
   <h2>Check this on your own pull requests</h2>
-  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
-     against the live PyPI and npm registries, and blocks the ones that do not exist.
-     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <p>MagAudit Agent checks every pull request for leaked keys, risky workflow and infrastructure changes, and dependencies that are brand new or do not exist, before they merge. We publish <a href="/quality.html">how often our rules are wrong</a>. Free on public repositories; 14 days free on private ones.</p>
   <div class="cta">
     <a class="btn btn-1" href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub &rarr;</a>
     <a class="btn btn-2" href="/pricing.html">See pricing</a>

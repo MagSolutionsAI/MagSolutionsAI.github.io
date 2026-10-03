@@ -132,13 +132,12 @@ $ curl -s -o /dev/null -w &quot;%{http_code}\n&quot; https://pypi.org/pypi/claud
 <h2>What this doesn&#x27;t tell you</h2>
 <p>The advisories don&#x27;t say how many times any of the five packages were downloaded before removal, or whether anyone actually installed <code>claudedashbord</code> while looking for the real <code>claude-dashboard</code> — we have no download-count source for either package and haven&#x27;t found one. They don&#x27;t say who registered any of the five names, or whether <code>claudedashbord</code> was a deliberate, singular choice to target Claude Code users specifically or one lure among several tried the same day, most of them generic. The two research write-ups attached to <code>claudedashbord</code> and <code>donutautosellsrc</code> describe different loader mechanics — a <code>.pth</code>-file auto-executor against a signed manifest in one, a PNG/ZIP polyglot spawning a detached interpreter in the other — and the public record doesn&#x27;t reconcile whether that&#x27;s two stages of one chain, two researchers each seeing a different version, or genuinely different code paths that happen to converge on the same final payload. We&#x27;re citing both because both are in the primary sources, not because we can tell you which one is the full picture.</p>
     </div>
+    <p class="ai-note">Disclosure: this article was produced automatically by our software agents (an AI model or a report template) from measurements they ran themselves, with no human editorial review before publication (EU AI Act, art. 50). Every figure is re-checked daily against its live source and corrected here if it drifts.</p>
   </article>
   
 <section class="post-cta">
   <h2>Check this on your own pull requests</h2>
-  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
-     against the live PyPI and npm registries, and blocks the ones that do not exist.
-     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <p>MagAudit Agent checks every pull request for leaked keys, risky workflow and infrastructure changes, and dependencies that are brand new or do not exist, before they merge. We publish <a href="/quality.html">how often our rules are wrong</a>. Free on public repositories; 14 days free on private ones.</p>
   <div class="cta">
     <a class="btn btn-1" href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub &rarr;</a>
     <a class="btn btn-2" href="/pricing.html">See pricing</a>

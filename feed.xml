@@ -6,7 +6,7 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 02 Oct 2026 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2026 20:19:31 +0000</lastBuildDate>
     <item>
       <title>pull_request_target in the wild: 60 public workflows, 6 exploitable, and the fixes that actually work</title>
       <link>https://magsolutionsai.com/blog/pull-request-target-in-the-wild.html</link>
@@ -16,19 +16,20 @@
       <category>security</category><category>github actions</category><category>ci</category><category>open source</category>
     </item>
     <item>
-      <title>Field report: 3734 real pull requests scanned, 0 hallucinated packages confirmed</title>
-      <link>https://magsolutionsai.com/blog/field-report-2026-09-28.html</link>
-      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-09-28.html</guid>
-      <pubDate>Mon, 28 Sep 2026 09:00:00 +0000</pubDate>
-      <description>3734 real public pull requests scanned, 3500 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</description>
-    </item>
-    <item>
       <title>One dropper, five PyPI names — one of them a typosquat of a real Claude Code tool</title>
       <link>https://magsolutionsai.com/blog/claudedashbord-pypi-typosquat.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/claudedashbord-pypi-typosquat.html</guid>
       <pubDate>Mon, 28 Sep 2026 09:00:00 +0000</pubDate>
       <description>On 27 September 2026, GitHub reviewed five PyPI malware advisories sharing one payload and one blockchain command server. One of the five, claudedashbord, is a one-letter-off copy of a real, published Claude Code dashboard tool.</description>
       <category>supply chain</category><category>PyPI</category><category>case study</category><category>malware</category>
+    </item>
+    <item>
+      <title>Field report: 3734 real pull requests scanned, 0 hallucinated packages confirmed</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-09-28.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-09-28.html</guid>
+      <pubDate>Mon, 28 Sep 2026 09:00:00 +0000</pubDate>
+      <description>3734 real public pull requests scanned, 3500 dependencies resolved against the live registries, 0 hallucinated packages confirmed. Measured, not estimated, and re-checked weekly.</description>
+      <category>security</category><category>supply chain</category><category>measurement</category><category>open source</category>
     </item>
     <item>
       <title>Field report: 1496 real pull requests scanned, 0 hallucinated packages confirmed</title>

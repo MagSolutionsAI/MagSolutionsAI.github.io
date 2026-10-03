@@ -3,6 +3,7 @@ title: "pull_request_target in the wild: 60 public workflows, 6 exploitable, and
 description: We checked 60 public GitHub Actions workflows that use pull_request_target. Most that look dangerous are not. One that explicitly declared its risk was, and our own rule missed it until today.
 date: 2026-10-02
 tags: security, github actions, ci, open source
+cta: MagAudit Agent flags this pattern on every pull request that touches a workflow, and stays quiet when one of the mitigations above is in place. We publish <a href="/quality.html">how often our rules are wrong</a>. Free on public repositories; 14 days free on private ones.
 ---
 
 `pull_request_target` is the GitHub Actions trigger behind a steady stream of

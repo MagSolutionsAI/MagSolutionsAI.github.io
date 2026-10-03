@@ -36,7 +36,7 @@ BLOG_DIR = ROOT / "blog"
 SITEMAP = ROOT / "sitemap.xml"
 
 BASE = "https://magsolutionsai.com"
-INSTALL_URL = "https://github.com/apps/magaudit-agent"
+INSTALL_URL = "https://github.com/apps/magaudit-agent/installations/new"
 
 
 # ── Markdown minimo ────────────────────────────────────────────────────────
@@ -161,7 +161,12 @@ def parse_post(path: Path) -> dict:
     for line in fm.strip().split("\n"):
         if ":" in line:
             k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip()
+            v = v.strip()
+            # `title: "a: b"` es YAML valido; sin esto las comillas acababan
+            # dentro del <title> y del <h1> (pull_request_target, 2026-10-02).
+            if len(v) >= 2 and v[0] == v[-1] and v[0] in "\"'":
+                v = v[1:-1]
+            meta[k.strip()] = v
 
     for req in ("title", "description", "date"):
         if req not in meta:
@@ -173,6 +178,27 @@ def parse_post(path: Path) -> dict:
     words = len(re.sub(r"[^\w\s]", "", meta["body"]).split())
     meta["reading_min"] = max(1, round(words / 220))
     return meta
+
+
+# Quien escribe cada articulo, dicho en el propio articulo. Hasta el 2026-10-03
+# ningun articulo del blog lo decia: los redacta un agente sin revision humana,
+# y una web cuyo argumento es «no escondemos nada» no puede esconder eso (art. 50
+# del Reglamento (UE) 2024/1689). Si una persona lo revisa, `revisado:` en el
+# frontmatter con su nombre, como en el publicador de dev.to.
+DECLARACION_IA = ("Disclosure: this article was produced automatically by our software agents "
+                  "(an AI model or a report template) from measurements they ran themselves, "
+                  "with no human editorial review before publication (EU AI Act, art. 50). "
+                  "Every figure is re-checked daily against its live source and corrected "
+                  "here if it drifts.")
+
+
+MARCA_APP = "This report was generated from measurements, not written by hand"
+
+
+def _declaracion(p: dict) -> str:
+    if (p.get("revisado") or "").strip().strip('"'):
+        return ""
+    return f'<p class="ai-note">{html.escape(DECLARACION_IA)}</p>'
 
 
 # ── Plantillas ─────────────────────────────────────────────────────────────
@@ -213,7 +239,7 @@ def _head(title, desc, canonical, extra_ld="", is_article=False):
       <a href="/blog/">Blog</a>
       <a href="/pricing.html">Pricing</a>
       <a href="/hallucination-index.html">Index</a>
-      <a class="nav-cta" href="{INSTALL_URL}">Install free</a>
+      <a class="nav-cta" href="{INSTALL_URL}">Install on GitHub</a>
     </nav>
   </div>
 </header>
@@ -225,10 +251,20 @@ FOOTER = f"""
   <div class="wrap foot">
     <span>&copy; 2026 MagSolutionsAI</span>
     <a href="/privacy.html">Privacy</a>
-    <a href="/terms.html">Terms</a>
+    <a href="/terms.html">Terms</a><a href="/legal-notice.html">Legal notice</a>
     <a href="mailto:magsolutionsai@gmail.com">Contact</a>
     <span class="sp"></span>
     <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+  <div class="wrap foot" style="margin-top:.6rem">
+    <a href="/trust.html">Where your code goes</a>
+    <a href="/quality.html">Our error rate</a>
+    <a href="/prevent-secret-leaks-nextjs.html">Secret leaks in Next.js</a>
+    <span>Compare:</span>
+    <a href="/magaudit-vs-socket.html">vs Socket</a>
+    <a href="/magaudit-vs-gitguardian.html">vs GitGuardian</a>
+    <a href="/magaudit-vs-coderabbit.html">vs CodeRabbit</a>
+    <a href="/magaudit-vs-trufflehog.html">vs TruffleHog</a>
   </div>
 </footer>
 
@@ -237,15 +273,24 @@ FOOTER = f"""
 """
 
 
-def _cta(variant="post"):
+# El texto por defecto sigue a docs/POSICIONAMIENTO.md de la App. Hasta el
+# 2026-10-03 decia «verifies every dependency... blocks the ones that do not
+# exist», el posicionamiento de agosto. Un articulo puede traer el suyo en el
+# frontmatter (`cta:`), como el de pull_request_target.
+CTA_POR_DEFECTO = ('MagAudit Agent checks every pull request for leaked keys, risky workflow '
+                   'and infrastructure changes, and dependencies that are brand new or do not '
+                   'exist, before they merge. We publish <a href="/quality.html">how often our '
+                   'rules are wrong</a>. Free on public repositories; 14 days free on private ones.')
+
+
+def _cta(p=None):
     """Todo articulo termina en una via de conversion. Contenido sin salida
     hacia el producto es trafico que no paga las horas que cuesta."""
+    texto = ((p or {}).get("cta") or "").strip() or CTA_POR_DEFECTO
     return f"""
 <section class="post-cta">
   <h2>Check this on your own pull requests</h2>
-  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
-     against the live PyPI and npm registries, and blocks the ones that do not exist.
-     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <p>{texto}</p>
   <div class="cta">
     <a class="btn btn-1" href="{INSTALL_URL}">Install on GitHub &rarr;</a>
     <a class="btn btn-2" href="/pricing.html">See pricing</a>
@@ -311,8 +356,9 @@ def render_post(p: dict) -> str:
     <div class="post-body">
 {md_to_html(p['body'])}
     </div>
+    {_declaracion(p)}
   </article>
-  {_cta()}
+  {_cta(p)}
 </main>
 """ + FOOTER
     )
@@ -503,7 +549,16 @@ def main():
     posts.sort(key=lambda p: p["date"], reverse=True)
 
     for p in posts:
-        (BLOG_DIR / f"{p['slug']}.html").write_text(render_post(p), encoding="utf-8")
+        destino = BLOG_DIR / f"{p['slug']}.html"
+        # Los informes de campo los genera la App (tools/render_blog.py) desde su
+        # original en docs/articulos, con fuentes que no estan en el .md; el
+        # auditor compara esa pagina con el original. Reescribirla aqui borraba
+        # las fuentes (visto el 2026-10-03 antes de publicar). Se listan en el
+        # indice y el feed, pero su pagina no se toca.
+        if destino.exists() and MARCA_APP in destino.read_text(encoding="utf-8"):
+            print(f"  respetado blog/{p['slug']}.html (lo genera la App)")
+            continue
+        destino.write_text(render_post(p), encoding="utf-8")
         print(f"  escrito blog/{p['slug']}.html")
 
     (BLOG_DIR / "index.html").write_text(render_index(posts), encoding="utf-8")

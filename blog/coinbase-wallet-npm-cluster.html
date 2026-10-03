@@ -133,13 +133,12 @@
 <h2>What this doesn&#x27;t tell you</h2>
 <p>GitHub&#x27;s advisories don&#x27;t say how the 13 packages were distributed, whether any of them were pulled into a real build, or who published them — there&#x27;s no credited researcher, no linked writeup, and no campaign name grouping them together the way some GHSA entries do. The naming pattern is our own observation from reading the list, not a claim GitHub makes; we don&#x27;t know whether the person behind it was specifically targeting Coinbase integrators or casting a wider net with a name-generation script. The 48-second publishing window is exact, because it comes straight from npm&#x27;s own timestamps, but it tells you how the packages were published, not who published them or why. Treat the mechanism as established and the motive as open.</p>
     </div>
+    <p class="ai-note">Disclosure: this article was produced automatically by our software agents (an AI model or a report template) from measurements they ran themselves, with no human editorial review before publication (EU AI Act, art. 50). Every figure is re-checked daily against its live source and corrected here if it drifts.</p>
   </article>
   
 <section class="post-cta">
   <h2>Check this on your own pull requests</h2>
-  <p>MagSolutionsAI is a GitHub App that verifies every dependency in every pull request
-     against the live PyPI and npm registries, and blocks the ones that do not exist.
-     Free for public repositories, forever &mdash; no card, no CI config.</p>
+  <p>MagAudit Agent checks every pull request for leaked keys, risky workflow and infrastructure changes, and dependencies that are brand new or do not exist, before they merge. We publish <a href="/quality.html">how often our rules are wrong</a>. Free on public repositories; 14 days free on private ones.</p>
   <div class="cta">
     <a class="btn btn-1" href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub &rarr;</a>
     <a class="btn btn-2" href="/pricing.html">See pricing</a>
