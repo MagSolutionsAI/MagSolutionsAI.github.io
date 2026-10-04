@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagAudit vs SonarQube Cloud — an honest comparison</title>
+<meta name="description" content="For a small team SonarQube Cloud is cheaper, and free for private code up to 50k lines. Where we differ: newly published, barely used packages at every price, keys shipped to the browser, and a public record of every mistake we fixed.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-sonarqube.html">
+<link rel="stylesheet" href="style.css?v=13">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Home</a><a href="pricing.html">Pricing</a><a href="quality.html">Our error rate</a><a href="trust.html">Trust</a><a href="blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>MagAudit vs SonarQube Cloud</h1>
+  <p class="upd">Written by the people who make one of the two. Read it with that in mind.</p>
+
+  <h2>For a small team, SonarQube is cheaper — and may be free</h2>
+  <p>SonarQube Cloud's Team plan starts at
+  <strong>$34 a month for analysis of up to 100k lines of code</strong>, and private projects up to
+  <strong>50k lines of code are free</strong>, with no
+  card and no expiry (<a href="https://www.sonarsource.com/plans-and-pricing/">sonarsource.com/plans-and-pricing</a>).
+  Its core analysis already includes SAST, secrets detection and infrastructure-as-code scanning
+  (<a href="https://www.sonarsource.com/products/sonarqube/advanced-security/">their product page</a>),
+  and by default it is hosted in the EU, in Frankfurt
+  (<a href="https://www.sonarsource.com/trust-center/">their trust centre</a>).</p>
+  <p>It also does far more than we do: code quality, coverage and more than 30 languages. And it
+  is everywhere — its bot has commented on more than 5.8 million public pull requests
+  (<a href="https://github.com/search?q=commenter%3Asonarqubecloud%5Bbot%5D+type%3Apr&amp;type=pullrequests">GitHub search</a>,
+  4 October 2026). Ours, at the time of writing, on 12.</p>
+
+  <h2>Where we are different</h2>
+  <p>Three things, and they are narrow. We would rather say so than pretend the gap is wider.</p>
+  <div class="tw"><table>
+    <tr><th></th><th>SonarQube Cloud</th><th>MagAudit</th></tr>
+    <tr><td>Hardcoded credentials in your code</td><td><strong>Yes</strong>, in the core analysis</td><td><strong>Yes</strong></td></tr>
+    <tr><td>Keys shipped to the browser (<code>NEXT_PUBLIC_</code>, <code>VITE_</code>)</td><td>Not advertised as a check</td><td><strong>Yes</strong></td></tr>
+    <tr><td>Dockerfiles, GitHub Actions, Terraform, Kubernetes</td><td><strong>Yes</strong></td><td><strong>Yes</strong></td></tr>
+    <tr><td>Newly published, barely used packages, flagged before any advisory</td><td>Malicious package detection is part of Advanced Security, a separate product added to the Team plan; its price is not published (<a href="https://docs.sonarsource.com/sonarqube-cloud/administering-sonarcloud/managing-subscription/signing-up-for-plan">their docs</a>)</td><td><strong>Included at every price</strong> — age and adoption, PyPI and npm</td></tr>
+    <tr><td>Code quality, coverage, 30+ languages</td><td><strong>Yes</strong></td><td>No — security only</td></tr>
+    <tr><td>A public record of every false positive we fixed</td><td>Not published</td><td><strong>Yes</strong> — each one cited and pinned by a test (<a href="quality.html">our error record</a>)</td></tr>
+    <tr><td>Where the code is read</td><td>EU by default (Frankfurt, on AWS)</td><td>One server in Finland; never sent to an AI model</td></tr>
+    <tr><td>How the price grows</td><td>With lines of code</td><td>With private repositories: &euro;29 (5), &euro;69 (15) or &euro;149 (40) a month per organisation</td></tr>
+  </table></div>
+
+  <h2>How to decide</h2>
+  <p>If your private code fits in 50k lines and you want quality and security together, SonarQube's
+  free plan is hard to argue with. If you already pay for SonarQube Team, the gap we fill is the
+  package published days ago with almost no users — which in SonarQube needs Advanced Security on
+  top — and the key that ends up in your frontend bundle. If what you want is a security check
+  only, priced per organisation, from a vendor that publishes every mistake it has fixed, that is
+  what we built.</p>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1"
+     href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub &rarr;</a></p>
+  <p class="upd">Last reviewed: 4 October 2026. Figures about SonarQube are theirs, linked where
+  they appear, as published on that date; the pull request count is a public GitHub search you
+  can repeat. Figures about us are our own measurement and reproducible against
+  <a href="https://api.magsolutionsai.com/measurement">our public endpoint</a> and
+  <a href="quality.html">our error record</a>.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="legal-notice.html">Legal notice</a><a href="trust.html">Trust</a>
+    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+  </div>
+</footer>
+</body>
+</html>

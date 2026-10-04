@@ -80,6 +80,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
   </url>
   <url>
+    <loc>https://magsolutionsai.com/es/magaudit-vs-sonarqube.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-sonarqube.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
+  </url>
+  <url>
     <loc>https://magsolutionsai.com/es/magaudit-vs-trufflehog.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-trufflehog.html"/>
@@ -156,6 +162,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/magaudit-vs-sonarqube.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-sonarqube.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/magaudit-vs-trufflehog.html</loc>
