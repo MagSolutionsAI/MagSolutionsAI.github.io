@@ -370,6 +370,23 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
         </ul>
       </div>
     </div>
+
+    <!-- La Action gratuita es la entrada sin compromiso: un paso de CI, sin
+         cuenta ni App. Hasta el 2026-10-04 no estaba enlazada en ninguna pagina
+         propia. Solo la mitad de dependencias; lo demas sigue siendo la App. -->
+    <div class="ent" style="margin-top:1rem">
+      <p><b>Try this half free, as one CI step.</b> The dependency check is also a GitHub Action:
+        add <code style="overflow-wrap:anywhere">uses: MagSolutionsAI/dependency-check@v1</code> to a workflow that runs on pull
+        requests. It runs in your own runner, so your code never leaves it; no account, no App to
+        install. It flags packages that do not exist and packages published days ago with almost
+        no users, on the lines the pull request adds.
+        <a href="https://github.com/MagSolutionsAI/dependency-check">Setup and source →</a></p>
+      <p class="plan-note">Measured before publishing, on 28 September 2026: on 44 real public
+        pull requests that added 305 dependencies it extracted the same dependencies as the App
+        and raised no false alarm. The sample held no malicious package, so this measures noise,
+        not detection. It does not suggest the right name and does not look at your code; that is
+        the App.</p>
+    </div>
   </div>
 </section>
 
