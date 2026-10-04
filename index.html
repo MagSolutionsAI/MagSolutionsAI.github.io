@@ -282,6 +282,23 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
         out later and wonder what else we left out.</p>
     </div>
 
+    <!-- El hueco del comentario en el PR ya lo ocupan revisores generalistas
+         (CodeRabbit 7,2 M de PRs, Copilot 5,8 M, medido el 2026-10-04). No se
+         compite por el: se va al lado. Y SonarQube, el numero 2, es mas barato
+         para un equipo pequeno: se dice aqui, no se deja para una busqueda. -->
+    <div class="ent" style="margin-top:1rem">
+      <p><b>Already have an AI reviewer?</b> Keep it. CodeRabbit and Copilot review how the code
+        is written; we are a security check that sits beside them, not instead of them. In
+        CodeRabbit, the security review of every pull request is only in the Advanced plan, at
+        $72 per developer per month &mdash; Essentials and Team do not include it. Keep the plan
+        you have and add MagAudit for security: flat per organisation, and your code is not sent
+        to another AI model. <a href="magaudit-vs-coderabbit.html">The full comparison →</a></p>
+      <p><b>SonarQube Cloud</b> is cheaper for a small team, and free for private code up to
+        50k lines of code. It also does code quality, which we do not. What we add is narrow, and
+        <a href="magaudit-vs-sonarqube.html">we say exactly what it is</a>.</p>
+      <p class="plan-note">Prices as published on each vendor's pricing page on 4 October 2026.</p>
+    </div>
+
     <div class="ent" style="margin-top:1rem">
       <p><b>&ldquo;Why not just ask Copilot or Claude to review the pull request?&rdquo;</b>
         Do that too, it helps with logic. But whether a package was published last Tuesday is
@@ -560,9 +577,10 @@ Nothing is uploaded: your browser queries PyPI directly."></textarea>
       <div class="tcard rv">
         <span class="lbl">No third parties</span>
         <p>Only package <b>names</b> (and, for the advisory check, the pinned version) leave our
-          server — to PyPI and npm, to their download counters (<code>api.npmjs.org</code>, and
-          <code>pypistats.org</code> for Python packages under 90 days old), and to GitHub's own
-          advisory database. No AI model ever sees your code. <b>That list is the whole list</b>,
+          server — to PyPI and npm (<code>pypi.org</code>, <code>registry.npmjs.org</code>), to
+          their download counters (<code>api.npmjs.org</code>, and <code>pypistats.org</code> for
+          Python packages under 90 days old), and to GitHub's own advisory database
+          (<code>api.github.com</code>). No AI model ever sees your code. <b>That list is the whole list</b>,
           and it is the reason we can say we
           never test whether a credential you committed actually works: there is nowhere for us to
           test it. We chose GitHub's advisory database over the alternatives specifically so the

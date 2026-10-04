@@ -25,9 +25,9 @@
 
   <h2>Where CodeRabbit is ahead, and it is not close</h2>
   <p>CodeRabbit is far bigger and far better funded than we are, and their bot has
-  commented on <strong>more than 6.5 million public pull requests</strong> &mdash; a figure
+  commented on <strong>more than 7.2 million public pull requests</strong> &mdash; a figure
   anyone can reproduce with a GitHub search for <code>commenter:coderabbitai[bot]</code>,
-  which is how we got it on 18 September 2026. They review reasoning and design, not just
+  which is how we got it on 4 October 2026. They review reasoning and design, not just
   patterns. If you want a second opinion on <em>how</em> the code is written, they do that
   and we do not.</p>
 
@@ -102,10 +102,14 @@
     <tr><td>If it is wrong about your code</td>
         <td>Config file, or <code>@coderabbitai ignore</code></td>
         <td><strong>Reply <code>@magaudit ignore &lt;id&gt;</code></strong>, a config file, or the marker your existing scanner already uses &mdash; <code>pragma: allowlist secret</code>, <code>nosec</code>, <code>nosemgrep</code>, <code>gitleaks:allow</code></td></tr>
-    <tr><td>Pricing</td><td>From $24 per developer per month</td>
-        <td><strong>Flat per organisation.</strong> Ten people: €69, not $240</td></tr>
+    <tr><td>Pricing</td><td>From $24 per developer per month (Essentials). The security
+        review of every pull request is only in Advanced, $72 per developer per month</td>
+        <td><strong>Flat per organisation:</strong> €69 for ten people. Or keep Essentials
+        ($240 for ten) for code review and add us for security, instead of moving to
+        Advanced ($720 for ten)</td></tr>
     <tr><td>Known vulnerabilities in the dependencies you add</td>
-        <td>Add-on, usage-based pricing</td>
+        <td>Security review of each pull request in Advanced only; a full-codebase
+        Security Scan, usage-based</td>
         <td><strong>Included.</strong> Checked against the GitHub Advisory Database, and only reported when the line pins an exact version</td></tr>
     <tr><td>Dockerfiles, workflows, Terraform, Kubernetes</td>
         <td>Via linters you configure</td>
@@ -174,9 +178,18 @@
   red, for free. We publish it because a vendor you can check is worth more than
   a vendor you have to believe.</p>
 
+  <h2>If you already use CodeRabbit, keep it</h2>
+  <p>We are not trying to replace it: it reviews reasoning and design, and we do not. What
+  we change is the price of security on every pull request. In CodeRabbit that is the
+  Advanced plan, at $72 per developer per month
+  (<a href="https://www.coderabbit.ai/pricing">coderabbit.ai/pricing</a>); Essentials and
+  Team do not include it. Keep the plan you have for code review, and add MagAudit for the
+  security check &mdash; flat per organisation, and your code is not sent to another AI
+  model.</p>
+
   <p style="margin-top:2.5rem"><a class="btn btn-1"
      href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub &rarr;</a></p>
-  <p class="upd">Last reviewed: 21 September 2026. <strong>Every figure about
+  <p class="upd">Last reviewed: 4 October 2026. <strong>Every figure about
   <em>us</em></strong> is our own measurement and reproducible against
   <a href="https://api.magsolutionsai.com/measurement">our public endpoint</a> and
   <a href="quality.html">our error record</a>. Figures about CodeRabbit are either
