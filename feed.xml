@@ -6,7 +6,15 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 03 Oct 2026 20:19:31 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 07:20:36 +0000</lastBuildDate>
+    <item>
+      <title>Six Angular typosquats, one postinstall hook, published the same morning</title>
+      <link>https://magsolutionsai.com/blog/angular-typosquat-cluster.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/angular-typosquat-cluster.html</guid>
+      <pubDate>Mon, 05 Oct 2026 09:00:00 +0000</pubDate>
+      <description>On 5 October 2026, GitHub reviewed six npm packages impersonating @angular/core and @angular/cli — all claiming Angular&#x27;s current version number, five of them sharing one postinstall command. All six are gone; the real @angular/core took 7.3 million downloads the same week.</description>
+      <category>supply chain</category><category>npm</category><category>case study</category><category>malware</category>
+    </item>
     <item>
       <title>pull_request_target in the wild: 60 public workflows, 6 exploitable, and the fixes that actually work</title>
       <link>https://magsolutionsai.com/blog/pull-request-target-in-the-wild.html</link>
