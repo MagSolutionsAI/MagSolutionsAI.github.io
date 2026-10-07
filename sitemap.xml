@@ -3,216 +3,260 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://magsolutionsai.com/blog/advisory-window.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/angular-typosquat-cluster.html</loc>
+    <lastmod>2026-10-05</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/claudedashbord-pypi-typosquat.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/field-report-2026-09-18.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/field-report-2026-09-21.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/field-report-2026-09-28.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/field-report-2026-10-05.html</loc>
+    <lastmod>2026-10-05</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/huggingface-cli-case.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/</loc>
+    <lastmod>2026-10-05</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/openaii-typosquat-campaign.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/pull-request-target-in-the-wild.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/starbucks-sdk-dependency-confusion.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/transitive-dependency-malware.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/verify-a-package-exists.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/blog/what-is-slopsquatting.html</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/hallucination-index.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/hallucination-index.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/</loc>
+    <lastmod>2026-10-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/legal-notice.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/legal-notice.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/legal-notice.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/legal-notice.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/magaudit-vs-coderabbit.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-coderabbit.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/magaudit-vs-gitguardian.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-gitguardian.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/magaudit-vs-socket.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/magaudit-vs-sonarqube.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-sonarqube.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/magaudit-vs-trufflehog.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-trufflehog.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/prevent-secret-leaks-nextjs.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/prevent-secret-leaks-nextjs.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/pricing.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/pricing.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/pricing.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/pricing.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/privacy.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/privacy.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/quality.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/quality.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/quality.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/quality.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/terms.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/terms.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/terms.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/terms.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/trust.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/trust.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/hallucination-index.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/hallucination-index.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/hallucination-index.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/hallucination-index.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/</loc>
+    <lastmod>2026-10-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/legal-notice.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/legal-notice.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/legal-notice.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/legal-notice.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/magaudit-vs-coderabbit.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-coderabbit.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-coderabbit.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/magaudit-vs-gitguardian.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-gitguardian.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-gitguardian.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/magaudit-vs-socket.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-socket.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-socket.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/magaudit-vs-sonarqube.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-sonarqube.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-sonarqube.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/magaudit-vs-trufflehog.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/magaudit-vs-trufflehog.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/magaudit-vs-trufflehog.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/prevent-secret-leaks-nextjs.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/prevent-secret-leaks-nextjs.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/prevent-secret-leaks-nextjs.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/pricing.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/pricing.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/pricing.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/pricing.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/privacy.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/privacy.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/quality.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/quality.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/quality.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/quality.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/terms.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/terms.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/terms.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/terms.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/trust.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/trust.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/trust.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/trust.html"/>

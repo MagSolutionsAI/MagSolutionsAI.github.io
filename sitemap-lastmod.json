@@ -1,0 +1,178 @@
+{
+ "blog/advisory-window.html": {
+  "fecha": "2026-10-03",
+  "huella": "140fbf5da00ffd0ce7a30eb3deb0dba1ebd38a9653e60075dc098344bb98fa36"
+ },
+ "blog/angular-typosquat-cluster.html": {
+  "fecha": "2026-10-05",
+  "huella": "bbf0e812553abe69a2d01ccbdfca791c340d2d2caecd9c417acaf1be7c8b0938"
+ },
+ "blog/claudedashbord-pypi-typosquat.html": {
+  "fecha": "2026-10-03",
+  "huella": "2f7331f7aeb60bbb800a47079e000f4ba101a86eb99ec4c7bfbc0a2b98a5e636"
+ },
+ "blog/coinbase-wallet-npm-cluster.html": {
+  "fecha": "2026-10-03",
+  "huella": "e1e4c61b332661e08536f06a09b554dd4b67d54a335b5cc90bc88e6909304d38"
+ },
+ "blog/field-report-2026-09-18.html": {
+  "fecha": "2026-10-03",
+  "huella": "52e592c7b35b4f586fdc67ff8b05a3dd4e5269b14f0b7ede5ba61d78fa74272b"
+ },
+ "blog/field-report-2026-09-21.html": {
+  "fecha": "2026-10-03",
+  "huella": "f53977644ec648b025f73434e27791a71b444682065ca1e150b9c0617a71a425"
+ },
+ "blog/field-report-2026-09-28.html": {
+  "fecha": "2026-10-03",
+  "huella": "2143a31a8dc3952d86a1d912859e2e57bc1f043ff0de5a9298e904dafa6fb2b3"
+ },
+ "blog/field-report-2026-10-05.html": {
+  "fecha": "2026-10-05",
+  "huella": "295680087f5c22004ff022e5edd9568e3c08608b373d0bc17a252436ebd1c4fd"
+ },
+ "blog/huggingface-cli-case.html": {
+  "fecha": "2026-10-03",
+  "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
+ },
+ "blog/index.html": {
+  "fecha": "2026-10-05",
+  "huella": "63ed32c8d72f0bb00328d9c5a025f9b836c09306a9d62d73dccd5c309fa94430"
+ },
+ "blog/openaii-typosquat-campaign.html": {
+  "fecha": "2026-10-03",
+  "huella": "78bb1c2eae2c7aa4f946ffb11e670e1667f0af85588a6fe17ab968dc45d1e8c6"
+ },
+ "blog/pull-request-target-in-the-wild.html": {
+  "fecha": "2026-10-03",
+  "huella": "671f57ee253d7124fcc64f14b31049bffdcce00bb0abecc575aeb47cc41f5937"
+ },
+ "blog/starbucks-sdk-dependency-confusion.html": {
+  "fecha": "2026-10-03",
+  "huella": "4ea172e3ddaa1dd9adf59e5b270def2089de69e6c984fb5b0193feb86a4fd2b7"
+ },
+ "blog/transitive-dependency-malware.html": {
+  "fecha": "2026-10-03",
+  "huella": "2ca50a5008896a5323f997a45092d49501a28ddb27d3f8e418c72ef8e78582fe"
+ },
+ "blog/verify-a-package-exists.html": {
+  "fecha": "2026-10-03",
+  "huella": "0d1e821622c6fd45b71a1e86ef909554eb8854842106d73d82cbf409491dee83"
+ },
+ "blog/what-is-slopsquatting.html": {
+  "fecha": "2026-10-03",
+  "huella": "1eed1ef38e8a126b48123114756ef7b8525e1dc6b8fab05e337ad47e6862dc3e"
+ },
+ "es/hallucination-index.html": {
+  "fecha": "2026-10-03",
+  "huella": "8ec94682b0189edf38e9d67bec5828c8c98bda62029808f61761e535dac2db45"
+ },
+ "es/index.html": {
+  "fecha": "2026-10-07",
+  "huella": "53852584c2df83539f495396756b74a40e4718edf13740e462ac008e2efd7e7f"
+ },
+ "es/legal-notice.html": {
+  "fecha": "2026-10-03",
+  "huella": "ae8439f997b64ca054226da41dbb7dc72e677f986df152d5171d73417140c90e"
+ },
+ "es/magaudit-vs-coderabbit.html": {
+  "fecha": "2026-10-04",
+  "huella": "15b0686cd9794a42d39e87edf7f06db10c1273e1bcb9dc1494b970ac1650ea4f"
+ },
+ "es/magaudit-vs-gitguardian.html": {
+  "fecha": "2026-10-03",
+  "huella": "7e07d66fd310fa0929a1869bec2c00a4772367ade30312c18d77e7a307992293"
+ },
+ "es/magaudit-vs-socket.html": {
+  "fecha": "2026-10-03",
+  "huella": "39f0c1d1fbac849165ae66d442ba9301abd2536f77fe38aaf0309239da751f72"
+ },
+ "es/magaudit-vs-sonarqube.html": {
+  "fecha": "2026-10-04",
+  "huella": "d1fba766d4860800aa701ce406d984a55d0d426e317887a9743692224553fd07"
+ },
+ "es/magaudit-vs-trufflehog.html": {
+  "fecha": "2026-10-03",
+  "huella": "5969bdcbaa5a0c9968e64b74e1c94a0044a2e8734d7a406fac49111eff6e2a4d"
+ },
+ "es/prevent-secret-leaks-nextjs.html": {
+  "fecha": "2026-10-03",
+  "huella": "2b85cf9a1f3856866326524e2c5d1fcfacc444633efb4dd70ec92acf6bf10e85"
+ },
+ "es/pricing.html": {
+  "fecha": "2026-10-03",
+  "huella": "e361381eb8d45934e1d24f0b2f9ed7850a24a24c71f59c70cbf12ae6983b9d7f"
+ },
+ "es/privacy.html": {
+  "fecha": "2026-10-03",
+  "huella": "25293f409876e5ded6a3dc9aabceb321c57a0d1206e918b4d123239abf915540"
+ },
+ "es/quality.html": {
+  "fecha": "2026-10-03",
+  "huella": "490bebdd48f9b2f223b56715afb73c8bcd752cdcc7b3c9b8b8d14a2c0ad779b8"
+ },
+ "es/terms.html": {
+  "fecha": "2026-10-03",
+  "huella": "e49c4a4ccf788102c6385db22ec3cfbb34abd9296fcd4dfb4cfe156814760f28"
+ },
+ "es/trust.html": {
+  "fecha": "2026-10-04",
+  "huella": "4106ef96c14a31494561af8d0bcea23809cfabd9b47347cbab50c5c750ac6a07"
+ },
+ "hallucination-index.html": {
+  "fecha": "2026-10-03",
+  "huella": "b6085beb92d81552e5af9d3811be2ccbb3747146c8f4100d6ef86aa66fd84a58"
+ },
+ "index.html": {
+  "fecha": "2026-10-07",
+  "huella": "7d9ae90ae35d2a24cc22cf875c80920444dcea5294807a72278887835c216ae8"
+ },
+ "legal-notice.html": {
+  "fecha": "2026-10-03",
+  "huella": "e31463c7c6d65f94f2ae6c81161d5d08a5bbb06fd49c7ae49e75b3112efedaa0"
+ },
+ "magaudit-vs-coderabbit.html": {
+  "fecha": "2026-10-04",
+  "huella": "d1c4d98ec59770cb9930ebf97ba7f160b48c053b564e378529c00471c792e748"
+ },
+ "magaudit-vs-gitguardian.html": {
+  "fecha": "2026-10-03",
+  "huella": "abad1e5e003f23c581939cb3bf0acc66bf46954be5b6e856e3340a25588ff366"
+ },
+ "magaudit-vs-socket.html": {
+  "fecha": "2026-10-03",
+  "huella": "848f905fa44640b46957611844288874c9a4e6fe91855545a21b2d80f02e0c50"
+ },
+ "magaudit-vs-sonarqube.html": {
+  "fecha": "2026-10-04",
+  "huella": "5cbbbe5d892bfc194c7a785c816d3d58f2eb41bb2ceb50bb8f89e72e4c929d73"
+ },
+ "magaudit-vs-trufflehog.html": {
+  "fecha": "2026-10-03",
+  "huella": "3aea1b95edf2e92fff846ea176a23e5a718458755091db9ddb4a36769f7d3761"
+ },
+ "prevent-secret-leaks-nextjs.html": {
+  "fecha": "2026-10-03",
+  "huella": "a2cfdcf77bddf98e9f383c052c897d10315f344bda7cf02888bbadc52923943b"
+ },
+ "pricing.html": {
+  "fecha": "2026-10-03",
+  "huella": "684576fbfcdc45cfa0a68f817864c6f87462be2de6d01632d72b77c298cbf19f"
+ },
+ "privacy.html": {
+  "fecha": "2026-10-03",
+  "huella": "43e24260b5df9d23676dd553d73c39aec4c970254576a56916c8f6c969473c03"
+ },
+ "quality.html": {
+  "fecha": "2026-10-03",
+  "huella": "a9775051218f3bb61cbcd1b54c57962c91f0dd06a6d2eb759aa021fead15f84f"
+ },
+ "terms.html": {
+  "fecha": "2026-10-03",
+  "huella": "f7936c1c8a1ee9edafede4d2625d633c57f687e35bfe6c0aac93a1755cc2daf2"
+ },
+ "trust.html": {
+  "fecha": "2026-10-04",
+  "huella": "9d11da0e60779f4c9956940aa53524ac02bc805062b4ba561cb5f0aba5737370"
+ }
+}

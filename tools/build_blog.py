@@ -463,34 +463,15 @@ def render_feed(posts: list) -> str:
 # ── Sitemap ────────────────────────────────────────────────────────────────
 
 def update_sitemap(posts: list):
-    """Reescribe SOLO el bloque del blog, delimitado por comentarios. El
-    resto del sitemap (portada, precios, indice, legales) lo mantiene una
-    persona y no se toca -- esto evita que la tarea automatica pise cambios
-    manuales, que es exactamente el fallo que ya cometio build_index.py."""
-    xml = SITEMAP.read_text(encoding="utf-8")
-    START, END = "  <!-- blog:start -->", "  <!-- blog:end -->"
-
-    entries = [f"""
-  <url>
-    <loc>{BASE}/blog/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>"""]
-    for p in posts:
-        entries.append(f"""
-  <url>
-    <loc>{BASE}/blog/{p['slug']}.html</loc>
-    <lastmod>{p.get('updated', p['date'])}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>""")
-    block = START + "".join(entries) + "\n" + END
-
-    if START in xml and END in xml:
-        xml = re.sub(re.escape(START) + r".*?" + re.escape(END), block, xml, flags=re.S)
-    else:
-        xml = xml.replace("</urlset>", block + "\n\n</urlset>")
-    SITEMAP.write_text(xml, encoding="utf-8")
+    """El sitemap lo escribe UN solo programa: scripts/sitemap.py. Hasta el
+    2026-10-07 este escribia su propio bloque del blog con <lastmod>, y el
+    otro reescribia el fichero entero despues sin el: ninguna URL tenia fecha.
+    `posts` se conserva por compatibilidad; las paginas salen del arbol."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("_sitemap", ROOT / "scripts" / "sitemap.py")
+    S = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(S)
+    S.escribir()
 
 
 # ── Main ───────────────────────────────────────────────────────────────────
