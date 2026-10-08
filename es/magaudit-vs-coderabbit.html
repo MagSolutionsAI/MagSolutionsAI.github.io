@@ -107,14 +107,17 @@
     <tr><td>Si se equivoca sobre tu código</td>
         <td>Fichero de configuración, o <code>@coderabbitai ignore</code></td>
         <td><strong>Contestas <code>@magaudit ignore &lt;id&gt;</code></strong>, un fichero de configuración, o el marcador que ya usa tu escáner actual &mdash; <code>pragma: allowlist secret</code>, <code>nosec</code>, <code>nosemgrep</code>, <code>gitleaks:allow</code></td></tr>
-    <tr><td>Precio</td><td>Desde 24 $ por desarrollador y mes (Essentials). La revisión de
-        seguridad de cada pull request solo está en Advanced, 72 $ por desarrollador y mes</td>
+    <tr><td>Precio</td><td>Desde 24 $ por desarrollador y mes (Essentials). En repositorios privados, la
+        revisión de seguridad de cada pull request solo está en Advanced, 72 $ por desarrollador
+        y mes. En los públicos es gratis, como la nuestra: la están desplegando para proyectos de
+        código abierto</td>
         <td><strong>Plano por organización:</strong> 69 € para diez personas. O quédate en
         Essentials (240 $ para diez) para la revisión de código y añádenos para la seguridad,
         en vez de subir a Advanced (720 $ para diez)</td></tr>
     <tr><td>Vulnerabilidades conocidas en las dependencias que añades</td>
-        <td>Revisión de seguridad de cada pull request, solo en Advanced; un análisis del
-        código completo (Security Scan), con precio por uso</td>
+        <td>Revisión de seguridad de cada pull request: Advanced en repositorios privados,
+        gratis en los públicos; un análisis del código completo (Security Scan), con precio por
+        uso</td>
         <td><strong>Incluido.</strong> Contrastado con la GitHub Advisory Database, y solo se informa cuando la línea fija una versión exacta</td></tr>
     <tr><td>Dockerfiles, workflows, Terraform, Kubernetes</td>
         <td>Con linters que configuras tú</td>
@@ -122,7 +125,9 @@
     <tr><td>Correcciones de un clic</td>
         <td>Generadas por un modelo &mdash; potentes, y a veces equivocadas</td>
         <td><strong>Deducidas, no inventadas.</strong> Se ofrecen solo donde la corrección se deduce de la regla; donde no, no hay sugerencia</td></tr>
-    <tr><td>Ejecutarlo en local antes de subir</td><td>CLI, en los planes de pago</td>
+    <tr><td>Ejecutarlo en local antes de subir</td><td>CLI y extensión del editor, también en
+        el plan gratuito, a 3 revisiones por desarrollador y hora
+        (<a href="https://docs.coderabbit.ai/management/plans">su página de planes</a>)</td>
         <td><strong>El mismo detector, sin conexión.</strong> Si aquí sale limpio, allí sale limpio</td></tr>
     <tr><td>Su propia tasa de falsos positivos</td><td>No publicada</td>
         <td><strong><a href="https://api.magsolutionsai.com/quality">Publicada, y derivada de las pruebas</a></strong></td></tr>
@@ -185,8 +190,8 @@
 
   <h2>Si ya usas CodeRabbit, quédatelo</h2>
   <p>No intentamos sustituirlo: revisa el razonamiento y el diseño, y nosotros no. Lo que
-  cambiamos es el precio de la seguridad en cada pull request. En CodeRabbit eso es el plan
-  Advanced, a 72 $ por desarrollador y mes
+  cambiamos es el precio de la seguridad en cada pull request de un repositorio privado. En
+  CodeRabbit eso es el plan Advanced, a 72 $ por desarrollador y mes
   (<a href="https://www.coderabbit.ai/pricing">coderabbit.ai/pricing</a>); Essentials y Team
   no la incluyen. Quédate con el plan que tienes para la revisión de código y añade MagAudit
   para el check de seguridad: precio plano por organización, y tu código no se envía a otro
@@ -194,7 +199,7 @@
 
   <p style="margin-top:2.5rem"><a class="btn btn-1"
      href="https://github.com/apps/magaudit-agent/installations/new">Instalar en GitHub &rarr;</a></p>
-  <p class="upd">Última revisión: 4 de octubre de 2026. <strong>Todas las cifras sobre
+  <p class="upd">Última revisión: 8 de octubre de 2026. <strong>Todas las cifras sobre
   <em>nosotros</em></strong> son medición propia y reproducibles contra
   <a href="https://api.magsolutionsai.com/measurement">nuestro endpoint público</a> y
   <a href="quality.html">nuestro registro de errores</a>. Las cifras sobre CodeRabbit o las
