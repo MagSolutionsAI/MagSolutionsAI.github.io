@@ -35,13 +35,17 @@
   "fecha": "2026-10-05",
   "huella": "295680087f5c22004ff022e5edd9568e3c08608b373d0bc17a252436ebd1c4fd"
  },
+ "blog/field-report-2026-10-12.html": {
+  "fecha": "2026-10-12",
+  "huella": "8d1f983a57c2e3964dcd2a9eee66e73fd2cf2404b1602dc7f89a7a76ab661c04"
+ },
  "blog/huggingface-cli-case.html": {
   "fecha": "2026-10-03",
   "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
  },
  "blog/index.html": {
   "fecha": "2026-10-12",
-  "huella": "5d2c583bd65a1eff7348ddba9b2476f7adb01b21ce252f44113648e509fc2309"
+  "huella": "e1e9bfcd6dd49d2b817273ae63559073b8c15a097f9f4439d86b2b0ba0960f3a"
  },
  "blog/openaii-typosquat-campaign.html": {
   "fecha": "2026-10-03",
