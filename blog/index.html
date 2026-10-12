@@ -36,10 +36,10 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
-      "headline": "Field report: 6949 real pull requests scanned, 6.1% flagged, 46 of our own mistakes fixed in public",
-      "url": "https://magsolutionsai.com/blog/field-report-2026-10-05.html",
-      "datePublished": "2026-10-05",
-      "description": "6949 real public pull requests scanned and 6619 dependencies resolved against the live registries; the check flagged something in 6.1% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly."
+      "headline": "How to read a package's install scripts before npm runs them",
+      "url": "https://magsolutionsai.com/blog/check-npm-install-scripts-before-you-run-them.html",
+      "datePublished": "2026-10-12",
+      "description": "npm executes preinstall, install and postinstall scripts automatically — before you've looked at a single line of the package. The registry publishes those scripts in its own metadata, so you can read them without installing anything."
     },
     {
       "@type": "BlogPosting",
@@ -47,6 +47,13 @@
       "url": "https://magsolutionsai.com/blog/angular-typosquat-cluster.html",
       "datePublished": "2026-10-05",
       "description": "On 5 October 2026, GitHub reviewed six npm packages impersonating @angular/core and @angular/cli — all claiming Angular's current version number, five of them sharing one postinstall command. All six are gone; the real @angular/core took 7.3 million downloads the same week."
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Field report: 6949 real pull requests scanned, 6.1% flagged, 46 of our own mistakes fixed in public",
+      "url": "https://magsolutionsai.com/blog/field-report-2026-10-05.html",
+      "datePublished": "2026-10-05",
+      "description": "6949 real public pull requests scanned and 6619 dependencies resolved against the live registries; the check flagged something in 6.1% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly."
     },
     {
       "@type": "BlogPosting",
@@ -169,14 +176,14 @@
   </section>
 
   <section class="posts">
-      <a class="pcard" href="/blog/field-report-2026-10-05.html">
+      <a class="pcard" href="/blog/check-npm-install-scripts-before-you-run-them.html">
         <div class="post-meta">
-          <time datetime="2026-10-05">05 Oct 2026</time>
+          <time datetime="2026-10-12">12 Oct 2026</time>
           <span class="sep">&middot;</span><span>3 min</span>
         </div>
-        <h2>Field report: 6949 real pull requests scanned, 6.1% flagged, 46 of our own mistakes fixed in public</h2>
-        <p>6949 real public pull requests scanned and 6619 dependencies resolved against the live registries; the check flagged something in 6.1% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</p>
-        <div class="ptags"><span class="ptag">security</span><span class="ptag">supply chain</span><span class="ptag">measurement</span><span class="ptag">open source</span></div>
+        <h2>How to read a package&#x27;s install scripts before npm runs them</h2>
+        <p>npm executes preinstall, install and postinstall scripts automatically — before you&#x27;ve looked at a single line of the package. The registry publishes those scripts in its own metadata, so you can read them without installing anything.</p>
+        <div class="ptags"><span class="ptag">how-to</span><span class="ptag">npm</span><span class="ptag">supply chain</span><span class="ptag">security</span></div>
       </a>
       <a class="pcard" href="/blog/angular-typosquat-cluster.html">
         <div class="post-meta">
@@ -186,6 +193,15 @@
         <h2>Six Angular typosquats, one postinstall hook, published the same morning</h2>
         <p>On 5 October 2026, GitHub reviewed six npm packages impersonating @angular/core and @angular/cli — all claiming Angular&#x27;s current version number, five of them sharing one postinstall command. All six are gone; the real @angular/core took 7.3 million downloads the same week.</p>
         <div class="ptags"><span class="ptag">supply chain</span><span class="ptag">npm</span><span class="ptag">case study</span><span class="ptag">malware</span></div>
+      </a>
+      <a class="pcard" href="/blog/field-report-2026-10-05.html">
+        <div class="post-meta">
+          <time datetime="2026-10-05">05 Oct 2026</time>
+          <span class="sep">&middot;</span><span>2 min</span>
+        </div>
+        <h2>Field report: 6949 real pull requests scanned, 6.1% flagged, 46 of our own mistakes fixed in public</h2>
+        <p>6949 real public pull requests scanned and 6619 dependencies resolved against the live registries; the check flagged something in 6.1% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</p>
+        <div class="ptags"><span class="ptag">security</span><span class="ptag">supply chain</span><span class="ptag">measurement</span><span class="ptag">open source</span></div>
       </a>
       <a class="pcard" href="/blog/pull-request-target-in-the-wild.html">
         <div class="post-meta">

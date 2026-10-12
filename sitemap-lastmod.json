@@ -7,6 +7,10 @@
   "fecha": "2026-10-05",
   "huella": "bbf0e812553abe69a2d01ccbdfca791c340d2d2caecd9c417acaf1be7c8b0938"
  },
+ "blog/check-npm-install-scripts-before-you-run-them.html": {
+  "fecha": "2026-10-12",
+  "huella": "575c6f3f6740ef6e8c8c31a486bf2d02ec7e957cc4107e319bde1bf0968427c2"
+ },
  "blog/claudedashbord-pypi-typosquat.html": {
   "fecha": "2026-10-03",
   "huella": "2f7331f7aeb60bbb800a47079e000f4ba101a86eb99ec4c7bfbc0a2b98a5e636"
@@ -36,8 +40,8 @@
   "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
  },
  "blog/index.html": {
-  "fecha": "2026-10-05",
-  "huella": "63ed32c8d72f0bb00328d9c5a025f9b836c09306a9d62d73dccd5c309fa94430"
+  "fecha": "2026-10-12",
+  "huella": "5d2c583bd65a1eff7348ddba9b2476f7adb01b21ce252f44113648e509fc2309"
  },
  "blog/openaii-typosquat-campaign.html": {
   "fecha": "2026-10-03",

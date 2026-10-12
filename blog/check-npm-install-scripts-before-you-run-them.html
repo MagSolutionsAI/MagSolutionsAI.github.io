@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to read a package&#x27;s install scripts before npm runs them | MagSolutionsAI</title>
+<meta name="description" content="npm executes preinstall, install and postinstall scripts automatically — before you&#x27;ve looked at a single line of the package. The registry publishes those scripts in its own metadata, so you can read them without installing anything.">
+<meta property="og:title" content="How to read a package&#x27;s install scripts before npm runs them | MagSolutionsAI">
+<meta property="og:description" content="npm executes preinstall, install and postinstall scripts automatically — before you&#x27;ve looked at a single line of the package. The registry publishes those scripts in its own metadata, so you can read them without installing anything.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magsolutionsai.com/blog/check-npm-install-scripts-before-you-run-them.html">
+<meta property="og:image" content="https://magsolutionsai.com/logo-512.png">
+<meta property="og:site_name" content="MagSolutionsAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to read a package&#x27;s install scripts before npm runs them | MagSolutionsAI">
+<meta name="twitter:description" content="npm executes preinstall, install and postinstall scripts automatically — before you&#x27;ve looked at a single line of the package. The registry publishes those scripts in its own metadata, so you can read them without installing anything.">
+<meta name="twitter:image" content="https://magsolutionsai.com/logo-512.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://magsolutionsai.com/blog/check-npm-install-scripts-before-you-run-them.html">
+<link rel="alternate" type="application/rss+xml" title="MagSolutionsAI Blog" href="https://magsolutionsai.com/feed.xml">
+<link rel="icon" type="image/png" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/logo-200.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to read a package's install scripts before npm runs them",
+  "description": "npm executes preinstall, install and postinstall scripts automatically — before you've looked at a single line of the package. The registry publishes those scripts in its own metadata, so you can read them without installing anything.",
+  "datePublished": "2026-10-12",
+  "dateModified": "2026-10-12",
+  "url": "https://magsolutionsai.com/blog/check-npm-install-scripts-before-you-run-them.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://magsolutionsai.com/blog/check-npm-install-scripts-before-you-run-them.html"
+  },
+  "image": "https://magsolutionsai.com/logo-512.png",
+  "inLanguage": "en",
+  "keywords": [
+    "how-to",
+    "npm",
+    "supply chain",
+    "security"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MagSolutionsAI",
+    "url": "https://magsolutionsai.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://magsolutionsai.com/logo-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://magsolutionsai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://magsolutionsai.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to read a package's install scripts before npm runs them",
+      "item": "https://magsolutionsai.com/blog/check-npm-install-scripts-before-you-run-them.html"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/style.css?v=13">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/hallucination-index.html">Index</a>
+      <a class="nav-cta" href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap post">
+  <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
+  <article>
+    <header class="post-hd">
+      <div class="post-meta">
+        <time datetime="2026-10-12">12 October 2026</time>
+        <span class="sep">&middot;</span>
+        <span>3 min read</span>
+      </div>
+      <h1>How to read a package&#x27;s install scripts before npm runs them</h1>
+      <p class="post-lede">npm executes preinstall, install and postinstall scripts automatically — before you&#x27;ve looked at a single line of the package. The registry publishes those scripts in its own metadata, so you can read them without installing anything.</p>
+      <div class="ptags"><span class="ptag">how-to</span><span class="ptag">npm</span><span class="ptag">supply chain</span><span class="ptag">security</span></div>
+    </header>
+    <div class="post-body">
+<p>You&#x27;re about to add a dependency. Before <code>npm install</code> finishes, it may already have run arbitrary JavaScript on your machine — not because the package is malicious, but because that&#x27;s how npm&#x27;s install lifecycle works. <a href="https://docs.npmjs.com/cli/v10/using-npm/scripts">npm&#x27;s own documentation</a> lists the order: <code>preinstall</code>, then <code>install</code>, then <code>postinstall</code>, all run after the package lands in <code>node_modules</code> and before <code>npm install</code> returns control to you.</p>
+<p>Most of the time that&#x27;s harmless — a native module compiling itself, a CLI tool downloading a binary. Sometimes it&#x27;s the thing a dependency-confusion or typosquat package relies on: the credential-stealing code we covered in <a href="/blog/coinbase-wallet-npm-cluster.html">the Coinbase wallet cluster</a> and in <a href="/blog/starbucks-sdk-dependency-confusion.html">starbucks-sdk</a> both ran the moment <code>npm install</code> finished, via a <code>postinstall</code> hook, with no further action from anyone.</p>
+<p>The useful part: you don&#x27;t need to run the install to see the scripts. The npm registry stores the full <code>package.json</code> for every published version, scripts included, and serves it as plain JSON.</p>
+<h2>The command</h2>
+<pre><code>curl -s https://registry.npmjs.org/&lt;package&gt; | \
+  python3 -c &quot;import json,sys; d=json.load(sys.stdin); v=d[&#x27;dist-tags&#x27;][&#x27;latest&#x27;]; \
+  print(d[&#x27;versions&#x27;][v].get(&#x27;scripts&#x27;))&quot;</code></pre>
+<p>Run against five real packages, today:</p>
+<pre><code>$ curl -s https://registry.npmjs.org/left-pad | ...
+None
+
+$ curl -s https://registry.npmjs.org/husky | ...
+None
+
+$ curl -s https://registry.npmjs.org/puppeteer | ...
+{&#x27;postinstall&#x27;: &#x27;node install.mjs&#x27;, ...}
+
+$ curl -s https://registry.npmjs.org/cypress | ...
+{&#x27;postinstall&#x27;: &#x27;node dist/index.js --exec install&#x27;, ...}
+
+$ curl -s https://registry.npmjs.org/core-js | ...
+{&#x27;postinstall&#x27;: &#x27;node -e &quot;try{require(\&#x27;./postinstall\&#x27;)}catch(e){}&quot;&#x27;}</code></pre>
+<p>No install, no sandbox, no five minutes waiting for a tarball — one HTTP request per package.</p>
+<h2>Reading what the script actually does</h2>
+<p>A <code>postinstall</code> entry by itself tells you nothing about intent. All three packages above run one, and all three are doing something ordinary.</p>
+<p>Puppeteer&#x27;s <code>install.mjs</code> <a href="https://unpkg.com/puppeteer@25.13.0/install.mjs">says exactly what it&#x27;s for</a> in its own header comment: &quot;the <code>puppeteer</code> package runs this script during the installation process&quot; to fetch a supported browser build. Cypress does the same for its own binary. Both are well-known, well-documented reasons for a package to act during install — and both would trip a rule that simply flags &quot;has a postinstall script&quot; as a finding, which is why that rule on its own is not good enough.</p>
+<p>Core-js is the clearer case for actually reading the file instead of guessing from the command. <a href="https://unpkg.com/core-js@3.50.0/postinstall.js">Its postinstall script</a> checks a handful of environment variables — <code>CI</code>, <code>ADBLOCK</code>, <code>DISABLE_OPENCOLLECTIVE</code> — and, when none of them are set, prints a one-time terminal banner asking for project funding, then writes a marker file to <code>os.tmpdir()</code> so it won&#x27;t repeat. No network call, no credential read, no file outside <code>/tmp</code>. Unwelcome if you didn&#x27;t expect it; not a threat.</p>
+<p>Compare that to what you&#x27;d want to see from a script in a package you&#x27;ve never heard of, published a few days ago: a request to an unfamiliar host, a read of <code>process.env</code> passed anywhere outside <code>console.log</code>, or a write to a path like <code>~/.aws</code> or <code>~/.ssh</code>. None of that appears in any of the five packages above — which is exactly the point of checking before you install, not after.</p>
+<h2>The same trick works on age</h2>
+<p>The registry&#x27;s <code>time</code> field is in the same response, free of charge:</p>
+<pre><code>$ curl -s https://registry.npmjs.org/left-pad | \
+  python3 -c &quot;import json,sys; d=json.load(sys.stdin); print(d[&#x27;time&#x27;][&#x27;created&#x27;])&quot;
+2014-03-14T09:09:20.762Z</code></pre>
+<p>A package that&#x27;s two days old with a <code>postinstall</code> script and a handful of downloads is a different risk profile from one that&#x27;s ten years old with a script that fetches a browser binary and <a href="https://api.npmjs.org/downloads/point/last-week/puppeteer">11.4 million downloads in the last seven days</a> (checked 12 October 2026). Age and adoption don&#x27;t prove safety, but a script on a brand-new, unused name is worth five extra minutes that the same script on <code>puppeteer</code> is not.</p>
+<h2>What this doesn&#x27;t tell you</h2>
+<p>This technique reads what a script <em>says</em> it does in source form. It does not execute the script in a sandbox, does not catch logic that only triggers under specific conditions, and does not follow code the script downloads and runs afterward — a dropper that fetches its real payload from a second URL at install time would still look ordinary from this check alone. It also doesn&#x27;t tell you anything about a dependency that&#x27;s one level down: these five packages are the ones you typed into <code>package.json</code> yourself, not the forty-odd others that came along as transitive dependencies with their own scripts. And none of this is malware analysis — it&#x27;s reading source, not behaviour; a tool built to execute packages in isolation and watch what they actually do, such as Socket, is answering a different and harder question than the one this command answers.</p>
+<p>If you want this check to run on every pull request instead of by hand, that&#x27;s one of the things a dependency-age-and-adoption check looks at automatically and flags in the PR.</p>
+    </div>
+    <p class="ai-note">Disclosure: this article was produced automatically by our software agents (an AI model or a report template) from measurements they ran themselves, with no human editorial review before publication (EU AI Act, art. 50). Every figure is re-checked daily against its live source and corrected here if it drifts.</p>
+  </article>
+  
+<section class="post-cta">
+  <h2>Check this on your own pull requests</h2>
+  <p>MagAudit Agent checks every pull request for leaked keys, risky workflow and infrastructure changes, and dependencies that are brand new or do not exist, before they merge. We publish <a href="/quality.html">how often our rules are wrong</a>. Free on public repositories; 14 days free on private ones.</p>
+  <div class="cta">
+    <a class="btn btn-1" href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub &rarr;</a>
+    <a class="btn btn-2" href="/pricing.html">See pricing</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a><a href="/legal-notice.html">Legal notice</a>
+    <a href="mailto:magsolutionsai@gmail.com">Contact</a>
+    <span class="sp"></span>
+    <a href="https://github.com/MagSolutionsAI">GitHub</a>
+  </div>
+  <div class="wrap foot" style="margin-top:.6rem">
+    <a href="/trust.html">Where your code goes</a>
+    <a href="/quality.html">Our error rate</a>
+    <a href="/prevent-secret-leaks-nextjs.html">Secret leaks in Next.js</a>
+    <span>Compare:</span>
+    <a href="/magaudit-vs-socket.html">vs Socket</a>
+    <a href="/magaudit-vs-gitguardian.html">vs GitGuardian</a>
+    <a href="/magaudit-vs-coderabbit.html">vs CodeRabbit</a>
+    <a href="/magaudit-vs-trufflehog.html">vs TruffleHog</a>
+  </div>
+</footer>
+
+</body>
+</html>
