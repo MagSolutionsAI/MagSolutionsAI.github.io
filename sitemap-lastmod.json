@@ -44,8 +44,12 @@
   "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
  },
  "blog/index.html": {
-  "fecha": "2026-10-12",
-  "huella": "e1e9bfcd6dd49d2b817273ae63559073b8c15a097f9f4439d86b2b0ba0960f3a"
+  "fecha": "2026-10-19",
+  "huella": "8437d2e28d5f58fd5cb4b442f47d2e72745c0a97a21a9a314e0621a6143da2a5"
+ },
+ "blog/item-validator-items-validator-malware.html": {
+  "fecha": "2026-10-19",
+  "huella": "9b33bea241d49e9f75603e6f67216229e97010067a33c091aa03af72812a80b9"
  },
  "blog/openaii-typosquat-campaign.html": {
   "fecha": "2026-10-03",
