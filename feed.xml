@@ -8,6 +8,13 @@
     <language>en</language>
     <lastBuildDate>Mon, 19 Oct 2026 07:18:03 +0000</lastBuildDate>
     <item>
+      <title>Field report: 12656 real pull requests scanned, 9.6% flagged, 46 of our own mistakes fixed in public</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-10-19.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-10-19.html</guid>
+      <pubDate>Mon, 19 Oct 2026 09:00:00 +0000</pubDate>
+      <description>12656 real public pull requests scanned and 11266 dependencies resolved against the live registries; the check flagged something in 9.6% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+    </item>
+    <item>
       <title>items-validator and item-validator: three weeks old and six years dormant, flagged as malware the same morning</title>
       <link>https://magsolutionsai.com/blog/item-validator-items-validator-malware.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/item-validator-items-validator-malware.html</guid>

@@ -39,13 +39,17 @@
   "fecha": "2026-10-12",
   "huella": "8d1f983a57c2e3964dcd2a9eee66e73fd2cf2404b1602dc7f89a7a76ab661c04"
  },
+ "blog/field-report-2026-10-19.html": {
+  "fecha": "2026-10-19",
+  "huella": "0987da8a75d36ca7cbebebb90315fb2afd23007af3731771e34b74a10f93da0c"
+ },
  "blog/huggingface-cli-case.html": {
   "fecha": "2026-10-03",
   "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
  },
  "blog/index.html": {
   "fecha": "2026-10-19",
-  "huella": "8437d2e28d5f58fd5cb4b442f47d2e72745c0a97a21a9a314e0621a6143da2a5"
+  "huella": "2fa5000c536be7358f5fba561072d6f7667ca54bf5bfc2b3dde33ffe88ffa800"
  },
  "blog/item-validator-items-validator-malware.html": {
   "fecha": "2026-10-19",
