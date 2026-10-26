@@ -8,6 +8,13 @@
     <language>en</language>
     <lastBuildDate>Mon, 26 Oct 2026 07:10:17 +0000</lastBuildDate>
     <item>
+      <title>Field report: 14898 real pull requests scanned, 6.4% flagged, 46 of our own mistakes fixed in public</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-10-26.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-10-26.html</guid>
+      <pubDate>Mon, 26 Oct 2026 09:00:00 +0000</pubDate>
+      <description>14898 real public pull requests scanned and 12740 dependencies resolved against the live registries; the check flagged something in 6.4% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+    </item>
+    <item>
       <title>One npm account, 14 packages, four scopes: a dependency-confusion campaign built to look like someone&#x27;s internal SDK</title>
       <link>https://magsolutionsai.com/blog/greenlake-dependency-confusion-campaign.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/greenlake-dependency-confusion-campaign.html</guid>
