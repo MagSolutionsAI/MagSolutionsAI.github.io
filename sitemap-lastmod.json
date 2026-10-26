@@ -43,13 +43,17 @@
   "fecha": "2026-10-19",
   "huella": "0987da8a75d36ca7cbebebb90315fb2afd23007af3731771e34b74a10f93da0c"
  },
+ "blog/greenlake-dependency-confusion-campaign.html": {
+  "fecha": "2026-10-26",
+  "huella": "e72f07abe4862c668fbf321c505e2d8fb278bda631cb4df35064510c6b660d82"
+ },
  "blog/huggingface-cli-case.html": {
   "fecha": "2026-10-03",
   "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
  },
  "blog/index.html": {
-  "fecha": "2026-10-19",
-  "huella": "2fa5000c536be7358f5fba561072d6f7667ca54bf5bfc2b3dde33ffe88ffa800"
+  "fecha": "2026-10-26",
+  "huella": "58d710abe1963bf33a4598f1628f785ceffe676d03080373d060c3286243c3d8"
  },
  "blog/item-validator-items-validator-malware.html": {
   "fecha": "2026-10-19",

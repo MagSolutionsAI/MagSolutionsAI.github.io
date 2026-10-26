@@ -6,13 +6,22 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Oct 2026 07:18:03 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 07:10:17 +0000</lastBuildDate>
+    <item>
+      <title>One npm account, 14 packages, four scopes: a dependency-confusion campaign built to look like someone&#x27;s internal SDK</title>
+      <link>https://magsolutionsai.com/blog/greenlake-dependency-confusion-campaign.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/greenlake-dependency-confusion-campaign.html</guid>
+      <pubDate>Mon, 26 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Between 23 and 25 October 2026, the npm account &quot;wiseke&quot; published 14 packages across four scopes, including @greenlake/auth and @sxm-web/client-sdk-core. GitHub reviewed all of them as malware the same week, days after the first one went live.</description>
+      <category>supply chain</category><category>npm</category><category>case study</category><category>malware</category>
+    </item>
     <item>
       <title>Field report: 12656 real pull requests scanned, 9.6% flagged, 46 of our own mistakes fixed in public</title>
       <link>https://magsolutionsai.com/blog/field-report-2026-10-19.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-10-19.html</guid>
       <pubDate>Mon, 19 Oct 2026 09:00:00 +0000</pubDate>
       <description>12656 real public pull requests scanned and 11266 dependencies resolved against the live registries; the check flagged something in 9.6% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+      <category>security</category><category>supply chain</category><category>measurement</category><category>open source</category>
     </item>
     <item>
       <title>items-validator and item-validator: three weeks old and six years dormant, flagged as malware the same morning</title>
