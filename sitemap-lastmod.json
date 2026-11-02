@@ -56,8 +56,8 @@
   "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
  },
  "blog/index.html": {
-  "fecha": "2026-10-26",
-  "huella": "14a4114ffcf714505985ce9b6f63eff6741bd3810ba8da206106502d24ce4043"
+  "fecha": "2026-11-02",
+  "huella": "91beac178cff50cd0ea279b0429a2af7de0bac3bd622c3f9fdd2f982f064cd0d"
  },
  "blog/item-validator-items-validator-malware.html": {
   "fecha": "2026-10-19",
@@ -66,6 +66,10 @@
  "blog/openaii-typosquat-campaign.html": {
   "fecha": "2026-10-03",
   "huella": "78bb1c2eae2c7aa4f946ffb11e670e1667f0af85588a6fe17ab968dc45d1e8c6"
+ },
+ "blog/pc-notifier-unscoped-sdk-squats.html": {
+  "fecha": "2026-11-02",
+  "huella": "e800421d4cbda510b0142a0853e14d70ac0908d913a131d54af351b5fce7acd4"
  },
  "blog/pull-request-target-in-the-wild.html": {
   "fecha": "2026-10-03",
