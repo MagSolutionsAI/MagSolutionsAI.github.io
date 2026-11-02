@@ -8,6 +8,13 @@
     <language>en</language>
     <lastBuildDate>Mon, 02 Nov 2026 07:11:19 +0000</lastBuildDate>
     <item>
+      <title>Field report: 17381 real pull requests scanned, 10% flagged, 46 of our own mistakes fixed in public</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-11-02.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-11-02.html</guid>
+      <pubDate>Mon, 02 Nov 2026 09:00:00 +0000</pubDate>
+      <description>17381 real public pull requests scanned and 14313 dependencies resolved against the live registries; the check flagged something in 10% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+    </item>
+    <item>
       <title>Drop the scope, keep the name: six packages squatting Axelar, Solana and OpenZeppelin SDKs in 48 hours</title>
       <link>https://magsolutionsai.com/blog/pc-notifier-unscoped-sdk-squats.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/pc-notifier-unscoped-sdk-squats.html</guid>

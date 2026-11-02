@@ -47,6 +47,10 @@
   "fecha": "2026-10-26",
   "huella": "343dcdabd5cbc3b6a28f6d3d8a9195f35cb91c7c649dd92991337bfc1ee8a98f"
  },
+ "blog/field-report-2026-11-02.html": {
+  "fecha": "2026-11-02",
+  "huella": "f49a587d80242ef7c706c4719c051d9c90caf10ac71a9d6a1cf3daae11fc6f73"
+ },
  "blog/greenlake-dependency-confusion-campaign.html": {
   "fecha": "2026-10-26",
   "huella": "e72f07abe4862c668fbf321c505e2d8fb278bda631cb4df35064510c6b660d82"
@@ -57,7 +61,7 @@
  },
  "blog/index.html": {
   "fecha": "2026-11-02",
-  "huella": "91beac178cff50cd0ea279b0429a2af7de0bac3bd622c3f9fdd2f982f064cd0d"
+  "huella": "65e874d0e2df80e98ab1288b933d522e04eb33335ca75cef38f93d2b73d9650f"
  },
  "blog/item-validator-items-validator-malware.html": {
   "fecha": "2026-10-19",
