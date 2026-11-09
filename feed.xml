@@ -8,6 +8,13 @@
     <language>en</language>
     <lastBuildDate>Mon, 02 Nov 2026 07:11:19 +0000</lastBuildDate>
     <item>
+      <title>Field report: 20359 real pull requests scanned, 6.5% flagged, 46 of our own mistakes fixed in public</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-11-09.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-11-09.html</guid>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+      <description>20359 real public pull requests scanned and 15988 dependencies resolved against the live registries; the check flagged something in 6.5% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+    </item>
+    <item>
       <title>Field report: 17381 real pull requests scanned, 10% flagged, 46 of our own mistakes fixed in public</title>
       <link>https://magsolutionsai.com/blog/field-report-2026-11-02.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-11-02.html</guid>
