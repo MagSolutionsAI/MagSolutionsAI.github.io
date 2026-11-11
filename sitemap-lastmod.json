@@ -1,4 +1,8 @@
 {
+ "agencies.html": {
+  "fecha": "2026-11-11",
+  "huella": "bd9985a91cb71a50b096a88fdcc88b5d910fa1552b2469aa895ac5d67c0038b1"
+ },
  "blog/advisory-window.html": {
   "fecha": "2026-10-03",
   "huella": "140fbf5da00ffd0ce7a30eb3deb0dba1ebd38a9653e60075dc098344bb98fa36"
@@ -98,6 +102,10 @@
  "blog/what-is-slopsquatting.html": {
   "fecha": "2026-10-03",
   "huella": "1eed1ef38e8a126b48123114756ef7b8525e1dc6b8fab05e337ad47e6862dc3e"
+ },
+ "es/agencies.html": {
+  "fecha": "2026-11-11",
+  "huella": "8d6a9c951f8dcbf9ab395bfea7ccd3379d5502d560701482ac66e6c9f78f8c9d"
  },
  "es/hallucination-index.html": {
   "fecha": "2026-10-03",

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://magsolutionsai.com/agencies.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/agencies.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/agencies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/agencies.html"/>
+  </url>
+  <url>
     <loc>https://magsolutionsai.com/blog/advisory-window.html</loc>
     <lastmod>2026-10-03</lastmod>
   </url>
@@ -100,6 +107,13 @@
   <url>
     <loc>https://magsolutionsai.com/blog/what-is-slopsquatting.html</loc>
     <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://magsolutionsai.com/es/agencies.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://magsolutionsai.com/agencies.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/agencies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/agencies.html"/>
   </url>
   <url>
     <loc>https://magsolutionsai.com/es/hallucination-index.html</loc>

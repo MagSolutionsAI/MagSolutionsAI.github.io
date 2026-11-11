@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For agencies: a security check on every client pull request — MagAudit</title>
+<meta name="description" content="For software agencies of five to twenty developers: a security check on every client pull request, at a flat price, with the code read on one EU server and never sent to an AI model.">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/agencies.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/agencies.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/agencies.html">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/agencies.html">
+<link rel="stylesheet" href="style.css?v=13">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Home</a><a href="pricing.html">Pricing</a><a href="trust.html">Trust</a><a href="es/agencies.html">Español</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>A security check on every client project</h1>
+  <p class="upd">For agencies and software houses of five to twenty developers who build for
+  clients with Copilot, Cursor or Claude.</p>
+
+  <p>Sooner or later a client asks two things: what checks every change to their
+  code goes through, and where that code is sent. MagAudit gives you a short
+  answer to both. It is a GitHub App that runs one security check on each pull
+  request, and it reads the code on a single server in Finland without sending
+  it to an AI model or to anyone else.</p>
+
+  <p><a class="btn btn-1" data-install
+     href="https://github.com/apps/magaudit-agent/installations/new">Try it on one project &rarr;</a></p>
+  <p class="upd">Free on public repositories &middot; 14 days free on private ones &middot; no card</p>
+
+  <h2>What it finds in code written with an assistant</h2>
+  <ul>
+    <li><strong>A service key that ends up in the browser.</strong> A key with a
+    <code>NEXT_PUBLIC_</code> or <code>VITE_</code> prefix is shipped to every
+    visitor. We looked for it in 63 real pull requests and found it zero times;
+    in the existing code of 8 real repositories it was in seven. It is written
+    once, the day the project starts, so we read the existing code when you
+    install and not only the next change.
+    <a href="prevent-secret-leaks-nextjs.html">How we measured it</a>.</li>
+    <li><strong>A credential committed to the repository</strong>, with the line
+    and the fix in the pull request comment.</li>
+    <li><strong>A dependency published a few days ago that almost nobody uses</strong>,
+    which is what a package registered by an attacker looks like before any
+    advisory exists.</li>
+    <li>SQL built by interpolation, insecure deserialization, model output
+    rendered as raw HTML, and risky settings in Dockerfiles, GitHub Actions
+    workflows, Terraform and Kubernetes files.</li>
+  </ul>
+  <p>The first report arrives about a minute after you install. From then on the
+  check fails when it finds something serious, so it blocks the merge once you
+  mark it as required in your branch protection.</p>
+
+  <h2>What you can tell your client</h2>
+  <table>
+    <tr><th>They ask</th><th>You answer</th></tr>
+    <tr><td>Where is our code sent?</td>
+        <td>To one server in Finland. It is read in memory, never written to
+        disk and never sent to an AI model or a third party. Only package names
+        and versions leave, towards the package registries.</td></tr>
+    <tr><td>What is stored?</td>
+        <td>No code. The repository name, the pull request number and the
+        number of findings, until the App is uninstalled.</td></tr>
+    <tr><td>Who else processes it?</td>
+        <td>Listed one by one on the <a href="trust.html">trust page</a>, which
+        is written for vendor reviews.</td></tr>
+    <tr><td>Is the vendor certified?</td>
+        <td>No SOC 2 or ISO 27001 yet. We are a small company and we say so;
+        the trust page explains what we do instead.</td></tr>
+    <tr><td>How often is the tool wrong?</td>
+        <td>We publish it, with every correction:
+        <a href="quality.html">our error record</a>.</td></tr>
+  </table>
+
+  <h2>What it costs</h2>
+  <p>One flat price for the whole organisation, by number of private
+  repositories: <strong>&euro;29 a month for up to 5, &euro;69 for up to 15 and
+  &euro;149 for up to 40</strong>. Public repositories are free. Nobody counts
+  how many people commit.</p>
+  <p>For comparison, GitHub charges per active committer on private
+  repositories: $19 a month for Secret Protection and $30 for Code Security. A
+  team of ten pays around $490 a month. In CodeRabbit the security review of
+  every pull request is only in the Advanced plan, at $72 per developer per
+  month. MagAudit does not replace your reviewer: it adds the security check
+  next to it. <a href="pricing.html">Full pricing</a>.</p>
+  <p>The App is installed in the GitHub organisation that owns the repositories,
+  and the plan belongs to that organisation. If a client keeps the code in
+  their own organisation, it is installed there.</p>
+
+  <h2>How to try it without committing to anything</h2>
+  <ol>
+    <li>Install it and choose <em>Only select repositories</em>. Pick one
+    project.</li>
+    <li>Read the first report, about a minute later, on the code that is
+    already there.</li>
+    <li>Open a pull request and see the check and the comment.</li>
+    <li>If it is not for you, uninstall it. What we stored about the
+    installation is deleted.</li>
+  </ol>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1" data-install
+     href="https://github.com/apps/magaudit-agent/installations/new">Install on GitHub &rarr;</a></p>
+  <p>Questions before installing? Write to
+  <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a> and
+  the person who built it answers.</p>
+  <p class="upd">Last reviewed: 11 November 2026. Competitor prices are the ones
+  published on their own pricing pages on that date.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="legal-notice.html">Legal notice</a>
+    <a href="mailto:contact@magsolutionsai.com">Contact</a>
+  </div>
+</footer>
+<script>
+(function () {
+  function beacon(name) {
+    try { navigator.sendBeacon('https://api.magsolutionsai.com/events/' + name); } catch (e) {}
+  }
+  beacon('landing_view');
+  document.querySelectorAll('a[data-install]').forEach(function (a) {
+    a.addEventListener('click', function () { beacon('install_started'); });
+  });
+})();
+</script>
+</body>
+</html>
