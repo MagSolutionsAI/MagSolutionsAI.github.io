@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para agencias: un check de seguridad en cada pull request de cliente — MagAudit</title>
+<meta name="description" content="Para agencias de software de cinco a veinte desarrolladores: un check de seguridad en cada pull request de cliente, a precio plano, con el código leído en un servidor de la UE y sin pasar por ninguna IA.">
+<link rel="icon" type="image/png" href="../favicon-64.png">
+<link rel="canonical" href="https://magsolutionsai.com/es/agencies.html">
+<link rel="alternate" hreflang="en" href="https://magsolutionsai.com/agencies.html">
+<link rel="alternate" hreflang="es" href="https://magsolutionsai.com/es/agencies.html">
+<link rel="alternate" hreflang="x-default" href="https://magsolutionsai.com/agencies.html">
+<link rel="stylesheet" href="../style.css?v=13">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./"><img src="../logo-64.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
+    <nav class="nav-links">
+      <a href="./">Inicio</a><a href="pricing.html">Precios</a><a href="trust.html">Confianza</a><a href="../agencies.html">English</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+
+  <h1>Un check de seguridad en cada proyecto de cliente</h1>
+  <p class="upd">Para agencias y empresas de software de cinco a veinte desarrolladores que
+  programan para clientes con Copilot, Cursor o Claude.</p>
+
+  <p>Tarde o temprano un cliente pregunta dos cosas: qué revisiones pasa cada
+  cambio en su código y a dónde se envía ese código. MagAudit te da una
+  respuesta corta para las dos. Es una GitHub App que ejecuta un check de
+  seguridad en cada pull request, y lee el código en un único servidor en
+  Finlandia sin enviarlo a ningún modelo de IA ni a nadie más.</p>
+
+  <p><a class="btn btn-1" data-install
+     href="https://github.com/apps/magaudit-agent/installations/new">Pruébalo en un proyecto &rarr;</a></p>
+  <p class="upd">Gratis en repositorios públicos &middot; 14 días gratis en privados &middot; sin tarjeta</p>
+
+  <h2>Qué encuentra en código escrito con un asistente</h2>
+  <ul>
+    <li><strong>Una clave de servicio que acaba en el navegador.</strong> Una clave
+    con prefijo <code>NEXT_PUBLIC_</code> o <code>VITE_</code> se entrega a cada
+    visitante. La buscamos en 63 pull requests reales y no apareció ninguna vez;
+    en el código ya existente de 8 repositorios reales estaba en siete. Se
+    escribe una sola vez, el día que nace el proyecto, y por eso leemos el código
+    existente al instalar y no solo el siguiente cambio.
+    <a href="prevent-secret-leaks-nextjs.html">Cómo lo medimos</a>.</li>
+    <li><strong>Una credencial subida al repositorio</strong>, con la línea y el
+    arreglo en el comentario del pull request.</li>
+    <li><strong>Una dependencia publicada hace pocos días que casi nadie usa</strong>,
+    que es el aspecto de un paquete registrado por un atacante antes de que
+    exista ningún aviso.</li>
+    <li>SQL construido por interpolación, deserialización insegura, salida de un
+    modelo pintada como HTML sin filtrar y ajustes de riesgo en Dockerfiles,
+    workflows de GitHub Actions, Terraform y Kubernetes.</li>
+  </ul>
+  <p>El primer informe llega más o menos un minuto después de instalar. A partir
+  de ahí el check falla cuando encuentra algo grave, así que bloquea la fusión
+  en cuanto lo marcas como obligatorio en la protección de la rama.</p>
+
+  <h2>Qué puedes contestar a tu cliente</h2>
+  <table>
+    <tr><th>Te pregunta</th><th>Le contestas</th></tr>
+    <tr><td>¿A dónde se envía nuestro código?</td>
+        <td>A un servidor en Finlandia. Se lee en memoria, nunca se escribe en
+        disco y nunca se envía a un modelo de IA ni a un tercero. Solo salen
+        los nombres y versiones de los paquetes, hacia los registros de
+        paquetes.</td></tr>
+    <tr><td>¿Qué se guarda?</td>
+        <td>Nada de código. El nombre del repositorio, el número del pull
+        request y el número de hallazgos, hasta que se desinstala la App.</td></tr>
+    <tr><td>¿Quién más lo trata?</td>
+        <td>Está detallado uno por uno en la <a href="trust.html">página de
+        confianza</a>, escrita para revisiones de proveedores.</td></tr>
+    <tr><td>¿El proveedor está certificado?</td>
+        <td>Todavía no tenemos SOC 2 ni ISO 27001. Somos una empresa pequeña y
+        lo decimos; la página de confianza explica qué hacemos en su lugar.</td></tr>
+    <tr><td>¿Cuánto se equivoca la herramienta?</td>
+        <td>Lo publicamos, con cada corrección:
+        <a href="quality.html">nuestro registro de errores</a>.</td></tr>
+  </table>
+
+  <h2>Cuánto cuesta</h2>
+  <p>Un precio plano para toda la organización, según el número de
+  repositorios privados: <strong>29 &euro; al mes hasta 5, 69 &euro; hasta 15 y
+  149 &euro; hasta 40</strong>. Los repositorios públicos son gratis. Nadie
+  cuenta cuántas personas hacen commits.</p>
+  <p>Para comparar, GitHub cobra por committer activo en repositorios privados:
+  Secret Protection cuesta 19 $ y Code Security 30 $ al mes. Un equipo de diez
+  paga unos 490 $ al mes. En CodeRabbit la revisión de seguridad de cada pull
+  request solo está en el plan Advanced, a 72 $ por desarrollador y mes.
+  MagAudit no sustituye a tu revisor: añade el check de seguridad a su lado.
+  <a href="pricing.html">Todos los precios</a>.</p>
+  <p>La App se instala en la organización de GitHub que es dueña de los
+  repositorios, y el plan es de esa organización. Si un cliente guarda el
+  código en su propia organización, se instala allí.</p>
+
+  <h2>Cómo probarlo sin comprometerte a nada</h2>
+  <ol>
+    <li>Instálala y elige <em>Only select repositories</em>. Escoge un solo
+    proyecto.</li>
+    <li>Lee el primer informe, más o menos un minuto después, sobre el código
+    que ya está ahí.</li>
+    <li>Abre un pull request y mira el check y el comentario.</li>
+    <li>Si no te convence, desinstálala. Lo que guardamos de la instalación se
+    borra.</li>
+  </ol>
+
+  <p style="margin-top:2.5rem"><a class="btn btn-1" data-install
+     href="https://github.com/apps/magaudit-agent/installations/new">Instalar en GitHub &rarr;</a></p>
+  <p>¿Dudas antes de instalar? Escribe a
+  <a href="mailto:contact@magsolutionsai.com">contact@magsolutionsai.com</a> y
+  contesta la persona que lo ha construido.</p>
+  <p class="upd">Última revisión: 11 de noviembre de 2026. Los precios de terceros son los
+  publicados en sus propias páginas de precios en esa fecha.</p>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 MagSolutionsAI</span>
+    <a href="privacy.html">Privacidad</a><a href="terms.html">Términos</a><a href="legal-notice.html">Aviso legal</a>
+    <a href="mailto:contact@magsolutionsai.com">Contacto</a>
+  </div>
+</footer>
+<script>
+(function () {
+  function beacon(name) {
+    try { navigator.sendBeacon('https://api.magsolutionsai.com/events/' + name); } catch (e) {}
+  }
+  beacon('landing_view');
+  document.querySelectorAll('a[data-install]').forEach(function (a) {
+    a.addEventListener('click', function () { beacon('install_started'); });
+  });
+})();
+</script>
+</body>
+</html>
