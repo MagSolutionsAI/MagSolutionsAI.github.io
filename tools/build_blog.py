@@ -209,6 +209,7 @@ def _head(title, desc, canonical, extra_ld="", is_article=False):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090D16">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <meta property="og:title" content="{html.escape(title)}">
@@ -227,13 +228,14 @@ def _head(title, desc, canonical, extra_ld="", is_article=False):
 <link rel="icon" type="image/png" href="/favicon-64.png">
 <link rel="apple-touch-icon" href="/logo-200.png">
 {extra_ld}
-<link rel="stylesheet" href="/style.css?v=13">
+<link rel="stylesheet" href="/style.css?v=14">
 </head>
 <body>
+<a class="skip" href="#contenido">Skip to content</a>
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img src="/logo-200.png" alt=""><b>MagSolutionsAI</b></a>
+    <a class="brand" href="/"><img src="/logo-200.png" alt="" width="28" height="28"><b>MagSolutionsAI</b></a>
     <nav class="nav-links">
       <a href="/">Home</a>
       <a href="/blog/">Blog</a>
@@ -340,7 +342,7 @@ def render_post(p: dict) -> str:
     return (
         _head(f"{p['title']} | MagSolutionsAI", p["description"], canonical, extra, is_article=True)
         + f"""
-<main class="wrap post">
+<main id="contenido" class="wrap post">
   <nav class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></nav>
   <article>
     <header class="post-hd">
@@ -409,7 +411,7 @@ def render_index(posts: list) -> str:
               "dependencies, and how to verify what your assistant just suggested.",
               canonical, f'<script type="application/ld+json">\n{ld}\n</script>')
         + f"""
-<main class="wrap">
+<main id="contenido" class="wrap">
   <section class="idx-hero">
     <span class="lbl">Blog</span>
     <h1>What breaks when machines write the imports</h1>
