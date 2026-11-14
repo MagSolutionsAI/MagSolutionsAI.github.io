@@ -8,6 +8,7 @@
    ============================================================ */
 
 :root {
+  color-scheme: dark;   /* barras de desplazamiento y controles nativos en oscuro */
   --bg:        #090D16;
   --bg-2:      #0C111C;
   --surf:      rgba(16,25,40,.55);
@@ -67,6 +68,7 @@ h1,h2,h3 { letter-spacing: -.035em; line-height: 1.08; text-wrap: balance; }
 a { color: var(--neon); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--neon); outline-offset: 3px; border-radius: 4px; }
+a, button, summary, label { touch-action: manipulation; }
 code,.mono { font-family: var(--mono); }
 
 .lbl { font-family: var(--mono); font-size: .68rem; font-weight: 600;
@@ -227,6 +229,9 @@ code,.mono { font-family: var(--mono); }
   background: transparent; color: var(--fg); font-family: var(--mono); font-size: .82rem;
   line-height: 1.85; padding: .8rem .95rem; display: block; }
 .scan textarea::placeholder { color: var(--fg-3); }
+/* El textarea quita su contorno para fundirse con la tarjeta; sin esto, quien
+   llega con el teclado no veía dónde estaba el foco (revisión 2026-11-14). */
+.scan:focus-within { box-shadow: 0 0 0 2px var(--neon), 0 34px 80px -34px #000; }
 .scan-ft { display: flex; align-items: center; gap: .6rem; padding: .65rem .95rem;
   border-top: 1px solid var(--line); flex-wrap: wrap; }
 .scan-ft .hint { font-family: var(--mono); font-size: .72rem; color: var(--fg-3); }
