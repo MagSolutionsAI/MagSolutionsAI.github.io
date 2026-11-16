@@ -1,222 +1,226 @@
 {
  "agencies.html": {
-  "fecha": "2026-11-11",
-  "huella": "bd9985a91cb71a50b096a88fdcc88b5d910fa1552b2469aa895ac5d67c0038b1"
+  "fecha": "2026-11-16",
+  "huella": "f2250cad687eb664885fb63c9e2352952045c21afba58c2aa8e6d20e1602f231"
  },
  "blog/advisory-window.html": {
-  "fecha": "2026-10-03",
-  "huella": "140fbf5da00ffd0ce7a30eb3deb0dba1ebd38a9653e60075dc098344bb98fa36"
+  "fecha": "2026-11-16",
+  "huella": "e6369205059f0648c539910aa36774c5f69779c1981d156ad5cfef7339e727f2"
  },
  "blog/angular-typosquat-cluster.html": {
-  "fecha": "2026-10-05",
-  "huella": "bbf0e812553abe69a2d01ccbdfca791c340d2d2caecd9c417acaf1be7c8b0938"
+  "fecha": "2026-11-16",
+  "huella": "2cc1ce5e7c51dad487c561a88f2325b6494e7023b8158355967afc3b864ae60a"
  },
  "blog/check-npm-install-scripts-before-you-run-them.html": {
-  "fecha": "2026-10-12",
-  "huella": "575c6f3f6740ef6e8c8c31a486bf2d02ec7e957cc4107e319bde1bf0968427c2"
+  "fecha": "2026-11-16",
+  "huella": "a3bb6fc04cad986eaed39c3ae3ac9ab0bf48fa218dcd12b2f836e450ebdf3412"
  },
  "blog/claudedashbord-pypi-typosquat.html": {
-  "fecha": "2026-10-03",
-  "huella": "2f7331f7aeb60bbb800a47079e000f4ba101a86eb99ec4c7bfbc0a2b98a5e636"
+  "fecha": "2026-11-16",
+  "huella": "6b99e243dad0e2627e2dc6efcee877664ee88c369f136070a6c5d3ea127db5b3"
  },
  "blog/coinbase-wallet-npm-cluster.html": {
-  "fecha": "2026-10-03",
-  "huella": "e1e4c61b332661e08536f06a09b554dd4b67d54a335b5cc90bc88e6909304d38"
+  "fecha": "2026-11-16",
+  "huella": "04f15c698f0279ba4a20ba29223518d17c9cebf0288d2d855b2739adbaa3c392"
  },
  "blog/field-report-2026-09-18.html": {
-  "fecha": "2026-10-03",
-  "huella": "52e592c7b35b4f586fdc67ff8b05a3dd4e5269b14f0b7ede5ba61d78fa74272b"
+  "fecha": "2026-11-16",
+  "huella": "90ad6809c6986adf87c43045fef450d97edb17f51c2aa70180acf010f22f7585"
  },
  "blog/field-report-2026-09-21.html": {
-  "fecha": "2026-10-03",
-  "huella": "f53977644ec648b025f73434e27791a71b444682065ca1e150b9c0617a71a425"
+  "fecha": "2026-11-16",
+  "huella": "b0c792c56bcca6e851bd5e8a2895f970051c4886b338c26d6b15cd57e7c25cbf"
  },
  "blog/field-report-2026-09-28.html": {
-  "fecha": "2026-10-03",
-  "huella": "2143a31a8dc3952d86a1d912859e2e57bc1f043ff0de5a9298e904dafa6fb2b3"
+  "fecha": "2026-11-16",
+  "huella": "a311cf3662e50c8727e68189cb1c0906601993a1ae90bf04c2fffd06f8a984d3"
  },
  "blog/field-report-2026-10-05.html": {
-  "fecha": "2026-10-05",
-  "huella": "295680087f5c22004ff022e5edd9568e3c08608b373d0bc17a252436ebd1c4fd"
+  "fecha": "2026-11-16",
+  "huella": "eb4c2cda34cbfe3d593a91b2d43a158dca0ea2a437e67edca91d7c1e01a16870"
  },
  "blog/field-report-2026-10-12.html": {
-  "fecha": "2026-10-12",
-  "huella": "8d1f983a57c2e3964dcd2a9eee66e73fd2cf2404b1602dc7f89a7a76ab661c04"
+  "fecha": "2026-11-16",
+  "huella": "91b918e13c899e4540dd7837420b1995f0a540a3815e4f28e89799d123b6f2bb"
  },
  "blog/field-report-2026-10-19.html": {
-  "fecha": "2026-10-19",
-  "huella": "0987da8a75d36ca7cbebebb90315fb2afd23007af3731771e34b74a10f93da0c"
+  "fecha": "2026-11-16",
+  "huella": "4b048476a1be6b34ad0d8f268f14d67a2333e381e46defdac0804b224352af42"
  },
  "blog/field-report-2026-10-26.html": {
-  "fecha": "2026-10-26",
-  "huella": "343dcdabd5cbc3b6a28f6d3d8a9195f35cb91c7c649dd92991337bfc1ee8a98f"
+  "fecha": "2026-11-16",
+  "huella": "0aab4cc82eed250966be6d4ddb7bd6b914e05f6ccfd789bd42c0ad800fc7e792"
  },
  "blog/field-report-2026-11-02.html": {
-  "fecha": "2026-11-02",
-  "huella": "f49a587d80242ef7c706c4719c051d9c90caf10ac71a9d6a1cf3daae11fc6f73"
+  "fecha": "2026-11-16",
+  "huella": "9d7aef625ac63edbec43ab695f640fda53cff10979b795af2a311a74c4775e72"
  },
  "blog/field-report-2026-11-09.html": {
-  "fecha": "2026-11-09",
-  "huella": "411f7f259c3a05ae1bd40c209e1ce0befab59a05d4c7cd0a903a1e31ddc64f03"
+  "fecha": "2026-11-16",
+  "huella": "7d591bdce29d7fe94cac2fec36e8dce30be5611b573adab8d89bc6e497b91b1a"
  },
  "blog/greenlake-dependency-confusion-campaign.html": {
-  "fecha": "2026-10-26",
-  "huella": "e72f07abe4862c668fbf321c505e2d8fb278bda631cb4df35064510c6b660d82"
+  "fecha": "2026-11-16",
+  "huella": "896b3c5228955dc2df377c6739f302b2550ece34f7064b6d59c760a7c8cf6322"
  },
  "blog/huggingface-cli-case.html": {
-  "fecha": "2026-10-03",
-  "huella": "5502286e913578aa2cf2c99825384a0b2a31619f7f13c6b2390a495b7a91b3d8"
+  "fecha": "2026-11-16",
+  "huella": "2c2d829bb866acc7fc4233894a91a6fcdd4f5efbc45c29249a7e093274a19bea"
  },
  "blog/index.html": {
-  "fecha": "2026-11-09",
-  "huella": "62614a0f67dcbf5b7283b6ba8236871a878a5cff2cd8dc2484405c086e2545e8"
+  "fecha": "2026-11-16",
+  "huella": "ff5b4a011b028f677165a6e448a190ef9c1579dce03f85c2b937c460ee7da836"
  },
  "blog/item-validator-items-validator-malware.html": {
-  "fecha": "2026-10-19",
-  "huella": "9b33bea241d49e9f75603e6f67216229e97010067a33c091aa03af72812a80b9"
+  "fecha": "2026-11-16",
+  "huella": "dbe09c5bc40bcf03558bb31221d4f47618e5240be7ab4eb959e54d47efc5ceec"
  },
  "blog/openaii-typosquat-campaign.html": {
-  "fecha": "2026-10-03",
-  "huella": "78bb1c2eae2c7aa4f946ffb11e670e1667f0af85588a6fe17ab968dc45d1e8c6"
+  "fecha": "2026-11-16",
+  "huella": "3d4378400a0350aa7d793c23d18d71a1fbc7a517710e7bf2f240b56f62a1bf55"
  },
  "blog/pc-notifier-unscoped-sdk-squats.html": {
-  "fecha": "2026-11-02",
-  "huella": "e800421d4cbda510b0142a0853e14d70ac0908d913a131d54af351b5fce7acd4"
+  "fecha": "2026-11-16",
+  "huella": "2a64f95055e0ef1441d7082b384dc07956577fb305dddb5099af8378ae8150c5"
  },
  "blog/pull-request-target-in-the-wild.html": {
-  "fecha": "2026-10-03",
-  "huella": "671f57ee253d7124fcc64f14b31049bffdcce00bb0abecc575aeb47cc41f5937"
+  "fecha": "2026-11-16",
+  "huella": "9b99bf901d6f6ef999944481902361229213890ac3fe066362edac6ffa6c2d42"
  },
  "blog/starbucks-sdk-dependency-confusion.html": {
-  "fecha": "2026-10-03",
-  "huella": "4ea172e3ddaa1dd9adf59e5b270def2089de69e6c984fb5b0193feb86a4fd2b7"
+  "fecha": "2026-11-16",
+  "huella": "7b7dbd0a8dc32cdb3e387cb5cbe7d2e4e5cd0b10ec3e9e2edb8ec9de15471385"
  },
  "blog/transitive-dependency-malware.html": {
-  "fecha": "2026-10-03",
-  "huella": "2ca50a5008896a5323f997a45092d49501a28ddb27d3f8e418c72ef8e78582fe"
+  "fecha": "2026-11-16",
+  "huella": "aecf7948e9e60f10a23c62f3957020e5a5af7be9364d8053be0e49a5d041d54d"
  },
  "blog/verify-a-package-exists.html": {
-  "fecha": "2026-10-03",
-  "huella": "0d1e821622c6fd45b71a1e86ef909554eb8854842106d73d82cbf409491dee83"
+  "fecha": "2026-11-16",
+  "huella": "3f2a93591ee58438c8cf9a50bd84be56f60c6c2194fa58bd593b4f7bd4e6c135"
  },
  "blog/what-is-slopsquatting.html": {
-  "fecha": "2026-10-03",
-  "huella": "1eed1ef38e8a126b48123114756ef7b8525e1dc6b8fab05e337ad47e6862dc3e"
+  "fecha": "2026-11-16",
+  "huella": "ea450d490833fbc4f6ad4de32cd7f196fd38d37d1e7429bff70f91f366193b91"
+ },
+ "blog/xzvbailss-baileys-fork-auto-follow.html": {
+  "fecha": "2026-11-16",
+  "huella": "20e695df3a502558c7c0c98953b60f92f74543f6f45055812547746af5c98581"
  },
  "es/agencies.html": {
-  "fecha": "2026-11-11",
-  "huella": "8d6a9c951f8dcbf9ab395bfea7ccd3379d5502d560701482ac66e6c9f78f8c9d"
+  "fecha": "2026-11-16",
+  "huella": "176db4a5c653a47777f758652d701d5b706b7fc6eff9741abac8de5abd5901a7"
  },
  "es/hallucination-index.html": {
-  "fecha": "2026-10-03",
-  "huella": "8ec94682b0189edf38e9d67bec5828c8c98bda62029808f61761e535dac2db45"
+  "fecha": "2026-11-16",
+  "huella": "64e052dffbe11a166a7b8d4c7828d815b16b1cc5cf719b89c5cb87eadf3b1ec0"
  },
  "es/index.html": {
-  "fecha": "2026-11-09",
-  "huella": "e08accf3d1efd71c37ba9dd9404cbdd20dac286758d447387305b079910da374"
+  "fecha": "2026-11-16",
+  "huella": "3d6525941eb4e99a33cbdd0aee473e3a4f38cfa138f3a237ae87b036bfcba295"
  },
  "es/legal-notice.html": {
-  "fecha": "2026-10-03",
-  "huella": "ae8439f997b64ca054226da41dbb7dc72e677f986df152d5171d73417140c90e"
+  "fecha": "2026-11-16",
+  "huella": "e8a874517aa54456ff836b685d68a45e852d0cb13a5b48c69b0325ee691bb813"
  },
  "es/magaudit-vs-coderabbit.html": {
-  "fecha": "2026-10-08",
-  "huella": "0cea6f334f72c057f3ba5d6e9300ae1574b6acd2dcfb4d1b622bccdb7e243261"
+  "fecha": "2026-11-16",
+  "huella": "83c91d44ae7c338b100ef3d1434ae57c5ae422ef54a4e35d87640f134fd7cbe2"
  },
  "es/magaudit-vs-gitguardian.html": {
-  "fecha": "2026-10-03",
-  "huella": "7e07d66fd310fa0929a1869bec2c00a4772367ade30312c18d77e7a307992293"
+  "fecha": "2026-11-16",
+  "huella": "a169e4e9142dbb3454f180fe96da55a8d9bfe726746a0b2842ee3e73ef76e833"
  },
  "es/magaudit-vs-socket.html": {
-  "fecha": "2026-10-03",
-  "huella": "39f0c1d1fbac849165ae66d442ba9301abd2536f77fe38aaf0309239da751f72"
+  "fecha": "2026-11-16",
+  "huella": "ff8dea0a3e8a83145c4e54524ead6ed4c67f7370c6f63805c2fe3320fca75b96"
  },
  "es/magaudit-vs-sonarqube.html": {
-  "fecha": "2026-10-04",
-  "huella": "d1fba766d4860800aa701ce406d984a55d0d426e317887a9743692224553fd07"
+  "fecha": "2026-11-16",
+  "huella": "8d293285fdeb49de68aa87fcb6d13cbda2ed331ea63f0a71ef3d1d392294d235"
  },
  "es/magaudit-vs-trufflehog.html": {
-  "fecha": "2026-10-03",
-  "huella": "5969bdcbaa5a0c9968e64b74e1c94a0044a2e8734d7a406fac49111eff6e2a4d"
+  "fecha": "2026-11-16",
+  "huella": "947a14f48b108edbee7e0e059c764d1dad2aab950661dea4c100d4537f12fed0"
  },
  "es/prevent-secret-leaks-nextjs.html": {
-  "fecha": "2026-10-03",
-  "huella": "2b85cf9a1f3856866326524e2c5d1fcfacc444633efb4dd70ec92acf6bf10e85"
+  "fecha": "2026-11-16",
+  "huella": "e739ae9bf6efa6e3ad0be98f887c6d34c31312cc154e5173dfcf6408d2c95161"
  },
  "es/pricing.html": {
-  "fecha": "2026-10-03",
-  "huella": "e361381eb8d45934e1d24f0b2f9ed7850a24a24c71f59c70cbf12ae6983b9d7f"
+  "fecha": "2026-11-16",
+  "huella": "d84067ea1e66fb269cd9b6c1571cc883a1dfa02c426cff40a5f295861da3b546"
  },
  "es/privacy.html": {
-  "fecha": "2026-10-03",
-  "huella": "25293f409876e5ded6a3dc9aabceb321c57a0d1206e918b4d123239abf915540"
+  "fecha": "2026-11-16",
+  "huella": "a28d16a2af63778f9b254c24dd135644ee0f70231e0e9d3abdb85e1186460552"
  },
  "es/quality.html": {
-  "fecha": "2026-10-03",
-  "huella": "490bebdd48f9b2f223b56715afb73c8bcd752cdcc7b3c9b8b8d14a2c0ad779b8"
+  "fecha": "2026-11-16",
+  "huella": "56d2faf3ecf6f2f0cb508a8819c72fd3300abde955178cc0f247d77c8818d320"
  },
  "es/terms.html": {
-  "fecha": "2026-10-03",
-  "huella": "e49c4a4ccf788102c6385db22ec3cfbb34abd9296fcd4dfb4cfe156814760f28"
+  "fecha": "2026-11-16",
+  "huella": "ae7fe1c45f1bd74a36f91f9643ded7b116aba4c6425faacd0eaff65d3c868b47"
  },
  "es/trust.html": {
-  "fecha": "2026-10-04",
-  "huella": "4106ef96c14a31494561af8d0bcea23809cfabd9b47347cbab50c5c750ac6a07"
+  "fecha": "2026-11-16",
+  "huella": "a0e4f8726e9e7cf70fbeceb4b12eb3b930379a36b5cebb36980c22b905b2c6ec"
  },
  "hallucination-index.html": {
-  "fecha": "2026-10-03",
-  "huella": "b6085beb92d81552e5af9d3811be2ccbb3747146c8f4100d6ef86aa66fd84a58"
+  "fecha": "2026-11-16",
+  "huella": "f6edf0e211e58f74e01520dad773f84067f598b00d9ce29f8ec7574bc03b77ab"
  },
  "index.html": {
-  "fecha": "2026-11-09",
-  "huella": "69d38498a9fe39a5884468019567d6ad95d176c17e93732dce36ccb865e9f670"
+  "fecha": "2026-11-16",
+  "huella": "ea2004cf8fae75c9426a6f36168b59a23781094830f0d0ef96b5db98e42724f7"
  },
  "legal-notice.html": {
-  "fecha": "2026-10-03",
-  "huella": "e31463c7c6d65f94f2ae6c81161d5d08a5bbb06fd49c7ae49e75b3112efedaa0"
+  "fecha": "2026-11-16",
+  "huella": "2e1cc783c798ee250175cfc55b8c5b5645128e848f7fd9e874d0a056863644f0"
  },
  "magaudit-vs-coderabbit.html": {
-  "fecha": "2026-10-08",
-  "huella": "a691bd97c2e473619b9b08578539986c985668ed8ff36a5c8cb6e087a495dc54"
+  "fecha": "2026-11-16",
+  "huella": "9161231723ce2e6e8f29694ad37874824c1ab3e79ae06380aacaae7487073ecd"
  },
  "magaudit-vs-gitguardian.html": {
-  "fecha": "2026-10-03",
-  "huella": "abad1e5e003f23c581939cb3bf0acc66bf46954be5b6e856e3340a25588ff366"
+  "fecha": "2026-11-16",
+  "huella": "52a822e617a674c59725ab1cc9dbd212fe5658882dcc4c39267520b552d210ee"
  },
  "magaudit-vs-socket.html": {
-  "fecha": "2026-10-03",
-  "huella": "848f905fa44640b46957611844288874c9a4e6fe91855545a21b2d80f02e0c50"
+  "fecha": "2026-11-16",
+  "huella": "aadaacc402a417df1365c52daa8e113de4af77e06acc44bd9aacebaee593e1cc"
  },
  "magaudit-vs-sonarqube.html": {
-  "fecha": "2026-10-04",
-  "huella": "5cbbbe5d892bfc194c7a785c816d3d58f2eb41bb2ceb50bb8f89e72e4c929d73"
+  "fecha": "2026-11-16",
+  "huella": "5080bc8778e9b297270df4ef17aff56d80dae03845f9d094b38b2ee4c763f16f"
  },
  "magaudit-vs-trufflehog.html": {
-  "fecha": "2026-10-03",
-  "huella": "3aea1b95edf2e92fff846ea176a23e5a718458755091db9ddb4a36769f7d3761"
+  "fecha": "2026-11-16",
+  "huella": "042af2d6550903f0f6cb78d5b6391f404e394b2187a0556247700c94c363a4d8"
  },
  "prevent-secret-leaks-nextjs.html": {
-  "fecha": "2026-10-03",
-  "huella": "a2cfdcf77bddf98e9f383c052c897d10315f344bda7cf02888bbadc52923943b"
+  "fecha": "2026-11-16",
+  "huella": "1659cdaca27e4488b9710145a6dae87b75ed2dbde15540ff285db774d17a0a47"
  },
  "pricing.html": {
-  "fecha": "2026-10-03",
-  "huella": "684576fbfcdc45cfa0a68f817864c6f87462be2de6d01632d72b77c298cbf19f"
+  "fecha": "2026-11-16",
+  "huella": "d16b3a1cd174bfba5f7738bfa3b32caa3cc698f80f2871b15fd35b2ed7bcec2d"
  },
  "privacy.html": {
-  "fecha": "2026-10-03",
-  "huella": "43e24260b5df9d23676dd553d73c39aec4c970254576a56916c8f6c969473c03"
+  "fecha": "2026-11-16",
+  "huella": "e8ef5dc77d2087241485cf520cb41527d5533c3213decab52d2792ea0458e776"
  },
  "quality.html": {
-  "fecha": "2026-10-03",
-  "huella": "a9775051218f3bb61cbcd1b54c57962c91f0dd06a6d2eb759aa021fead15f84f"
+  "fecha": "2026-11-16",
+  "huella": "f6ca1121a89b403effc727fecd77ef352385210b3efe5c718e116a865fe926c3"
  },
  "terms.html": {
-  "fecha": "2026-10-03",
-  "huella": "f7936c1c8a1ee9edafede4d2625d633c57f687e35bfe6c0aac93a1755cc2daf2"
+  "fecha": "2026-11-16",
+  "huella": "c36bbd61f48af6eb6439fef30d6e826ceaf8ec7034d2827dcf71359a2fcddb1f"
  },
  "trust.html": {
-  "fecha": "2026-10-04",
-  "huella": "9d11da0e60779f4c9956940aa53524ac02bc805062b4ba561cb5f0aba5737370"
+  "fecha": "2026-11-16",
+  "huella": "ec05231bd0e4c8bfed32db51a2f25fc18638432599019817b26db1e9953e9478"
  }
 }

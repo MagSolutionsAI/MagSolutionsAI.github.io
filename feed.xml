@@ -6,13 +6,22 @@
     <atom:link href="https://magsolutionsai.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Analysis of AI-generated code supply chain risk: slopsquatting, hallucinated dependencies, and how to verify what your assistant just suggested.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Nov 2026 07:11:19 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 07:08:23 +0000</lastBuildDate>
+    <item>
+      <title>A five-day-old fork of a real WhatsApp library, still live, that auto-follows a channel on every connection</title>
+      <link>https://magsolutionsai.com/blog/xzvbailss-baileys-fork-auto-follow.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/xzvbailss-baileys-fork-auto-follow.html</guid>
+      <pubDate>Mon, 16 Nov 2026 09:00:00 +0000</pubDate>
+      <description>@xzvbailss/baileys copies the real &quot;baileys&quot; WhatsApp Web library and quietly subscribes the installer&#x27;s WhatsApp account to a hardcoded channel. GitHub reviewed three of its versions as malware on 16 November 2026; we checked the current release ourselves and the behaviour is still there.</description>
+      <category>supply chain</category><category>npm</category><category>case study</category><category>malware</category>
+    </item>
     <item>
       <title>Field report: 20359 real pull requests scanned, 6.5% flagged, 46 of our own mistakes fixed in public</title>
       <link>https://magsolutionsai.com/blog/field-report-2026-11-09.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-11-09.html</guid>
       <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
       <description>20359 real public pull requests scanned and 15988 dependencies resolved against the live registries; the check flagged something in 6.5% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+      <category>security</category><category>supply chain</category><category>measurement</category><category>open source</category>
     </item>
     <item>
       <title>Field report: 17381 real pull requests scanned, 10% flagged, 46 of our own mistakes fixed in public</title>
@@ -20,6 +29,7 @@
       <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-11-02.html</guid>
       <pubDate>Mon, 02 Nov 2026 09:00:00 +0000</pubDate>
       <description>17381 real public pull requests scanned and 14313 dependencies resolved against the live registries; the check flagged something in 10% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+      <category>security</category><category>supply chain</category><category>measurement</category><category>open source</category>
     </item>
     <item>
       <title>Drop the scope, keep the name: six packages squatting Axelar, Solana and OpenZeppelin SDKs in 48 hours</title>
@@ -156,30 +166,6 @@
       <pubDate>Wed, 09 Sep 2026 09:00:00 +0000</pubDate>
       <description>Across the 100 most recent npm malware advisories, 30% arrived more than a day after the package was published. 95% of those packages were under 30 days old when the advisory landed.</description>
       <category>security</category><category>supply chain</category><category>npm</category><category>measurement</category>
-    </item>
-    <item>
-      <title>Thirteen npm packages, 48 seconds, one fake wallet SDK</title>
-      <link>https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</link>
-      <guid isPermaLink="true">https://magsolutionsai.com/blog/coinbase-wallet-npm-cluster.html</guid>
-      <pubDate>Mon, 07 Sep 2026 09:00:00 +0000</pubDate>
-      <description>On 7 September 2026, GitHub&#x27;s Advisory Database flagged 13 npm packages named after Coinbase&#x27;s wallet infrastructure as malware. Registry timestamps show all 13 were published within 48 seconds of each other.</description>
-      <category>supply chain</category><category>npm</category><category>case study</category><category>malware</category>
-    </item>
-    <item>
-      <title>The malicious package that never showed up in anyone&#x27;s requirements.txt</title>
-      <link>https://magsolutionsai.com/blog/transitive-dependency-malware.html</link>
-      <guid isPermaLink="true">https://magsolutionsai.com/blog/transitive-dependency-malware.html</guid>
-      <pubDate>Thu, 03 Sep 2026 09:00:00 +0000</pubDate>
-      <description>Two PyPI packages published this week show why checking your direct dependencies is not enough. The credential-stealing code was one dependency away, in a package nobody typed into a requirements file on purpose.</description>
-      <category>supply chain</category><category>PyPI</category><category>case study</category><category>transitive dependencies</category>
-    </item>
-    <item>
-      <title>What is slopsquatting, and why your scanner cannot see it</title>
-      <link>https://magsolutionsai.com/blog/what-is-slopsquatting.html</link>
-      <guid isPermaLink="true">https://magsolutionsai.com/blog/what-is-slopsquatting.html</guid>
-      <pubDate>Thu, 03 Sep 2026 09:00:00 +0000</pubDate>
-      <description>Attackers no longer wait for you to mistype a package name. They register the names your AI assistant invents. Here is how the attack works and why CVE-based tooling is blind to it by design.</description>
-      <category>slopsquatting</category><category>supply chain</category><category>AI security</category>
     </item>
   </channel>
 </rss>
