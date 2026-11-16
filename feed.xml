@@ -8,6 +8,13 @@
     <language>en</language>
     <lastBuildDate>Mon, 16 Nov 2026 07:08:23 +0000</lastBuildDate>
     <item>
+      <title>Field report: 22344 real pull requests scanned, 7.7% flagged, 46 of our own mistakes fixed in public</title>
+      <link>https://magsolutionsai.com/blog/field-report-2026-11-16.html</link>
+      <guid isPermaLink="true">https://magsolutionsai.com/blog/field-report-2026-11-16.html</guid>
+      <pubDate>Mon, 16 Nov 2026 09:00:00 +0000</pubDate>
+      <description>22344 real public pull requests scanned and 19036 dependencies resolved against the live registries; the check flagged something in 7.7% of them. 46 corrections to our own detector, each pinned by a test. Measured, not estimated, and re-checked weekly.</description>
+    </item>
+    <item>
       <title>A five-day-old fork of a real WhatsApp library, still live, that auto-follows a channel on every connection</title>
       <link>https://magsolutionsai.com/blog/xzvbailss-baileys-fork-auto-follow.html</link>
       <guid isPermaLink="true">https://magsolutionsai.com/blog/xzvbailss-baileys-fork-auto-follow.html</guid>
